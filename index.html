@@ -22,32 +22,57 @@ p{color:#c0cbd0;max-width:680px}.eyebrow{color:#a3d3a0;font-weight:700;letter-sp
 .library-link{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
 .library-link .library-cta{display:inline-flex;align-items:center;min-height:44px;border:1px solid #668675;padding:8px 14px;border-radius:10px;color:#a7e3aa;text-decoration:none;font-weight:650}
 .library-link .library-cta:hover,.library-link .library-cta:focus-visible{background:#294036}
-.offer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0 18px}
-.offer-card{padding:20px;background:#20303b;border:1px solid #3b5054;border-radius:13px}
-.offer-card h3{margin:4px 0 6px;font-size:1.45rem;color:#f7f7f4}
-.offer-card p{margin:0;font-size:.98rem}
-.offer-card .offer-eyebrow{display:block;color:#b8d9cd;font-size:.83rem;font-weight:700;line-height:1.45}
-.offer-card .offer-promise{color:#f1f6f3;font-weight:650;line-height:1.5;margin:8px 0 14px}
-.offer-card ul{color:#d2dfe0;padding-left:20px;margin:0 0 16px}
-.offer-card li{margin:0 0 9px;line-height:1.55}
-.offer-card .offer-fit{padding-top:14px;border-top:1px solid #45605e;color:#d2dfe0;font-size:.91rem}
+.offer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+.offer-card{display:flex;flex-direction:column;gap:12px;padding:22px;background:#20303b;border:1px solid #3b5054;border-radius:13px}
+.offer-card h3{margin:0;font-size:1.55rem;color:#f7f7f4}
+.offer-card p{margin:0;font-size:.98rem;max-width:unset}
+.offer-card .offer-eyebrow{color:#b8d9cd;font-size:.83rem;font-weight:700;line-height:1.45}
+.offer-card .offer-promise{color:#f1f6f3;font-weight:650;line-height:1.5}
+.offer-card .offer-fit{margin-top:auto;padding-top:13px;border-top:1px solid #45605e;color:#d2dfe0;font-size:.91rem}
 .offer-card .offer-fit strong{color:#f7f7f4}
-.offer-card--elite{background:#22392f;border-color:#668b70}
+.offer-card--elite{background:#22392f;border:2px solid #90c99a;padding:21px}
+.coaching-lead{max-width:780px}
+.coaching-intro{margin:0 0 6px}
+.coaching-experience{color:#d5dfe0}
+.coaching-explain{padding:17px 20px;background:#111f27;border:1px solid #365349;border-radius:12px;margin:20px 0}
+.coaching-explain h3{margin:0 0 6px;font-size:1.15rem}
+.coaching-explain p{margin:0;max-width:unset}
+.coaching-compare{margin:26px 0 0}
+.coaching-compare h3{margin:0 0 5px;font-size:1.28rem}
+.coaching-compare>p{margin:0 0 12px}
+.comparison-scroll{max-width:100%;overflow-x:auto;border:1px solid #49616a;border-radius:12px;scrollbar-color:#90c99a #20303b}
+.comparison-scroll:focus-visible{outline:3px solid #a7e3aa;outline-offset:3px}
+.coaching-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.93rem;min-width:570px}
+.coaching-table th,.coaching-table td{padding:12px 13px;text-align:left;vertical-align:top;border-bottom:1px solid #354851;overflow-wrap:break-word}
+.coaching-table thead th{color:#f7f7f4;background:#263943;font-weight:750}
+.coaching-table thead th:last-child{background:#2d503d;color:#d4f7da}
+.coaching-table tbody th{font-weight:650;color:#e2eeec;width:33%}
+.coaching-table tbody td{color:#d2e0e1}
+.coaching-table tbody td:last-child{background:#213a31;color:#d7f4dc}
+.coaching-table tbody tr:last-child>*{border-bottom:0}
+.coaching-table thead th:first-child{width:33%}
+.comparison-tip{font-size:.85rem;margin:8px 0;color:#c0cbd0}
+.comparison-note{font-size:.84rem;color:#c0cbd0;margin-top:8px}
+.sample-checkin{margin:26px 0 0;padding:22px;background:#111f27;border:1px solid #435d55;border-left:3px solid #a7e3aa;border-radius:12px}
+.sample-checkin h3{margin:0 0 7px;font-size:1.28rem;color:#f7f7f4}
+.sample-checkin p{margin:5px 0 0;max-width:unset}
+.sample-checkin .sample-intro{color:#d1dcdf}
+.sample-scenario{margin:16px 0;padding:15px 17px;background:#243640;border-radius:10px}
+.sample-scenario strong{color:#f7f7f4}
+.sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 15px}
+.sample-option{padding:17px;background:#1b2c36;border:1px solid #465c62;border-radius:11px}
+.sample-option--elite{background:#20382e;border-color:#78ad83}
+.sample-option h4{font-size:1.12rem;margin:0 0 8px}
+.sample-option p{font-size:.93rem}
+.sample-result{padding-top:12px;border-top:1px solid #4b6360;color:#dcf0e2;font-weight:600}
+.sample-checkin small{display:block;color:#bfcdd0;font-size:.83rem}
+.coaching-final{margin:24px 0 0;padding:20px;background:#243b30;border-radius:12px;border:1px solid #84b993}
+.coaching-final h3{font-size:1.25rem;margin:0 0 7px}
+.coaching-final p{margin:0 0 15px;max-width:unset}
 .coaching-cta{display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:12px 20px;border-radius:10px;background:#a7e3aa;color:#101820!important;font-weight:750;text-decoration:none!important}
 .coaching-cta:hover,.coaching-cta:focus-visible{background:#c6f4c8;outline:3px solid #f7f7f4;outline-offset:3px}
-.coaching-note{font-size:.9rem}
-.sample-checkin{margin:24px 0 0;padding:20px;background:#111f27;border-left:3px solid #a7e3aa;border-radius:9px}
-.sample-checkin h3{margin:0 0 8px;font-size:1.18rem;color:#f7f7f4}
-.sample-checkin p{margin:5px 0 0}
-.sample-checkin .sample-intro{max-width:unset}
-.sample-checkin .sample-scenario{margin:16px 0;padding:12px 14px;border-radius:8px;background:#20313a;color:#e4ecec}
-.sample-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 15px}
-.sample-steps>div{padding:14px;border:1px solid #344b51;border-radius:9px}
-.sample-steps strong{color:#b8edbb}
-.sample-steps p{font-size:.9rem;line-height:1.55}
-.sample-checkin small{display:block;font-size:.82rem;color:#b8c8cc}
-@media(max-width:680px){.sample-steps{grid-template-columns:1fr}.sample-checkin{padding:16px}.sample-steps>div{padding:12px}}
-@media(max-width:680px){.offer-grid{grid-template-columns:1fr}.offer-card{padding:17px}.library-link{align-items:flex-start;flex-direction:column}.coaching-cta{display:flex;width:100%;font-size:clamp(13px,3.6vw,16px);padding-inline:12px;white-space:nowrap}}
+.coaching-note{font-size:.87rem;margin:12px 0 0!important}
+@media(max-width:680px){.offer-grid,.sample-grid{grid-template-columns:1fr}.offer-card{padding:17px}.offer-card--elite{padding:16px}.sample-checkin{padding:16px}.coaching-final{padding:16px}.library-link{align-items:flex-start;flex-direction:column}.coaching-cta{display:flex;width:100%;font-size:clamp(13px,3.6vw,16px);padding-inline:10px;white-space:normal;text-align:center}.coaching-table{font-size:.9rem}.comparison-tip{display:block}}
 .card h2{font-size:1.55rem;margin:8px 0}.card p{margin:0}.arrow{color:#a7e3aa;font-weight:700}.library-link{margin-top:24px}.library-link a{color:#a7e3aa;text-underline-offset:3px}.about{margin-top:52px;padding:32px;border:1px solid #35444c;border-radius:18px;background:#182630}.about h2{margin-top:0}.about a{color:#a7e3aa;text-underline-offset:3px}.foot{margin-top:50px;border-top:1px solid #35444c;padding-top:24px;color:#c0cbd0}
 @media(max-width:680px){.cards{grid-template-columns:1fr}header{padding:32px 0 24px}.card{min-height:unset;padding:21px}.card--featured{padding:20px}}
 
@@ -68,12 +93,12 @@ nav a:focus-visible,.card:focus-visible,.about a:focus-visible,.library-link a:f
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style></head>
 <body><a class="skip-to-content" href="#main-content">Skip to main content</a><main id="main-content"><nav><strong>BFit Training Hub</strong><div class="site-nav-links"><a href="#guides">Explore guides</a><a href="#coaching">Coaching</a><a href="#connect">Connect</a></div></nav>
-<header><div class="eyebrow">Train with BFit</div><h1>Find your way<br>to better training.</h1><p>I made these free guides so you can choose a workout that fits your goals, then learn the why behind it as you go. Pick where you want to start.</p></header>
+<header><div class="eyebrow">Train with BFit</div><h1>Find your way<br>to better training.</h1><p>Free workouts and training guides designed to make exercise easier to understand. Choose the program that fits your goals, schedule, and equipment. Learn the <em>why</em> behind your training as you go.</p></header>
 <section id="guides" aria-label="Training guides"><h2>Choose a guide</h2><div class="cards">
-<a class="card card--featured" href="guides/foundation/"><div class="eyebrow">Start here · general strength</div><h2>Foundation Training</h2><p>Choose your goals, schedule and equipment to build a strength plan you can actually follow.</p><span class="card-action">Build my plan</span></a>
-<a class="card" href="guides/athleticism/"><div class="eyebrow">For sport and movement</div><h2>Athleticism</h2><p>Choose a four-week program for sprinting, jumping, field and court sports, or a mix.</p><span class="card-action">Explore training programs</span></a>
-<a class="card" href="guides/gamer-fit/"><div class="eyebrow">For gaming and screen time</div><h2>Gamer Fit</h2><p>Start with a no-equipment workout or explore habits for more movement and energy.</p><span class="card-action">Start a workout</span></a>
-<a class="card" href="guides/run-strong/"><div class="eyebrow">For runners</div><h2>Run Strong</h2><p>Try a first running session and learn how to structure your week and build consistency.</p><span class="card-action">Find a running session</span></a>
+<a class="card card--featured" href="guides/foundation/"><div class="eyebrow">Start here · general strength</div><h2>Foundation Training</h2><p>Choose your goals, schedule, and equipment to build a practical strength plan that fits your life.</p><span class="card-action">Build my plan</span></a>
+<a class="card" href="guides/athleticism/"><div class="eyebrow">For sport and movement</div><h2>Athleticism</h2><p>Improve sprinting, jumping, and field-and-court movement with a structured four-week program.</p><span class="card-action">Explore training programs</span></a>
+<a class="card" href="guides/gamer-fit/"><div class="eyebrow">For gaming and screen time</div><h2>Gamer Fit</h2><p>Build movement, exercise, and recovery habits around gaming and screen time. Start with a no-equipment workout.</p><span class="card-action">Start a workout</span></a>
+<a class="card" href="guides/run-strong/"><div class="eyebrow">For runners</div><h2>Run Strong</h2><p>Preview a running workout, learn to structure your training week, and build consistency at your own pace.</p><span class="card-action">Explore running workouts</span></a>
 </div>
 <section class="upcoming" aria-labelledby="upcoming-title">
 <h2 id="upcoming-title">Follow a program</h2>
@@ -93,11 +118,35 @@ nav a:focus-visible,.card:focus-visible,.about a:focus-visible,.library-link a:f
 </button>
 </div>
 </section>
-<div class="library-link"><span>Need a demonstration or setup cues?</span><a class="library-cta" href="https://bfit-exercise-movement-library.balouissaint.chatgpt.site/" target="_blank" rel="noopener noreferrer">Open Exercise Library ↗</a></div></section>
-<section class="about" id="coaching" aria-labelledby="coaching-title"><h2 id="coaching-title">Want a plan built around you?</h2><p>I'm Bryan Louissaint. A workout tells you what to do; coaching helps you figure out what to change when life, recovery, or progress doesn't follow the plan. I build around your goals, schedule, equipment, and training history, then use your completed sessions and feedback to make informed adjustments.</p><p>Both options include individualized coaching—not a generic workout with your name added. The difference is how closely and frequently we work through your progress together.</p><div class="offer-grid">
-<div class="offer-card"><span class="offer-eyebrow">Personalized coaching, room to train independently</span><h3>Premium</h3><p class="offer-promise">A training plan that grows with you, with meaningful feedback along the way.</p><ul><li>Workouts designed around your goals, experience, equipment, and schedule.</li><li>Scheduled written check-ins to review what's working and what needs adjusting.</li><li>Exercise-technique feedback on selected clips, with clear next steps.</li></ul><p class="offer-fit"><strong>Good fit if:</strong> You want thoughtful programming and a coach making decisions with you, while doing most of your training independently.</p></div>
-<div class="offer-card offer-card--elite"><span class="offer-eyebrow">More hands-on coaching and closer follow-through</span><h3>Elite</h3><p class="offer-promise">The same individualized foundation, with more opportunities to fine-tune your training together.</p><ul><li>Personalized programming with more frequent reviews and check-ins.</li><li>More opportunities for exercise-video feedback and technique refinement.</li><li>Closer ongoing support to identify sticking points and adjust your approach.</li></ul><p class="offer-fit"><strong>Good fit if:</strong> You want more back-and-forth, regular accountability, and a closer eye on your progress.</p></div>
-</div><a class="coaching-cta" href="https://forms.gle/f11PGA7PCUKaxrgq9" target="_blank" rel="noopener noreferrer">Open the coaching questionnaire ↗</a><p class="coaching-note">You can see what each plan includes and costs before deciding whether to reach out. No commitment.</p><div class="sample-checkin" aria-labelledby="coaching-example-title"><h3 id="coaching-example-title">What working with me can look like</h3><p class="sample-intro">Here's an example of how I'd use your training log, exercise feedback and check-ins to make a decision—not just change numbers on a spreadsheet.</p><p class="sample-scenario">Example: Your squat workout calls for three sets of eight. You consistently hit the first two sets, but the last drops to five reps and your video shows your depth changing as you fatigue.</p><div class="sample-steps"><div><strong>What I'd check</strong><p>I'd ask about your rest between sets, how hard the work felt, and the other lower-body training you did that week. I wouldn't assume you simply need to push harder.</p></div><div><strong>What I'd change</strong><p>If fatigue appears to be the main issue, I'd hold the weight steady, make sure you're resting enough, and adjust overlapping work instead of automatically adding more volume.</p></div><div><strong>What we'd review</strong><p>Over the next sessions, we'd look for consistent depth and repetitions across sets. If quality improves, we can build again. If it doesn't, I'd reassess the exercise and weekly workload.</p></div></div><small>Illustrative coaching scenario, not an actual client result or testimonial.</small></div></section>
-<section class="connect" id="connect" aria-labelledby="connect-title"><h2 id="connect-title">See what I’m up to</h2><p>I share training ideas, updates, and some gaming outside the gym.</p><div class="connect-links"><a href="https://www.instagram.com/_trainwithbfit/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/@_trainwithbfit" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://www.twitch.tv/gamewithbfit" target="_blank" rel="noopener noreferrer">Twitch ↗</a><a href="https://discord.gg/9yfqjvZPg" target="_blank" rel="noopener noreferrer">BFit Lounge on Discord ↗</a></div><p class="small-note">The BFit Lounge is free to join if you want to talk training, sports, or gaming. Paid coaching is different: I build your workouts, review your progress, and make changes based on how things are going. Coaching clients also have a private area.</p></section>
-<footer class="foot"><strong>BFit Training Hub</strong><p>Free guides for strength, athleticism, running and gaming fitness. Train with purpose, and keep what works for you.</p></footer>
+<div class="library-link"><span>Need exercise demonstrations or technique cues?</span><a class="library-cta" href="https://bfit-exercise-movement-library.balouissaint.chatgpt.site/" target="_blank" rel="noopener noreferrer">Open Exercise Library ↗</a></div></section>
+<section class="about" id="coaching" aria-labelledby="coaching-title">
+<h2 id="coaching-title">Want a plan built around you?</h2>
+<p class="coaching-intro">I'm Bryan. I've spent eight years coaching strength and conditioning, working with athletes and everyday people who want to train with purpose. I start with your goals, training history, and schedule, then use your completed sessions and feedback to help decide what needs to change.</p>
+<div class="coaching-explain" aria-labelledby="coaching-explain-title"><h3 id="coaching-explain-title">Free guides or personalized coaching?</h3><p>The free BFit guides give you workouts, explanations, and tools to train independently. With personal coaching, your plan is built around you, your progress is reviewed, and adjustments are made with you as your needs change. Both have value; the difference is having a coach personally evaluate your training.</p></div>
+<p class="coaching-lead">Both coaching options include individualized programming and thoughtful adjustments. Choose the level of feedback and collaboration that fits how you like to train.</p>
+<div class="offer-grid">
+<div class="offer-card"><span class="offer-eyebrow">PERSONALIZED GUIDANCE</span><h3>Premium</h3><p class="offer-promise">Expert programming. Real feedback. Clear direction.</p><p>Get a training plan built around your goals, scheduled reviews, and selected exercise-technique feedback—with room to train independently.</p><p class="offer-fit"><strong>Good fit if:</strong> You want a coach guiding your progress while you handle most of your workouts on your own.</p></div>
+<div class="offer-card offer-card--elite"><span class="offer-eyebrow">CLOSER COACHING PARTNERSHIP</span><h3>Elite</h3><p class="offer-promise">More collaboration. More feedback. Closer follow-through.</p><p>Get everything in Premium, plus more frequent reviews and more opportunities to troubleshoot, refine technique, and adjust your approach together.</p><p class="offer-fit"><strong>Good fit if:</strong> You want more back-and-forth, regular accountability, and closer involvement as your training develops.</p></div>
+</div>
+<div class="coaching-compare" aria-labelledby="compare-title"><h3 id="compare-title">Compare your coaching experience</h3><p>Both options receive the same care when decisions are made. Elite offers more opportunities to work through those decisions together.</p>
+<div class="comparison-scroll" role="region" aria-label="Premium and Elite coaching comparison; scroll horizontally on narrow screens" tabindex="0"><table class="coaching-table"><thead><tr><th scope="col">What's included</th><th scope="col">Premium</th><th scope="col">Elite</th></tr></thead><tbody>
+<tr><th scope="row">Personalized training</th><td>Built around your goals and schedule</td><td>Everything in Premium</td></tr>
+<tr><th scope="row">Progress tracking</th><td>Your completed training informs reviews</td><td>Same tracking, reviewed more frequently</td></tr>
+<tr><th scope="row">Written check-ins</th><td>Scheduled feedback</td><td>More frequent check-ins</td></tr>
+<tr><th scope="row">Exercise feedback</th><td>Selected exercise clips</td><td>More opportunities for clip review</td></tr>
+<tr><th scope="row">Program adjustments</th><td>Based on scheduled reviews and feedback</td><td>More opportunities to refine between reviews</td></tr>
+<tr><th scope="row">Coaching experience</th><td>Greater independence with expert direction</td><td>Closer collaboration and follow-through</td></tr>
+</tbody></table></div>
+<p class="comparison-tip">On a smaller screen, swipe the table sideways to compare both options.</p>
+<p class="comparison-note">Exact check-in frequency, video allowances, calls, and current prices are listed in the coaching questionnaire. No promises of faster results.</p></div>
+<div class="sample-checkin" aria-labelledby="coaching-example-title"><h3 id="coaching-example-title">See the difference in action</h3><p class="sample-intro">What happens when your training stops moving forward? Here's how the same challenge could look at each coaching level.</p>
+<div class="sample-scenario"><strong>The situation</strong><p>Your squat strength has stalled for several sessions. You're completing most of your workouts, but the final set is harder to finish and your technique becomes inconsistent.</p></div>
+<div class="sample-grid">
+<div class="sample-option"><h4>With Premium</h4><p>At your scheduled check-in, I'd review your recent sessions, effort, rest periods, and other lower-body training. If fatigue appears to be the issue, we'd hold the weight steady, adjust overlapping work, and set a clear target to review next time.</p><p class="sample-result">You get an informed adjustment and a clear next step.</p></div>
+<div class="sample-option sample-option--elite"><h4>With Elite</h4><p>We'd start with the same analysis and adjustment. More frequent contact gives us additional chances to review a technique clip, discuss how the change felt, and refine the plan using your next training results.</p><p class="sample-result">You get that same direction, with closer feedback and follow-through.</p></div>
+</div><small>Illustrative coaching scenario, not an actual client result, testimonial, or guarantee.</small></div>
+<div class="coaching-final"><h3>Ready for training that adapts to you?</h3><p>See the current services and prices, compare Premium and Elite, and share what you're working toward.</p><a class="coaching-cta" href="https://forms.gle/f11PGA7PCUKaxrgq9" target="_blank" rel="noopener noreferrer">Open the coaching questionnaire ↗</a><p class="coaching-note">You can review the details before deciding whether to reach out. No commitment.</p></div>
+</section>
+<section class="connect" id="connect" aria-labelledby="connect-title"><h2 id="connect-title">Follow BFit</h2><p>Find practical training tips and new BFit guide updates on Instagram and TikTok. Twitch is where I share gaming content, and the BFit Lounge is a free community for training, sports, and gaming.</p><div class="connect-links"><a href="https://www.instagram.com/_trainwithbfit/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/@_trainwithbfit" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://www.twitch.tv/gamewithbfit" target="_blank" rel="noopener noreferrer">Twitch ↗</a><a href="https://discord.gg/9yfqjvZPg" target="_blank" rel="noopener noreferrer">BFit Lounge on Discord ↗</a></div><p class="small-note">The free guides and public BFit Lounge help you learn and connect. Premium and Elite add individualized programming, personal progress reviews, and coaching feedback. Coaching clients also have a separate private area.</p></section>
+<footer class="foot"><strong>BFit Training Hub</strong><p>Free guides for strength, athleticism, running, and gaming fitness. Train with purpose, and keep what works for you.</p></footer>
 </main></body></html>
