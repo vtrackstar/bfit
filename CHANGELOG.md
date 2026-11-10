@@ -1,5 +1,16 @@
 # BFit Training Hub — Change Log
 
+## 2026-11-10 — Prelaunch housekeeping while coaching intake is closed
+
+- Kept all four free guides available and preserved workout programs and exercise IDs.
+- Added a stable coaching availability page with an accurate paused-intake message.
+- Redirected the hub and four guide coaching calls-to-action to that page instead of the closed questionnaire. Current form link stays documented for the eventual hard launch.
+- Added checks that prevent direct links to the closed form while intake is paused, and extended navigation/browser QA to the new page.
+- Updated the repository README and a single prelaunch checklist with source-of-truth URLs, pending form/Zapier checks, exercise-demo review, and mobile testing.
+- Identified older Drive drafts as historical backups. No Drive file was deleted, moved, overwritten, or added while storage access is limited.
+- Preserved the previous main commit (`5f52ea436d29bb8412b35657a29da729069ea657`) as a Git history restore point.
+
+
 ## 2026-11-05 — Return to all guides while reading
 
 - Foundation and Athleticism now show a small **All guides** link throughout reading or workout sessions, including on a narrow phone. It returns to the main BFit Hub, where readers can switch guides without finishing the current one.
