@@ -34,7 +34,7 @@ for (const [path, html] of pages) {
     add(path, 'outdated private-only Discord wording');
   if (/Individual Coaching and Individual Coaching/i.test(html))
     add(path, 'outdated duplicated coaching name');
-  if (!/\bPremium\b/.test(html) || !/\bElite\b/.test(html))
+  if (!/\bPremium\b/i.test(html) || !/\bElite\b/i.test(html))
     add(path, 'missing current Premium/Elite plan names');
 
   if (/https:\/\/(?:foundation-training-skill-tree|bfit-run-strong|bfit-gamer-fit)\.stormy-lamp-8931\.chatgpt\.site/gi.test(html)) add(path, 'outdated guide host');
