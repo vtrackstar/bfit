@@ -27,10 +27,12 @@ try {
   };
   console.log('COACHING FORM READ-ONLY FINDINGS (publicly visible text; no submission)');
   console.log(JSON.stringify(observed,null,2));
-  if(observed.premiumVisible && observed.eliteVisible && !observed.signInObstacle){
-    console.log('PASS: Both plan names appear to a signed-out reader.');
+  if(/no longer accepting responses/i.test(text)) {
+    console.log('PAUSED AS EXPECTED: The public form is closed while coaching intake is on hold. Owner must reopen it before hard launch.');
+  }else if(observed.premiumVisible && observed.eliteVisible && !observed.signInObstacle){
+    console.log('REVIEW BEFORE LAUNCH: Form appears open, but the site still routes visitors to the coaching availability page. Test submissions and update the availability page only after verifying automation.');
   }else{
-    console.warn('REVIEW: Could not confirm both plan names without an access obstacle. Inspect the form as a visitor.');
+    console.warn('REVIEW: Form status or both plan names could not be confirmed in a signed-out browser.');
   }
   await page.close();
 } catch(error){
