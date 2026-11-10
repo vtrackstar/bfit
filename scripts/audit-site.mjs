@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const base = 'https://vtrackstar.github.io/bfit/';
-const paths = ['index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html'];
+const paths = ['index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html','coaching/index.html'];
 const pages = new Map(paths.map(path => [path, fs.readFileSync(path, 'utf8')]));
 const errors = [];
 let scriptsChecked = 0, jsonChecked = 0, linksChecked = 0, anchorsChecked = 0;
@@ -21,12 +21,15 @@ for (const [path, html] of pages) {
   if (!html.includes('<link rel="canonical" href="' + expected + '">')) add(path, 'missing or wrong canonical');
   if (!/<\/html>\s*$/i.test(html)) add(path, 'missing end tag');
   if (path !== 'index.html' && !html.includes(base)) add(path, 'missing hub link');
-  for (const required of [
+  if (path === 'coaching/index.html') {
+    if (!/Coaching inquiries are paused/i.test(html)) add(path, 'coaching intake pause notice missing');
+    if (/href=["']https:\/\/forms\.gle\//i.test(html)) add(path, 'paused intake should not send visitors to the closed form');
+  } else for (const required of [
     'https://www.instagram.com/_trainwithbfit/',
     'https://www.tiktok.com/@_trainwithbfit',
     'https://www.twitch.tv/gamewithbfit',
     'https://discord.gg/9yfqjvZPg',
-    'https://forms.gle/f11PGA7PCUKaxrgq9'
+    'https://vtrackstar.github.io/bfit/coaching/'
   ]) {
     if (!html.includes(required)) add(path, 'missing shared social, community or coaching destination: '+required);
   }
@@ -34,7 +37,7 @@ for (const [path, html] of pages) {
     add(path, 'outdated private-only Discord wording');
   if (/Individual Coaching and Individual Coaching/i.test(html))
     add(path, 'outdated duplicated coaching name');
-  if (!/\bPremium\b/i.test(html) || !/\bElite\b/i.test(html))
+  if (path !== 'coaching/index.html' && (!/\bPremium\b/i.test(html) || !/\bElite\b/i.test(html)))
     add(path, 'missing current Premium/Elite plan names');
 
   if (/https:\/\/(?:foundation-training-skill-tree|bfit-run-strong|bfit-gamer-fit)\.stormy-lamp-8931\.chatgpt\.site/gi.test(html)) add(path, 'outdated guide host');
