@@ -57,7 +57,8 @@ try {
         assert.equal(response.status(), 200);
         assert.equal(await page.locator('main').count(), 1);
         assert.equal(await page.locator('h1').count(), 1);
-        assert.equal(await page.locator('#guides .card').count(), 4);
+        assert.equal(await page.locator('#guides a.card').count(), 4);
+        assert.equal(await page.locator('#guides .card--coming[disabled]').count(), 2);
         assert.equal(await page.locator('a[href="#coaching"]').count() > 0, true, 'Coaching must be easy to find from hub nav');
         const metrics = await page.evaluate(() => ({
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -104,6 +105,8 @@ try {
     try {
       await page.goto(host+'/');
       await page.keyboard.press('Tab');
+      assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')), '#main-content');
+      await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')), '#guides');
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')), '#coaching');
@@ -121,7 +124,7 @@ try {
       const page=await browser.newPage({viewport:{width:390,height:844}});
       try {
         await page.goto(host+'/');
-        await page.locator('#guides .card').nth(i).click();
+        await page.locator('#guides a.card').nth(i).click();
         await page.waitForURL('**/guides/'+expected[i].slug+'/');
         assert.ok((await page.title()).length>0);
         assert.ok(await page.locator('a[href="https://vtrackstar.github.io/bfit/"]').count() > 0,
