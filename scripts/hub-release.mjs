@@ -94,7 +94,7 @@ try {
           assert.equal(await link.getAttribute('target'), '_blank', name+' should open new tab');
           assert.match(await link.getAttribute('rel') || '', /\bnoopener\b/, name+' should use noopener');
         }
-        assert.equal(await page.locator('#coaching a[href="https://forms.gle/f11PGA7PCUKaxrgq9"]').count(), 1);
+        assert.equal(await page.locator('#coaching a[href="https://vtrackstar.github.io/bfit/coaching/"]').count(), 1);
         await page.screenshot({path:path.join(folder,'hub-release-'+screen.label+'.png'),fullPage:true,animations:'disabled'});
         assert.deepEqual(errors, [], 'Browser JavaScript errors');
       } finally { await page.close(); }
@@ -132,6 +132,17 @@ try {
         assert.ok((await page.locator('body').innerText()).length>150,'Guide rendered no content: '+expected[i].name);
       } finally { await page.close(); }
     }
+  });
+  await check('Coaching paused notice is clear and visitors can return to free guides', async () => {
+    const page=await browser.newPage({viewport:{width:390,height:844}});
+    try {
+      const response=await page.goto(host+'/coaching/');
+      assert.equal(response.status(),200);
+      assert.match(await page.locator('h1').innerText(),/Coaching inquiries are paused/i);
+      assert.equal(await page.locator('a[href="https://forms.gle/f11PGA7PCUKaxrgq9"]').count(),0);
+      assert.ok(await page.locator('a[href="https://vtrackstar.github.io/bfit/"]').count()>0);
+      await page.screenshot({path:path.join(folder,'coaching-paused-phone.png'),animations:'disabled'});
+    } finally {await page.close();}
   });
   await check('Hub WCAG 2.1 A and AA accessibility scan', async () => {
     // axe-core/playwright requires a standalone browser context rather than browser.newPage().

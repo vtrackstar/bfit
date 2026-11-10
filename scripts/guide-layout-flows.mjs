@@ -46,7 +46,7 @@ try {
    assert.match(content,/Premium/);
    assert.match(content,/Elite/);
    assert.equal(await page.locator('#app a[href="https://discord.gg/9yfqjvZPg"]').count(),1);
-   assert.equal(await page.locator('#app a[href="https://forms.gle/f11PGA7PCUKaxrgq9"]').count(),1);
+   assert.equal(await page.locator('#app a[href="https://vtrackstar.github.io/bfit/coaching/"]').count(),1);
  });
  await check('Gamer Fit has a compact header and a functional contents drawer',async page=>{
    await page.goto(host+'/guides/gamer-fit/',{waitUntil:'domcontentloaded'});
