@@ -46,10 +46,12 @@ try {
     try {
       const response=await page.goto(libraryBase+'#'+id,{waitUntil:'domcontentloaded',timeout:20000});
       await page.waitForTimeout(1200);
-      const state=await page.evaluate(() => {
+      const state=await page.evaluate(name => {
         const body=document.body.innerText||'';
         const target=document.querySelector(':target');
         const dialog=document.querySelector('dialog[open],[role="dialog"][aria-modal="true"]');
+        const matches=[...document.querySelectorAll('h1,h2,h3,h4')].filter(e=>e.textContent.trim().toLowerCase().includes(name.toLowerCase()));
+        const targetRect=matches.find(e=>{const r=e.getBoundingClientRect();return r.bottom>0 && r.top<window.innerHeight})?.getBoundingClientRect();
         return {
           title:document.title,
           length:body.length,
@@ -58,15 +60,17 @@ try {
           headings:[...document.querySelectorAll('h1,h2')].filter(x=>x.getClientRects().length).slice(0,4).map(x=>x.innerText.slice(0,80)),
           visibleText:body.slice(0,350),
           scrollY:Math.round(window.scrollY),
+          intendedHeadingVisible:!!targetRect,
+          intendedHeadingTop:targetRect?Math.round(targetRect.top):null,
           hash:location.hash,
           visibleHeadings:[...document.querySelectorAll('h1,h2,h3')].filter(x=>{let y=x.getBoundingClientRect();return y.top>=0&&y.top<window.innerHeight&&y.bottom>0;}).slice(0,6).map(x=>x.innerText.slice(0,90)),
           topVisibleText:(document.elementFromPoint(window.innerWidth/2,Math.round(window.innerHeight/2))?.closest('article,section,div')?.innerText||'').slice(0,160)
         };
-      });
+      },name);
       const found=(await page.locator('body').innerText()).toLowerCase().includes(name.toLowerCase());
       const noLogin=!/sign in to continue|sign in with google|log in to continue/i.test(state.visibleText);
-      const result= response?.ok() && page.url().endsWith('#'+id) && found && noLogin ? 'CANDIDATE' : 'REVIEW';
-      console.log(result+' Library deep link '+id+' ('+name+'): HTTP '+(response?.status()||'unknown')+'; name on page '+found+'; no sign-in text '+noLogin+'; '+JSON.stringify(state).slice(0,650));
+      const result= response?.ok() && page.url().endsWith('#'+id) && found && noLogin && state.intendedHeadingVisible ? 'PASS' : 'REVIEW';
+      console.log(result+' Library deep link '+id+' ('+name+'): HTTP '+(response?.status()||'unknown')+'; name on page '+found+'; no sign-in text '+noLogin+'; '+JSON.stringify({scrollY:state.scrollY,hash:state.hash,intendedHeadingVisible:state.intendedHeadingVisible,intendedHeadingTop:state.intendedHeadingTop,visibleHeadings:state.visibleHeadings}).slice(0,650));
       await page.screenshot({path:'qa-screenshots/library-'+id+'.png',fullPage:false,animations:'disabled'});
     } catch(e) {
       console.log('REVIEW Library deep link '+id+': '+e.message);
