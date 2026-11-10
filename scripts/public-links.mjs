@@ -40,9 +40,9 @@ const samples=[
 let browser;
 try {
   browser=await chromium.launch({headless:true});
-  const page=await browser.newPage({viewport:{width:390,height:844}});
   fs.mkdirSync('qa-screenshots',{recursive:true});
   for(const [id,name] of samples) {
+    const page=await browser.newPage({viewport:{width:390,height:844}});
     try {
       const response=await page.goto(libraryBase+'#'+id,{waitUntil:'domcontentloaded',timeout:20000});
       await page.waitForTimeout(1200);
@@ -56,7 +56,11 @@ try {
           targetText:target?.innerText?.slice(0,100)||'',
           dialogText:dialog?.innerText?.slice(0,160)||'',
           headings:[...document.querySelectorAll('h1,h2')].filter(x=>x.getClientRects().length).slice(0,4).map(x=>x.innerText.slice(0,80)),
-          visibleText:body.slice(0,350)
+          visibleText:body.slice(0,350),
+          scrollY:Math.round(window.scrollY),
+          hash:location.hash,
+          visibleHeadings:[...document.querySelectorAll('h1,h2,h3')].filter(x=>{let y=x.getBoundingClientRect();return y.top>=0&&y.top<window.innerHeight&&y.bottom>0;}).slice(0,6).map(x=>x.innerText.slice(0,90)),
+          topVisibleText:(document.elementFromPoint(window.innerWidth/2,Math.round(window.innerHeight/2))?.closest('article,section,div')?.innerText||'').slice(0,160)
         };
       });
       const found=(await page.locator('body').innerText()).toLowerCase().includes(name.toLowerCase());
@@ -66,9 +70,8 @@ try {
       await page.screenshot({path:'qa-screenshots/library-'+id+'.png',fullPage:false,animations:'disabled'});
     } catch(e) {
       console.log('REVIEW Library deep link '+id+': '+e.message);
-    }
+    } finally {await page.close();}
   }
-  await page.close();
 } catch(e) {console.log('REVIEW Library browser probe: '+e.message);}
 finally {if(browser) await browser.close();}
 console.log('Library deep-link candidates require a human check of the opened exercise card and demonstration; name presence alone does not prove the intended card opened.');
