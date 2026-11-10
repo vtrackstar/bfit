@@ -21,7 +21,7 @@ for (const [name,url] of urls) {
   try {
     let r=await fetch(url,{method:'HEAD',redirect:'follow',signal:AbortSignal.timeout(12000)});
     if (r.status===405 || r.status===403) r=await fetch(url,{method:'GET',redirect:'follow',signal:AbortSignal.timeout(12000)});
-    const label=r.ok?'OK':'REVIEW';
+    const label=/\/closedform(?:\?|$)/.test(r.url)?'PAUSED':r.ok?'OK':'REVIEW';
     console.log(label+' '+name+': HTTP '+r.status+'; destination '+r.url);
   }catch(e){console.log('REVIEW '+name+': '+e.message);}
 }
