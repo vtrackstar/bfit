@@ -45,13 +45,17 @@ try {
     const page=await browser.newPage({viewport:{width:390,height:844}});
     try {
       const response=await page.goto(libraryBase+'#'+id,{waitUntil:'domcontentloaded',timeout:20000});
-      await page.waitForTimeout(1200);
+      await page.waitForFunction(name => [...document.querySelectorAll('h1,h2,h3,h4')].some(e => {
+        const r=e.getBoundingClientRect();
+        return e.textContent.trim().toLowerCase().includes(name.toLowerCase()) && r.bottom>0 && r.top<window.innerHeight;
+      }),name,{timeout:6500}).catch(()=>{});
       const state=await page.evaluate(name => {
         const body=document.body.innerText||'';
         const target=document.querySelector(':target');
         const dialog=document.querySelector('dialog[open],[role="dialog"][aria-modal="true"]');
         const matches=[...document.querySelectorAll('h1,h2,h3,h4')].filter(e=>e.textContent.trim().toLowerCase().includes(name.toLowerCase()));
-        const targetRect=matches.find(e=>{const r=e.getBoundingClientRect();return r.bottom>0 && r.top<window.innerHeight})?.getBoundingClientRect();
+        const targetRect=(matches.find(e=>e.textContent.trim().toLowerCase()===name.toLowerCase())||matches[0])?.getBoundingClientRect();
+        const targetVisible=!!targetRect && targetRect.bottom>0 && targetRect.top<window.innerHeight;
         return {
           title:document.title,
           length:body.length,
@@ -60,7 +64,7 @@ try {
           headings:[...document.querySelectorAll('h1,h2')].filter(x=>x.getClientRects().length).slice(0,4).map(x=>x.innerText.slice(0,80)),
           visibleText:body.slice(0,350),
           scrollY:Math.round(window.scrollY),
-          intendedHeadingVisible:!!targetRect,
+          intendedHeadingVisible:targetVisible,
           intendedHeadingTop:targetRect?Math.round(targetRect.top):null,
           hash:location.hash,
           visibleHeadings:[...document.querySelectorAll('h1,h2,h3')].filter(x=>{let y=x.getBoundingClientRect();return y.top>=0&&y.top<window.innerHeight&&y.bottom>0;}).slice(0,6).map(x=>x.innerText.slice(0,90)),
