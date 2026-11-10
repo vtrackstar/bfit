@@ -1,35 +1,37 @@
 # BFit Training Hub
 
-**[Visit BFit Training Hub](https://vtrackstar.github.io/bfit/)**
+**[Open BFit Training Hub](https://vtrackstar.github.io/bfit/)**
 
-I made BFit for people who want to train but don't always know where to start, what to focus on, or how to make exercise fit into their week. The guides are free, and you can use them without signing up for coaching.
+BFit is a home for the free training guides I've built. Choose the one that fits your goal, try a workout, and return to the explanations when you need them.
 
-## Find a guide
+## Guides
 
-- **[Foundation Training](https://vtrackstar.github.io/bfit/guides/foundation/)** — Build a strength-training routine around your goals, available time, and equipment.
-- **[Athleticism](https://vtrackstar.github.io/bfit/guides/athleticism/)** — Learn about sprinting, jumping, changing direction, and training for sport.
-- **[Gamer Fit](https://vtrackstar.github.io/bfit/guides/gamer-fit/)** — Find movement, exercise, and everyday habits that fit a screen-heavy routine.
-- **[Run Strong](https://vtrackstar.github.io/bfit/guides/run-strong/)** — Learn what different running sessions do and how to put them into a training week.
+- [Foundation Training](https://vtrackstar.github.io/bfit/guides/foundation/) — Build a strength routine around your schedule and equipment.
+- [Athleticism](https://vtrackstar.github.io/bfit/guides/athleticism/) — Four-week programs for sprinting, jumping, field and court movement, and multisport training.
+- [Gamer Fit](https://vtrackstar.github.io/bfit/guides/gamer-fit/) — Workouts and everyday habits that fit a screen-heavy routine.
+- [Run Strong](https://vtrackstar.github.io/bfit/guides/run-strong/) — Running sessions, beginner options, and a way to put them into a week.
 
-You don't have to work through all four guides. Pick what feels most useful, try a session, and return to the explanations when you need them.
-
-If you need an exercise setup or technique cue, the [BFit Exercise & Movement Library](https://bfit-exercise-movement-library.balouissaint.chatgpt.site/) is another free resource.
+For exercise setup and technique cues, use the [BFit Exercise & Movement Library](https://bfit-exercise-movement-library.balouissaint.chatgpt.site/).
 
 ## Coaching
 
-I also offer two remote coaching options. **Premium** is for personalized programming with a lighter feedback schedule; **Elite** is for people who want more frequent reviews and support.
+**[Check coaching availability](https://vtrackstar.github.io/bfit/coaching/)**
 
-You can [see the coaching options and prices here](https://forms.gle/f11PGA7PCUKaxrgq9). You can read through everything before deciding whether to reach out.
+Coaching inquiries are paused while I prepare the next intake. The free guides remain available. The availability page is the stable destination for coaching links across the hub and guides; when I'm ready to accept applications, I'll connect it to the questionnaire again.
 
-## Connect with BFit
+## Work on the website
 
-- [Instagram — @_trainwithbfit](https://www.instagram.com/_trainwithbfit/)
-- [TikTok — @_trainwithbfit](https://www.tiktok.com/@_trainwithbfit)
-- [Twitch — gamewithbfit](https://www.twitch.tv/gamewithbfit)
-- [Discord — BFit Lounge](https://discord.gg/9yfqjvZPg)
+This repository contains the currently deployed HTML files for the hub and four guides. GitHub Pages publishes from `main`. The files in Google Drive include earlier drafts, reviews, and backups; they are not automatically synced with the live site.
 
-The BFit Lounge is free to join for conversations about training, sports, and gaming. Paid coaching is where I build your plan, review how it's going, and make changes with you. Coaching clients also have a private area.
+- `index.html` — Hub
+- `guides/*/index.html` — The four guides
+- `coaching/index.html` — Coaching availability
+- `scripts/` and `.github/workflows/` — Automated checks
+- [Prelaunch handoff](PRELAUNCH_CHECKLIST_2026-11-10.md) — What still needs testing before a full launch
+- [Change log](CHANGELOG.md) — Notable updates
 
----
+The site tests check links, syntax, program totals, first-time navigation, key downloads, and mobile/browser behavior. They don't replace a real-phone trial, a full exercise-video review, or an end-to-end coaching inquiry.
 
-*Train with purpose. Keep what works for you.*
+## Keep in touch
+
+[Instagram](https://www.instagram.com/_trainwithbfit/) · [TikTok](https://www.tiktok.com/@_trainwithbfit) · [Twitch](https://www.twitch.tv/gamewithbfit) · [BFit Lounge](https://discord.gg/9yfqjvZPg)
