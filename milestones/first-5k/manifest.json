@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "first-5k",
+  "title": "Your First 5K",
+  "kind": "running",
+  "state": "planning",
+  "ownerDecisionStatus": "programming-to-be-designed",
+  "successfulCompletionCriteria": null,
+  "delivery": {
+    "format": "interactive-guide",
+    "primaryMode": "adaptive-milestones",
+    "standaloneWorkoutShortcut": true,
+    "cycleWeeks": 4,
+    "hardCompletionDeadline": false,
+    "localBrowserSave": true,
+    "jsonExport": true,
+    "jsonImport": true,
+    "portableCode": "proposed-not-final"
+  },
+  "requiredIntakeDomains": [
+    "startingAbility",
+    "equipment",
+    "trainingDays",
+    "existingTraining",
+    "limitations"
+  ],
+  "reviewOutcomes": [
+    "progress",
+    "repeat",
+    "reduce",
+    "pause"
+  ],
+  "programmingPrinciples": [
+    "run-walk-when-appropriate",
+    "gradual-session-exposure",
+    "review-performance-and-recovery",
+    "repeat-cycles-until-milestone"
+  ],
+  "qualityGates": {
+    "programming": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "evidence": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "exerciseLibrary": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "loadTotals": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "progression": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "editorial": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "accessibility": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "deviceAndNavigation": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "saveAndRestore": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "beginnerTest": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "releaseLinks": {
+      "status": "pending",
+      "evidence": ""
+    }
+  },
+  "unresolved": [
+    "Define finish goal: any run-walk completion versus continuous running",
+    "Starting ability categories",
+    "Weekly schedule and conditional progressions",
+    "Training load and recovery rules",
+    "Longer timeline: four-week cycles without a four-week 5K promise"
+  ],
+  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+}
