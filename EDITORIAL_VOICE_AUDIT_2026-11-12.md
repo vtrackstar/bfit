@@ -4,6 +4,8 @@
 **Scope:** Hub, Foundation, Athleticism, Gamer Fit, Run Strong. Coaching availability page was checked as a related navigation context.  
 **Status:** Proposals only. No public guide wording, programs, exercise IDs, or site navigation changed by this audit.
 
+**Community feedback comparison:** [Reader complaints about AI-slop writing and BFit-specific edits](COMMUNITY_AI_SLOP_LANGUAGE_AUDIT_2026-11-12.md).
+
 ## Purpose
 
 Protect the voice behind the BFit programs. The owner's concepts and training decisions should be recognizable without adding sales clichés or text that sounds mechanically generated. This is **an editorial and factual-authorship review**, not a test of whether AI helped with writing. No vocabulary test, pattern count, or AI detector can certify human authorship or prevent allegations.
