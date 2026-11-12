@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "first-pistol-squat",
+  "title": "Your First Pistol Squat",
+  "kind": "strength-skill",
+  "state": "planning",
+  "ownerDecisionStatus": "programming-to-be-designed",
+  "successfulCompletionCriteria": null,
+  "delivery": {
+    "format": "interactive-guide",
+    "primaryMode": "adaptive-milestones",
+    "standaloneWorkoutShortcut": true,
+    "cycleWeeks": 4,
+    "hardCompletionDeadline": false,
+    "localBrowserSave": true,
+    "jsonExport": true,
+    "jsonImport": true,
+    "portableCode": "proposed-not-final"
+  },
+  "requiredIntakeDomains": [
+    "startingAbility",
+    "equipment",
+    "trainingDays",
+    "existingTraining",
+    "limitations"
+  ],
+  "reviewOutcomes": [
+    "progress",
+    "repeat",
+    "reduce",
+    "pause"
+  ],
+  "programmingPrinciples": [
+    "concurrent-skill-and-strength",
+    "single-leg-control",
+    "balance-and-range-progressions",
+    "progress-by-quality-and-recovery"
+  ],
+  "qualityGates": {
+    "programming": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "evidence": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "exerciseLibrary": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "loadTotals": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "progression": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "editorial": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "accessibility": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "deviceAndNavigation": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "saveAndRestore": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "beginnerTest": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "releaseLinks": {
+      "status": "pending",
+      "evidence": ""
+    }
+  },
+  "unresolved": [
+    "Depth and balance standards for the first rep",
+    "Mobility and strength screens",
+    "Assisted variations and substitutions",
+    "Dose and frequency by schedule",
+    "Post-success progression"
+  ],
+  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+}
