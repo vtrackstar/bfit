@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "first-pull-up",
+  "title": "Your First Pull-Up",
+  "kind": "strength-skill",
+  "state": "planning",
+  "ownerDecisionStatus": "programming-to-be-designed",
+  "successfulCompletionCriteria": null,
+  "delivery": {
+    "format": "interactive-guide",
+    "primaryMode": "adaptive-milestones",
+    "standaloneWorkoutShortcut": true,
+    "cycleWeeks": 4,
+    "hardCompletionDeadline": false,
+    "localBrowserSave": true,
+    "jsonExport": true,
+    "jsonImport": true,
+    "portableCode": "proposed-not-final"
+  },
+  "requiredIntakeDomains": [
+    "startingAbility",
+    "equipment",
+    "trainingDays",
+    "existingTraining",
+    "limitations"
+  ],
+  "reviewOutcomes": [
+    "progress",
+    "repeat",
+    "reduce",
+    "pause"
+  ],
+  "programmingPrinciples": [
+    "concurrent-skill-and-strength",
+    "negatives-core-progressions",
+    "band-assistance-optional",
+    "progress-by-quality-and-recovery"
+  ],
+  "qualityGates": {
+    "programming": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "evidence": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "exerciseLibrary": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "loadTotals": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "progression": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "editorial": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "accessibility": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "deviceAndNavigation": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "saveAndRestore": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "beginnerTest": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "releaseLinks": {
+      "status": "pending",
+      "evidence": ""
+    }
+  },
+  "unresolved": [
+    "Equipment and safe negative entry options",
+    "Exact starting assessments and grip variations",
+    "Programming dose and frequency by schedule",
+    "Requirements for each progression milestone",
+    "Post-success progression"
+  ],
+  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+}
