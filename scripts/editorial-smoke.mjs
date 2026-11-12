@@ -18,12 +18,12 @@ assert.ok(!hub.includes('See the questionnaire for check-in schedules'), 'stale 
 assert.ok(hub.includes('When coaching applications reopen'), 'hub does not clarify paused enrollment');
 assert.ok(!foundation.includes('See the coaching questionnaire'), 'stale Foundation price comparison');
 assert.ok(!athleticism.includes('Use these four weeks to practice the movements and track how you respond.'), 'duplicated Week 4 text');
-const boxCount=[...gamer.matchAll(/class="tldr-box\\b/g)].length;
+const boxCount=[...gamer.matchAll(/class="tldr-box\b/g)].length;
 const nextCount=[...gamer.matchAll(/class="tldr-next"/g)].length;
 assert.ok(boxCount>=18, 'Gamer Fit lost chapter quick summaries');
 assert.ok(nextCount>=17, 'Gamer Fit lost next-chapter links');
-assert.equal([...gamer.matchAll(/<strong>Key takeaway:<\\/strong>/g)].length,0, 'Gamer Fit has outdated double-summary template');
-assert.equal([...gamer.matchAll(/<strong>Do this:<\\/strong>/g)].length,0, 'Gamer Fit has outdated double-summary template');
+assert.equal([...gamer.matchAll(/<strong>Key takeaway:<\/strong>/g)].length,0, 'Gamer Fit has outdated double-summary template');
+assert.equal([...gamer.matchAll(/<strong>Do this:<\/strong>/g)].length,0, 'Gamer Fit has outdated double-summary template');
 for(const term of ['37/47-second surge targets','2 × 6-minute threshold example']){
  assert.ok(running.includes(term),'Run Strong lost specific teaching example: '+term);
 }
