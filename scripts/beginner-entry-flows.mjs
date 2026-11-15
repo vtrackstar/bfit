@@ -111,7 +111,7 @@ try{
  await check('Nutrition coaching link opens the coaching chapter and dashboard',async p=>{
   await p.goto(host+'/guides/foundation/#nutrition-coaching',{waitUntil:'load'});
   assert.equal(await p.locator('#nutrition-coaching').isVisible(),true);
-  assert.match(await p.locator('#nutrition-coaching').innerText(),/RD and RDN are equivalent/);
+  assert.equal(await p.locator('#nutrition-coaching a[href=\"../../#nutrition-coaching\"]').count(),1);
   await p.getByText('Explore the coaching dashboard',{exact:true}).click();
   assert.equal(await p.locator('#demoRows').isVisible(),true);
  });
