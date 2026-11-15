@@ -91,12 +91,19 @@ try{
   await p.goto(host+'/',{waitUntil:'domcontentloaded'});
   const comparison=p.locator('details.coaching-compare');
   assert.equal(await comparison.getAttribute('open'),null);
-  assert.equal(await p.locator('.coaching-table').isVisible(),false);
+  assert.equal(await comparison.locator('.coaching-table').isVisible(),false);
   assert.equal(await p.locator('.sample-checkin').isVisible(),true);
   await comparison.locator('summary').click();
-  assert.equal(await p.locator('.coaching-table').isVisible(),true);
+  assert.equal(await comparison.locator('.coaching-table').isVisible(),true);
   assert.match(await comparison.innerText(),/Premium/);
   assert.match(await comparison.innerText(),/Elite/);
+ });
+ await check('Hub nutrition links open the requested disclosure',async p=>{
+  await p.goto(host+'/#nutrition-coaching',{waitUntil:'load'});
+  await p.locator('#nutrition-coaching[open]').waitFor({state:'visible'});
+  await p.locator('#nutrition-coaching a[href="#nutrition-qualifications"]').click();
+  await p.locator('#nutrition-qualifications[open]').waitFor({state:'visible'});
+  assert.match(await p.locator('#nutrition-qualifications').innerText(),/RD and RDN are equivalent/);
  });
  await check('Gamer Fit keeps secondary reading paths behind a working disclosure',async p=>{
   await p.goto(host+'/guides/gamer-fit/',{waitUntil:'domcontentloaded'});
@@ -111,7 +118,7 @@ try{
  await check('Nutrition coaching link opens the coaching chapter and dashboard',async p=>{
   await p.goto(host+'/guides/foundation/#nutrition-coaching',{waitUntil:'load'});
   assert.equal(await p.locator('#nutrition-coaching').isVisible(),true);
-  assert.match(await p.locator('#nutrition-coaching').innerText(),/RD and RDN are equivalent/);
+  assert.equal(await p.locator('#nutrition-coaching a[href=\"../../#nutrition-coaching\"]').count(),1);
   await p.getByText('Explore the coaching dashboard',{exact:true}).click();
   assert.equal(await p.locator('#demoRows').isVisible(),true);
  });
