@@ -87,6 +87,27 @@ try{
   assert.match(await p.locator('#first-workout').innerText(),/Start here: do this workout today/);
   assert.match(await p.locator('#first-workout').innerText(),/one set/i);
  });
+ await check('Coaching comparison opens without hiding the training example',async p=>{
+  await p.goto(host+'/',{waitUntil:'domcontentloaded'});
+  const comparison=p.locator('details.coaching-compare');
+  assert.equal(await comparison.getAttribute('open'),null);
+  assert.equal(await p.locator('.coaching-table').isVisible(),false);
+  assert.equal(await p.locator('.sample-checkin').isVisible(),true);
+  await comparison.locator('summary').click();
+  assert.equal(await p.locator('.coaching-table').isVisible(),true);
+  assert.match(await comparison.innerText(),/Premium/);
+  assert.match(await comparison.innerText(),/Elite/);
+ });
+ await check('Gamer Fit keeps secondary reading paths behind a working disclosure',async p=>{
+  await p.goto(host+'/guides/gamer-fit/',{waitUntil:'domcontentloaded'});
+  assert.equal(await p.locator('.guide-entry-grid > a[data-start-path]:visible').count(),2);
+  const topics=p.locator('.bfit-topic-browser');
+  assert.equal(await topics.locator('[data-start-path="book1"]').isVisible(),false);
+  await topics.locator('summary').click();
+  for(const book of ['book1','book2','book3'])assert.equal(await topics.locator('[data-start-path="'+book+'"]').isVisible(),true);
+  await topics.locator('[data-start-path="book1"]').click();
+  assert.equal(await p.locator('body').getAttribute('data-focus-path'),'book1');
+ });
  await check('Run Strong first session is separate from faster-running examples',async p=>{
   await p.goto(host+'/guides/run-strong/',{waitUntil:'domcontentloaded'});
   assert.match(await p.locator('#first-run').innerText(),/20 minutes/);
