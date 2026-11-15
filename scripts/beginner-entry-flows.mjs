@@ -108,6 +108,13 @@ try{
   await topics.locator('[data-start-path="book1"]').click();
   assert.equal(await p.locator('body').getAttribute('data-focus-path'),'book1');
  });
+ await check('Nutrition coaching link opens the coaching chapter and dashboard',async p=>{
+  await p.goto(host+'/guides/foundation/#nutrition-coaching',{waitUntil:'load'});
+  assert.equal(await p.locator('#nutrition-coaching').isVisible(),true);
+  assert.match(await p.locator('#nutrition-coaching').innerText(),/RD and RDN are equivalent/);
+  await p.getByText('Explore the coaching dashboard',{exact:true}).click();
+  assert.equal(await p.locator('#demoRows').isVisible(),true);
+ });
  await check('Run Strong first session is separate from faster-running examples',async p=>{
   await p.goto(host+'/guides/run-strong/',{waitUntil:'domcontentloaded'});
   assert.match(await p.locator('#first-run').innerText(),/20 minutes/);
