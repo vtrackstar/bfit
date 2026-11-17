@@ -128,6 +128,23 @@ try{
   assert.match(await p.locator('#first-run').innerText(),/30 sec easy run/i);
   assert.match(await p.locator('#ten-minute-runner').innerText(),/10 minutes/i);
  });
+
+ await check('Gamer Fit separates a movement break from a training session',async p=>{
+  await p.goto(host+'/guides/gamer-fit/',{waitUntil:'load'});
+  await p.locator('.bfit-start-options a[href="#ch14-topic-3"]').click();
+  await p.locator('#ch14-topic-3').waitFor({state:'visible'});
+  await p.locator('a[href="#guide-entry-choices"]').filter({hasText:'Choose another movement break'}).click();
+  await p.locator('.bfit-start-options a[href="#first-workout"]').click();
+  await p.locator('#first-workout').waitFor({state:'visible'});
+  assert.match(await p.locator('#first-workout').innerText(),/15–25 MINUTES/);
+ });
+ await check('Run Strong starting routes lead to existing sessions',async p=>{
+  await p.goto(host+'/guides/run-strong/',{waitUntil:'load'});
+  assert.equal(await p.locator('.bfit-running-start a').count(),2);
+  await p.locator('.bfit-running-start a[href="#first-run"]').click();
+  await p.locator('#first-run').waitFor({state:'visible'});
+  assert.match(await p.locator('#first-run').innerText(),/full sentences/);
+ });
 } catch(e){errors.push('runner: '+e.message)}
 finally{if(browser)await browser.close();server.kill()}
 if(errors.length){console.error(errors.join('\n'));process.exitCode=1}
