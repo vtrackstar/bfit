@@ -1,5 +1,22 @@
 # BFit Training Hub — Change Log
 
+## 2026-11-16 — Experience-first copy and inclusive starting routes
+
+- Lead with eight years coaching athletes and general-population clients. Keep one earned-credentials reference (NSCA-CSCS, NASM-CPT, NASM-CNC) in the hub qualifications section.
+- Use “Build my workout” in Foundation Training and describe the Run Strong route by current running ability.
+- Add a fictional beginner coaching example and clarify that Premium supports independent training with regular guidance.
+- Add a printable workout record linked from Run Strong and Gamer Fit. Foundation has a workout/record-sheet download; Athleticism has browser completion tracking and backup export. No shared digital log was added.
+- Keep nutrition scope information and disclosure behavior intact. Price display on the hub is intentional: Premium $199/month and Elite $499/month; intake remains paused.
+
+## 2026-11-14–16 — Hub coaching and guide usability updates
+
+- Centralize detailed nutrition coaching scope on the hub; show coaching examples before visible prices and an expandable comparison.
+- Give guide cards clearer destinations and prioritize usable guides over coming-soon programs.
+- Clarify setup, exercise-help, recording, return-navigation, and next-session instructions while preserving training prescriptions.
+- Separate Gamer Fit movement breaks from workouts and simplify Run Strong starting choices.
+- Automated checks passed for navigation, mobile layouts, accessibility, saving, and downloads. Real-phone performance, exercise-video validation, and independent-reader testing remain separate checks.
+
+
 ## 2026-11-10 — Prelaunch housekeeping while coaching intake is closed
 
 - Kept all four free guides available and preserved workout programs and exercise IDs.
@@ -47,7 +64,7 @@
 - Moved Foundation's reset action into an accessible Options menu, simplified Athleticism's small-screen nav and saved-progress wording, shortened Gamer Fit's topbar label and initial hero spacing, and tucked Run Strong's Download/Print tools into a secondary menu.
 - Standardized the coaching-link language across all guides. Corrected an old Athleticism in-app statement: BFit Lounge is public, while coaching clients have a separate private area.
 - Added guide-layout mobile interaction tests and updated the Run Strong download test to account for its menu. Hub responsive, keyboard, accessibility, and guide-entry tests continue to run in GitHub Actions.
-- **Not changed:** training programs, exercise IDs, workout calculations, published prices (still shown only in the questionnaire), and individual guide color systems.
+- **Not changed:** training programs, exercise IDs, workout calculations, published prices (shown only in the questionnaire at that time; superseded by the November 14–16 update), and individual guide color systems.
 
 
 ## 2026-11-04 — BFit Lounge invitation correction
