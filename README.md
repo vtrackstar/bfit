@@ -42,7 +42,7 @@ The site tests check links, syntax, program totals, first-time navigation, key d
 
 ## Qualifications and review
 
-The public bio emphasizes eight years of field experience. The detailed hub qualifications section lists credentials earned, rather than repeating current-certification claims throughout the guides. Check credential status before adding any claim of active certification.
+The public bio emphasizes coaching experience since 2017. The detailed hub qualifications section lists credentials earned, rather than repeating current-certification claims throughout the guides. Check credential status before adding any claim of active certification.
 
 [Reader walkthrough](READER_WALKTHROUGH.md) covers the remaining beginner-comprehension and real-phone checks.
 
