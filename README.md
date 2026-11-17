@@ -17,7 +17,15 @@ For exercise setup and technique cues, use the [BFit Exercise & Movement Library
 
 **[Check coaching availability](https://vtrackstar.github.io/bfit/coaching/)**
 
-Coaching inquiries are paused while I prepare the next intake. The free guides remain available. The availability page is the stable destination for coaching links across the hub and guides; when I'm ready to accept applications, I'll connect it to the questionnaire again.
+Coaching inquiries are paused while I prepare the next intake. The free guides remain available. The hub intentionally displays Premium at $199/month and Elite at $499/month; guide pages link to coaching rather than duplicate prices. The availability page is the stable destination for coaching links across the hub and guides; when I'm ready to accept applications, I'll connect it to the questionnaire again.
+
+## Recording workouts
+
+- Foundation Training saves setup choices locally and downloads workouts with a blank record sheet; it does not log completed sessions.
+- Athleticism saves completion checks and notes in the browser and supports progress backup/restore.
+- Gamer Fit saves Skill Tree choices separately from workout records.
+- Run Strong is a reference guide rather than an online workout log.
+- [Printable workout record](https://vtrackstar.github.io/bfit/resources/workout-record.html) — for paper or PDF recording.
 
 ## Work on the website
 
@@ -31,6 +39,12 @@ This repository contains the currently deployed HTML files for the hub and four 
 - [Change log](CHANGELOG.md) — Notable updates
 
 The site tests check links, syntax, program totals, first-time navigation, key downloads, and mobile/browser behavior. They don't replace a real-phone trial, a full exercise-video review, or an end-to-end coaching inquiry.
+
+## Qualifications and review
+
+The public bio emphasizes eight years of field experience. The detailed hub qualifications section lists credentials earned, rather than repeating current-certification claims throughout the guides. Check credential status before adding any claim of active certification.
+
+[Reader walkthrough](READER_WALKTHROUGH.md) covers the remaining beginner-comprehension and real-phone checks.
 
 ## Keep in touch
 
