@@ -23,7 +23,7 @@ for (const [path, html] of pages) {
   if (path !== 'index.html' && !html.includes(base)) add(path, 'missing hub link');
   if (path !== 'coaching/index.html' && /https:\/\/forms\.gle\/f11PGA7PCUKaxrgq9/.test(html)) add(path, 'closed form linked directly; use coaching status page');
   if (path === 'coaching/index.html') {
-    if (!/Coaching inquiries are paused/i.test(html)) add(path, 'coaching intake pause notice missing');
+    if (!/getting ready to welcome more coaching clients/i.test(html)) add(path, 'coaching intake pause notice missing');
     if (/href=["']https:\/\/forms\.gle\//i.test(html)) add(path, 'paused intake should not send visitors to the closed form');
   } else if (!path.startsWith('resources/')) for (const required of [
     'https://www.instagram.com/_trainwithbfit/',
