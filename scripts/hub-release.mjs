@@ -138,7 +138,7 @@ try {
     try {
       const response=await page.goto(host+'/coaching/');
       assert.equal(response.status(),200);
-      assert.match(await page.locator('header p').innerText(),/Coaching inquiries are paused/i);
+      assert.match(await page.locator('header p').innerText(),/getting ready to welcome more coaching clients/i);
       assert.equal(await page.locator('a[href="https://forms.gle/f11PGA7PCUKaxrgq9"]').count(),0);
       assert.ok(await page.locator('a[href="https://vtrackstar.github.io/bfit/"]').count()>0);
       await page.screenshot({path:path.join(folder,'coaching-paused-phone.png'),animations:'disabled'});
