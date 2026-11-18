@@ -89,6 +89,9 @@ try{
  });
  await check('Coaching comparison opens without hiding the training example',async p=>{
   await p.goto(host+'/',{waitUntil:'domcontentloaded'});
+  const entry = p.getByRole('link', {name: 'Explore one-on-one coaching'});
+  assert.equal(await entry.isVisible(), true);
+  await p.goto(host + new URL(await entry.getAttribute('href')).pathname.replace('/bfit', ''));
   const comparison=p.locator('details.coaching-compare');
   assert.equal(await comparison.getAttribute('open'),null);
   assert.equal(await comparison.locator('.coaching-table').isVisible(),false);
