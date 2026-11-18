@@ -3,45 +3,108 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Coaching availability | BFit Training Hub</title>
+<title>What it’s like to train with me | BFit Training Hub</title>
 <meta name="description" content="See the current availability of BFit individual coaching and browse free training guides.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://vtrackstar.github.io/bfit/coaching/">
 <style>
-:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif}
-*{box-sizing:border-box}
-body{margin:0;background:#101820;color:#f7f7f4;line-height:1.6}
-a{color:#ace5ad}
-a:focus-visible{outline:3px solid #ace5ad;outline-offset:4px}
-.skip{position:absolute;left:-9999px;top:0;background:#20332f;padding:12px}
-.skip:focus{left:14px;top:14px;z-index:2}
-.wrap{max-width:850px;margin:0 auto;padding:24px 20px 96px}
-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #3b4b52;padding:12px 0 22px}
-nav a{text-decoration:none;font-weight:700;min-height:44px;display:inline-flex;align-items:center}
-.eyebrow{text-transform:uppercase;font-size:.84rem;letter-spacing:.12em;font-weight:700;color:#ace5ad}
-main{padding:70px 0 40px}
-h1{font-size:clamp(2.35rem,7vw,4.1rem);line-height:1.12;letter-spacing:-.045em;max-width:730px;margin:12px 0 26px}
-p{max-width:660px;color:#ced8db;font-size:1.08rem}
-.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
-.actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:11px;padding:12px 18px;text-decoration:none;font-weight:700}
-.actions .primary{background:#ace5ad;color:#10231c}
-.actions .secondary{border:1px solid #769685;color:#e8f5e9}
-footer{padding-top:25px;border-top:1px solid #3b4b52;font-size:.9rem;color:#aebec4}
-@media(max-width:470px){main{padding-top:44px}.actions{flex-direction:column}.actions a{width:100%}}
-</style>
-</head>
-<body>
-<a class="skip" href="#main-content">Skip to content</a>
-<div class="wrap">
-<nav aria-label="Site navigation"><strong>BFit Training Hub</strong><a href="https://vtrackstar.github.io/bfit/">All guides</a></nav>
-<main id="main-content">
-<p class="eyebrow">Individual coaching</p>
-<h1>Coaching inquiries are paused for now</h1>
-<p>I'm getting the next coaching intake ready. You can still use Foundation Training, Athleticism, Gamer Fit, and Run Strong for free.</p>
-<p>When applications reopen, you'll find the current coaching details, pricing, and questionnaire here.</p>
-<div class="actions"><a class="primary" href="https://vtrackstar.github.io/bfit/">Browse the free guides</a><a class="secondary" href="https://vtrackstar.github.io/bfit/#coaching">How I coach</a></div>
-</main>
-<footer>The free guides remain available while coaching inquiries are paused.</footer>
-</div>
-</body>
-</html>
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:#101820;color:#f7f7f4;line-height:1.6}
+main{max-width:1060px;margin:auto;padding:36px 20px 80px}nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid #394551}
+a{color:inherit}nav a{text-decoration:none}header{padding:62px 0 38px}h1{font-size:clamp(2.8rem,8vw,5rem);line-height:1.08;letter-spacing:-.06em;margin:12px 0 18px}h2{letter-spacing:-.025em;line-height:1.2}
+p{color:#c0cbd0;max-width:680px}.eyebrow{color:#a3d3a0;font-weight:700;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{display:block;text-decoration:none;background:#1b2832;border:1px solid #35444c;padding:28px;border-radius:18px;min-height:210px;transition:background .15s,border .15s}
+.card:hover,.card:focus-visible{background:#253745;border-color:#9ed9a1;outline-offset:3px}
+.card{display:flex;flex-direction:column;gap:8px}
+.card .card-action{display:inline-flex;align-items:center;min-height:44px;margin-top:auto;padding-top:10px;color:#a7e3aa;font-weight:750}
+.card .card-action::after{content:" →";margin-left:7px}
+.card--featured{border:2px solid #a7e3aa;background:#20332f;padding:27px}
+.card--featured .eyebrow{color:#b8edbb}
+.card--featured:hover,.card--featured:focus-visible{background:#294339;border-color:#d0f7d1}
+.card p{flex:1}
+.library-link{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
+.library-link .library-cta{display:inline-flex;align-items:center;min-height:44px;border:1px solid #668675;padding:8px 14px;border-radius:10px;color:#a7e3aa;text-decoration:none;font-weight:650}
+.library-link .library-cta:hover,.library-link .library-cta:focus-visible{background:#294036}
+.offer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+.offer-card{display:flex;flex-direction:column;gap:12px;padding:22px;background:#20303b;border:1px solid #3b5054;border-radius:13px}
+.offer-card h3{margin:0;font-size:1.55rem;color:#f7f7f4}
+.offer-card p{margin:0;font-size:.98rem;max-width:unset}
+.offer-card .offer-eyebrow{color:#b8d9cd;font-size:.83rem;font-weight:700;line-height:1.45}
+.offer-card .offer-promise{color:#f1f6f3;font-weight:650;line-height:1.5}
+.offer-card .offer-fit{margin-top:auto;padding-top:13px;border-top:1px solid #45605e;color:#d2dfe0;font-size:.91rem}
+.offer-card .offer-fit strong{color:#f7f7f4}
+.offer-card--elite{background:#22392f;border:2px solid #90c99a;padding:21px}
+.coaching-lead{max-width:780px}
+.coaching-intro{margin:0 0 6px}
+.coaching-experience{color:#d5dfe0}
+.coaching-explain{padding:17px 20px;background:#111f27;border:1px solid #365349;border-radius:12px;margin:20px 0}
+.coaching-explain h3{margin:0 0 6px;font-size:1.15rem}
+.coaching-explain p{margin:0;max-width:unset}
+.coaching-compare{margin:26px 0 0}
+.coaching-compare h3{margin:0 0 5px;font-size:1.28rem}
+.coaching-compare>p{margin:0 0 12px}
+.comparison-scroll{max-width:100%;overflow-x:auto;border:1px solid #49616a;border-radius:12px;scrollbar-color:#90c99a #20303b}
+.comparison-scroll:focus-visible{outline:3px solid #a7e3aa;outline-offset:3px}
+.coaching-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.93rem;min-width:570px}
+.coaching-table th,.coaching-table td{padding:12px 13px;text-align:left;vertical-align:top;border-bottom:1px solid #354851;overflow-wrap:break-word}
+.coaching-table thead th{color:#f7f7f4;background:#263943;font-weight:750}
+.coaching-table thead th:last-child{background:#2d503d;color:#d4f7da}
+.coaching-table tbody th{font-weight:650;color:#e2eeec;width:33%}
+.coaching-table tbody td{color:#d2e0e1}
+.coaching-table tbody td:last-child{background:#213a31;color:#d7f4dc}
+.coaching-table tbody tr:last-child>*{border-bottom:0}
+.coaching-table thead th:first-child{width:33%}
+.comparison-tip{font-size:.85rem;margin:8px 0;color:#c0cbd0}
+.comparison-note{font-size:.84rem;color:#c0cbd0;margin-top:8px}
+.sample-checkin{margin:26px 0 0;padding:22px;background:#111f27;border:1px solid #435d55;border-left:3px solid #a7e3aa;border-radius:12px}
+.sample-checkin h3{margin:0 0 7px;font-size:1.28rem;color:#f7f7f4}
+.sample-checkin p{margin:5px 0 0;max-width:unset}
+.sample-checkin .sample-intro{color:#d1dcdf}
+.sample-scenario{margin:16px 0;padding:15px 17px;background:#243640;border-radius:10px}
+.sample-scenario strong{color:#f7f7f4}
+.sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 15px}
+.sample-option{padding:17px;background:#1b2c36;border:1px solid #465c62;border-radius:11px}
+.sample-option--elite{background:#20382e;border-color:#78ad83}
+.sample-option h4{font-size:1.12rem;margin:0 0 8px}
+.sample-option p{font-size:.93rem}
+.sample-result{padding-top:12px;border-top:1px solid #4b6360;color:#dcf0e2;font-weight:600}
+.sample-checkin small{display:block;color:#bfcdd0;font-size:.83rem}
+.coaching-final{margin:24px 0 0;padding:20px;background:#243b30;border-radius:12px;border:1px solid #84b993}
+.coaching-final h3{font-size:1.25rem;margin:0 0 7px}
+.coaching-final p{margin:0 0 15px;max-width:unset}
+.coaching-cta{display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:12px 20px;border-radius:10px;background:#a7e3aa;color:#101820!important;font-weight:750;text-decoration:none!important}
+.coaching-cta:hover,.coaching-cta:focus-visible{background:#c6f4c8;outline:3px solid #f7f7f4;outline-offset:3px}
+.coaching-note{font-size:.87rem;margin:12px 0 0!important}
+@media(max-width:680px){.offer-grid,.sample-grid{grid-template-columns:1fr}.offer-card{padding:17px}.offer-card--elite{padding:16px}.sample-checkin{padding:16px}.coaching-final{padding:16px}.library-link{align-items:flex-start;flex-direction:column}.coaching-cta{display:flex;width:100%;font-size:clamp(13px,3.6vw,16px);padding-inline:10px;white-space:normal;text-align:center}.coaching-table{font-size:.9rem}.comparison-tip{display:block}}
+.card h2{font-size:1.55rem;margin:8px 0}.card p{margin:0}.arrow{color:#a7e3aa;font-weight:700}.library-link{margin-top:24px}.library-link a{color:#a7e3aa;text-underline-offset:3px}.about{margin-top:52px;padding:32px;border:1px solid #35444c;border-radius:18px;background:#182630}.about h2{margin-top:0}.about a{color:#a7e3aa;text-underline-offset:3px}.foot{margin-top:50px;border-top:1px solid #35444c;padding-top:24px;color:#c0cbd0}
+@media(max-width:680px){.cards{grid-template-columns:1fr}header{padding:32px 0 24px}.card{min-height:unset;padding:21px}.card--featured{padding:20px}}
+
+.site-nav-links{display:flex;gap:18px;flex-wrap:wrap}.connect{margin-top:24px;padding:28px;border:1px solid #35444c;border-radius:18px;background:#16222b}.connect h2{margin:0 0 12px}.connect-links{display:flex;flex-wrap:wrap;gap:10px}.connect-links a{display:inline-flex;align-items:center;min-height:44px;padding:10px 14px;border:1px solid #49645d;border-radius:10px;color:#a7e3aa;text-decoration:none}.connect-links a:hover,.connect-links a:focus-visible{background:#253745;outline-offset:3px}.connect p{margin:10px 0}.connect .small-note{font-size:.9rem;color:#c0cbd0}
+.site-nav-links a{min-height:44px;display:inline-flex;align-items:center}
+nav a:focus-visible,.card:focus-visible,.about a:focus-visible,.library-link a:focus-visible{outline:3px solid #a7e3aa;outline-offset:4px}
+@media(max-width:600px){nav{flex-direction:column;align-items:flex-start;gap:10px}.site-nav-links{gap:16px}.site-nav-links a{min-height:44px}.connect,.about{padding:22px}}
+@media(max-width:350px){.site-nav-links{width:100%;gap:6px;flex-wrap:nowrap;justify-content:space-between}.site-nav-links a{font-size:13px;white-space:nowrap}.connect-links a{width:100%;justify-content:center}}
+
+.upcoming{margin-top:38px}.upcoming h2{margin-bottom:8px}.upcoming>p{margin:0 0 18px}
+.card--coming{appearance:none;width:100%;font:inherit;text-align:left;color:#f7f7f4;cursor:not-allowed;background:#17232b;border:1px dashed #657179;opacity:1}
+.card--coming:hover,.card--coming:focus-visible{background:#17232b;border-color:#657179;outline:none}
+.card--coming .eyebrow{color:#b9c6ca}
+.card--coming .coming-title{font-size:1.55rem;line-height:1.2;letter-spacing:-.025em;font-weight:700;margin:8px 0}
+.card--coming .coming-description{color:#c0cbd0;flex:1}
+.card--coming .card-action{color:#c8d6d9}.card--coming .card-action::after{content:none}
+ .skip-to-content{position:absolute;top:-100px;left:16px;z-index:999;background:#a7e3aa;color:#101820;padding:10px 14px;border-radius:8px;font-weight:700;text-decoration:none}.skip-to-content:focus{top:12px;outline:3px solid #fff;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style><style>.coaching-compare>summary{cursor:pointer;font-weight:750;font-size:1.15rem;min-height:44px;padding:10px 0}.coaching-compare[open]>summary{margin-bottom:12px}.coaching-compare>summary:focus-visible{outline:3px solid #a7e3aa;outline-offset:3px}</style><style>.offer-grid{margin-top:24px}.coaching-detail{margin-top:16px;padding:12px 16px;border:1px solid #365349;border-radius:12px}.coaching-detail>summary{cursor:pointer;font-size:1.05rem;font-weight:700;min-height:44px;display:list-item;padding:10px 0}.coaching-detail>summary:focus-visible{outline:3px solid #a7e3aa;outline-offset:3px}details[id]{scroll-margin-top:24px}</style><style>.upcoming{margin-top:28px}.upcoming .card--coming{padding:16px;min-height:0}.upcoming .coming-description{font-size:.9rem}.upcoming .coming-title{font-size:1.2rem}</style></head>
+<body><a class="skip-to-content" href="#main-content">Skip to content</a><main id="main-content"><nav><strong>BFit Training Hub</strong><a href="https://vtrackstar.github.io/bfit/">Back to free guides</a></nav><header><div class="eyebrow">Individual coaching</div><h1>What it’s like to train with me</h1><p>Coaching inquiries are paused while I prepare the next intake.</p></header><div class="coaching-explain"><h2>Individual coaching that fits your week</h2><p>I build your workouts around your goals, schedule, and equipment. You record what you complete, and I review your sessions, technique clips, and check-ins to decide what needs adjusting. We also work on practical eating habits you can repeat through a busy week.</p></div>
+<div class="coaching-explain" aria-labelledby="starting-example-title"><h2 id="starting-example-title">When getting started is the hard part</h2><p>You planned three workouts but completed one. I’d ask what got in the way: session length, your schedule, unfamiliar exercises, or how you felt afterward. If time was the problem, we might start with two shorter sessions and review whether they fit your week.</p><small>Illustrative example, not a client testimonial.</small><p>New to training? <a href="../#guides">Start with a free guide</a>, or explore coaching if you want individual help.</p></div><div class="sample-checkin" aria-labelledby="coaching-example-title"><h2 id="coaching-example-title">How I'd handle a training plateau</h2>
+<div class="sample-scenario"><strong>The situation</strong><p>You've been completing your squat workouts, but the last set has dropped from eight reps to five for the past few sessions. Your depth also changes when you get tired.</p></div>
+<p>I'd check how hard the sets feel, how long you're resting, and what else you're doing for legs that week. If fatigue looks like the issue, I'd hold the weight steady and reduce some of the other leg work. I'd review your next sessions and a technique clip to see whether your reps and depth improved.</p><p class="sample-result">The next adjustment depends on how you respond.</p><small>Illustrative example, not a client testimonial.</small></div>
+<details class="coaching-compare" id="coaching-options"><summary id="compare-title">Compare coaching plans and prices</summary>
+<div class="offer-grid"><article class="offer-card"><h2>Premium</h2><p><strong>$199/month</strong></p><p>A clear plan with regular guidance.</p><p>For you if you want a plan you can follow on your own, with regular guidance on what to do and when to adjust.</p></article><article class="offer-card offer-card--elite"><h2>Elite</h2><p><strong>$499/month</strong></p><p>Closer support throughout your week.</p><p>For you if you want more frequent feedback on how your training, technique, and eating habits are coming together.</p></article></div>
+<div class="comparison-scroll" role="region" aria-label="Premium and Elite coaching comparison; scroll horizontally on narrow screens" tabindex="0"><table class="coaching-table"><thead><tr><th scope="col">How I help</th><th scope="col">Premium · $199/month</th><th scope="col">Elite · $499/month</th></tr></thead><tbody><tr><th scope="row">Who it fits</th><td>You want a plan you can follow on your own, with regular guidance.</td><td>You want closer support putting training, technique, and eating habits together.</td></tr><tr><th scope="row">Know what to do</th><td>Workouts built around your goals, schedule, and equipment, reviewed weekly.</td><td>Individual planning plus a midweek review to address changes between weekly check-ins.</td></tr><tr><th scope="row">Work through setbacks</th><td>A weekly written check-in to identify obstacles and adjust the next week.</td><td>A weekly written check-in plus a midweek follow-up to see whether adjustments are helping.</td></tr><tr><th scope="row">Improve your technique</th><td>Up to two short exercise clips each week, with specific feedback.</td><td>Up to four short clips each week, including follow-up attempts.</td></tr><tr><th scope="row">Make eating habits practical</th><td>Manageable nutrition habits discussed during your weekly check-in.</td><td>Optional food and habit records reviewed to identify patterns and choose weekly actions.</td></tr><tr><th scope="row">Understand your progress</th><td>A monthly written summary of progress and next steps.</td><td>A monthly recorded walkthrough of training, technique, and habit trends.</td></tr><tr><th scope="row">Get answers between reviews</th><td>Messaging replies within two business days.</td><td>Messaging replies within one business day.</td></tr><tr><th scope="row">Talk things through</th><td>One optional 20-minute call per month.</td><td>Two optional 20-minute calls per month.</td></tr></tbody></table></div><p class="comparison-tip">On mobile, swipe sideways to see the full table.</p><p>Both options include coaching directly with me and adjustments when your plan needs to change. Message response times apply Monday–Friday. Nutrition coaching covers general education and habits; it does not include prescribed meal plans or medical nutrition therapy.</p></details>
+<div class="coaching-final"><h2>Coaching availability</h2><p>Coaching inquiries are paused while I prepare the next intake. When coaching applications reopen, these options will also be listed in the questionnaire.</p><p class="coaching-note">You can use all four training guides for free while inquiries are paused.</p></div>
+<details class="coaching-detail"><summary>Your training dashboard</summary><p>You record your sessions, reps, and how training felt. I use those records alongside your check-ins and technique clips to decide what to keep, progress, or adjust.</p><p>For example, fewer completed sessions may mean we need shorter workouts. Reps dropping across several sessions gives us a reason to review effort, rest, and workload.</p><p>Nutrition tracking is optional. Food records can help us discuss patterns; their totals are estimates, not a diagnosis or prescribed menu.</p><a href="../guides/foundation/#coaching-dashboard">Explore the interactive sample dashboard →</a></details>
+<details class="coaching-detail" id="nutrition-coaching"><summary>Nutrition support</summary><p>I help you turn general nutrition guidance into habits that fit your schedule, food preferences, budget, and training.</p><ul><li>Understand protein, carbohydrates, fats, hydration, portions, and food labels.</li><li>Build routines for shopping, preparing food, and eating consistently.</li><li>Review your food records and check-ins, choose a manageable habit, and follow up on how it worked.</li></ul><p>I don't prescribe individualized meal plans, diagnose conditions, or provide medical nutrition therapy. For medical nutrition needs, I refer you to a registered dietitian or appropriate clinician.</p><a href="#nutrition-qualifications">Compare nutrition qualifications →</a></details>
+<details class="coaching-detail"><summary>How coaching works</summary><ol><li>We discuss your goals, training experience, schedule, and equipment.</li><li>I build your plan and explain how to follow and record it.</li><li>You complete your workouts and share your check-ins and any technique clips.</li><li>I review your feedback, explain the next steps, and adjust the plan when needed.</li></ol><p>Most coaching happens through written or recorded feedback, so you can train on your schedule. Optional calls give us time to talk things through.</p></details>
+<details class="coaching-detail" id="nutrition-qualifications"><summary>Nutrition coach, nutritionist, and registered dietitian</summary><h2>Training and qualifications</h2><p>I’ve been coaching since 2017. Along the way, I’ve earned:</p><ul><li><strong>NSCA-CSCS</strong> — Certified Strength and Conditioning Specialist</li><li><strong>NASM-CPT</strong> — Certified Personal Trainer</li><li><strong>NASM-CNC</strong> — Certified Nutrition Coach</li><li><strong>Science for Sport Certified Sports Data Analyst</strong> — <a href="https://www.scienceforsport.com/certifications/certified-sports-data-analyst/" target="_blank" rel="noopener noreferrer">Course details and instructors ↗</a></li></ul><h2>Nutrition coach, nutritionist, or registered dietitian?</h2><div class="comparison-scroll" tabindex="0" role="region" aria-label="Nutrition professional comparison"><table class="coaching-table"><thead><tr><th scope="col">Role</th><th scope="col">What it means for you</th></tr></thead><tbody><tr><th scope="row">My nutrition coaching</th><td>General nutrition education, habit coaching, and accountability. I don't prescribe individualized meal plans, diagnose conditions, or provide medical nutrition therapy.</td></tr><tr><th scope="row">Nutritionist</th><td>A broad title. Qualifications and legal requirements vary by location and credential. Check the person's training and license rather than relying on the title alone.</td></tr><tr><th scope="row">Registered dietitian (RD or RDN)</th><td>RD and RDN are equivalent credentials requiring accredited education, supervised practice, and an exam. Dietitians provide nutrition care, including medical nutrition therapy within their professional scope and applicable licensing rules.</td></tr></tbody></table></div><p>If you need a therapeutic diet for a medical condition or support for an eating disorder, I'll refer you to an appropriately qualified professional. With your permission, I can help you put their guidance into practice within my coaching role. Services also depend on the rules where you live.</p><p class="reference">Read more: <a href="https://www.nasm.org/nasm-faqs" target="_blank" rel="noopener noreferrer">NASM nutrition coaching scope</a> · <a href="https://www.eatright.org/at-the-table/who-should-you-trust-for-nutrition-advice" target="_blank" rel="noopener noreferrer">Academy of Nutrition and Dietetics: understanding credentials</a></p></details>
+<footer><a href="../#guides">Browse the free training guides →</a></footer></main><script>function openHubDetail(){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS'){el.open=true;el.scrollIntoView();}}window.addEventListener('hashchange',openHubDetail);window.addEventListener('load',openHubDetail);</script></body></html>

@@ -15,7 +15,7 @@ for(const [path,html] of Object.entries(pages)){
   assert.ok(!html.includes('https://forms.gle/f11PGA7PCUKaxrgq9'),path+' links directly to a closed inquiry form');
 }
 assert.ok(!hub.includes('See the questionnaire for check-in schedules'), 'stale hub questionnaire invitation');
-assert.ok(hub.includes('When coaching applications reopen'), 'hub does not clarify paused enrollment');
+assert.ok(fs.readFileSync('coaching/index.html','utf8').includes('When coaching applications reopen'), 'coaching page does not clarify paused enrollment');
 assert.ok(!foundation.includes('See the coaching questionnaire'), 'stale Foundation price comparison');
 assert.ok(!athleticism.includes('Use these four weeks to practice the movements and track how you respond.'), 'duplicated Week 4 text');
 const boxCount=[...gamer.matchAll(/class="tldr-box\b/g)].length;
