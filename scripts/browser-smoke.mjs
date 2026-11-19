@@ -7,11 +7,12 @@ import path from 'node:path';
 
 const host = 'http://127.0.0.1:8765';
 const guidePages = [
-  { name: 'Hub', url: '/', selector: '#guides .card', min: 4 },
+  { name: 'Hub', url: '/', selector: '#guides .card', min: 5 },
   { name: 'Foundation', url: '/guides/foundation/', selector: '#main', min: 1 },
   { name: 'Athleticism', url: '/guides/athleticism/', selector: '#app', min: 1 },
   { name: 'Gamer Fit', url: '/guides/gamer-fit/', selector: '#main-content', min: 1 },
-  { name: 'Run Strong', url: '/guides/run-strong/', selector: '#start', min: 1 }
+  { name: 'Run Strong', url: '/guides/run-strong/', selector: '#start', min: 1 },
+  { name: 'Keep Moving 50+', url: '/guides/50-plus/', selector: '#start', min: 1 }
 ];
 const screens = [
   {name:'desktop',width:1366,height:900},
