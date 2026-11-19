@@ -130,12 +130,14 @@ try{
   const d2=p.waitForEvent('download');await p.locator('#backup').click();const backup=await d2;
   assert.equal(backup.suggestedFilename(),'BFit-50plus-answers.json');
   const path=await backup.path();
+  const saved=JSON.parse(fs.readFileSync(path,'utf8'));
+  assert.equal(saved.answers.days,'6','Downloaded backup should contain the selected schedule');
   await p.evaluate(()=>localStorage.clear());
   await p.reload();
   assert.equal(await p.inputValue('#days'),'4');
   await p.locator('#deviceOptions summary').click();
   await p.locator('#restore').setInputFiles(path);
-  assert.equal(await p.inputValue('#days'),'6');
+  await p.waitForFunction(()=>document.getElementById('days').value==='6',{timeout:4000});
   assert.equal(await p.locator('[data-goal][value="floor"]').isChecked(),true);
  });
  await check('Four-week reviews persist without a login',async p=>{
