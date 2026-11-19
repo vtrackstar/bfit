@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7f2">
+<meta name="description" content="A free BFit wellness guide for adults 50+: find movement you enjoy, practice everyday strength and balance, and build a weekly activity routine.">
+<link rel="canonical" href="https://vtrackstar.github.io/bfit/guides/50-plus/">
+<title>Keep Moving: Your 50+ Activity Guide | BFit</title>
+<style>
+:root{--bg:#f5f7f2;--ink:#20352a;--muted:#506357;--line:#c9d9cd;--paper:#fff;--sage:#e7f1e5;--deep:#184a35;--amber:#fff2d6;--accent:#b06b30;--radius:16px;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}body{margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65}
+a{color:var(--deep);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}
+button,select,input{font:inherit}button,select{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #8b52bd;outline-offset:3px}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}h1{font-size:clamp(2.25rem,5.7vw,4.4rem);max-width:800px;margin:10px 0 20px}h2{font-size:clamp(1.65rem,3vw,2.3rem)}h3{font-size:1.2rem;margin-bottom:8px}p{max-width:770px}small,.muted{color:var(--muted)}
+.skip{position:absolute;top:-120px;left:12px;z-index:20;background:white;padding:12px}.skip:focus{top:10px}
+.top{background:#f5f7f2ee;backdrop-filter:blur(8px);position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}
+.top-in{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 22px}
+.brand{font-weight:850;text-decoration:none;font-size:1.12rem;letter-spacing:-.03em}.brand span{font-weight:500}
+.top-links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}.top-links a{min-height:44px;display:inline-flex;align-items:center;font-weight:650}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}.hero{padding:70px 0 40px}
+.eyebrow{text-transform:uppercase;color:var(--deep);font-size:.74rem;font-weight:800;letter-spacing:.13em}
+.lead{font-size:1.18rem;color:var(--muted);max-width:780px}
+.button-row{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border-radius:10px;border:1px solid var(--deep);text-decoration:none;font-weight:700;color:var(--deep);background:white}
+.btn.primary{background:var(--deep);color:white}.btn:hover{filter:brightness(.96)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.notice{border-left:4px solid var(--deep);background:var(--sage);padding:17px 20px;border-radius:0 11px 11px 0;margin:20px 0}.notice p:last-child{margin-bottom:0}
+.notice.warn{border-left-color:#ad7728;background:var(--amber)}.notice.warn strong{color:#6c4215}
+.contents{display:flex;gap:7px;flex-wrap:wrap;margin:28px 0 4px}.contents a{background:white;border:1px solid var(--line);padding:9px 12px;border-radius:9px;text-decoration:none;font-size:.88rem;font-weight:650;min-height:44px;display:flex;align-items:center}
+.section{padding:58px 0;border-top:1px solid var(--line);scroll-margin-top:80px}
+.section-head{max-width:820px;margin-bottom:26px}.section-head .eyebrow{margin-bottom:10px}.section-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;min-width:0}.panel h3{margin-top:0}
+.form-field{display:grid;gap:7px;margin-bottom:19px}.form-field label,.field-label{font-weight:700;font-size:.95rem}.form-field select{width:100%;min-height:48px;border:1px solid #9fb4a5;border-radius:9px;padding:11px;background:white;color:var(--ink)}
+.hint{font-size:.88rem;color:var(--muted);margin:2px 0 0}.choice-list{display:grid;gap:9px}
+.choice{display:flex;align-items:flex-start;gap:13px;background:white;border:1px solid var(--line);border-radius:11px;padding:14px;cursor:pointer}
+.choice:has(input:checked){background:var(--sage);border-color:#5f9d7c}
+.choice input{margin:3px 0 0;width:20px;height:20px;accent-color:var(--deep);flex-shrink:0}
+.choice strong{display:block}.choice span{color:var(--muted);font-size:.9rem;display:block}.choice span strong{color:var(--ink)}
+.activity{background:white;border:1px solid var(--line);border-radius:14px;padding:19px;min-width:0}
+.activity h3{margin:6px 0 9px}.activity p{margin:0 0 8px;font-size:.92rem}.activity p:last-child{margin-bottom:0}.activity small{display:block;margin:8px 0}
+.chip{display:inline-block;padding:2px 9px;border-radius:20px;background:var(--sage);font-size:.74rem;font-weight:750;color:var(--deep)}
+details{border:1px solid var(--line);background:white;border-radius:10px;margin-top:9px}
+summary{cursor:pointer;padding:12px 15px;font-weight:700;min-height:45px}details>div{padding:0 16px 16px;font-size:.92rem;color:var(--muted)}details p:last-child{margin-bottom:0}
+.subhead{margin:27px 0 14px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}
+.metric{background:var(--sage);padding:17px;border-radius:12px}.metric b{display:block;font-size:1.55rem;line-height:1.2}.metric span{font-size:.86rem;color:var(--muted)}
+.goal-result{margin:9px 0;padding:17px;background:#fff;border:1px solid var(--line);border-radius:11px}
+.goal-result p{margin:6px 0}.goal-result .tip{color:var(--muted);font-size:.89rem}
+.ex-list{margin:10px 0;padding-left:21px}.ex-list li{margin-bottom:7px}
+.week-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.day{background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px}
+.day .day-name{font-size:.8rem;text-transform:uppercase;color:var(--deep);font-weight:850;letter-spacing:.07em}
+.day strong{display:block;margin:4px 0 6px}.day p{margin:0;font-size:.91rem;color:var(--muted)}
+.status{min-height:22px;margin:8px 0;color:var(--deep);font-weight:650;font-size:.9rem}
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.week{background:white;border:1px solid var(--line);border-radius:13px;padding:18px}.week b{font-size:.86rem;color:var(--deep)}
+.progress{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px}
+.progress .row{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.progress label{display:flex;align-items:center;gap:10px;margin:8px 0}.progress input[type=checkbox]{width:19px;height:19px;accent-color:var(--deep)}
+.progress select{padding:8px;border:1px solid #9fb4a5;border-radius:8px;min-height:42px;background:white;max-width:100%}
+.sources li{margin-bottom:9px}.sources a{overflow-wrap:anywhere}
+.footer{padding:36px 0 60px;border-top:1px solid var(--line);font-size:.92rem}.footer-links{display:flex;flex-wrap:wrap;gap:15px;margin:16px 0}
+fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.divider{height:1px;background:var(--line);margin:20px 0}
+.back-link{display:inline-block;margin-top:21px;font-weight:650}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:760px){.hero{padding-top:36px}.section{padding:42px 0}.grid,.grid.three,.four,.week-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.top-in{flex-wrap:wrap;padding:8px 16px}.top-links{gap:11px}.wrap{padding:0 17px}.panel{padding:17px}.contents a{font-size:.83rem}}
+@media(max-width:430px){.top-links{font-size:.78rem}.top-links a{min-height:36px}.metric b{font-size:1.3rem}.metrics{grid-template-columns:1fr}.button-row .btn{width:100%}}
+@media print{.top,.contents,.button-row,.hide-print,.back-link{display:none!important}body{background:white}.section{break-inside:avoid;padding:22px 0}.panel,.day,.goal-result{break-inside:avoid}h1{font-size:2rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to the guide</a>
+<div class="top"><div class="top-in">
+<a class="brand" href="https://vtrackstar.github.io/bfit/">BFit <span>Training Hub</span></a>
+<div class="top-links"><a href="#start">Start</a><a href="#build">My week</a><a href="#review">Review</a><a href="https://vtrackstar.github.io/bfit/">All guides</a></div>
+</div></div>
+<main id="main" class="wrap">
+<header class="hero">
+<div class="eyebrow">Free BFit activity guide · Ages 50+</div>
+<h1>Keep moving.<br>Keep doing what you love.</h1>
+<p class="lead">You don't have to train like an athlete to benefit from exercise. I'll help you find activities you enjoy, build strength for everyday tasks, and put together a week that works for you.</p>
+<p>Being over 50 doesn't tell me how fit you are. Whether you're starting, returning after a break, or already active, you can use this guide at your own pace.</p>
+<div class="button-row"><a class="btn primary" href="#start">Build my activity week</a><a class="btn" href="#explore">Explore activities first</a></div>
+<div class="notice"><strong>What this guide does:</strong> Connects the things you enjoy with the things you want to stay able to do. You'll get a starting routine and a four-week exploration plan. Daily movement can be gentle; every day does not need to be a hard workout.</div>
+<nav class="contents" aria-label="On this page">
+<a href="#start">1. Start here</a><a href="#priorities">2. Everyday confidence</a><a href="#explore">3. Find your movement</a><a href="#strength">4. Strength &amp; balance</a><a href="#build">5. Build a week</a><a href="#four-weeks">6. Try four weeks</a><a href="#review">7. Review</a><a href="#sources">Sources</a>
+</nav>
+</header>
+<section class="section" id="start">
+<div class="section-head"><div class="eyebrow">01 / Getting started</div><h2>Start with where you are today</h2><p>No fitness test required. Choose what sounds most like you right now. You can change your answers later.</p></div>
+<div class="grid">
+<div class="panel">
+<div class="form-field"><label for="level">How active have you been lately?</label><select id="level"><option value="new">I'm new to regular exercise</option><option value="returning">I'm coming back after a break</option><option value="active">I already exercise most weeks</option></select></div>
+<div class="form-field"><label for="days">How many days can you plan for activity?</label><select id="days"><option value="2">2 days</option><option value="3">3 days</option><option value="4" selected>4 days</option><option value="5">5 days</option><option value="6">6 days</option><option value="7">7 days</option></select><p class="hint">You can still take comfortable walks or move gently on the other days.</p></div>
+<div class="form-field"><label for="minutes">What session length feels manageable?</label><select id="minutes"><option value="10">About 10 minutes</option><option value="20" selected>About 20 minutes</option><option value="30">About 30 minutes</option><option value="45">About 45 minutes</option></select></div>
+</div>
+<div class="panel">
+<div class="form-field"><label for="confidence">How steady do you feel standing or walking?</label><select id="confidence"><option value="steady">Generally steady</option><option value="support">I sometimes use support or feel unsteady</option><option value="review">I've fallen recently, fall repeatedly, or have unexplained dizziness</option></select></div>
+<div id="safetyNote" class="notice warn" hidden role="status"><strong>Start with a safety check.</strong> Recent or repeated falls, unexplained dizziness, and significant balance problems deserve a conversation with a healthcare professional. A physical therapist can help determine suitable balance exercises. Don't try unsupported balance or floor drills on your own.</div>
+<p><strong>Before you start:</strong> Seek urgent medical care for new chest pain, fainting, severe breathlessness, or other serious symptoms. If you have a condition affecting exercise or have been told to restrict activity, follow your clinician's guidance. For training, choose stable support, clear floor space, and comfortable footwear.</p>
+<p class="hint">The recommendations below are general starting ideas, not a medical assessment or individualized rehabilitation plan.</p>
+</div>
+</div>
+</section>
+<section class="section" id="priorities">
+<div class="section-head"><div class="eyebrow">02 / What matters to you?</div><h2>What would you like to feel more confident doing?</h2><p>Choose up to three. I'll connect your priorities to movements that practice the strength, control, and stamina needed for daily life.</p></div>
+<fieldset class="choice-list" id="goalChoices"><legend>My everyday priorities</legend>
+<label class="choice"><input type="checkbox" value="balance" data-goal><span><strong>Staying steady and reducing my risk of falling</strong>Balance when turning, stepping, or reaching</span></label>
+<label class="choice"><input type="checkbox" value="floor" data-goal><span><strong>Bending down and getting up from the floor</strong>Reaching a dropped item or getting up independently</span></label>
+<label class="choice"><input type="checkbox" value="reach" data-goal><span><strong>Reaching overhead</strong>Putting something away on a shelf comfortably</span></label>
+<label class="choice"><input type="checkbox" value="stairs" data-goal><span><strong>Climbing stairs</strong>Stepping up and down with more control and less effort</span></label>
+<label class="choice"><input type="checkbox" value="carry" data-goal><span><strong>Carrying groceries or bags</strong>Holding and moving everyday loads</span></label>
+<label class="choice"><input type="checkbox" value="stamina" data-goal><span><strong>Walking farther without tiring as quickly</strong>Building stamina for errands and outings</span></label>
+</fieldset>
+<p id="goalMessage" class="status" aria-live="polite">Choose one to three priorities.</p>
+<div id="goalResults" aria-live="polite"></div>
+<div class="notice warn"><strong>Fall prevention is more than exercise.</strong> Strength and balance training can lower fall risk, but vision, footwear, medications, lighting, and home trip hazards matter too. If falls are a concern, discuss them with a healthcare professional. <a href="https://www.cdc.gov/falls/prevention/" target="_blank" rel="noopener noreferrer">CDC: Preventing falls</a>.</div>
+</section>
+<section class="section" id="explore">
+<div class="section-head"><div class="eyebrow">03 / Find your movement</div><h2>Choose what you'll look forward to</h2><p>Walking, cycling, and swimming are easy places to begin exploring cardio. But dancing or another activity can be your main choice if that's what keeps you moving. Try something once before deciding whether you like it.</p></div>
+<div class="panel">
+<div class="form-field"><label for="mainCardio">My main cardio activity</label>
+<select id="mainCardio"><option value="walking">Walking</option><option value="cycling">Cycling</option><option value="swimming">Swimming or water walking</option><option value="dance">Dancing or low-impact aerobics</option></select>
+<p class="hint">Cardio means activity that raises your breathing and heart rate. At a moderate pace, you should still be able to talk, though singing would be harder.</p></div>
+<fieldset class="choice-list" id="tryChoices"><legend>Other activities I want to try (up to three)</legend>
+<label class="choice"><input type="checkbox" value="walking" data-try><span><strong>Walking</strong>Outdoors, indoors, or on a treadmill</span></label>
+<label class="choice"><input type="checkbox" value="cycling" data-try><span><strong>Cycling</strong>Stationary bike or bicycle, based on comfort and balance</span></label>
+<label class="choice"><input type="checkbox" value="swimming" data-try><span><strong>Swimming or water walking</strong>Water-based movement with less weight-bearing impact</span></label>
+<label class="choice"><input type="checkbox" value="dance" data-try><span><strong>Zumba or aerobics</strong>Instructor-led movement, often to music</span></label>
+<label class="choice"><input type="checkbox" value="golf" data-try><span><strong>Golf</strong>Outdoor movement, coordination, and social time</span></label>
+<label class="choice"><input type="checkbox" value="pickleball" data-try><span><strong>Pickleball</strong>A social racket sport that includes quick steps and direction changes</span></label>
+<label class="choice"><input type="checkbox" value="group" data-try><span><strong>Group fitness</strong>A class with others; the difficulty depends on the class</span></label>
+<label class="choice"><input type="checkbox" value="pilates" data-try><span><strong>Reformer Pilates</strong>Spring-resistance movements on a sliding platform</span></label>
+<label class="choice"><input type="checkbox" value="tai-chi" data-try><span><strong>Tai chi or gentle yoga</strong>Slower practice for control, mobility, and balance</span></label>
+</fieldset><p id="tryMessage" class="status" aria-live="polite">These are optional. You'll still have a weekly routine if you don't choose one.</p>
+</div>
+<h3 class="subhead">What is each activity like?</h3>
+<div class="grid three">
+<article class="activity"><span class="chip">Cardio · Weight-bearing</span><h3>Walking</h3><p>A practical way to build endurance with little equipment. Brisk walking can count toward moderate aerobic activity.</p><details><summary>First time and watch-outs</summary><div>Try five to ten comfortable minutes on a familiar, even route. Use a walking aid if prescribed. Add time gradually. Walking alone may not provide enough strength or balance practice for every goal.</div></details></article>
+<article class="activity"><span class="chip">Cardio · Low impact</span><h3>Cycling</h3><p>Builds heart and lung endurance with relatively low impact. A stationary or recumbent bike can be a more stable choice.</p><details><summary>First time and watch-outs</summary><div>Start with easy resistance and check seat height. Outdoor cycling requires confident bike handling and a safe environment. Cycling is not weight-bearing exercise for bone health.</div></details></article>
+<article class="activity"><span class="chip">Cardio · Water</span><h3>Swimming</h3><p>Builds endurance while water supports your weight. Water walking can be an alternative to lap swimming.</p><details><summary>First time and watch-outs</summary><div>Choose a supervised pool and a comfortable depth. If you aren't a confident swimmer, start with lessons or water walking. Swimming does not provide the weight-bearing stimulus of walking.</div></details></article>
+<article class="activity"><span class="chip">Cardio · Social</span><h3>Zumba and aerobics</h3><p>Often music-led classes that combine repeated steps and movement patterns. They can improve stamina and coordination.</p><details><summary>First time and watch-outs</summary><div>Look for beginner or low-impact classes. Start at your own speed and skip jumps or quick turns you can't comfortably control.</div></details></article>
+<article class="activity"><span class="chip">Sport · Social</span><h3>Golf</h3><p>Can add walking, coordination, rotational movement, and outdoor time. The physical workload depends on how you play.</p><details><summary>First time and watch-outs</summary><div>Try the range or a short session. Walking the course provides more aerobic activity than using a cart. Warm up before repeated swings.</div></details></article>
+<article class="activity"><span class="chip">Sport · Coordination</span><h3>Pickleball</h3><p>A racket game played on a smaller court than tennis. It includes social interaction, quick steps, and changing direction.</p><details><summary>First time and watch-outs</summary><div>Try a beginner lesson with a short session. Rapid stops and turns may be too demanding for someone with balance or joint concerns; practice footwork first.</div></details></article>
+<article class="activity"><span class="chip">Class · Varies by format</span><h3>Group fitness</h3><p>An instructor leads a class, which might include cardio, resistance exercises, or balance practice.</p><details><summary>First time and watch-outs</summary><div>Ask what the class involves before joining. A gentle class isn't necessarily a full strength workout; some classes are quite demanding.</div></details></article>
+<article class="activity"><span class="chip">Resistance · Control</span><h3>Reformer Pilates</h3><p>Exercises using a moving carriage and spring resistance. It may help with movement control, strength, and flexibility.</p><details><summary>First time and watch-outs</summary><div>Book a beginner introduction and tell the instructor about mobility limits. It can complement strength training, but may not fully replace progressive strength work for every person.</div></details></article>
+<article class="activity"><span class="chip">Balance · Mobility</span><h3>Tai chi and gentle yoga</h3><p>Typically slower movement, controlled positions, and attention to posture. Some formats support balance and flexibility.</p><details><summary>First time and watch-outs</summary><div>Choose a class that offers chair or supported modifications. Avoid painful positions and unsupported standing challenges if you are unsteady.</div></details></article>
+</div>
+<a class="back-link" href="https://vtrackstar.github.io/bfit/">Back to the BFit Training Hub</a>
+</section>
+<section class="section" id="strength">
+<div class="section-head"><div class="eyebrow">04 / Build everyday strength</div><h2>A little strength and balance work goes a long way</h2><p>Cardio helps your endurance. To practice lifting, carrying, standing up, and steady movement, add resistance exercises and balance work. Many adults benefit from training all the major muscles on at least two days each week.</p></div>
+<div class="metrics"><div class="metric"><b>150 min</b><span>Weekly moderate cardio is a general adult goal, not a first-week requirement.</span></div><div class="metric"><b>2 days</b><span>Muscle-strengthening work each week is recommended for adults.</span></div><div class="metric"><b>Balance</b><span>Especially important in guidance for adults 65 and older; practice safely.</span></div></div>
+<div class="panel">
+<div class="form-field"><label for="strengthStyle">How would you rather train strength?</label><select id="strengthStyle"><option value="machines">Gym machines</option><option value="dumbbells">Dumbbells or kettlebells</option><option value="home">At home with a chair, body weight, or bands</option></select></div>
+<p id="strengthIntro"></p><div id="strengthRoutine"></div>
+<p class="hint">Starting point: after a gentle warm-up, try one set of about six to ten controlled repetitions per exercise, with a manageable effort. Progress toward one or two sets as tolerated; rest when you need to. Stop or modify any movement that causes concerning pain, dizziness, or loss of control. If you already train, use a suitable level rather than starting over.</p>
+</div>
+<div class="grid">
+<div class="panel"><h3>Balance practice</h3><p>Start near a sturdy counter with room to move. Try comfortable weight shifts or slow marching while holding on. If you're steady, progress gradually to less hand support or small steps in different directions. Don't practice difficult balance drills alone when falling is a concern.</p></div>
+<div class="panel"><h3>Mobility and recovery</h3><p>Gentle shoulder circles, ankle movement, and comfortable hip motion help keep daily movement familiar. Easy days matter. Sleep, joint comfort, medication effects, and the previous day's activity can affect how ready you feel.</p></div>
+</div>
+<p class="hint">I explain more about choosing exercises and progressing strength training in the free <a href="https://vtrackstar.github.io/bfit/guides/foundation/">Foundation Training guide</a>.</p>
+</section>
+<section class="section" id="build">
+<div class="section-head"><div class="eyebrow">05 / Make it fit your life</div><h2>Your weekly movement routine</h2><p>This example uses your selections to balance enjoyable activity, strength, and balance. It starts with what is manageable and gives you room to build over time.</p></div>
+<div class="notice"><strong>How to read the plan:</strong> A scheduled activity day doesn't have to be intense. Short comfortable movement on unscheduled days is fine too. An activity only counts as strength or balance training when it actually challenges those qualities appropriately.</div>
+<div id="planSummary" class="panel" aria-live="polite"></div>
+<div id="weekPlan" class="week-grid" aria-live="polite"></div>
+<div class="button-row hide-print"><button id="savePlan" class="btn primary" type="button">Download my plan</button><button id="printPlan" class="btn" type="button">Print</button><button id="backup" class="btn" type="button">Save my answers</button><label for="restore" class="btn" style="cursor:pointer">Restore saved answers</label><input id="restore" class="visually-hidden" type="file" accept=".json,application/json"></div>
+<p id="saveStatus" class="status" aria-live="polite"></p>
+<p class="hint">Your selections are saved only in this browser's local storage when available. Downloads stay on your device; BFit doesn't receive your answers. If you clear browser storage or use a different device, restore a saved backup file.</p>
+</section>
+<section class="section" id="four-weeks">
+<div class="section-head"><div class="eyebrow">06 / Four-week discovery</div><h2>Try things. Keep what you enjoy.</h2><p>These four weeks are a way to explore, not a deadline for results. If a week feels too challenging, repeat it or scale it down.</p></div>
+<div class="four">
+<div class="week"><b>Week 1</b><h3>Get comfortable</h3><p>Try your starting routine. Learn where you can move safely and what a comfortable pace feels like.</p></div>
+<div class="week"><b>Week 2</b><h3>Try something new</h3><p>Explore one class, sport, or cardio option you're curious about. You can observe a class before joining.</p></div>
+<div class="week"><b>Week 3</b><h3>Build a little</h3><p>If you've been recovering well, consider adding five minutes to one or two comfortable cardio sessions or a small amount of strength practice.</p></div>
+<div class="week"><b>Week 4</b><h3>Decide what stays</h3><p>Keep activities you enjoy, review your everyday confidence, and build the next week around what worked.</p></div>
+</div>
+<div class="notice"><strong>What if you're already active?</strong> Use the builder as a weekly check. Look for gaps in balance or strength, not just more exercise. You can skip the discovery weeks entirely.</div>
+</section>
+<section class="section" id="review">
+<div class="section-head"><div class="eyebrow">07 / Review and keep going</div><h2>What feels different after trying your routine?</h2><p>Progress can mean moving with more confidence, enjoying an activity, or finding a schedule you're happy to repeat. Track what matters to you.</p></div>
+<div class="progress">
+<div class="row"><label for="weekReview">Week you're reviewing</label><select id="weekReview"><option value="1">Week 1</option><option value="2">Week 2</option><option value="3">Week 3</option><option value="4">Week 4</option></select></div>
+<div class="divider"></div><fieldset id="reviewChecks"><legend>What went well this week?</legend>
+<label><input type="checkbox" value="tried"> I tried an activity I was curious about</label>
+<label><input type="checkbox" value="strength"> I practiced strength or balance</label>
+<label><input type="checkbox" value="schedule"> I found a schedule I can repeat</label>
+<label><input type="checkbox" value="confidence"> An everyday movement felt more comfortable</label>
+</fieldset>
+<div class="divider"></div><div class="row"><label for="confidenceRating">Confidence with my everyday priorities</label><select id="confidenceRating"><option value="">Choose a rating</option><option value="1">1 – Not confident yet</option><option value="2">2 – A little confident</option><option value="3">3 – Somewhat confident</option><option value="4">4 – Confident</option><option value="5">5 – Very confident</option></select></div>
+<div class="button-row hide-print"><button id="saveReview" type="button" class="btn primary">Save this week's review</button></div><p id="reviewStatus" class="status" aria-live="polite"></p>
+</div>
+<div class="notice"><strong>Moving forward:</strong> If a routine feels good, repeat it. If it's too much, reduce the time or difficulty. If it feels easy and recovery is going well, progress gradually. A change in confidence is useful feedback, but isn't a medical test or proof that fall risk has changed.</div>
+<p>Need exercise technique help? Browse the <a href="https://bfit-exercise-movement-library.balouissaint.chatgpt.site/" target="_blank" rel="noopener noreferrer">BFit Exercise &amp; Movement Library</a> or explore <a href="https://vtrackstar.github.io/bfit/">the other free guides</a>.</p>
+</section>
+<section class="section" id="sources">
+<div class="section-head"><div class="eyebrow">Sources and scope</div><h2>Where the guidance comes from</h2><p>This guide is educational. The activity recommendations draw on general physical activity guidance and research on exercise and fall prevention. Exercise can reduce fall risk, but it cannot guarantee that someone won't fall.</p></div>
+<ol class="sources">
+<li><a href="https://www.cdc.gov/physical-activity-basics/guidelines/adults.html" target="_blank" rel="noopener noreferrer">CDC: Physical Activity Guidelines for Adults</a> (including adults 50–64).</li>
+<li><a href="https://www.cdc.gov/physical-activity-basics/guidelines/older-adults.html" target="_blank" rel="noopener noreferrer">CDC: Physical Activity Guidelines for Adults 65+</a> (including balance activity).</li>
+<li><a href="https://www.nia.nih.gov/health/exercise-and-physical-activity/tips-getting-and-staying-active-you-age" target="_blank" rel="noopener noreferrer">National Institute on Aging: Getting and Staying Active as You Age</a>.</li>
+<li><a href="https://www.cochrane.org/evidence/CD012424_exercise-preventing-falls-older-people-living-community" target="_blank" rel="noopener noreferrer">Cochrane review: Exercise for Preventing Falls in Community-Dwelling Older People</a>.</li>
+<li><a href="https://www.cdc.gov/falls/prevention/" target="_blank" rel="noopener noreferrer">CDC: Preventing Falls and Hip Fractures</a>.</li>
+</ol>
+<p class="hint">Evidence about fall prevention focuses primarily on older adults, often 65 and above. Not everyone over 50 has the same risks or needs. Prior injuries, health conditions, medications, and ability can all affect exercise selection.</p>
+</section>
+<footer class="footer">
+<p><strong>Made by Bryan · BFit Training Hub.</strong> I wrote this free guide to make it easier to start moving and understand how different activities help. Your best routine is one you can safely return to.</p>
+<p>If you want individual programming, you can read about <a href="https://vtrackstar.github.io/bfit/coaching/">Premium and Elite coaching</a>. Coaching intake may be paused; the free guides remain available.</p>
+<div class="footer-links"><a href="https://vtrackstar.github.io/bfit/">All free guides</a><a href="https://www.instagram.com/_trainwithbfit/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.tiktok.com/@_trainwithbfit" target="_blank" rel="noopener noreferrer">TikTok</a><a href="https://www.twitch.tv/gamewithbfit" target="_blank" rel="noopener noreferrer">Twitch</a><a href="https://discord.gg/9yfqjvZPg" target="_blank" rel="noopener noreferrer">BFit Lounge</a></div>
+<small>Last reviewed November 2026. This page runs locally in your browser and does not submit form answers to a server.</small>
+</footer></main>
+<script>
+(function(){
+'use strict';
+var key='bfit-50plus-v1';
+var allowedGoals=['balance','floor','reach','stairs','carry','stamina'];
+var allowedTry=['walking','cycling','swimming','dance','golf','pickleball','group','pilates','tai-chi'];
+var names={walking:'Walking',cycling:'Cycling',swimming:'Swimming or water walking',dance:'Dancing or low-impact aerobics',golf:'Golf',pickleball:'Pickleball',group:'Group fitness',pilates:'Reformer Pilates','tai-chi':'Tai chi or gentle yoga'};
+var goals={
+ balance:{name:'Staying steady',why:'Practices controlled shifting of weight and taking steps, which contribute to balance and coordination.',start:'Near a sturdy counter, try slow weight shifts with hands supported.',next:'Progress to small supported steps in several directions. Reduce hand support only when safe.'},
+ floor:{name:'Bending down and getting up',why:'Combines leg strength, hip movement, and a practiced strategy for getting to or from the floor.',start:'Practice comfortable sit-to-stands and a supported hip hinge.',next:'With appropriate support, learn a half-kneeling transition or assisted floor-to-stand technique. Seek professional guidance if needed.'},
+ reach:{name:'Reaching overhead',why:'Practices shoulder movement, positioning, and strength for reaching comfortably.',start:'Try wall slides or comfortable unloaded overhead reaching.',next:'Progress to light, controlled overhead resistance if your shoulders tolerate it.'},
+ stairs:{name:'Climbing stairs',why:'Uses leg strength, one-leg control, calf strength, and endurance.',start:'Practice sit-to-stands, calf raises, and low step-ups while holding a railing.',next:'Slowly increase step repetitions or height only when control is good.'},
+ carry:{name:'Carrying bags and groceries',why:'Trains gripping, carrying, and keeping your body steady while walking.',start:'Carry one light bag a short distance on level ground.',next:'Try farmer carries with two light loads or a suitcase carry with one, increasing gradually.'},
+ stamina:{name:'Walking longer',why:'Improves heart and lung endurance and comfort during longer outings.',start:'Begin with a comfortable walk and a planned turnaround point.',next:'Add a few minutes when the usual walk starts to feel easier.'}
+};
+var strength={
+ machines:{intro:'Machines guide the movement and let you adjust resistance. Ask gym staff to show you how to set the seat, handles, and weight.',items:['Leg press or sit-to-stand from a bench','Seated row','Chest press','Calf raise','Comfortable shoulder press or substitute']},
+ dumbbells:{intro:'Handheld weights offer flexibility. Pick loads you can move without straining or losing your balance; a kettlebell is not required.',items:['Sit-to-stand or goblet squat to a chair','Supported one-arm row','Light floor or incline press','Calf raise with support','Light farmer carry']},
+ home:{intro:'A stable chair, wall, and optional resistance band can provide a useful starting strength routine.',items:['Sit-to-stand from a stable chair','Band row or supported pull','Wall push-up','Supported calf raise','Short, controlled carry with a light bag']}
+};
+var schedule={
+ 2:[['Tue','strength'],['Sat','combo']],
+ 3:[['Mon','strength'],['Wed','cardio'],['Sat','combo']],
+ 4:[['Mon','strength'],['Tue','cardio'],['Thu','strength'],['Sat','explore']],
+ 5:[['Mon','strength'],['Tue','cardio'],['Wed','balance'],['Fri','strength'],['Sat','explore']],
+ 6:[['Mon','strength'],['Tue','cardio'],['Wed','balance'],['Thu','strength'],['Fri','cardio'],['Sat','explore']],
+ 7:[['Mon','strength'],['Tue','cardio'],['Wed','balance'],['Thu','strength'],['Fri','cardio'],['Sat','explore'],['Sun','recovery']]
+};
+function el(id){return document.getElementById(id);}
+function choose(selector){return Array.from(document.querySelectorAll(selector+':checked')).map(function(e){return e.value;});}
+function validValue(value,values,fallback){return values.indexOf(String(value))!==-1?String(value):fallback;}
+function defaultState(){return {level:'new',days:'4',minutes:'20',confidence:'steady',mainCardio:'walking',strengthStyle:'machines',goals:['stairs','carry'],tries:[],reviews:{}};}
+var state=defaultState();
+try{var old=JSON.parse(localStorage.getItem(key)||'null');if(old && typeof old==='object') state=normalize(old);}catch(e){}
+function normalize(s){
+ var d=defaultState();
+ return {level:validValue(s.level,['new','returning','active'],d.level),days:validValue(s.days,['2','3','4','5','6','7'],d.days),minutes:validValue(s.minutes,['10','20','30','45'],d.minutes),confidence:validValue(s.confidence,['steady','support','review'],d.confidence),mainCardio:validValue(s.mainCardio,['walking','cycling','swimming','dance'],d.mainCardio),strengthStyle:validValue(s.strengthStyle,['machines','dumbbells','home'],d.strengthStyle),goals:Array.isArray(s.goals)?s.goals.filter(function(g,i,a){return allowedGoals.indexOf(g)!==-1 && a.indexOf(g)===i;}).slice(0,3):d.goals,tries:Array.isArray(s.tries)?s.tries.filter(function(g,i,a){return allowedTry.indexOf(g)!==-1 && a.indexOf(g)===i && g!==s.mainCardio;}).slice(0,3):[],reviews:s.reviews&&typeof s.reviews==='object'&&!Array.isArray(s.reviews)?s.reviews:{}};
+}
+function apply(){['level','days','minutes','confidence','mainCardio','strengthStyle'].forEach(function(k){el(k).value=state[k];});document.querySelectorAll('[data-goal]').forEach(function(x){x.checked=state.goals.indexOf(x.value)!==-1;});document.querySelectorAll('[data-try]').forEach(function(x){x.checked=state.tries.indexOf(x.value)!==-1;});}
+function persist(){try{localStorage.setItem(key,JSON.stringify(state));}catch(e){el('saveStatus').textContent='Browser storage is unavailable. Use Save my answers to keep a backup.';}}
+function update(){
+ state.level=el('level').value;state.days=el('days').value;state.minutes=el('minutes').value;state.confidence=el('confidence').value;state.mainCardio=el('mainCardio').value;state.strengthStyle=el('strengthStyle').value;
+ state.goals=choose('[data-goal]');state.tries=choose('[data-try]').filter(function(x){return x!==state.mainCardio;});
+ document.querySelectorAll('[data-try]').forEach(function(x){x.disabled=x.value===state.mainCardio;if(x.disabled)x.checked=false;});
+ state.tries=choose('[data-try]');
+ el('safetyNote').hidden=state.confidence!=='review';
+ el('goalMessage').textContent=state.goals.length+' of 3 priorities selected.';
+ el('tryMessage').textContent=state.tries.length?(state.tries.length+' activity ideas saved.'):('Optional: choose something you might enjoy trying.');
+ renderGoals();renderStrength();renderPlan();persist();
+}
+function renderGoals(){
+ el('goalResults').innerHTML=state.goals.map(function(id){var g=goals[id];return '<article class="goal-result"><h3>'+g.name+'</h3><p>'+g.why+'</p><p><strong>Try first:</strong> '+g.start+'</p><p class="tip"><strong>When ready:</strong> '+g.next+'</p></article>';}).join('')||'<p class="hint">Select a priority to see exercises that connect to everyday life.</p>';
+}
+function renderStrength(){
+ var s=strength[state.strengthStyle];
+ el('strengthIntro').textContent=s.intro;
+ el('strengthRoutine').innerHTML='<h3>Simple full-body starting session</h3><ol class="ex-list">'+s.items.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol><p class="hint">Use this as the starting template for strength days. Add a supported goal-specific drill from your priorities when appropriate. The program is meant to be adjusted, not finished at any cost.</p>';
+}
+function timeFor(type){
+ var m=Number(state.minutes);
+ if(state.level==='new') m=Math.min(m,20);
+ if(state.level==='returning')m=Math.min(m,30);
+ if(type==='balance')return '5–10 minutes';
+ if(type==='combo')return Math.max(10,m)+' minutes total, with shorter portions of each activity';
+ if(type==='explore')return 'A comfortable introductory session; shorter than '+m+' minutes is fine';
+ if(type==='recovery')return 'As little or as much gentle movement as feels comfortable';
+ return 'About '+m+' minutes as tolerated';
+}
+function renderPlan(){
+ var main=names[state.mainCardio];
+ var secondary=state.tries.length?names[state.tries[0]]:main;
+ var cards=schedule[Number(state.days)]||schedule[4];
+ var html=cards.map(function(p){
+ var kind=p[1],title='',desc='';
+ if(kind==='strength'){title='Full-body strength + supported balance';desc='Follow your chosen strength exercises. Add a short supported balance drill or an everyday-priority exercise. '+timeFor(kind)+'.';}
+ if(kind==='combo'){title='Full-body strength + '+main.toLowerCase();desc='Split the time between simple resistance exercises, safe balance practice, and easy cardio. '+timeFor(kind)+'.';}
+ if(kind==='cardio'){title=main;desc='Move at a comfortable pace. If it becomes moderate exercise, you should still be able to talk. '+timeFor(kind)+'.';}
+ if(kind==='balance'){title='Gentle movement + balance';desc='Try supported steps, ankle movement, or a relaxed walk. '+timeFor(kind)+'.';}
+ if(kind==='explore'){title=state.tries.length?'Try '+secondary:'Enjoy '+main.toLowerCase();desc=state.tries.length?'Start with a beginner-friendly session. It can be shorter than a full workout. '+timeFor(kind)+'.':'Repeat an enjoyable activity, or try a new one when you feel ready. '+timeFor(kind)+'.';}
+ if(kind==='recovery'){title='Recovery movement';desc='An easy walk, gentle mobility, or rest depending on how you feel. '+timeFor(kind)+'.';}
+ return '<article class="day"><span class="day-name">'+p[0]+'</span><strong>'+title+'</strong><p>'+desc+'</p></article>';
+ }).join('');
+ var caution=state.confidence==='review'?'Because you reported falls or dizziness, seek a clinician or physical therapist’s advice before unsupervised balance drills or rapid direction changes.':state.confidence==='support'?'Use stable support for balance work. Choose activities that fit your footing and confidence.':'Keep balance practice controlled, with stable support nearby.';
+ var count=cards.filter(function(x){return x[1]==='strength'||x[1]==='combo';}).length;
+ var note='This starting schedule includes '+count+' strength sessions and '+state.days+' planned activity days. It may not reach the longer-term aerobic goal of 150 moderate minutes yet. Increase gradually as appropriate.';
+ el('planSummary').innerHTML='<h3>Your starting week</h3><p><strong>Main cardio:</strong> '+main+' · <strong>Strength:</strong> '+(state.strengthStyle==='home'?'At home':state.strengthStyle==='machines'?'Gym machines':'Dumbbells or kettlebells')+' · <strong>Time:</strong> '+state.minutes+' minutes available per session.</p><p>'+note+'</p><p><strong>Safety:</strong> '+caution+'</p>';
+ el('weekPlan').innerHTML=html;
+}
+function fileDownload(name,content,type){
+ var blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);
+}
+function backup(){fileDownload('BFit-50plus-answers.json',JSON.stringify({version:1,answers:state},null,2),'application/json');el('saveStatus').textContent='Answer backup downloaded. Keep the JSON file somewhere you can find it.';}
+function planText(){
+ var summary=el('planSummary').innerText;
+ var days=Array.from(el('weekPlan').querySelectorAll('.day')).map(function(e){return e.innerText.replace(/\n+/g,' — ');}).join('\n');
+ var priorities=state.goals.map(function(x){return goals[x].name+': '+goals[x].start;}).join('\n');
+ return 'BFit 50+ | Keep Moving\n\n'+summary+'\n\nYOUR WEEK\n'+days+'\n\nEVERYDAY PRIORITIES\n'+priorities+'\n\nFour-week discovery: Week 1 get comfortable; Week 2 try something new; Week 3 build a little if recovery is good; Week 4 review and keep favorites.\n\nSource: https://vtrackstar.github.io/bfit/guides/50-plus/\n';
+}
+function updateReview(){
+ var w=el('weekReview').value;
+ var r=state.reviews[w]||{};
+ document.querySelectorAll('#reviewChecks input').forEach(function(e){e.checked=Array.isArray(r.checks)&&r.checks.indexOf(e.value)!==-1;});
+ el('confidenceRating').value=validValue(r.rating,['1','2','3','4','5'],'');
+ el('reviewStatus').textContent=r.checks?'Previously saved for week '+w+'.':'';
+}
+document.querySelectorAll('select').forEach(function(e){if(['weekReview','confidenceRating'].indexOf(e.id)===-1)e.addEventListener('change',update);});
+document.querySelectorAll('[data-goal],[data-try]').forEach(function(x){x.addEventListener('change',function(){
+ var arr=choose(x.hasAttribute('data-goal')?'[data-goal]':'[data-try]');
+ if(arr.length>3){x.checked=false;(x.hasAttribute('data-goal')?el('goalMessage'):el('tryMessage')).textContent='Choose no more than three. You can change your choices anytime.';return;}
+ update();
+});});
+el('savePlan').addEventListener('click',function(){fileDownload('BFit-50plus-week.txt',planText(),'text/plain;charset=utf-8');el('saveStatus').textContent='Weekly plan downloaded.';});
+el('printPlan').addEventListener('click',function(){window.print();});
+el('backup').addEventListener('click',backup);
+el('restore').addEventListener('change',function(e){
+ var file=e.target.files&&e.target.files[0];if(!file)return;
+ if(file.size>100000){el('saveStatus').textContent='This file is too large for a guide backup.';return;}
+ var reader=new FileReader();
+ reader.onload=function(){try{var o=JSON.parse(reader.result);if(!o||o.version!==1||!o.answers||typeof o.answers!=='object')throw Error('Invalid format');state=normalize(o.answers);apply();update();updateReview();el('saveStatus').textContent='Answers restored.';}catch(err){el('saveStatus').textContent='Could not restore that file. Choose a BFit 50+ JSON backup.';}};
+ reader.readAsText(file);e.target.value='';
+});
+el('weekReview').addEventListener('change',updateReview);
+el('saveReview').addEventListener('click',function(){
+ var w=el('weekReview').value,checks=choose('#reviewChecks input'),rating=el('confidenceRating').value;
+ state.reviews[w]={checks:checks,rating:rating};persist();el('reviewStatus').textContent='Week '+w+' saved in this browser. Use Save my answers to download a backup.';
+});
+apply();update();updateReview();
+})();
+</script>
+</body></html>
