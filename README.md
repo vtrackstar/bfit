@@ -10,6 +10,7 @@ BFit is a home for the free training guides I've built. Choose the one that fits
 - [Athleticism](https://vtrackstar.github.io/bfit/guides/athleticism/) — Four-week programs for sprinting, jumping, field and court movement, and multisport training.
 - [Gamer Fit](https://vtrackstar.github.io/bfit/guides/gamer-fit/) — Workouts and everyday habits that fit a screen-heavy routine.
 - [Run Strong](https://vtrackstar.github.io/bfit/guides/run-strong/) — Running sessions, beginner options, and a way to put them into a week.
+- [Keep Moving: 50+ Activity Guide](https://vtrackstar.github.io/bfit/guides/50-plus/) — Explore walking, cycling, swimming, classes, and everyday strength; build a weekly routine with a four-week discovery plan.
 
 For exercise setup and technique cues, use the [BFit Exercise & Movement Library](https://bfit-exercise-movement-library.balouissaint.chatgpt.site/).
 
@@ -25,11 +26,12 @@ Coaching inquiries are paused while I prepare the next intake. The free guides r
 - Athleticism saves completion checks and notes in the browser and supports progress backup/restore.
 - Gamer Fit saves Skill Tree choices separately from workout records.
 - Run Strong is a reference guide rather than an online workout log.
+- Keep Moving saves activity choices and short weekly reviews locally; it supports a plain-text weekly-plan download and JSON backup/restore.
 - [Printable workout record](https://vtrackstar.github.io/bfit/resources/workout-record.html) — for paper or PDF recording.
 
 ## Work on the website
 
-This repository contains the currently deployed HTML files for the hub and four guides. GitHub Pages publishes from `main`. The files in Google Drive include earlier drafts, reviews, and backups; they are not automatically synced with the live site.
+This repository contains the HTML files for the hub and five guides. GitHub Pages publishes from `main`. The files in Google Drive include earlier drafts, reviews, and backups; they are not automatically synced with the live site.
 
 - `index.html` — Hub
 - `guides/*/index.html` — The four guides
