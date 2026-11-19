@@ -12,7 +12,8 @@ const expected = [
   { name: 'Foundation', slug: 'foundation' },
   { name: 'Athleticism', slug: 'athleticism' },
   { name: 'Gamer Fit', slug: 'gamer-fit' },
-  { name: 'Run Strong', slug: 'run-strong' }
+  { name: 'Run Strong', slug: 'run-strong' },
+  { name: 'Keep Moving 50+', slug: '50-plus' }
 ];
 const social = {
   'Instagram': 'https://www.instagram.com/_trainwithbfit/',
@@ -57,7 +58,7 @@ try {
         assert.equal(response.status(), 200);
         assert.equal(await page.locator('main').count(), 1);
         assert.equal(await page.locator('h1').count(), 1);
-        assert.equal(await page.locator('#guides a.card').count(), 4);
+        assert.equal(await page.locator('#guides a.card').count(), 5);
         assert.equal(await page.locator('#guides .card--coming[disabled]').count(), 2);
         assert.equal(await page.locator('a[href="#coaching"]').count() > 0, true, 'Coaching must be easy to find from hub nav');
         const metrics = await page.evaluate(() => ({

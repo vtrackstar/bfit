@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const paths=['index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html'];
+const paths=['index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html','guides/50-plus/index.html'];
 const pages=Object.fromEntries(paths.map(p=>[p,fs.readFileSync(p,'utf8')]));
 const hub=pages['index.html'];
 const foundation=pages['guides/foundation/index.html'];
