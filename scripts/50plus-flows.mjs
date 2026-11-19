@@ -4,6 +4,7 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import AxeBuilder from '@axe-core/playwright';
 
 const host='http://127.0.0.1:8797';
 const server=spawn('python3',['-m','http.server','8797','--bind','127.0.0.1'],{stdio:'ignore'});
@@ -88,8 +89,43 @@ try{
   assert.equal(await p.locator('.move-card').count(),6);
   assert.match(await p.locator('#first-workout').innerText(),/Warm up for 3–5 minutes/);
   assert.match(await p.locator('#first-workout').innerText(),/repetition.*set/s);
-  assert.ok(await p.locator('.move-card a[target="_blank"]').count()>=4);
+  const links=await p.locator('.move-card a[target="_blank"]').evaluateAll(els=>els.map(el=>({href:el.href,label:el.innerText,rel:el.rel})));
+  assert.equal(links.length,6,'Each of the six exercises should have a named demonstration reference');
+  assert.deepEqual(links.map(x=>new URL(x.href).hostname),['www.nhs.uk','www.youtube.com','www.nhs.uk','www.nhs.uk','www.acefitness.org','www.merseycare.nhs.uk']);
+  assert.ok(links.every(x=>x.rel.includes('noopener')&&x.rel.includes('noreferrer')));
+  assert.match(links[4].label,/dumbbells.*light bag/i,'Carry reference must describe the harder variation');
+  assert.match(links[5].label,/beginner version/i,'Balance reference must identify supported version');
   assert.equal(await p.locator('.activity-browser').getAttribute('open'),null);
+ });
+ await check('First-time reader can build and save a routine on a narrow phone',async p=>{
+  await p.selectOption('#ageGroup','65-plus');
+  await p.selectOption('#confidence','support');
+  await p.selectOption('#days','3');
+  await p.selectOption('#strengthStyle','home');
+  await p.locator('[data-goal][value="stairs"]').check();
+  await p.locator('[data-activity][value="swimming"]').check();
+  await p.locator('[data-activity][value="walking"]').uncheck();
+  assert.match(await p.locator('#goalResults').innerText(),/low step-ups while holding a railing/i);
+  assert.match(await p.locator('#planSummary').innerText(),/Swimming or water walking/);
+  assert.match(await p.locator('#planSummary').innerText(),/stable support/i);
+  assert.match(await p.locator('#planExerciseDetails').innerText(),/Sit-to-stand/);
+  const download=p.waitForEvent('download');await p.locator('#savePlan').click();const file=await download;
+  assert.match(fs.readFileSync(await file.path(),'utf8'),/Sit-to-stand/);
+  await p.reload();
+  assert.equal(await p.inputValue('#days'),'3');
+  assert.equal(await p.locator('[data-goal][value="stairs"]').isChecked(),true);
+  await p.evaluate(()=>{window.__printed=false;window.print=()=>{window.__printed=true;};});
+  await p.locator('#printPlan').click();
+  assert.equal(await p.evaluate(()=>window.__printed),true);
+  await p.emulateMedia({media:'print'});
+  const hidden=await p.locator('#first-workout').evaluate(el=>getComputedStyle(el).display);
+  const visible=await p.locator('#build').evaluate(el=>getComputedStyle(el).display);
+  assert.equal(hidden,'none');
+  assert.notEqual(visible,'none');
+ },320);
+ await check('Accessibility: first-time guide inputs and plan at phone width',async p=>{
+  const result=await new AxeBuilder({page:p}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
+  assert.equal(result.violations.length,0,JSON.stringify(result.violations.map(x=>({id:x.id,impact:x.impact,nodes:x.nodes.slice(0,3).map(y=>y.target)}))));
  });
  await check('Recent falls or dizziness routes away from a generic workout',async p=>{
   await p.locator('[data-goal][value="stairs"]').check();
