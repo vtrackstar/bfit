@@ -16,10 +16,10 @@ async function check(name,fn,width=390){
  catch(e){errors.push(name+': '+e.message);console.error('FAIL '+name+': '+e.message)}
  finally{await page.close()}
 }
-const paths=['foundation','athleticism','gamer-fit','run-strong'];
+const paths=['foundation','athleticism','gamer-fit','run-strong','50-plus'];
 try{
  await ready();browser=await chromium.launch({headless:true});
- await check('Hub shows four distinct guide choices and a separate exercise library',async p=>{
+ await check('Hub shows five distinct guide choices and a separate exercise library',async p=>{
   await p.goto(host+'/',{waitUntil:'domcontentloaded'});
   for(const guide of paths)assert.equal(await p.locator('a.card[href="guides/'+guide+'/"]').count(),1);
   assert.match(await p.locator('.library-cta').innerText(),/Exercise Library/i);
