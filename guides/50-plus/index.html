@@ -151,6 +151,11 @@ fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.
 <section class="section" id="strength">
 <div class="section-head"><div class="eyebrow">04 / Build everyday strength</div><h2>A little strength and balance work goes a long way</h2><p>Cardio helps your endurance. To practice lifting, carrying, standing up, and steady movement, add resistance exercises and balance work. Many adults benefit from training all the major muscles on at least two days each week.</p></div>
 <div class="metrics"><div class="metric"><b>150 min</b><span>Weekly moderate cardio is a general adult goal, not a first-week requirement.</span></div><div class="metric"><b>2 days</b><span>Muscle-strengthening work each week is recommended for adults.</span></div><div class="metric"><b>Balance</b><span>Especially important in guidance for adults 65 and older; practice safely.</span></div></div>
+<div class="panel" style="margin-bottom:16px">
+<h3>What changes as we get older?</h3>
+<p>Muscle strength, balance, and aerobic fitness may gradually change with age, especially if we stop practicing them. Some people also need more time to recover from a demanding session. None of that means progress is off the table. Strength, endurance, and movement skills can still improve with regular, appropriately challenging exercise.</p>
+<p>The key is to <strong>start at the level you can handle now</strong>, leave room for recovery, and build gradually. Your age alone can't tell us which exercises you need or how hard you should work.</p>
+</div>
 <div class="panel">
 <div class="form-field"><label for="strengthStyle">How would you rather train strength?</label><select id="strengthStyle"><option value="machines">Gym machines</option><option value="dumbbells">Dumbbells or kettlebells</option><option value="home">At home with a chair, body weight, or bands</option></select></div>
 <p id="strengthIntro"></p><div id="strengthRoutine"></div>
@@ -245,7 +250,7 @@ var schedule={
 function el(id){return document.getElementById(id);}
 function choose(selector){return Array.from(document.querySelectorAll(selector+':checked')).map(function(e){return e.value;});}
 function validValue(value,values,fallback){return values.indexOf(String(value))!==-1?String(value):fallback;}
-function defaultState(){return {level:'new',days:'4',minutes:'20',confidence:'steady',mainCardio:'walking',strengthStyle:'machines',goals:['stairs','carry'],tries:[],reviews:{}};}
+function defaultState(){return {level:'new',days:'4',minutes:'20',confidence:'steady',mainCardio:'walking',strengthStyle:'machines',goals:[],tries:[],reviews:{}};}
 var state=defaultState();
 try{var old=JSON.parse(localStorage.getItem(key)||'null');if(old && typeof old==='object') state=normalize(old);}catch(e){}
 function normalize(s){
