@@ -288,32 +288,46 @@ var schedule={
 function el(id){return document.getElementById(id);}
 function choose(selector){return Array.from(document.querySelectorAll(selector+':checked')).map(function(e){return e.value;});}
 function validValue(value,values,fallback){return values.indexOf(String(value))!==-1?String(value):fallback;}
-function defaultState(){return {level:'new',days:'4',minutes:'20',confidence:'steady',mainCardio:'walking',strengthStyle:'machines',goals:[],tries:[],reviews:{}};}
+function defaultState(){return {level:'new',ageGroup:'50-64',days:'4',minutes:'20',confidence:'steady',mainCardio:'walking',strengthStyle:'machines',activities:['walking'],goals:[],tries:[],reviews:{}};}
 var state=defaultState();
 try{var old=JSON.parse(localStorage.getItem(key)||'null');if(old && typeof old==='object') state=normalize(old);}catch(e){}
 function normalize(s){
  var d=defaultState();
- return {level:validValue(s.level,['new','returning','active'],d.level),days:validValue(s.days,['2','3','4','5','6','7'],d.days),minutes:validValue(s.minutes,['10','20','30','45'],d.minutes),confidence:validValue(s.confidence,['steady','support','review'],d.confidence),mainCardio:validValue(s.mainCardio,['walking','cycling','swimming','dance'],d.mainCardio),strengthStyle:validValue(s.strengthStyle,['machines','dumbbells','home'],d.strengthStyle),goals:Array.isArray(s.goals)?s.goals.filter(function(g,i,a){return allowedGoals.indexOf(g)!==-1 && a.indexOf(g)===i;}).slice(0,3):d.goals,tries:Array.isArray(s.tries)?s.tries.filter(function(g,i,a){return allowedTry.indexOf(g)!==-1 && a.indexOf(g)===i && g!==s.mainCardio;}).slice(0,3):[],reviews:s.reviews&&typeof s.reviews==='object'&&!Array.isArray(s.reviews)?s.reviews:{}};
+ var selected=Array.isArray(s.activities)?s.activities:[s.mainCardio||'walking'].concat(Array.isArray(s.tries)?s.tries:[]);
+ selected=selected.filter(function(x,i,a){return allowedTry.indexOf(x)!==-1&&a.indexOf(x)===i;}).slice(0,3);
+ if(!selected.length)selected=['walking'];
+ var cardio=selected.find(function(x){return ['walking','cycling','swimming','dance'].indexOf(x)!==-1;})||'walking';
+ return {level:validValue(s.level,['new','returning','active'],d.level),ageGroup:validValue(s.ageGroup,['50-64','65-plus'],d.ageGroup),days:validValue(s.days,['2','3','4','5','6','7'],d.days),minutes:validValue(s.minutes,['10','20','30','45'],d.minutes),confidence:validValue(s.confidence,['steady','support','review'],d.confidence),mainCardio:cardio,strengthStyle:validValue(s.strengthStyle,['machines','dumbbells','home'],d.strengthStyle),activities:selected,goals:Array.isArray(s.goals)?s.goals.filter(function(g,i,a){return allowedGoals.indexOf(g)!==-1 && a.indexOf(g)===i;}).slice(0,3):d.goals,tries:selected.filter(function(x){return x!==cardio;}),reviews:s.reviews&&typeof s.reviews==='object'&&!Array.isArray(s.reviews)?s.reviews:{}};
 }
-function apply(){['level','days','minutes','confidence','mainCardio','strengthStyle'].forEach(function(k){el(k).value=state[k];});document.querySelectorAll('[data-goal]').forEach(function(x){x.checked=state.goals.indexOf(x.value)!==-1;});document.querySelectorAll('[data-try]').forEach(function(x){x.checked=state.tries.indexOf(x.value)!==-1;});}
-function persist(){try{localStorage.setItem(key,JSON.stringify(state));}catch(e){el('saveStatus').textContent='Browser storage is unavailable. Use Save my answers to keep a backup.';}}
+function apply(){['level','ageGroup','days','minutes','confidence','strengthStyle'].forEach(function(k){el(k).value=state[k];});document.querySelectorAll('[data-goal]').forEach(function(x){x.checked=state.goals.indexOf(x.value)!==-1;});document.querySelectorAll('[data-activity]').forEach(function(x){x.checked=state.activities.indexOf(x.value)!==-1;});}
+function persist(){try{localStorage.setItem(key,JSON.stringify(state));}catch(e){el('saveStatus').textContent='This browser could not save your choices on this device. You can download a copy under “Keep my choices if I switch devices”.';}}
 function update(){
- state.level=el('level').value;state.days=el('days').value;state.minutes=el('minutes').value;state.confidence=el('confidence').value;state.mainCardio=el('mainCardio').value;state.strengthStyle=el('strengthStyle').value;
- state.goals=choose('[data-goal]');state.tries=choose('[data-try]').filter(function(x){return x!==state.mainCardio;});
- document.querySelectorAll('[data-try]').forEach(function(x){x.disabled=x.value===state.mainCardio;if(x.disabled)x.checked=false;});
- state.tries=choose('[data-try]');
+ state.level=el('level').value;state.ageGroup=el('ageGroup').value;state.days=el('days').value;state.minutes=el('minutes').value;state.confidence=el('confidence').value;state.strengthStyle=el('strengthStyle').value;
+ state.goals=choose('[data-goal]');
+ state.activities=state.activities.filter(function(x){return !!document.querySelector('[data-activity][value="'+x+'"]:checked');});
+ document.querySelectorAll('[data-activity]:checked').forEach(function(x){if(state.activities.indexOf(x.value)===-1)state.activities.push(x.value);});
+ if(!state.activities.length){state.activities=['walking'];document.querySelector('[data-activity][value="walking"]').checked=true;}
+ var cardio=state.activities.find(function(x){return ['walking','cycling','swimming','dance'].indexOf(x)!==-1;});
+ state.mainCardio=cardio||'walking';
+ state.tries=state.activities.filter(function(x){return x!==state.mainCardio;});
+ el('ageAdvice').textContent=state.ageGroup==='65-plus'?'For adults 65 and older, CDC guidelines emphasize aerobic activity, muscle-strengthening, and balance practice each week. Start with the supported options that fit your ability.':'For adults 50–64, aerobic and muscle-strengthening activities are recommended each week. Balance practice can still be useful at any age, especially if you feel unsteady.';
  el('safetyNote').hidden=state.confidence!=='review';
  el('goalMessage').textContent=state.goals.length+' of 3 priorities selected.';
- el('tryMessage').textContent=state.tries.length?(state.tries.length+' activity ideas saved.'):('Optional: choose something you might enjoy trying.');
+ el('activityMessage').textContent=state.activities.length+' of 3 activities selected. '+(!cardio?'Walking is suggested as a gentle cardio option alongside your choice.':'Your selected cardio activity will help shape the week.');
  renderGoals();renderStrength();renderPlan();persist();
 }
 function renderGoals(){
  el('goalResults').innerHTML=state.goals.map(function(id){var g=goals[id];return '<article class="goal-result"><h3>'+g.name+'</h3><p>'+g.why+'</p><p><strong>Try first:</strong> '+g.start+'</p><p class="tip"><strong>When ready:</strong> '+g.next+'</p></article>';}).join('')||'<p class="hint">Select a priority to see exercises that connect to everyday life.</p>';
 }
 function renderStrength(){
+ if(state.confidence==='review'){
+  el('strengthIntro').textContent='With recent or repeated falls, or unexplained dizziness, your first step is a healthcare review before starting a new exercise program.';
+  el('strengthRoutine').innerHTML='<div class="notice warn"><strong>Discuss a supported starting point first.</strong> Ask which seated or supported movements fit your situation. Examples to discuss are seated marching, ankle movements, and sitting down and standing up with help. Do not try unsupported standing or balance drills until you have suitable guidance.</div>';
+  return;
+ }
  var s=strength[state.strengthStyle];
  el('strengthIntro').textContent=s.intro;
- el('strengthRoutine').innerHTML='<h3>Simple full-body starting session</h3><ol class="ex-list">'+s.items.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol><p class="hint">Try these exercises on your strength days. Add a supported goal-specific drill from your priorities when appropriate. The program is meant to be adjusted, not finished at any cost.</p>';
+ el('strengthRoutine').innerHTML='<h3>Simple full-body starting session</h3><ol class="ex-list">'+s.items.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol><p class="hint">Try these exercises on your strength days. Add a supported goal-specific drill from your priorities when appropriate. Start easy, assess how you recover, and progress gradually.</p>';
 }
 function timeFor(type){
  var m=Number(state.minutes);
@@ -326,8 +340,15 @@ function timeFor(type){
  return 'About '+m+' minutes as tolerated';
 }
 function renderPlan(){
+ var cardioChosen=state.activities.some(function(x){return ['walking','cycling','swimming','dance'].indexOf(x)!==-1;});
  var main=names[state.mainCardio];
  var secondary=state.tries.length?names[state.tries[0]]:main;
+ if(state.confidence==='review'){
+   var requested=state.activities.map(function(x){return names[x];}).join(', ');
+   el('planSummary').innerHTML='<h3>Your next step: discuss a safe starting plan</h3><p>Because you reported recent or repeated falls or unexplained dizziness, this builder is not assigning exercise sessions yet. Arrange a discussion with a healthcare professional or physical therapist to decide what activity is appropriate. If you feel dizzy now, avoid exercising until you have medical guidance.</p><p><strong>Activities you might enjoy later:</strong> '+requested+'.</p>';
+   el('weekPlan').innerHTML='<article class="day"><span class="day-name">First</span><strong>Ask about your falls or dizziness</strong><p>Bring up any recent falls, faintness, medications, and activities that feel unsafe. A professional can advise whether an evaluation or supervision is needed.</p></article><article class="day"><span class="day-name">After guidance</span><strong>Ask about seated or supported options</strong><p>Examples to discuss: seated marching, ankle movements, gentle sit-to-stands with help, or supported weight shifts. Follow the specific recommendations you receive.</p></article>';
+   return;
+ }
  var cards=schedule[Number(state.days)]||schedule[4];
  var html=cards.map(function(p){
  var kind=p[1],title='',desc='';
@@ -335,21 +356,21 @@ function renderPlan(){
  if(kind==='combo'){title='Full-body strength + '+main.toLowerCase();desc='Split the time between simple resistance exercises, safe balance practice, and easy cardio. '+timeFor(kind)+'.';}
  if(kind==='cardio'){title=main;desc='Move at a comfortable pace. If it becomes moderate exercise, you should still be able to talk. '+timeFor(kind)+'.';}
  if(kind==='balance'){title='Gentle movement + balance';desc='Try supported steps, ankle movement, or a relaxed walk. '+timeFor(kind)+'.';}
- if(kind==='explore'){title=state.tries.length?'Try '+secondary:'Enjoy '+main.toLowerCase();desc=state.tries.length?'Start with a beginner-friendly session. It can be shorter than a full workout. '+timeFor(kind)+'.':'Repeat an enjoyable activity, or try a new one when you feel ready. '+timeFor(kind)+'.';}
+ if(kind==='explore'){title=state.tries.length?'Try '+secondary:'Enjoy '+main.toLowerCase();desc=state.tries.length?'Choose a beginner or supported version. Start with a short session and learn the movements first. '+timeFor(kind)+'.':'Repeat an enjoyable activity, or try a new one when you feel ready. '+timeFor(kind)+'.';if(state.confidence==='support'&&state.tries[0]==='pickleball'){title='Explore pickleball safely';desc='Ask about a beginner lesson and discuss quick stops and turns before playing. Choose supported or lower-impact movement today if you feel unsteady.';}}
  if(kind==='recovery'){title='Recovery movement';desc='An easy walk, gentle mobility, or rest depending on how you feel. '+timeFor(kind)+'.';}
  return '<article class="day"><span class="day-name">'+p[0]+'</span><strong>'+title+'</strong><p>'+desc+'</p></article>';
  }).join('');
- var caution=state.confidence==='review'?'Because you reported falls or dizziness, seek a clinician or physical therapist’s advice before unsupervised balance drills or rapid direction changes.':state.confidence==='support'?'Use stable support for balance work. Choose activities that fit your footing and confidence.':'Keep balance practice controlled, with stable support nearby.';
+ var caution=state.confidence==='support'?'Use stable support for balance work. Consider seated or supported versions first and ask for professional advice if you are unsure about falling.':'Keep balance practice controlled, with stable support nearby.';
  var count=cards.filter(function(x){return x[1]==='strength'||x[1]==='combo';}).length;
  var note='This starting schedule includes '+count+' strength sessions and '+state.days+' planned activity days. It may not reach the longer-term aerobic goal of 150 moderate minutes yet. Increase gradually as appropriate.';
- el('planSummary').innerHTML='<h3>Your starting week</h3><p><strong>Main cardio:</strong> '+main+' · <strong>Strength:</strong> '+(state.strengthStyle==='home'?'At home':state.strengthStyle==='machines'?'Gym machines':'Dumbbells or kettlebells')+' · <strong>Time:</strong> '+state.minutes+' minutes available per session.</p><p>'+note+'</p><p><strong>Safety:</strong> '+caution+'</p>';
+ el('planSummary').innerHTML='<h3>Your starting week</h3><p><strong>'+(cardioChosen?'Cardio you selected:':'Suggested cardio:')+'</strong> '+main+' · <strong>Strength:</strong> '+(state.strengthStyle==='home'?'At home':state.strengthStyle==='machines'?'Gym machines':'Dumbbells or kettlebells')+' · <strong>Time:</strong> '+state.minutes+' minutes available per session.</p><p>'+note+'</p><p><strong>Safety:</strong> '+caution+'</p>';
  el('weekPlan').innerHTML=html;
 }
 function fileDownload(name,content,type){
  var blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement('a');
  a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);
 }
-function backup(){fileDownload('BFit-50plus-answers.json',JSON.stringify({version:1,answers:state},null,2),'application/json');el('saveStatus').textContent='Answer backup downloaded. Keep the JSON file somewhere you can find it.';}
+function backup(){fileDownload('BFit-50plus-answers.json',JSON.stringify({version:1,answers:state},null,2),'application/json');el('saveStatus').textContent='A copy of your choices was downloaded. Keep it somewhere you can find it.';}
 function planText(){
  var summary=el('planSummary').innerText;
  var days=Array.from(el('weekPlan').querySelectorAll('.day')).map(function(e){return e.innerText.replace(/\n+/g,' — ');}).join('\n');
@@ -364,19 +385,24 @@ function updateReview(){
  el('reviewStatus').textContent=r.checks?'Previously saved for week '+w+'.':'';
 }
 document.querySelectorAll('select').forEach(function(e){if(['weekReview','confidenceRating'].indexOf(e.id)===-1)e.addEventListener('change',update);});
-document.querySelectorAll('[data-goal],[data-try]').forEach(function(x){x.addEventListener('change',function(){
- var arr=choose(x.hasAttribute('data-goal')?'[data-goal]':'[data-try]');
- if(arr.length>3){x.checked=false;(x.hasAttribute('data-goal')?el('goalMessage'):el('tryMessage')).textContent='Choose no more than three. You can change your choices anytime.';return;}
+document.querySelectorAll('[data-goal]').forEach(function(x){x.addEventListener('change',function(){
+ if(choose('[data-goal]').length>3){x.checked=false;el('goalMessage').textContent='Choose no more than three priorities.';return;}update();
+});});
+document.querySelectorAll('[data-activity]').forEach(function(x){x.addEventListener('change',function(){
+ if(x.checked&&choose('[data-activity]').length>3){x.checked=false;el('activityMessage').textContent='Choose up to three activities.';return;}
+ if(x.checked){state.activities=state.activities.filter(function(a){return a!==x.value;});state.activities.push(x.value);}
+ else state.activities=state.activities.filter(function(a){return a!==x.value;});
+ if(!state.activities.length){state.activities=['walking'];document.querySelector('[data-activity][value="walking"]').checked=true;el('activityMessage').textContent='Walking is selected as a starting suggestion. You can choose a different activity.';}
  update();
 });});
-el('savePlan').addEventListener('click',function(){fileDownload('BFit-50plus-week.txt',planText(),'text/plain;charset=utf-8');el('saveStatus').textContent='Weekly plan downloaded.';});
+el('savePlan').addEventListener('click',function(){fileDownload('BFit-50plus-week.txt',planText(),'text/plain;charset=utf-8');el('saveStatus').textContent='Your weekly plan was downloaded.';});
 el('printPlan').addEventListener('click',function(){window.print();});
 el('backup').addEventListener('click',backup);
 el('restore').addEventListener('change',function(e){
  var file=e.target.files&&e.target.files[0];if(!file)return;
  if(file.size>100000){el('saveStatus').textContent='This file is too large for a guide backup.';return;}
  var reader=new FileReader();
- reader.onload=function(){try{var o=JSON.parse(reader.result);if(!o||o.version!==1||!o.answers||typeof o.answers!=='object')throw Error('Invalid format');state=normalize(o.answers);apply();update();updateReview();el('saveStatus').textContent='Answers restored.';}catch(err){el('saveStatus').textContent='Could not restore that file. Choose a BFit 50+ JSON backup.';}};
+ reader.onload=function(){try{var o=JSON.parse(reader.result);if(!o||o.version!==1||!o.answers||typeof o.answers!=='object')throw Error('Invalid format');state=normalize(o.answers);apply();update();updateReview();el('saveStatus').textContent='Answers restored.';}catch(err){el('saveStatus').textContent='That file did not work. Try a copy of your choices saved from this guide.';}};
  reader.readAsText(file);e.target.value='';
 });
 el('weekReview').addEventListener('change',updateReview);
