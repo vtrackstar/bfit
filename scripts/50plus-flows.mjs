@@ -31,6 +31,12 @@ try{
   await check('Responsive layout '+width+'px',async p=>{
    assert.equal(await p.locator('h1').count(),1);
    assert.equal(await p.locator('.bfit-hub-link').innerText(),'BFit Hub');
+   const guideExit=p.locator('.bfit-guide-switch');
+   assert.equal(await guideExit.isVisible(),true,'All guides return should be available during reading');
+   assert.match(await guideExit.innerText(),/All guides/);
+   assert.equal(await guideExit.getAttribute('href'),'https://vtrackstar.github.io/bfit/');
+   const exitBounds=await guideExit.boundingBox();
+   assert.ok(exitBounds&&exitBounds.height>=44&&exitBounds.x>=0&&exitBounds.x+exitBounds.width<=width+1,'All guides exit is outside the viewport');
    assert.equal(await p.locator('a[href="#build"]').count()>0,true);
    assert.ok(await p.locator('#weekPlan .day').count()>=2);
    const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
