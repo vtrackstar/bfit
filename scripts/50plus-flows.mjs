@@ -118,9 +118,9 @@ try{
   await p.locator('#printPlan').click();
   assert.equal(await p.evaluate(()=>window.__printed),true);
   await p.emulateMedia({media:'print'});
-  const hidden=await p.locator('#first-workout').evaluate(el=>getComputedStyle(el).display);
+  const hidden=await p.locator('#strength').evaluate(el=>getComputedStyle(el).display);
   const visible=await p.locator('#build').evaluate(el=>getComputedStyle(el).display);
-  assert.equal(hidden,'none');
+  assert.equal(hidden,'none','Print stylesheet should hide the entire non-plan section');
   assert.notEqual(visible,'none');
  },320);
  await check('Accessibility: first-time guide inputs and plan at phone width',async p=>{
