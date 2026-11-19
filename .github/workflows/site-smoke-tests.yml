@@ -42,6 +42,8 @@ jobs:
         run: node scripts/guide-layout-flows.mjs
       - name: Test new-visitor paths and shared guide navigation
         run: node scripts/beginner-entry-flows.mjs
+      - name: Test 50+ activity builder, storage and mobile flows
+        run: node scripts/50plus-flows.mjs
       - name: Check public guide, exercise library and inquiry URLs
         run: node scripts/public-links.mjs
       - name: Review public coaching form without submitting
