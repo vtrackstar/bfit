@@ -64,7 +64,7 @@ fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.
 .back-link{display:inline-block;margin-top:21px;font-weight:650}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 @media(max-width:760px){.hero{padding-top:36px}.section{padding:42px 0}.grid,.grid.three,.four,.week-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.top-in{flex-wrap:wrap;padding:8px 16px}.top-links{gap:11px}.wrap{padding:0 17px}.panel{padding:17px}.contents a{font-size:.83rem}}
 @media(max-width:430px){.top-links{font-size:.78rem}.top-links a{min-height:44px}.metric b{font-size:1.3rem}.metrics{grid-template-columns:1fr}.button-row .btn{width:100%}}
-@media print{.top,.contents,.button-row,.hide-print,.back-link{display:none!important}body{background:white}.section{break-inside:avoid;padding:22px 0}.panel,.day,.goal-result{break-inside:avoid}h1{font-size:2rem}}
+@media print{.top,.hero,.section:not(#build),.footer,.contents,.button-row,.hide-print,.back-link{display:none!important}body{background:white}main{max-width:none!important}#build{border:0;padding:0}#build .section-head{margin-bottom:12px}#build .section-head .eyebrow{display:none}.panel,.day{break-inside:avoid}h1{font-size:2rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 
@@ -138,6 +138,7 @@ fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.
 <div class="metrics"><div class="metric"><b>150 min</b><span>Weekly moderate cardio is a general adult goal, not a first-week requirement.</span></div><div class="metric"><b>2 days</b><span>Muscle-strengthening work each week is recommended for adults.</span></div><div class="metric"><b>Balance</b><span>Especially important in guidance for adults 65 and older; practice safely.</span></div></div>
 
 <div class="panel first-workout" id="first-workout">
+<div id="movementSafety" class="notice warn" hidden role="status"><strong>Pause before practising these standing movements.</strong> If you reported recent falls or unexplained dizziness, use these examples for a conversation with your clinician. Wait for suitable advice before attempting them.</div>
 <h3>Try your first strength session</h3>
 <p><strong>Warm up for 3–5 minutes:</strong> Walk slowly in place or march while seated, roll your shoulders, and move your ankles. You should feel warmer, not out of breath. If you use a chair, choose one that does not slide or roll.</p>
 <p><strong>Then choose three to five of the movements below.</strong> One <strong>repetition (rep)</strong> means doing a movement once. One <strong>set</strong> is a group of reps before resting. Start with one set of about 6–10 reps per strength exercise, or a short comfortable hold for balance. Rest between exercises.</p>
@@ -209,6 +210,7 @@ fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.
 <div class="notice"><strong>How to read the plan:</strong> A scheduled activity day doesn't have to be intense. Short comfortable movement on unscheduled days is fine too. An activity only counts as strength or balance training when it actually challenges those qualities appropriately.</div>
 <div id="planSummary" class="panel" aria-live="polite"></div>
 <div id="weekPlan" class="week-grid" aria-live="polite"></div>
+<div id="planExerciseDetails" class="panel" aria-live="polite" style="margin-top:14px"></div>
 <div class="button-row hide-print"><button id="savePlan" class="btn primary" type="button">Save my weekly plan</button><button id="printPlan" class="btn" type="button">Print my plan</button></div>
 <details class="hide-print" id="deviceOptions"><summary>Keep my choices if I switch devices</summary><div><p>You can also download a copy of your choices and weekly reviews, then open it on another device.</p><div class="button-row"><button id="backup" class="btn" type="button">Download my choices</button><label for="restore" class="btn" style="cursor:pointer">Open saved choices</label><input id="restore" class="visually-hidden" type="file" accept=".json,application/json"></div></div></details>
 <p id="saveStatus" class="status" aria-live="polite"></p>
@@ -312,12 +314,17 @@ function update(){
  state.tries=state.activities.filter(function(x){return x!==state.mainCardio;});
  el('ageAdvice').textContent=state.ageGroup==='65-plus'?'For adults 65 and older, CDC guidelines emphasize aerobic activity, muscle-strengthening, and balance practice each week. Start with the supported options that fit your ability.':'For adults 50–64, aerobic and muscle-strengthening activities are recommended each week. Balance practice can still be useful at any age, especially if you feel unsteady.';
  el('safetyNote').hidden=state.confidence!=='review';
+ el('movementSafety').hidden=state.confidence!=='review';
  el('goalMessage').textContent=state.goals.length+' of 3 priorities selected.';
  el('activityMessage').textContent=state.activities.length+' of 3 activities selected. '+(!cardio?'Walking is suggested as a gentle cardio option alongside your choice.':'Your selected cardio activity will help shape the week.');
  renderGoals();renderStrength();renderPlan();persist();
 }
 function renderGoals(){
- el('goalResults').innerHTML=state.goals.map(function(id){var g=goals[id];return '<article class="goal-result"><h3>'+g.name+'</h3><p>'+g.why+'</p><p><strong>Try first:</strong> '+g.start+'</p><p class="tip"><strong>When ready:</strong> '+g.next+'</p></article>';}).join('')||'<p class="hint">Select a priority to see exercises that connect to everyday life.</p>';
+ var clinicianFirst=state.confidence==='review';
+ el('goalResults').innerHTML=state.goals.map(function(id){var g=goals[id];
+  if(clinicianFirst)return '<article class="goal-result"><h3>'+g.name+'</h3><p>'+g.why+'</p><p class="tip"><strong>Talk through this first:</strong> Ask a healthcare professional which supported movements are safe for you before starting.</p></article>';
+  return '<article class="goal-result"><h3>'+g.name+'</h3><p>'+g.why+'</p><p><strong>Try first:</strong> '+g.start+'</p><p class="tip"><strong>When ready:</strong> '+g.next+'</p></article>';
+ }).join('')||'<p class="hint">Select a priority to see exercises that connect to everyday life.</p>';
 }
 function renderStrength(){
  if(state.confidence==='review'){
@@ -347,6 +354,7 @@ function renderPlan(){
    var requested=state.activities.map(function(x){return names[x];}).join(', ');
    el('planSummary').innerHTML='<h3>Your next step: discuss a safe starting plan</h3><p>Because you reported recent or repeated falls or unexplained dizziness, this builder is not assigning exercise sessions yet. Arrange a discussion with a healthcare professional or physical therapist to decide what activity is appropriate. If you feel dizzy now, avoid exercising until you have medical guidance.</p><p><strong>Activities you might enjoy later:</strong> '+requested+'.</p>';
    el('weekPlan').innerHTML='<article class="day"><span class="day-name">First</span><strong>Ask about your falls or dizziness</strong><p>Bring up any recent falls, faintness, medications, and activities that feel unsafe. A professional can advise whether an evaluation or supervision is needed.</p></article><article class="day"><span class="day-name">After guidance</span><strong>Ask about seated or supported options</strong><p>Examples to discuss: seated marching, ankle movements, gentle sit-to-stands with help, or supported weight shifts. Follow the specific recommendations you receive.</p></article>';
+   el('planExerciseDetails').innerHTML='<h3>Wait for a safe starting plan</h3><p>After a professional has evaluated the falls or dizziness, return to this guide and choose exercises appropriate for your mobility. Do not use a generic strength routine as a substitute for that evaluation.</p>';
    return;
  }
  var cards=schedule[Number(state.days)]||schedule[4];
@@ -365,6 +373,9 @@ function renderPlan(){
  var note='This starting schedule includes '+count+' strength sessions and '+state.days+' planned activity days. It may not reach the longer-term aerobic goal of 150 moderate minutes yet. Increase gradually as appropriate.';
  el('planSummary').innerHTML='<h3>Your starting week</h3><p><strong>'+(cardioChosen?'Cardio you selected:':'Suggested cardio:')+'</strong> '+main+' · <strong>Strength:</strong> '+(state.strengthStyle==='home'?'At home':state.strengthStyle==='machines'?'Gym machines':'Dumbbells or kettlebells')+' · <strong>Time:</strong> '+state.minutes+' minutes available per session.</p><p>'+note+'</p><p><strong>Safety:</strong> '+caution+'</p>';
  el('weekPlan').innerHTML=html;
+ var list=strength[state.strengthStyle].items.map(function(x){return '<li>'+x+'</li>';}).join('');
+ var priority=state.goals.length?'<p><strong>Your everyday priorities:</strong> '+state.goals.map(function(x){return goals[x].name;}).join(', ')+'</p>':'';
+ el('planExerciseDetails').innerHTML='<h3>What to do on strength days</h3><p>Warm up with 3–5 minutes of comfortable marching, shoulder rolls, or ankle movement. Then try one set of 6–10 comfortable reps for each suitable movement. Leave about 2–3 more good reps in reserve. Rest as needed.</p><ol class="ex-list">'+list+'</ol>'+priority+'<p class="hint">For the six basic movement walkthroughs, see <a href="#first-workout">Your first strength session</a> above. Use stable support for balance practice.</p>';
 }
 function fileDownload(name,content,type){
  var blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -374,8 +385,9 @@ function backup(){fileDownload('BFit-50plus-answers.json',JSON.stringify({versio
 function planText(){
  var summary=el('planSummary').innerText;
  var days=Array.from(el('weekPlan').querySelectorAll('.day')).map(function(e){return e.innerText.replace(/\n+/g,' — ');}).join('\n');
- var priorities=state.goals.map(function(x){return goals[x].name+': '+goals[x].start;}).join('\n');
- return 'BFit 50+ | Keep Moving\n\n'+summary+'\n\nYOUR WEEK\n'+days+'\n\nEVERYDAY PRIORITIES\n'+priorities+'\n\nFour-week discovery: Week 1 get comfortable; Week 2 try something new; Week 3 build a little if recovery is good; Week 4 review and keep favorites.\n\nSource: https://vtrackstar.github.io/bfit/guides/50-plus/\n';
+ var priorities=state.goals.map(function(x){return goals[x].name+': '+(state.confidence==='review'?'Discuss safe exercise options with a healthcare professional':goals[x].start);}).join('\n');
+ var exercise=el('planExerciseDetails').innerText;
+ return 'BFit 50+ | Keep Moving\n\n'+summary+'\n\nYOUR WEEK\n'+days+'\n\nYOUR EXERCISES / NEXT STEPS\n'+exercise+'\n\nEVERYDAY PRIORITIES\n'+priorities+'\n\nFour-week discovery: Week 1 get comfortable; Week 2 try something new; Week 3 build a little if recovery is good; Week 4 review and keep favorites.\n\nSource: https://vtrackstar.github.io/bfit/guides/50-plus/\n';
 }
 function updateReview(){
  var w=el('weekReview').value;
