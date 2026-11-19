@@ -3,6 +3,8 @@
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import AxeBuilder from '@axe-core/playwright';
 
 const host='http://127.0.0.1:8797';
 const server=spawn('python3',['-m','http.server','8797','--bind','127.0.0.1'],{stdio:'ignore'});
@@ -52,38 +54,126 @@ try{
   assert.equal(await p.locator('[data-goal][value="floor"]').isChecked(),false);
   assert.equal(await p.locator('#goalResults .goal-result').count(),3);
  });
- await check('Activity choices generate appropriate days and save after reload',async p=>{
+ await check('Single activity picker generates strength, cardio and a 2-day week',async p=>{
   await p.selectOption('#days','2');
-  await p.selectOption('#mainCardio','swimming');
+  await p.selectOption('#ageGroup','65-plus');
   await p.selectOption('#strengthStyle','home');
-  await p.locator('[data-try][value="pickleball"]').check();
+  await p.locator('[data-activity][value="swimming"]').check();
+  await p.locator('[data-activity][value="walking"]').uncheck();
+  await p.locator('[data-activity][value="pickleball"]').check();
   assert.equal(await p.locator('#weekPlan .day').count(),2);
   assert.match(await p.locator('#planSummary').innerText(),/Swimming or water walking/);
   assert.match(await p.locator('#strengthRoutine').innerText(),/Sit-to-stand from a stable chair/);
+  assert.match(await p.locator('#planExerciseDetails').innerText(),/one set of 6–10/i);
+  assert.match(await p.locator('#ageAdvice').innerText(),/65 and older/);
   await p.reload();
   assert.equal(await p.inputValue('#days'),'2');
-  assert.equal(await p.inputValue('#mainCardio'),'swimming');
-  assert.equal(await p.locator('[data-try][value="pickleball"]').isChecked(),true);
+  assert.equal(await p.inputValue('#ageGroup'),'65-plus');
+  assert.equal(await p.locator('[data-activity][value="swimming"]').isChecked(),true);
+  assert.equal(await p.locator('[data-activity][value="pickleball"]').isChecked(),true);
   assert.equal(await p.locator('#weekPlan .day').count(),2);
  });
- await check('Safety warning is prominent when falls or dizziness are reported',async p=>{
+ await check('Activity selection has no duplicate questions and limits choices to three',async p=>{
+  assert.equal(await p.locator('#mainCardio,#tryChoices').count(),0);
+  assert.equal(await p.locator('[data-activity]').count(),9);
+  await p.locator('[data-activity][value="golf"]').check();
+  await p.locator('[data-activity][value="cycling"]').check();
+  await p.locator('[data-activity][value="swimming"]').click();
+  assert.equal(await p.locator('[data-activity][value="swimming"]').isChecked(),false);
+  assert.equal(await p.locator('[data-activity]:checked').count(),3);
+  await p.locator('[data-activity][value="walking"]').uncheck();
+  await p.locator('[data-activity][value="cycling"]').uncheck();
+  assert.match(await p.locator('#planSummary').innerText(),/Suggested cardio:.*Walking/s);
+ });
+ await check('Six named exercise walkthroughs, warmup and external demos are visible',async p=>{
+  assert.equal(await p.locator('.move-card').count(),6);
+  assert.match(await p.locator('#first-workout').innerText(),/Warm up for 3–5 minutes/);
+  assert.match(await p.locator('#first-workout').innerText(),/repetition.*set/s);
+  const links=await p.locator('.move-card a[target="_blank"]').evaluateAll(els=>els.map(el=>({href:el.href,label:el.innerText,rel:el.rel})));
+  assert.equal(links.length,6,'Each of the six exercises should have a named demonstration reference');
+  assert.deepEqual(links.map(x=>new URL(x.href).hostname),['www.nhs.uk','www.youtube.com','www.nhs.uk','www.nhs.uk','www.acefitness.org','www.merseycare.nhs.uk']);
+  assert.ok(links.every(x=>x.rel.includes('noopener')&&x.rel.includes('noreferrer')));
+  assert.match(links[4].label,/dumbbells.*light bag/i,'Carry reference must describe the harder variation');
+  assert.match(links[5].label,/beginner version/i,'Balance reference must identify supported version');
+  assert.equal(await p.locator('.activity-browser').getAttribute('open'),null);
+ });
+ await check('First-time reader can build and save a routine on a narrow phone',async p=>{
+  await p.selectOption('#ageGroup','65-plus');
+  await p.selectOption('#confidence','support');
+  await p.selectOption('#days','3');
+  await p.selectOption('#strengthStyle','home');
+  await p.locator('[data-goal][value="stairs"]').check();
+  await p.locator('[data-activity][value="swimming"]').check();
+  await p.locator('[data-activity][value="walking"]').uncheck();
+  assert.match(await p.locator('#goalResults').innerText(),/low step-ups while holding a railing/i);
+  assert.match(await p.locator('#planSummary').innerText(),/Swimming or water walking/);
+  assert.match(await p.locator('#planSummary').innerText(),/stable support/i);
+  assert.match(await p.locator('#planExerciseDetails').innerText(),/Sit-to-stand/);
+  const download=p.waitForEvent('download');await p.locator('#savePlan').click();const file=await download;
+  assert.match(fs.readFileSync(await file.path(),'utf8'),/Sit-to-stand/);
+  await p.reload();
+  assert.equal(await p.inputValue('#days'),'3');
+  assert.equal(await p.locator('[data-goal][value="stairs"]').isChecked(),true);
+  await p.evaluate(()=>{window.__printed=false;window.print=()=>{window.__printed=true;};});
+  await p.locator('#printPlan').click();
+  assert.equal(await p.evaluate(()=>window.__printed),true);
+  await p.emulateMedia({media:'print'});
+  const hidden=await p.locator('#strength').evaluate(el=>getComputedStyle(el).display);
+  const visible=await p.locator('#build').evaluate(el=>getComputedStyle(el).display);
+  assert.equal(hidden,'none','Print stylesheet should hide the entire non-plan section');
+  assert.notEqual(visible,'none');
+ },320);
+ await check('Accessibility: first-time guide inputs and plan at phone width',async p=>{
+  const result=await new AxeBuilder({page:p}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
+  assert.equal(result.violations.length,0,JSON.stringify(result.violations.map(x=>({id:x.id,impact:x.impact,nodes:x.nodes.slice(0,3).map(y=>y.target)}))));
+ });
+ await check('Recent falls or dizziness routes away from a generic workout',async p=>{
+  await p.locator('[data-goal][value="stairs"]').check();
+  await p.locator('[data-activity][value="pickleball"]').check();
   await p.selectOption('#confidence','review');
   assert.equal(await p.locator('#safetyNote').isVisible(),true);
-  assert.match(await p.locator('#planSummary').innerText(),/physical therapist/i);
+  assert.equal(await p.locator('#movementSafety').isVisible(),true);
+  assert.match(await p.locator('#planSummary').innerText(),/healthcare professional|physical therapist/i);
+  assert.equal(await p.locator('#weekPlan .day').count(),2);
+  assert.doesNotMatch(await p.locator('#weekPlan').innerText(),/try pickleball|full-body strength/i);
+  assert.match(await p.locator('#planExerciseDetails').innerText(),/Wait for a safe starting plan/);
+  assert.doesNotMatch(await p.locator('#goalResults').innerText(),/Try first:/);
+ });
+ await check('Builder covers age, steadiness, 2–7 days and strength choices',async p=>{
+  const summary=await p.evaluate(()=>{
+   let n=0,failures=[],age=document.getElementById('ageGroup'),conf=document.getElementById('confidence'),days=document.getElementById('days'),style=document.getElementById('strengthStyle');
+   const set=(el,value)=>{el.value=value;el.dispatchEvent(new Event('change',{bubbles:true}));};
+   for(const a of ['50-64','65-plus'])for(const c of ['steady','support','review'])for(const d of ['2','3','4','5','6','7'])for(const t of ['machines','dumbbells','home']){
+    set(age,a);set(conf,c);set(days,d);set(style,t);n++;
+    const count=document.querySelectorAll('#weekPlan .day').length;
+    const text=document.getElementById('planSummary').innerText;
+    if(c==='review'){
+      if(count!==2||!text.includes('healthcare professional'))failures.push('risk '+[a,c,d,t].join('/'));
+    } else if(count!==Number(d)||!text.includes('starting week'))failures.push('normal '+[a,c,d,t].join('/'));
+   }
+   return {n,failures};
+  });
+  assert.equal(summary.n,108);
+  assert.deepEqual(summary.failures,[]);
  });
  await check('Plan download, backup, and restore',async p=>{
   await p.selectOption('#days','6');
   await p.locator('[data-goal][value="floor"]').check();
   const d1=p.waitForEvent('download');await p.locator('#savePlan').click();const plan=await d1;
   assert.equal(plan.suggestedFilename(),'BFit-50plus-week.txt');
+  assert.match(fs.readFileSync(await plan.path(),'utf8'),/YOUR EXERCISES \/ NEXT STEPS/);
+  await p.locator('#deviceOptions summary').click();
   const d2=p.waitForEvent('download');await p.locator('#backup').click();const backup=await d2;
   assert.equal(backup.suggestedFilename(),'BFit-50plus-answers.json');
   const path=await backup.path();
+  const saved=JSON.parse(fs.readFileSync(path,'utf8'));
+  assert.equal(saved.answers.days,'6','Downloaded backup should contain the selected schedule');
   await p.evaluate(()=>localStorage.clear());
   await p.reload();
   assert.equal(await p.inputValue('#days'),'4');
+  await p.locator('#deviceOptions summary').click();
   await p.locator('#restore').setInputFiles(path);
-  assert.equal(await p.inputValue('#days'),'6');
+  await p.waitForFunction(()=>document.getElementById('days').value==='6',{timeout:4000});
   assert.equal(await p.locator('[data-goal][value="floor"]').isChecked(),true);
  });
  await check('Four-week reviews persist without a login',async p=>{
