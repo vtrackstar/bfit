@@ -42,7 +42,7 @@ try{
   await p.locator('[data-goal][value="stairs"]').check();
   await p.locator('[data-goal][value="carry"]').check();
   assert.equal(await p.locator('#goalResults .goal-result').count(),3);
-  await p.locator('[data-goal][value="floor"]').check();
+  await p.locator('[data-goal][value="floor"]').click();
   assert.equal(await p.locator('[data-goal][value="floor"]').isChecked(),false);
   assert.equal(await p.locator('#goalResults .goal-result').count(),3);
  });
