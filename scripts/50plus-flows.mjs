@@ -40,7 +40,11 @@ try{
   assert.match(await p.locator('#why').innerText(),/body to keep doing for you/i);
   assert.equal(await p.locator('.evidence').count(),4);
   assert.equal(await p.locator('.evidence svg[role="img"]').count(),2);
-  assert.match(await p.locator('.evidence').first().innerText(),/illustration of muscle adaptation, not a scan or a before-and-after result/i);
+  const captions=await p.locator('.evidence figcaption').allInnerTexts();
+  assert.equal(captions.length,2);
+  assert.match(captions[0],/^BFit illustration of how muscle fibers may adapt to resistance training\.$/i);
+  assert.match(captions[1],/^BFit diagram comparing the supporting structures inside bone\.$/i);
+  assert.ok(captions.every(text=>!/(?:not a|not an|isn't|doesn't)/i.test(text)),'Captions should identify what the illustration shows directly');
   assert.equal(await p.locator('a[href*="39405023"]').count()>=1,true);
   assert.equal(await p.locator('a[href*="28975661"]').count()>=1,true);
  });
