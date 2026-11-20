@@ -190,6 +190,7 @@ fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.
 <label class="choice"><input type="checkbox" value="golf" data-activity><span><strong>Golf</strong>Coordination, outdoor movement, and social time</span></label>
 <label class="choice"><input type="checkbox" value="pickleball" data-activity><span><strong>Pickleball</strong>Social racket sport with short starts, stops, and changes of direction</span></label>
 </fieldset>
+<div id="preferredCardioField" hidden><label for="preferredCardio">Which of these activities would you like on your cardio days?</label><select id="preferredCardio"></select></div>
 <p id="activityMessage" class="status" aria-live="polite">Pick at least one activity to shape your week.</p>
 </div>
 <details class="activity-browser"><summary>Explore the activities: what to expect and how to start</summary><div class="activity-inside"><div class="grid three">
@@ -293,12 +294,17 @@ function validValue(value,values,fallback){return values.indexOf(String(value))!
 function defaultState(){return {level:'new',ageGroup:'50-64',days:'4',minutes:'20',confidence:'steady',mainCardio:'walking',strengthStyle:'machines',activities:['walking'],goals:[],tries:[],reviews:{}};}
 var state=defaultState();
 try{var old=JSON.parse(localStorage.getItem(key)||'null');if(old && typeof old==='object') state=normalize(old);}catch(e){}
+function cardioOptions(selected){return selected.filter(function(id){return ['walking','cycling','swimming','dance'].includes(id);});}
+function preferredCardio(selected,preferred){
+ var options=cardioOptions(selected);
+ return options.includes(preferred)?preferred:options[0]||'walking';
+}
 function normalize(s){
  var d=defaultState();
  var selected=Array.isArray(s.activities)?s.activities:[s.mainCardio||'walking'].concat(Array.isArray(s.tries)?s.tries:[]);
  selected=selected.filter(function(x,i,a){return allowedTry.indexOf(x)!==-1&&a.indexOf(x)===i;}).slice(0,3);
  if(!selected.length)selected=['walking'];
- var cardio=selected.find(function(x){return ['walking','cycling','swimming','dance'].indexOf(x)!==-1;})||'walking';
+ var cardio=preferredCardio(selected,s.mainCardio);
  return {level:validValue(s.level,['new','returning','active'],d.level),ageGroup:validValue(s.ageGroup,['50-64','65-plus'],d.ageGroup),days:validValue(s.days,['2','3','4','5','6','7'],d.days),minutes:validValue(s.minutes,['10','20','30','45'],d.minutes),confidence:validValue(s.confidence,['steady','support','review'],d.confidence),mainCardio:cardio,strengthStyle:validValue(s.strengthStyle,['machines','dumbbells','home'],d.strengthStyle),activities:selected,goals:Array.isArray(s.goals)?s.goals.filter(function(g,i,a){return allowedGoals.indexOf(g)!==-1 && a.indexOf(g)===i;}).slice(0,3):d.goals,tries:selected.filter(function(x){return x!==cardio;}),reviews:s.reviews&&typeof s.reviews==='object'&&!Array.isArray(s.reviews)?s.reviews:{}};
 }
 function apply(){['level','ageGroup','days','minutes','confidence','strengthStyle'].forEach(function(k){el(k).value=state[k];});document.querySelectorAll('[data-goal]').forEach(function(x){x.checked=state.goals.indexOf(x.value)!==-1;});document.querySelectorAll('[data-activity]').forEach(function(x){x.checked=state.activities.indexOf(x.value)!==-1;});}
@@ -309,8 +315,13 @@ function update(){
  state.activities=state.activities.filter(function(x){return !!document.querySelector('[data-activity][value="'+x+'"]:checked');});
  document.querySelectorAll('[data-activity]:checked').forEach(function(x){if(state.activities.indexOf(x.value)===-1)state.activities.push(x.value);});
  if(!state.activities.length){state.activities=['walking'];document.querySelector('[data-activity][value="walking"]').checked=true;}
- var cardio=state.activities.find(function(x){return ['walking','cycling','swimming','dance'].indexOf(x)!==-1;});
- state.mainCardio=cardio||'walking';
+ var options=cardioOptions(state.activities);
+ var cardio=options.length>0;
+ state.mainCardio=preferredCardio(state.activities,state.mainCardio);
+ var picker=el('preferredCardio');
+ picker.replaceChildren(...options.map(function(id){return new Option(names[id],id);}));
+ picker.value=state.mainCardio;
+ el('preferredCardioField').hidden=options.length<2;
  state.tries=state.activities.filter(function(x){return x!==state.mainCardio;});
  el('ageAdvice').textContent=state.ageGroup==='65-plus'?'For adults 65 and older, CDC guidelines emphasize aerobic activity, muscle-strengthening, and balance practice each week. Start with the supported options that fit your ability.':'For adults 50–64, aerobic and muscle-strengthening activities are recommended each week. Balance practice can still be useful at any age, especially if you feel unsteady.';
  el('safetyNote').hidden=state.confidence!=='review';
@@ -402,13 +413,13 @@ function updateReview(){
  el('confidenceRating').value=validValue(r.rating,['1','2','3','4','5'],'');
  el('reviewStatus').textContent=r.checks?'Previously saved for week '+w+'.':'';
 }
-document.querySelectorAll('select').forEach(function(e){if(['weekReview','confidenceRating'].indexOf(e.id)===-1)e.addEventListener('change',update);});
+document.querySelectorAll('select').forEach(function(e){if(e.id==='preferredCardio')e.addEventListener('change',function(){state.mainCardio=e.value;update();});else if(['weekReview','confidenceRating'].indexOf(e.id)===-1)e.addEventListener('change',update);});
 document.querySelectorAll('[data-goal]').forEach(function(x){x.addEventListener('change',function(){
  if(choose('[data-goal]').length>3){x.checked=false;el('goalMessage').textContent='Choose no more than three priorities.';return;}update();
 });});
 document.querySelectorAll('[data-activity]').forEach(function(x){x.addEventListener('change',function(){
  if(x.checked&&choose('[data-activity]').length>3){x.checked=false;el('activityMessage').textContent='Choose up to three activities.';return;}
- if(x.checked){state.activities=state.activities.filter(function(a){return a!==x.value;});state.activities.push(x.value);}
+ if(x.checked){state.activities=state.activities.filter(function(a){return a!==x.value;});state.activities.push(x.value);if(cardioOptions([x.value]).length)state.mainCardio=x.value;}
  else state.activities=state.activities.filter(function(a){return a!==x.value;});
  if(!state.activities.length){state.activities=['walking'];document.querySelector('[data-activity][value="walking"]').checked=true;el('activityMessage').textContent='Walking is selected as a starting suggestion. You can choose a different activity.';}
  update();
