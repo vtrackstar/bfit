@@ -40,7 +40,7 @@ try{
   assert.match(await p.locator('#why').innerText(),/body to keep doing for you/i);
   assert.equal(await p.locator('.evidence').count(),4);
   assert.equal(await p.locator('.evidence svg[role="img"]').count(),2);
-  assert.match(await p.locator('.evidence').first().innerText(),/not scans or before-and-after/i);
+  assert.match(await p.locator('.evidence').first().innerText(),/illustration of muscle adaptation, not a scan or a before-and-after result/i);
   assert.equal(await p.locator('a[href*="39405023"]').count()>=1,true);
   assert.equal(await p.locator('a[href*="28975661"]').count()>=1,true);
  });
