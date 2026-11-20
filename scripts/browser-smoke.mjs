@@ -12,7 +12,10 @@ const guidePages = [
   { name: 'Athleticism', url: '/guides/athleticism/', selector: '#app', min: 1 },
   { name: 'Gamer Fit', url: '/guides/gamer-fit/', selector: '#main-content', min: 1 },
   { name: 'Run Strong', url: '/guides/run-strong/', selector: '#start', min: 1 },
-  { name: 'Keep Moving 50+', url: '/guides/50-plus/', selector: '#start', min: 1 }
+  { name: 'Keep Moving 50+ intro', url: '/guides/50-plus/', selector: '#why', min: 1 },
+  { name: 'Keep Moving 50+ activities', url: '/guides/50-plus/activities/', selector: '#start', min: 1 },
+  { name: 'Keep Moving 50+ plan', url: '/guides/50-plus/plan/', selector: '#weekPlan .day', min: 2 },
+  { name: 'Keep Moving 50+ progress', url: '/guides/50-plus/progress/', selector: '#weekReview', min: 1 }
 ];
 const screens = [
   {name:'desktop',width:1366,height:900},
