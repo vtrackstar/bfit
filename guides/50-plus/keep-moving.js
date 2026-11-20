@@ -15,7 +15,7 @@ var goals={
 };
 var strength={
  machines:{intro:'Machines guide the movement and let you adjust resistance. Ask gym staff to show you how to set the seat, handles, and weight.',items:['Leg press or sit-to-stand from a bench','Seated row','Chest press','Calf raise','Comfortable shoulder press or substitute']},
- dumbbells:{intro:'Handheld weights offer flexibility. Pick loads you can move without straining or losing your balance; a kettlebell is not required.',items:['Sit-to-stand or goblet squat to a chair','Supported one-arm row','Light floor or incline press','Calf raise with support','Light farmer carry']},
+ dumbbells:{intro:'Handheld weights give you plenty of options. Choose dumbbells or other loads you can move comfortably while staying steady.',items:['Sit-to-stand or goblet squat to a chair','Supported one-arm row','Light floor or incline press','Calf raise with support','Light farmer carry']},
  home:{intro:'A stable chair, wall, and optional resistance band can provide a useful starting strength routine.',items:['Sit-to-stand from a stable chair','Band row or supported pull','Wall push-up','Supported calf raise','Short, controlled carry with a light bag']}
 };
 var schedule={
@@ -90,7 +90,7 @@ function renderStrength(){
  if(!el('strengthRoutine'))return;
  if(state.confidence==='review'){
   el('strengthIntro').textContent='With recent or repeated falls, or unexplained dizziness, your first step is a healthcare review before starting a new exercise program.';
-  el('strengthRoutine').innerHTML='<div class="notice warn"><strong>Discuss a supported starting point first.</strong> Ask which seated or supported movements fit your situation. Examples to discuss are seated marching, ankle movements, and sitting down and standing up with help. Do not try unsupported standing or balance drills until you have suitable guidance.</div>';
+  el('strengthRoutine').innerHTML='<div class="notice warn"><strong>Discuss a supported starting point first.</strong> Ask which seated or supported movements fit your situation. Examples to discuss are seated marching, ankle movements, and sitting down and standing up with help. Follow that guidance before trying standing balance or floor drills.</div>';
   return;
  }
  var s=strength[state.strengthStyle];
@@ -114,9 +114,9 @@ function renderPlan(){
  var secondary=state.tries.length?names[state.tries[0]]:main;
  if(state.confidence==='review'){
    var requested=state.activities.map(function(x){return names[x];}).join(', ');
-   el('planSummary').innerHTML='<h3>Your next step: discuss a safe starting plan</h3><p>Because you reported recent or repeated falls or unexplained dizziness, this builder is not assigning exercise sessions yet. Arrange a discussion with a healthcare professional or physical therapist to decide what activity is appropriate. If you feel dizzy now, avoid exercising until you have medical guidance.</p><p><strong>Activities you might enjoy later:</strong> '+requested+'.</p>';
+   el('planSummary').innerHTML='<h3>Your next step: discuss a safe starting plan</h3><p>You reported recent or repeated falls or unexplained dizziness. Start with a healthcare professional or physical therapist who can help you choose safe activity. If you feel dizzy now, stop exercising and seek medical guidance.</p><p><strong>Activities you might enjoy later:</strong> '+requested+'.</p>';
    el('weekPlan').innerHTML='<article class="day"><span class="day-name">First</span><strong>Ask about your falls or dizziness</strong><p>Bring up any recent falls, faintness, medications, and activities that feel unsafe. A professional can advise whether an evaluation or supervision is needed.</p></article><article class="day"><span class="day-name">After guidance</span><strong>Ask about seated or supported options</strong><p>Examples to discuss: seated marching, ankle movements, gentle sit-to-stands with help, or supported weight shifts. Follow the specific recommendations you receive.</p></article>';
-   el('planExerciseDetails').innerHTML='<h3>Wait for a safe starting plan</h3><p>After a professional has evaluated the falls or dizziness, return to this guide and choose exercises appropriate for your mobility. Do not use a generic strength routine as a substitute for that evaluation.</p>';
+   el('planExerciseDetails').innerHTML='<h3>Wait for a safe starting plan</h3><p>After a professional has evaluated the falls or dizziness, return to this guide and select exercises that fit their recommendations.</p>';
    return;
  }
  var cards=schedule[Number(state.days)]||schedule[4];
@@ -142,7 +142,7 @@ function renderPlan(){
  }).join('');
  var caution=state.confidence==='support'?'Use stable support for balance work. Consider seated or supported versions first and ask for professional advice if you are unsure about falling.':'Keep balance practice controlled, with stable support nearby.';
 
- var note='This starting schedule includes '+count+' strength sessions and '+state.days+' planned activity days. It may not reach the longer-term aerobic goal of 150 moderate minutes yet. Increase gradually as appropriate.';
+ var note='Your starting schedule includes '+count+' strength sessions and '+state.days+' planned activity days. Build cardio time gradually as your comfort and recovery allow.';
  el('planSummary').innerHTML='<h3>Your starting week</h3><p><strong>'+(cardioChosen?'Cardio you selected:':'Suggested cardio:')+'</strong> '+main+' · <strong>Strength:</strong> '+(state.strengthStyle==='home'?'At home':state.strengthStyle==='machines'?'Gym machines':'Dumbbells or kettlebells')+' · <strong>Time:</strong> '+state.minutes+' minutes available per session.</p><p>'+note+'</p><p><strong>Safety:</strong> '+caution+'</p>';
  el('weekPlan').innerHTML=html;
  var list=strength[state.strengthStyle].items.map(function(x){return '<li>'+x+'</li>';}).join('');
