@@ -369,6 +369,8 @@ function renderPlan(){
    return;
  }
  var cards=schedule[Number(state.days)]||schedule[4];
+ var count=cards.filter(function(x){return x[1]==='strength'||x[1]==='combo';}).length;
+ var strengthDay=0;
  var html=cards.map(function(p){
  var kind=p[1],title='',desc='';
  if(kind==='strength'){title='Full-body strength + supported balance';desc='Follow your chosen strength exercises. '+timeFor(kind)+'.';}
@@ -379,14 +381,16 @@ function renderPlan(){
  if(kind==='recovery'){title='Recovery movement';desc='An easy walk, gentle mobility, or rest depending on how you feel. '+timeFor(kind)+'.';}
  var priorityTip='';
  if((kind==='strength'||kind==='combo') && state.goals.length){
-   var goalIndex=cards.slice(0,cards.indexOf(p)).filter(function(day){return day[1]==='strength'||day[1]==='combo';}).length;
-   var goal=goals[state.goals[goalIndex % state.goals.length]];
-   priorityTip='<p><strong>'+goal.name+':</strong> '+goal.start+'</p>';
+   var choices=state.goals.filter(function(id,i){return i%count===strengthDay;});
+   if(!choices.length)choices=[state.goals[strengthDay%state.goals.length]];
+   if(choices.length>1)priorityTip='<p>Choose one of these for today:</p>';
+   choices.forEach(function(id){var goal=goals[id];priorityTip+='<p><strong>'+goal.name+':</strong> '+goal.start+'</p>';});
+   strengthDay++;
  }
  return '<article class="day"><span class="day-name">'+p[0]+'</span><strong>'+title+'</strong><p>'+desc+'</p>'+priorityTip+'</article>';
  }).join('');
  var caution=state.confidence==='support'?'Use stable support for balance work. Consider seated or supported versions first and ask for professional advice if you are unsure about falling.':'Keep balance practice controlled, with stable support nearby.';
- var count=cards.filter(function(x){return x[1]==='strength'||x[1]==='combo';}).length;
+
  var note='This starting schedule includes '+count+' strength sessions and '+state.days+' planned activity days. It may not reach the longer-term aerobic goal of 150 moderate minutes yet. Increase gradually as appropriate.';
  el('planSummary').innerHTML='<h3>Your starting week</h3><p><strong>'+(cardioChosen?'Cardio you selected:':'Suggested cardio:')+'</strong> '+main+' · <strong>Strength:</strong> '+(state.strengthStyle==='home'?'At home':state.strengthStyle==='machines'?'Gym machines':'Dumbbells or kettlebells')+' · <strong>Time:</strong> '+state.minutes+' minutes available per session.</p><p>'+note+'</p><p><strong>Safety:</strong> '+caution+'</p>';
  el('weekPlan').innerHTML=html;
