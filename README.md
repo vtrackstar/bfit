@@ -34,7 +34,7 @@ Coaching inquiries are paused while I prepare the next intake. The free guides r
 This repository contains the HTML files for the hub and five guides. GitHub Pages publishes from `main`. The files in Google Drive include earlier drafts, reviews, and backups; they are not automatically synced with the live site.
 
 - `index.html` — Hub
-- `guides/*/index.html` — The four guides
+- `guides/*/index.html` — The five guides
 - `coaching/index.html` — Coaching availability
 - `scripts/` and `.github/workflows/` — Automated checks
 - [Prelaunch handoff](PRELAUNCH_CHECKLIST_2026-11-10.md) — What still needs testing before a full launch
