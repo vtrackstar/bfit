@@ -50,6 +50,8 @@ try{
   await p.locator('[data-goal][value="stairs"]').check();
   await p.locator('[data-goal][value="carry"]').check();
   assert.equal(await p.locator('#goalResults .goal-result').count(),3);
+  assert.match(await p.locator('#weekPlan').innerText(),/step-ups while holding a railing/);
+  assert.match(await p.locator('#weekPlan').innerText(),/Carry one light bag/);
   await p.locator('[data-goal][value="floor"]').click();
   assert.equal(await p.locator('[data-goal][value="floor"]').isChecked(),false);
   assert.equal(await p.locator('#goalResults .goal-result').count(),3);
