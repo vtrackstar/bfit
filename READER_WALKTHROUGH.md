@@ -25,12 +25,12 @@ Fix blocked tasks and repeated confusion. Preserve routes readers use successful
 
 ## Keep Moving: 50+ guide reader check
 
-For this guide, recruit at least one adult aged 50–64 and one aged 65+ if possible. Give them the published guide link and ask them to complete these tasks without coaching or hints:
+For this guide, recruit at least one adult aged 50–64 and one aged 65+ if possible. Give them the published guide link and ask them to complete these tasks without coaching or hints. The four pages should show a clear place in the sequence, but readers can skip the educational material:
 
 1. Pick an everyday priority, such as carrying groceries or climbing stairs, and explain what it means.
 2. Select one or two enjoyable activities. Find the option that matches your age, schedule, and preferred exercise location.
 3. Find the first strength session. Name a warm-up, choose three appropriate exercises, and explain a set, a rep, and the suggested effort.
-4. Open a movement demonstration, identify the correct variation, then return to the guide.
+4. Read a research explanation and tell us which benefit matters most. Then open a movement demonstration, identify the correct variation, and return to the guide.
 5. Find the personalized week, save a copy, reload, and explain whether the routine is still there.
 6. Say what you would do if you felt unsteady, had recently fallen, or became dizzy.
 7. Find the BFit Hub link and return to the guide.
@@ -39,4 +39,4 @@ On a physical phone, also try the exercise demonstration links, expandable activ
 
 Do **not** ask participants to perform unfamiliar exercises, disclose medical histories, or test their physical capability just to evaluate the website. The exercise task is about understanding instructions, not physical clearance.
 
-**Open items:** Independent-reader observation and a real iPhone/Android walkthrough are still outstanding. The November 19 automated Chromium tests cover four viewport widths, a first-time setup path, six reference links, storage/print, and the plan builder; they do not substitute for those tests.
+**Open items:** Independent-reader observation and a real iPhone/Android walkthrough are still outstanding. Automated Chromium tests cover all four pages, key responsive widths, exercise references, cross-page storage, printing, research-source links, and fall-risk routing. They do not substitute for those tests.
