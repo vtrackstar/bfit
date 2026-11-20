@@ -360,13 +360,19 @@ function renderPlan(){
  var cards=schedule[Number(state.days)]||schedule[4];
  var html=cards.map(function(p){
  var kind=p[1],title='',desc='';
- if(kind==='strength'){title='Full-body strength + supported balance';desc='Follow your chosen strength exercises. Add a short supported balance drill or an everyday-priority exercise. '+timeFor(kind)+'.';}
+ if(kind==='strength'){title='Full-body strength + supported balance';desc='Follow your chosen strength exercises. '+timeFor(kind)+'.';}
  if(kind==='combo'){title='Full-body strength + '+main.toLowerCase();desc='Split the time between simple resistance exercises, safe balance practice, and easy cardio. '+timeFor(kind)+'.';}
  if(kind==='cardio'){title=main;desc='Move at a comfortable pace. If it becomes moderate exercise, you should still be able to talk. '+timeFor(kind)+'.';}
  if(kind==='balance'){title='Gentle movement + balance';desc='Try supported steps, ankle movement, or a relaxed walk. '+timeFor(kind)+'.';}
  if(kind==='explore'){title=state.tries.length?'Try '+secondary:'Enjoy '+main.toLowerCase();desc=state.tries.length?'Choose a beginner or supported version. Start with a short session and learn the movements first. '+timeFor(kind)+'.':'Repeat an enjoyable activity, or try a new one when you feel ready. '+timeFor(kind)+'.';if(state.confidence==='support'&&state.tries[0]==='pickleball'){title='Explore pickleball safely';desc='Ask about a beginner lesson and discuss quick stops and turns before playing. Choose supported or lower-impact movement today if you feel unsteady.';}}
  if(kind==='recovery'){title='Recovery movement';desc='An easy walk, gentle mobility, or rest depending on how you feel. '+timeFor(kind)+'.';}
- return '<article class="day"><span class="day-name">'+p[0]+'</span><strong>'+title+'</strong><p>'+desc+'</p></article>';
+ var priorityTip='';
+ if((kind==='strength'||kind==='combo') && state.goals.length){
+   var goalIndex=cards.slice(0,cards.indexOf(p)).filter(function(day){return day[1]==='strength'||day[1]==='combo';}).length;
+   var goal=goals[state.goals[goalIndex % state.goals.length]];
+   priorityTip='<p><strong>'+goal.name+':</strong> '+goal.start+'</p>';
+ }
+ return '<article class="day"><span class="day-name">'+p[0]+'</span><strong>'+title+'</strong><p>'+desc+'</p>'+priorityTip+'</article>';
  }).join('');
  var caution=state.confidence==='support'?'Use stable support for balance work. Consider seated or supported versions first and ask for professional advice if you are unsure about falling.':'Keep balance practice controlled, with stable support nearby.';
  var count=cards.filter(function(x){return x[1]==='strength'||x[1]==='combo';}).length;
