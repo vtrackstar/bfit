@@ -59,6 +59,10 @@ try{
   await p.selectOption('#ageGroup','65-plus');
   await p.selectOption('#strengthStyle','home');
   await p.locator('[data-activity][value="swimming"]').check();
+  await p.reload();
+  assert.equal(await p.inputValue('#preferredCardio'),'swimming');
+  await p.selectOption('#preferredCardio','walking');
+  assert.match(await p.locator('#planSummary').innerText(),/Cardio you selected:.*Walking/s);
   await p.locator('[data-activity][value="walking"]').uncheck();
   await p.locator('[data-activity][value="pickleball"]').check();
   assert.equal(await p.locator('#weekPlan .day').count(),2);
