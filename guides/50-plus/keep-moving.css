@@ -138,3 +138,6 @@ select,.progress select{min-height:48px}
  main{max-width:none!important}
  .day,.progress{break-inside:avoid}
 }
+
+/* Current step labels must remain readable on the dark selected tab. */
+.page-nav a[aria-current="page"] small{color:#fff;opacity:1}
