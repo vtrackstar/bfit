@@ -91,28 +91,25 @@ try{
   assert.doesNotMatch(await p.locator('#weekPlan').innerText(),/Full-body strength|Try pickleball/i);
   assert.match(await p.locator('#planExerciseDetails').innerText(),/Wait for a safe starting plan/i);
  });
- await check('108 schedules preserve correct count and safety branch',async p=>{
+ await check('108 age, support, time, and strength combinations generate appropriate output',async p=>{
   await open(p,'plan/');
-  const x=await p.evaluate(()=>{
-   let count=0,fail=[];
-   for(const days of ['2','3','4','5','6','7'])for(const style of ['machines','dumbbells','home'])for(const age of ['50-64','65-plus'])for(const risk of ['steady','support','review']){
-    const state=JSON.parse(localStorage.getItem('bfit-50plus-v1'));state.days=days;state.strengthStyle=style;state.ageGroup=age;state.confidence=risk;localStorage.setItem('bfit-50plus-v1',JSON.stringify(state));
-    // Refresh is handled outside evaluate; this loop checks model variants through browser inputs and rerender.
-    count++;
-   }
-   return {count,fail};
-  });
-  assert.equal(x.count,108);
-  for(const d of ['2','3','4','5','6','7']){
-   await p.selectOption('#days',d);
-   assert.equal(await p.locator('#weekPlan .day').count(),Number(d));
+  let checked=0;
+  for(const age of ['50-64','65-plus'])for(const risk of ['steady','support','review'])for(const days of ['2','3','4','5','6','7'])for(const style of ['machines','dumbbells','home']){
+   await p.evaluate(args=>{
+    const state=JSON.parse(localStorage.getItem('bfit-50plus-v1'));
+    state.ageGroup=args[0];state.confidence=args[1];state.days=args[2];state.strengthStyle=args[3];
+    localStorage.setItem('bfit-50plus-v1',JSON.stringify(state));
+   },[age,risk,days,style]);
+   await p.reload();
+   const cards=await p.locator('#weekPlan .day').count();
+   assert.equal(cards,risk==='review'?2:Number(days),[age,risk,days,style].join('/'));
+   const summary=await p.locator('#planSummary').innerText();
+   if(risk==='review')assert.match(summary,/healthcare professional|physical therapist/i);
+   else assert.match(summary,/Your starting week/);
+   assert.equal(await p.inputValue('#strengthStyle'),style);
+   checked++;
   }
-  await open(p,'activities/');
-  await p.selectOption('#confidence','review');await open(p,'plan/');
-  for(const d of ['2','3','4','5','6','7']){
-   await p.selectOption('#days',d);
-   assert.equal(await p.locator('#weekPlan .day').count(),2);
-  }
+  assert.equal(checked,108);
  });
  await check('Download, print and JSON backup restore across pages',async p=>{
   await open(p,'activities/');
