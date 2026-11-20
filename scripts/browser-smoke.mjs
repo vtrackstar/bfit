@@ -52,8 +52,19 @@ try {
         });
         if(ui.text < 130) throw Error('Page has too little readable content: '+ui.text);
         if(guide.name!=='Hub'){
-          if(await page.locator('a[href="https://vtrackstar.github.io/bfit/"]').count()===0)
-            throw Error('Missing visible DOM link back to hub');
+          const hubLink=page.locator('a.bfit-hub-link').first();
+          let reached=false;
+          for(let i=0;i<18;i++){
+            await page.keyboard.press('Tab');
+            reached=await hubLink.evaluate(el=>el===document.activeElement);
+            if(reached)break;
+          }
+          if(!reached || !await hubLink.isVisible()) throw Error('Hub link unreachable from initial keyboard navigation');
+          if(!await hubLink.evaluate(el=>{
+            const r=el.getBoundingClientRect();
+            return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));
+          }))throw Error('Focused Hub link is obscured');
+          if(!await page.getByRole('link',{name:/BFit Hub/i}).count())throw Error('Hub link lacks an accessible name');
         }
         if(guide.name==='Athleticism' && screen.name==='desktop') {
           const btn=page.locator('button[data-action="nav"][data-to="learn"]').first();
