@@ -9,6 +9,7 @@ const urls = [
   ['Athleticism', 'https://vtrackstar.github.io/bfit/guides/athleticism/'],
   ['Gamer Fit', 'https://vtrackstar.github.io/bfit/guides/gamer-fit/'],
   ['Run Strong', 'https://vtrackstar.github.io/bfit/guides/run-strong/'],
+  ['Keep Moving', 'https://vtrackstar.github.io/bfit/guides/50-plus/'],
   ['Exercise library', 'https://bfit-exercise-movement-library.balouissaint.chatgpt.site/'],
   ['Coaching availability', 'https://vtrackstar.github.io/bfit/coaching/'],
   ['Coaching form, currently paused (owner-side check)', 'https://forms.gle/f11PGA7PCUKaxrgq9'],
