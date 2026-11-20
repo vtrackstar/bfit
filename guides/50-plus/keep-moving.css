@@ -1,0 +1,140 @@
+
+:root{--bg:#f5f7f2;--ink:#20352a;--muted:#506357;--line:#c9d9cd;--paper:#fff;--sage:#e7f1e5;--deep:#184a35;--amber:#fff2d6;--accent:#b06b30;--radius:16px;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}body{margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65}
+a{color:var(--deep);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}
+button,select,input{font:inherit}button,select{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #8b52bd;outline-offset:3px}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}h1{font-size:clamp(2.25rem,5.7vw,4.4rem);max-width:800px;margin:10px 0 20px}h2{font-size:clamp(1.65rem,3vw,2.3rem)}h3{font-size:1.2rem;margin-bottom:8px}p{max-width:770px}small,.muted{color:var(--muted)}
+.skip{position:absolute;top:-120px;left:12px;z-index:20;background:white;padding:12px}.skip:focus{top:10px}
+.top{background:#f5f7f2ee;backdrop-filter:blur(8px);position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}
+.top-in{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 22px}
+.brand{font-weight:850;text-decoration:none;font-size:1.12rem;letter-spacing:-.03em}.brand span{font-weight:500}
+.top-links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}.top-links a{min-height:44px;display:inline-flex;align-items:center;font-weight:650}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}.hero{padding:70px 0 40px}
+.eyebrow{text-transform:uppercase;color:var(--deep);font-size:.74rem;font-weight:800;letter-spacing:.13em}
+.lead{font-size:1.18rem;color:var(--muted);max-width:780px}
+.button-row{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border-radius:10px;border:1px solid var(--deep);text-decoration:none;font-weight:700;color:var(--deep);background:white}
+.btn.primary{background:var(--deep);color:white}.btn:hover{filter:brightness(.96)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.notice{border-left:4px solid var(--deep);background:var(--sage);padding:17px 20px;border-radius:0 11px 11px 0;margin:20px 0}.notice p:last-child{margin-bottom:0}
+.notice.warn{border-left-color:#ad7728;background:var(--amber)}.notice.warn strong{color:#6c4215}
+.contents{display:flex;gap:7px;flex-wrap:wrap;margin:28px 0 4px}.contents a{background:white;border:1px solid var(--line);padding:9px 12px;border-radius:9px;text-decoration:none;font-size:.88rem;font-weight:650;min-height:44px;display:flex;align-items:center}
+.section{padding:58px 0;border-top:1px solid var(--line);scroll-margin-top:80px}
+.section-head{max-width:820px;margin-bottom:26px}.section-head .eyebrow{margin-bottom:10px}.section-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;min-width:0}.panel h3{margin-top:0}
+.form-field{display:grid;gap:7px;margin-bottom:19px}.form-field label,.field-label{font-weight:700;font-size:.95rem}.form-field select{width:100%;min-height:48px;border:1px solid #9fb4a5;border-radius:9px;padding:11px;background:white;color:var(--ink)}
+.hint{font-size:.88rem;color:var(--muted);margin:2px 0 0}.choice-list{display:grid;gap:9px}
+.choice{display:flex;align-items:flex-start;gap:13px;background:white;border:1px solid var(--line);border-radius:11px;padding:14px;cursor:pointer}
+.choice:has(input:checked){background:var(--sage);border-color:#5f9d7c}
+.choice input{margin:3px 0 0;width:20px;height:20px;accent-color:var(--deep);flex-shrink:0}
+.choice strong{display:block}.choice span{color:var(--muted);font-size:.9rem;display:block}.choice span strong{color:var(--ink)}
+.activity{background:white;border:1px solid var(--line);border-radius:14px;padding:19px;min-width:0}
+.activity h3{margin:6px 0 9px}.activity p{margin:0 0 8px;font-size:.92rem}.activity p:last-child{margin-bottom:0}.activity small{display:block;margin:8px 0}
+.chip{display:inline-block;padding:2px 9px;border-radius:20px;background:var(--sage);font-size:.74rem;font-weight:750;color:var(--deep)}
+details{border:1px solid var(--line);background:white;border-radius:10px;margin-top:9px}
+summary{cursor:pointer;padding:12px 15px;font-weight:700;min-height:45px}details>div{padding:0 16px 16px;font-size:.92rem;color:var(--muted)}details p:last-child{margin-bottom:0}
+.subhead{margin:27px 0 14px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}
+.metric{background:var(--sage);padding:17px;border-radius:12px}.metric b{display:block;font-size:1.55rem;line-height:1.2}.metric span{font-size:.86rem;color:var(--muted)}
+.goal-result{margin:9px 0;padding:17px;background:#fff;border:1px solid var(--line);border-radius:11px}
+.goal-result p{margin:6px 0}.goal-result .tip{color:var(--muted);font-size:.89rem}
+.ex-list{margin:10px 0;padding-left:21px}.ex-list li{margin-bottom:7px}
+.week-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.day{background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px}
+.day .day-name{font-size:.8rem;text-transform:uppercase;color:var(--deep);font-weight:850;letter-spacing:.07em}
+.day strong{display:block;margin:4px 0 6px}.day p{margin:0;font-size:.91rem;color:var(--muted)}
+.status{min-height:22px;margin:8px 0;color:var(--deep);font-weight:650;font-size:.9rem}
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.week{background:white;border:1px solid var(--line);border-radius:13px;padding:18px}.week b{font-size:.86rem;color:var(--deep)}
+.progress{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px}
+.progress .row{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.progress label{display:flex;align-items:center;gap:10px;margin:8px 0}.progress input[type=checkbox]{width:19px;height:19px;accent-color:var(--deep)}
+.progress select{padding:8px;border:1px solid #9fb4a5;border-radius:8px;min-height:42px;background:white;max-width:100%}
+.sources li{margin-bottom:9px}.sources a{overflow-wrap:anywhere}
+.footer{padding:36px 0 60px;border-top:1px solid var(--line);font-size:.92rem}.footer-links{display:flex;flex-wrap:wrap;gap:15px;margin:16px 0}
+fieldset{border:0;padding:0;margin:0}legend{font-weight:750;margin-bottom:12px}.divider{height:1px;background:var(--line);margin:20px 0}
+.back-link{display:inline-block;margin-top:21px;font-weight:650}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:760px){.hero{padding-top:36px}.section{padding:42px 0}.grid,.grid.three,.four,.week-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.top-in{flex-wrap:wrap;padding:8px 16px}.top-links{gap:11px}.wrap{padding:0 17px}.panel{padding:17px}.contents a{font-size:.83rem}}
+@media(max-width:430px){.top-links{font-size:.78rem}.top-links a{min-height:44px}.metric b{font-size:1.3rem}.metrics{grid-template-columns:1fr}.button-row .btn{width:100%}}
+@media print{.top,.hero,.section:not(#build),.footer,.contents,.button-row,.hide-print,.back-link{display:none!important}body{background:white}main{max-width:none!important}#build{border:0;padding:0}#build .section-head{margin-bottom:12px}#build .section-head .eyebrow{display:none}.panel,.day{break-inside:avoid}h1{font-size:2rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Claude 50+ review: make the exercise walkthrough easier to scan without crowding the first screen. */
+.activity-browser{margin-top:24px;background:transparent;border:1px solid var(--line);border-radius:13px}
+.activity-browser>summary{font-size:1rem;padding:17px 20px;background:var(--sage);border-radius:13px;color:var(--deep)}
+.activity-browser>.activity-inside{padding:15px;background:#f8faf7}
+.movement-cards{margin-top:18px}.move-card{padding:18px}.move-card h3{margin-top:8px}
+.move-card a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:.9rem}
+.first-workout{margin-bottom:18px;border-color:#86ab91}.health-notes{margin:16px 0}.health-notes .panel{background:#fafcf9}
+#deviceOptions{margin-top:12px}#deviceOptions>div{padding:15px 18px}#deviceOptions .button-row{margin:8px 0}
+@media(max-width:430px){.movement-cards{grid-template-columns:1fr}.move-card a{font-size:.95rem}}
+
+/* Match the quick exit used in other BFit guides. */
+.bfit-guide-switch{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));z-index:20;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 16px;border:1px solid #bad5c4;border-radius:999px;background:var(--deep);color:#fff;text-decoration:none;font-size:14px;font-weight:750;line-height:1.3;white-space:nowrap;box-shadow:0 5px 18px #142e2530}.bfit-guide-switch:hover{background:#286c4d;color:#fff}.bfit-guide-switch:focus-visible{outline:3px solid #8b52bd;outline-offset:3px}.footer{padding-bottom:100px}@media print{.bfit-guide-switch{display:none!important}}
+
+/* Four-page Keep Moving: the information stays short, the plans stay practical. */
+:root{font-size:17px}
+html{scroll-padding-top:112px}
+body{min-height:100vh}
+[hidden]{display:none!important}
+.page-nav{display:flex;align-items:stretch;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.page-nav a{flex:1;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;text-decoration:none;color:var(--ink);min-height:66px}
+.page-nav a[aria-current=page]{background:var(--deep);color:#fff;border-color:var(--deep)}
+.page-nav small{font-weight:650;font-size:.78rem;opacity:.85}.page-nav strong{font-size:.93rem}
+.page-moves{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;margin:30px 0 50px}
+.page-moves .btn{min-width:155px;text-align:center}
+.hero--inner{padding:36px 0 12px}
+.hero--inner h1{font-size:clamp(2rem,5vw,3.25rem)}
+.hero--inner .lead{max-width:780px}
+.kicker{font-size:.85rem;text-transform:uppercase;letter-spacing:.07em;color:var(--deep);font-weight:800}
+.quick-path{display:flex;gap:12px;flex-wrap:wrap;margin:19px 0}
+.quick-path a{min-height:48px}
+.evidence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.evidence{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
+.evidence h3{margin:0 0 9px;font-size:1.3rem}
+.evidence p{margin:7px 0}
+.evidence .source-detail{margin-top:14px}
+.evidence svg{display:block;width:100%;height:auto;max-height:260px;background:#f8faf7;border-radius:10px}
+.evidence figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
+.evidence .claim{font-weight:650;color:var(--deep)}
+.benefit-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.benefit-strip>div{background:var(--sage);padding:17px;border-radius:12px}
+.benefit-strip strong{display:block;font-size:1.05rem}
+.source-detail summary{font-size:.93rem}
+.source-detail p{padding:0 15px}
+.activity-library{margin-top:15px}
+.form-field{margin-bottom:20px}
+.form-field label{display:block;margin-bottom:7px;font-weight:750}
+select,.progress select{min-height:48px}
+#preferredCardioField{background:#e9f2e7;padding:16px;border-radius:12px;margin:12px 0}
+#preferredCardioField label{display:block;margin-bottom:9px;font-weight:750}
+#selectionSummary{padding:15px;background:var(--sage);border-radius:11px}
+.steps-note{background:#fff;border-left:4px solid #659576;padding:13px 17px;margin:15px 0}
+.page-section-heading{margin-top:28px}
+.section{scroll-margin-top:108px}
+.footer{padding-bottom:105px}
+.footer .source-credit{font-size:.83rem}
+.print-title{display:none}
+#sessionChecks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:15px 0}
+#sessionChecks label{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px;background:#f9fbf8}
+#sessionChecks input{min-width:21px;min-height:21px}
+@media(max-width:760px){
+ .page-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .page-nav a{min-height:61px;padding:10px}
+ .page-nav strong{font-size:.9rem}
+ .evidence-grid,.benefit-strip{grid-template-columns:1fr}
+ .hero--inner{padding-top:22px}
+ .page-moves .btn{flex:1}
+ .evidence{padding:17px}
+ #sessionChecks{grid-template-columns:1fr}
+}
+@media print{
+ .top,.page-nav,.hero,.page-moves,.bfit-guide-switch,.footer,.button-row,.hide-print,.activity-browser,.source-detail{display:none!important}
+ body[data-page="plan"] .section:not(#build){display:none!important}
+ body[data-page="progress"] .section:not(#review){display:none!important}
+ body[data-page="plan"] #build,body[data-page="progress"] #review{display:block!important}
+ .print-title{display:block!important;margin:0 0 12px}
+ .section{padding:8px 0;border:0}
+ main{max-width:none!important}
+ .day,.progress{break-inside:avoid}
+}
