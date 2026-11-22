@@ -121,7 +121,7 @@ try{
  await check('Foundation opens the coaching spreadsheet on a narrow screen',async p=>{
   await p.goto(host+'/guides/foundation/#nutrition-coaching',{waitUntil:'load'});
   assert.equal(await p.locator('#nutrition-coaching').isVisible(),true);
-  assert.equal(await p.locator('#nutrition-coaching a[href=\"../../#nutrition-coaching\"]').count(),1);
+  assert.equal(await p.locator('#nutrition-coaching a[href=\"../../coaching/#nutrition-coaching\"]').count(),1);
   await p.setViewportSize({width:320,height:700});
   await p.getByRole('link',{name:/See how I track workouts/}).click();
   await p.locator('#coaching-dashboard[open]').waitFor();
@@ -129,9 +129,17 @@ try{
   const nutrition=p.getByText('See a nutrition coaching example',{exact:true});
   await nutrition.focus();
   await p.keyboard.press('Enter');
+  await p.goto(host+'/coaching/');
+  await p.locator('details.coaching-compare > summary').focus();
+  await p.keyboard.press('Enter');
+  await p.locator('a[href="#nutrition-example"]').focus();
+  await p.keyboard.press('Enter');
+  await p.locator('#coaching-dashboard[open] #nutrition-example[open]').waitFor();
+  assert.equal(await p.locator('.food-sheet tbody tr').count(),4);
   const oats=p.getByRole('spinbutton',{name:'Grams, row 1',exact:true});
   await oats.fill('80');
   assert.equal(await p.locator('[data-calc-row="0"][data-metric="kcal"]').innerText(),'300');
+  assert.equal(await p.locator('#monday-review').isVisible(),true);
   await p.getByRole('button',{name:'Meal planner',exact:true}).click();
   await p.getByRole('button',{name:'Add food'}).click();
   await p.getByRole('button',{name:'Reset sample'}).click();
