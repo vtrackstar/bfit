@@ -118,12 +118,28 @@ try{
   await topics.locator('[data-start-path="book1"]').click();
   assert.equal(await p.locator('body').getAttribute('data-focus-path'),'book1');
  });
- await check('Nutrition coaching link opens the coaching chapter and dashboard',async p=>{
+ await check('Foundation opens the coaching spreadsheet on a narrow screen',async p=>{
   await p.goto(host+'/guides/foundation/#nutrition-coaching',{waitUntil:'load'});
   assert.equal(await p.locator('#nutrition-coaching').isVisible(),true);
   assert.equal(await p.locator('#nutrition-coaching a[href=\"../../#nutrition-coaching\"]').count(),1);
-  await p.getByText('Explore the coaching dashboard',{exact:true}).click();
-  assert.equal(await p.locator('#demoRows').isVisible(),true);
+  await p.setViewportSize({width:320,height:700});
+  await p.getByRole('link',{name:/See how I track workouts/}).click();
+  await p.locator('#coaching-dashboard[open]').waitFor();
+  assert.equal(await p.locator('.training-week tbody tr').count(),3);
+  const nutrition=p.getByText('See a nutrition coaching example',{exact:true});
+  await nutrition.focus();
+  await p.keyboard.press('Enter');
+  const oats=p.getByRole('spinbutton',{name:'Grams, row 1',exact:true});
+  await oats.fill('80');
+  assert.equal(await p.locator('[data-calc-row="0"][data-metric="kcal"]').innerText(),'300');
+  await p.getByRole('button',{name:'Meal planner',exact:true}).click();
+  await p.getByRole('button',{name:'Add food'}).click();
+  await p.getByRole('button',{name:'Reset sample'}).click();
+  assert.equal(await p.locator('.food-sheet tbody tr').count(),14);
+  assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await p.goto(host+'/guides/foundation/#coaching-dashboard');
+  await p.locator('#coaching-dashboard[open]').waitFor();
+  assert.equal(new URL(p.url()).pathname,'/coaching/');
  });
  await check('Run Strong first session is separate from faster-running examples',async p=>{
   await p.goto(host+'/guides/run-strong/',{waitUntil:'domcontentloaded'});
