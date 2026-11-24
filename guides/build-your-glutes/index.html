@@ -1,0 +1,201 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Build Your Glutes · BFit</title>
+<meta name="description" content="Two leg days a week for eight weeks. Choose your lifts, log your sets, and see what to try on your next visit.">
+<meta property="og:type" content="website"><meta property="og:title" content="Build Your Glutes · BFit"><meta property="og:description" content="An eight-week gym plan with exercise demos, equipment swaps, and a target based on your last workout."><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://vtrackstar.github.io/bfit/guides/build-your-glutes/social.png"><meta property="og:image:alt" content="BFit Training Plans. Build Your Glutes. Two gym days a week for eight weeks."><meta name="twitter:image" content="https://vtrackstar.github.io/bfit/guides/build-your-glutes/social.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2310251f'/%3E%3Ctext x='11' y='46' font-size='38' font-family='sans-serif' font-weight='bold' fill='%23bcdfac'%3EBf%3C/text%3E%3C/svg%3E">
+<style>
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0;background:#10251f;color:#f5f3e9;font:17px/1.52 "DM Sans",system-ui,sans-serif}main{max-width:800px;margin:auto;padding:26px 18px 80px}a{color:#c6e4ff}h1{font-size:clamp(46px,9vw,78px);line-height:.98;letter-spacing:-.055em;margin:25px 0 12px}h2,h3{margin:.4em 0}p{margin:.55em 0}header{padding-bottom:14px}.box,article,details{padding:18px;background:#1c332b;border:1px solid #50695b;border-radius:14px;margin:14px 0}article{border-left:4px solid #b1dca5}label{display:block;font-weight:650}button,input,select,textarea{font:inherit;border:1px solid #819b88;border-radius:7px;padding:9px;min-height:44px;max-width:100%}button{background:#bcdfac;color:#10251f;font-weight:700;cursor:pointer}button:disabled{opacity:.65}input,select,textarea{background:#f5f2e8;color:#14271e;width:100%}summary{cursor:pointer;font-weight:700}small{color:#c9d9cd}.row{display:flex;flex-wrap:wrap;gap:12px}.row>label{flex:1;min-width:120px}fieldset{margin:14px 0 0;border:0;padding:0}legend{font-weight:700;margin-bottom:4px}.tip{color:#ddf4bc}.check{display:flex;gap:9px;align-items:center;font-weight:500}.check input{width:20px;min-height:20px}button:focus-visible,:focus-visible{outline:3px solid #b5dfff;outline-offset:3px}textarea{min-height:70px}
+.check,summary{min-height:44px;padding-block:9px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}button{margin:4px 4px 4px 0}.secondary{background:#20382f;color:#f5f3e9}ol{padding-left:1.4em}li+li{margin-top:.5em}</style></head><body><main><header><a href="https://vtrackstar.github.io/bfit/">BFit Training Hub</a><h1>Build Your Glutes</h1><p>I built this eight-week plan for women who want to grow their glutes. Pick two leg days with at least one day between them, like Monday and Thursday. Set aside about 45 minutes for your first visit so you can find the equipment and try your starting weights. I’ll walk you through your first workout and show you when to add a rep or try a heavier weight.</p></header>
+<section class="box"><label>How will you use this plan?<select id="route"><option value="plan">These are my two leg days</option><option value="integrate">I already have a lifting routine</option></select></label><p id="routeTip"></p><button id="resume" hidden></button><div class="row"><label>Week<select id="week"></select></label><label>Workout<select id="day"><option value="A">Day A · Hip thrust and split squat</option><option value="B">Day B · Leg press and deadlift</option></select></label></div></section>
+<h2 tabindex="-1" id="title"></h2><p id="block"></p><details id="basics"><summary>Your first Day A</summary>
+<ol><li>Look for the hip-thrust machine and a rack you can hold for split squats. If the machine is taken, grab a mat and choose Floor bridge on the first card.</li>
+<li>Warm up with a few minutes of easy movement. Try eight practice reps with a light weight. If all eight feel easy, add a little. If you shorten the movement to finish, go lighter.</li>
+<li>When you find your weight, do your first set. A rep is one complete movement. A set is a group of reps. Enter the weight and how many reps you did. For two 15 lb dumbbells, enter 30 lb. For bodyweight or an unloaded machine, enter 0.</li>
+<li>Rest about two minutes, or longer if you need it. Do your second set and log it. Check “My reps felt controlled” if you could keep the same movement throughout. Then move to the second card. The third exercise is optional. Rest about a minute between optional sets.</li></ol>
+<p>At your next visit for the same lift, look for your target under the demo. If you did 8 and 8 with good control, try one more rep total. That could be 9 and 8.</p></details>
+<details><summary>Soreness, pain, and returning to lifting</summary><p>Mild muscle soreness can show up a day or two after a new workout. Stop an exercise if you feel sharp pain during a rep. If pain is severe, gets worse, or persists, speak with a healthcare professional. <a href="https://my.clevelandclinic.org/health/diseases/delayed-onset-muscle-soreness">Cleveland Clinic on muscle soreness</a></p>
+<p>If you’re pregnant or returning after childbirth, ask your maternity care team how to adapt these lifts and when to build back up. <a href="https://www.acog.org/womens-health/faqs/exercise-during-pregnancy">ACOG on exercise during pregnancy</a> · <a href="https://www.acog.org/womens-health/faqs/exercise-after-pregnancy">ACOG on returning after birth</a></p></details>
+<div id="cards"></div><section class="box"><label>Workout notes<textarea id="note" placeholder="Machine, seat setting, or what you changed"></textarea></label><p id="finishHelp" hidden>Trained today? Choose Finish early to count the sets you did. Skip this visit moves you to your next workout.</p><button id="finish"></button><button class="secondary" id="short" hidden>Finish early</button><button class="secondary" id="skip">Skip this visit</button><button id="next" hidden></button> <span id="status" role="status"></span></section>
+<section id="review" class="box" hidden><h2 tabindex="-1" id="reviewTitle"></h2><p id="reviewStats"></p><label id="reviewLabel" for="reviewNote"></label><textarea id="reviewNote"></textarea></section>
+<details id="history"><summary>My workout history</summary><pre id="entries"></pre></details><button id="copy">Copy my log</button><button id="download">Download my log</button><p><small>Entries save in this browser on this device. Copy or download your log to keep it.</small></p><label id="manual" hidden>Select and copy your log<textarea readonly></textarea></label><p id="warning" role="status"></p></main>
+<script>
+const $=id=>document.getElementById(id);
+const key='bfit-glutes-v1';
+const plans={A:[['Hip thrust',['thrust','bridge'],8,12],['Split squat',['split','reverse','chair'],8,10],['Hip abduction',['abduction','side'],12,20]],B:[['Squat',['press','goblet'],8,12],['Hip hinge',['rdl','pullthrough'],8,10],['Kickback',['kick','quad'],12,15]]};
+const lifts={
+ thrust:['Hip-thrust machine','Check the instructions on your machine. Set the pad or belt across your hips, plant both feet, and try the unloaded movement. Lift until your hips and torso line up, pause, then lower. Ask gym staff to show you the release if it’s unfamiliar.','https://www.youtube.com/watch?v=nLx1GDWZLvI','Nautilus setup · Lift Your Life Coaching'],
+ bridge:['Floor bridge','Lie on your back, bend your knees, and plant both feet. Lift your hips, pause, and lower. Start with bodyweight. To add load, hold a padded dumbbell securely across your hips.','https://www.youtube.com/watch?v=R1OXPHRqehw','Floor bridge · Cleveland Clinic'],
+ chair:['Chair stand','Use a sturdy chair against a wall. Sit near the front with both feet flat. Lean forward, stand tall, then sit down slowly. Use the armrests if you need a hand. Count each stand as one rep.','https://www.youtube.com/watch?v=Dg20pIkkzh8','Chair stand · NHS University Hospitals Plymouth'],
+ split:['Supported split squat','Hold a rack for balance. Step one foot back and lift the back heel. Bend both knees and lower your back knee toward the floor, then stand. Do both legs before resting.','https://www.youtube.com/watch?v=hQjJBVor0OA','Split squat · East Cheshire NHS Trust'],
+ reverse:['Supported reverse lunge','Hold a rack, step back, bend both knees, then push through your front foot to stand. Do both legs.','https://www.youtube.com/watch?v=gWuZrnxtKDs','Supported reverse lunge · VTS Performance'],
+ abduction:['Seated hip abduction','Set the pads against the outside of your thighs. Sit steady, press your knees apart, then bring them together slowly.','https://www.muscleandstrength.com/exercises/hip-abduction-machine.html','Hip abduction machine · Muscle & Strength'],
+ side:['Side-lying leg raise','Lie on your side with your top leg straight. Keep your hips stacked. Lift your top leg a short distance, lower slowly, then switch sides.','https://www.southtees.nhs.uk/resources/hip-abduction-in-side-lying/','Side-lying leg raise · South Tees Hospitals NHS'],
+ press:['Leg press','Use the machine diagram to adjust the seat and stops. Keep both feet flat. Bend your knees only as far as you can keep your hips against the pad. Then push through your feet.','https://www.muscleandstrength.com/exercises/45-degree-leg-press.html','45-degree sled with plates · Muscle & Strength'],
+ goblet:['Goblet squat','Hold one dumbbell close to your chest. Squat as far as you can comfortably control with your feet flat, then stand.','https://www.muscleandstrength.com/exercises/dumbbell-goblet-squat','Goblet squat · Muscle & Strength'],
+ rdl:['Dumbbell Romanian deadlift','Stand with weights against your thighs and knees slightly bent. Push your hips back, keeping the weights close. When you feel a stretch in the back of your thighs, push through your feet to stand back up.','https://www.youtube.com/watch?v=QFbZevA7dps','Dumbbell Romanian deadlift · NASM'],
+ pullthrough:['Cable pull-through','Attach a rope to a low pulley. Stand facing away from the machine, hold the rope between your legs, and take a step forward. Let your hips travel back, then stand tall with your arms long.','https://www.youtube.com/watch?v=fbF4_pn_0xc','Cable pull-through · Live Lean TV'],
+ kick:['Cable kickback','Use a low pulley and ankle strap. Hold the frame, keep your torso steady, and move one leg back a short distance. Lower slowly and switch legs.','https://www.youtube.com/watch?v=SqO-VUEak2M','Cable kickback · PureGym'],
+ quad:['Hands-and-knees hip extension','Start on hands and knees. Keep one knee bent and lift that thigh behind you while keeping your back steady. Lower, then switch legs.','https://www.youtube.com/watch?v=Ys4HUqiH5oQ','Hands-and-knees hip extension · InstaCare Physical Therapy']};
+let state={route:'plan',week:1,day:'A',records:{},reviews:{}};
+try{Object.assign(state,JSON.parse(localStorage.getItem(key)||'{}'))}catch{}
+// Existing logs retain the units recorded with each exercise.
+function hasSets(move){return move?.reps.some(rep=>Number(rep)>0)}
+function hasWork(r){return !!r && (r.note || Object.values(r.moves).some(v=>hasSets(v)||v.weight!==''))}
+const visits=Array.from({length:8},(_,i)=>['A','B'].map(day=>({week:i+1,day}))).flat();
+function nextVisit(){return visits.find(v=>{const r=state.records[v.week+v.day];return !r?.done&&!r?.skipped})}
+if(!state.unit){
+ const logged=visits.flatMap(v=>Object.values(state.records[v.week+v.day]?.moves||{})).filter(hasSets);
+ state.unit=logged.at(-1)?.unit||'lb';
+}
+const lastViewed=state.records[state.week+state.day];
+const pending=(!lastViewed?.done&&!lastViewed?.skipped&&hasWork(lastViewed))?{week:state.week,day:state.day}:nextVisit();
+if(pending) Object.assign(state,pending);
+else Object.assign(state,visits.at(-1));
+const save=()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch{$('warning').textContent='Saving is unavailable here. Download your log before closing.'}};
+const id=()=>state.week+state.day;
+function record(){return state.records[id()]??={moves:{},selected:{},done:false,note:''}}
+function line(r,k){return r.moves[k]??={weight:'',unit:state.unit,reps:['',''],steady:false}}
+const firstIncrease={
+ chair:'If you use the armrests, try a little less help. Standing smoothly with your hands free? Hold a light dumbbell at your chest.',
+ bridge:'Hold a light, padded dumbbell across your hips and steady it with both hands.',
+ split:'Keep one hand on the rack for balance and try a light dumbbell in your free hand.',
+ reverse:'Keep your support and try a light dumbbell in your free hand.',
+ side:'Try a light loop band above your knees. Keep your hips stacked.',
+ quad:'Pause briefly at the top of each rep and lower slowly. When that feels easy, try the cable kickback card at its lightest setting.',
+ press:'On a sled, add the smallest matching plate on each side. On a weight stack, move the pin one step heavier.',
+ thrust:'Follow the machine diagram to add its smallest available load.',
+ kick:'Try the lightest cable setting you can control with a steady torso.',
+ abduction:'Move the pin to the next setting you can control through the same range.',
+ rdl:'Try a pair of light dumbbells and keep them close to your legs.',
+ pullthrough:'Try the lightest setting on the cable stack that keeps the rope taut.',
+ goblet:'Hold a light dumbbell at your chest for your next squat.'
+};
+function target(v,min,max,when,optional,k){
+ const count=v?.reps.filter(rep=>Number(rep)>0).length||0;
+ if(count===1){
+  if(when==='Today')return 'You logged one set last time. Start with that rep count if it felt controlled. Log each set you finish today.';
+  return optional?'One set is enough for this optional lift.':'Log your next set when you finish it. If you’re done for today, choose Finish early.';
+ }
+ if(!v||v.weight==='')return when==='Today'?'Choose a starting weight today and log it with your reps.':'Enter the weight you lifted. If you used only your body weight or added no weight to the machine, enter 0.';
+ if(count<2)return 'Log each set as you finish it.';
+ const repeat=Number(v.weight)===0
+  ? (k==='chair'?'Use the same chair':'Use the same setup for your '+lifts[k][0].toLowerCase())+' '+when.toLowerCase()+'.'
+  : when+', use '+v.weight+' '+v.unit+' again.';
+ if(!v.steady||Math.min(...v.reps.map(Number))<min)return repeat+' If you struggle to control the movement, go lighter or choose an easier version.';
+ if(Number(v.weight)===0&&v.reps.every(x=>Number(x)>=max))return when+'. '+firstIncrease[k]+' Start with '+min+' reps per set.';
+ if(v.reps.every(x=>Number(x)>=max))return when+', try the smallest weight increase. Aim for '+min+' reps in each set.';
+ const reps=v.reps.map(Number), next=reps.indexOf(Math.min(...reps));reps[next]++;
+ return repeat+' Try '+reps[0]+' reps in your first set and '+reps[1]+' in your second.';
+}
+function prior(k){for(let w=Number(state.week)-1;w>=1;w--){const v=state.records[w+state.day]?.moves[k];if(v?.reps.some(Boolean))return {w,v}}}
+for(let n=1;n<=8;n++)$('week').add(new Option('Week '+n,n));
+function render(){
+ const r=record(),plan=plans[state.day];$('route').value=state.route;$('week').value=state.week;$('day').value=state.day;
+ $('routeTip').textContent=state.route==='integrate'?'Use Day A on one of your usual leg days and Day B on the other. Already doing leg press on Thursday? Open Day B and log those sets here. To try the dumbbell Romanian deadlift, swap it for your usual hip hinge that day. If you use just one card, choose Finish early after logging your sets.':'Start with Day A, then do Day B on your next leg day. If you miss a visit, pick up with the workout you missed.';
+ $('title').textContent='Week '+state.week+' · Day '+state.day+(r.skipped?' · Skipped':hasWork(r)&&!r.done?' · Resume workout':'');
+ $('block').textContent='Repeat Days A and B each week. Once you’ve logged a lift, its card shows what to try on your next visit.';
+ for(const option of $('day').options){
+  const d=option.value;
+  const names=plans[d].slice(0,2).map((slot,i)=>{
+   for(let w=state.week;w>=1;w--){const selected=state.records[w+d]?.selected[i];if(selected)return lifts[selected][0]}
+   return lifts[slot[1][0]][0];
+  });
+  if(d==='B'&&state.day===d)$('block').textContent='Start '+(names[0]==='Leg press'?'at the leg press':'with a dumbbell for your goblet squat')+', then move to '+(names[1]==='Cable pull-through'?'the low pulley for cable pull-throughs.':'the dumbbells for Romanian deadlifts.');
+  option.textContent='Day '+d+' · '+names.join(' + ');
+ }
+ $('cards').replaceChildren();
+ plan.forEach(([name,choices,min,max],i)=>{
+ let k=r.selected[i];if(!k){for(let w=Number(state.week)-1;w>=1&&!k;w--)k=state.records[w+state.day]?.selected[i];r.selected[i]=k||choices[0];k=r.selected[i]}
+ const v=line(r,k),ex=lifts[k],prev=prior(k),card=document.createElement('article');
+ if(!hasSets(v)&&v.weight==='')v.unit=state.unit;
+ card.innerHTML='<small>'+(i===2?'Optional · 1–2 sets':'Main lift · 2 sets')+'</small><h3>'+ex[0]+'</h3><label>Choose your exercise<select></select></label><p class="swap"></p><p class="cue"></p><p class="demo"></p><p class="last"></p><fieldset><legend>Log your sets</legend><div class="row"><label>Weight<input type="number" min="0" step="any"></label><label>Unit<select><option>lb</option><option>kg</option></select></label></div><div class="row"><label>Set 1 reps<input type="number" min="1" step="1"></label><label>Set 2 reps<input type="number" min="1" step="1"></label></div></fieldset><label class="check"><input type="checkbox">My reps felt controlled</label><p class="tip"></p>';
+ const [sel,unit]=card.querySelectorAll('select');for(const choice of choices)sel.add(new Option(lifts[choice][0],choice));sel.value=k;sel.onchange=()=>{r.selected[i]=sel.value;r.done=false;r.shortened=false;render();save()};
+ const swaps={thrust:'Machine taken? Choose Floor bridge.',split:'Balance getting in the way? Choose Chair stand.',reverse:'Want both feet on the ground? Choose Chair stand.',abduction:'Machine taken? Choose Side-lying leg raise.',press:'Leg press taken? Choose Goblet squat.',rdl:'Dumbbells in use? Choose Cable pull-through.',pullthrough:'Cable station taken? Choose Dumbbell Romanian deadlift.',kick:'Cable station taken? Choose Hands-and-knees hip extension.'};
+ card.querySelector('.swap').textContent=swaps[k]||'';
+ card.querySelector('legend').textContent='Log your sets · '+ex[0];
+ const unilateral=['split','reverse','side','kick','quad'].includes(k);
+ card.querySelector('.cue').textContent=min+'–'+max+' reps'+(unilateral?' per side. If you do 8 on one side and 7 on the other, enter 7. ':'. ')+ex[1];
+ if(k==='press'){
+  const link=document.createElement('a');link.href='https://www.youtube.com/watch?v=QwBvFgAVOTo';link.target='_blank';link.rel='noopener';link.textContent='Seated leg press with a weight stack · Kenosha YMCA';
+  card.querySelector('.demo').append(link,document.createElement('br'));
+ }
+ if(ex[2]){const a=document.createElement('a');a.href=ex[2];a.target='_blank';a.rel='noopener';a.textContent=ex[3];card.querySelector('.demo').append(a)}
+ card.querySelector('.last').textContent=prev?'Week '+prev.w+' · '+(prev.v.weight===''?'Weight wasn’t logged':prev.v.weight+' '+prev.v.unit)+' · '+prev.v.reps.map((rep,i)=>rep?'set '+(i+1)+': '+rep+' reps':'').filter(Boolean).join(', ')+'. '+target(prev.v,min,max,'Today',i===2,k):'';
+ if(prev&&prev.v.weight!==''&&Number(prev.v.weight)>0&&prev.v.unit!==v.unit)card.querySelector('.last').textContent+=' Your log is set to '+v.unit+'. To repeat that weight as written, select '+prev.v.unit+' before entering it.';
+ const [weight,one,two,check]=card.querySelectorAll('input');unit.value=v.unit;weight.value=v.weight;one.value=v.reps[0];two.value=v.reps[1];check.checked=v.steady;
+ const update=()=>{card.querySelector('.tip').textContent=v.reps.some(Boolean)?target(v,min,max,'Next time',i===2,k):''};
+ for(const [field,label] of [[weight,'Weight'],[unit,'Unit'],[one,'Set 1 reps'],[two,'Set 2 reps'],[check,'My reps felt controlled'],[sel,'Choose your exercise']])field.setAttribute('aria-label',ex[0]+': '+label);
+ const edit=()=>{if([weight,one,two].some(x=>!x.validity.valid)){[weight,one,two].find(x=>!x.validity.valid).reportValidity();return}Object.assign(v,{weight:weight.value,unit:unit.value,reps:[one.value,two.value],steady:check.checked});r.done=false;r.shortened=false;$('status').textContent='';update();status();review();save()};
+ for(const input of [weight,one,two])input.oninput=edit;check.onchange=edit;unit.onchange=()=>{state.unit=unit.value;edit();render();save()};update();$('cards').append(card);
+ });
+ for(const field of $('cards').querySelectorAll('input,select'))field.disabled=!!r.skipped;
+ $('note').readOnly=!!r.skipped;
+ $('note').value=r.note;$('status').textContent='';status();review();
+}
+function visitLabel(v){return 'Week '+v.week+' · Day '+v.day}
+function go(v){Object.assign(state,v);render();save();$('title').scrollIntoView();$('title').focus()}
+function status(){
+ const r=record(),upcoming=nextVisit();
+ $('skip').textContent=r.skipped?'Undo skip':'Skip this visit';
+ $('skip').hidden=!!r.done;
+ $('finish').hidden=!!r.skipped;
+ $('finish').textContent=r.done?'Reopen workout':'Finish workout';
+ $('short').hidden=r.skipped||r.done||!Object.values(r.moves).some(hasSets)||mainFinished(r);
+ $('finishHelp').hidden=$('short').hidden||$('skip').hidden;
+ $('next').hidden=!r.done&&!r.skipped;
+ const final=state.week===8&&state.day==='B';
+ $('next').textContent=(final||!upcoming)?'Open my final check-in':'Next workout · '+visitLabel(upcoming);
+ $('next').onclick=()=>{if(final||!upcoming){go(visits.at(-1));$('reviewTitle').scrollIntoView();$('reviewTitle').focus()}else go(upcoming)};
+ $('resume').hidden=!upcoming||(state.week===upcoming.week&&state.day===upcoming.day)||r.done||r.skipped;
+ if(upcoming){$('resume').textContent=(hasWork(state.records[upcoming.week+upcoming.day])?'Resume ':'Open next workout · ')+visitLabel(upcoming);$('resume').onclick=()=>go(upcoming)}
+ $('entries').textContent=logText(); $('manual').hidden=true;
+}
+function mainFinished(r){return [0,1].every(i=>{const v=r.moves[r.selected[i]];return v && v.weight!=='' && v.reps.every(x=>Number(x)>0)})}
+function review(){
+ const w=Number(state.week);$('review').hidden=![4,8].includes(w);if($('review').hidden)return;
+ const start=w-3;let count=0,shortened=0,skipped=0;for(let n=start;n<=w;n++)for(const d of ['A','B']){const r=state.records[n+d];if(r?.skipped)skipped++;else if(r?.shortened&&r.done)shortened++;else if(r?.done)count++}
+ $('reviewTitle').textContent='Week '+w+' check-in';$('reviewStats').textContent='Weeks '+start+'–'+w+' · Full: '+count+' · Shortened: '+shortened+' · Skipped: '+skipped+' · Remaining: '+(8-count-shortened-skipped);
+ $('reviewLabel').textContent=w===4?'Which exercises worked well at your gym? If a machine was always busy, what will you use in Week 5?':'Look back at Week 1. Where can you do more reps or use more weight? Which lift would you keep for the next eight weeks?';$('reviewNote').value=state.reviews[w]||'';
+}
+function finish(shortened){
+ const r=record();
+ if(!r.done&&!shortened&&!mainFinished(r)){
+  $('status').textContent='Log a weight and both sets for each main lift to finish the full workout. If you’re done for today, choose Finish early after logging a set.';return;
+ }
+ r.done=!r.done;r.shortened=r.done&&shortened;save();status();review();
+ $('status').textContent=r.done?(shortened?'Shortened workout saved.':'Workout complete.'):'Workout reopened.';
+}
+$('skip').onclick=()=>{const r=record();r.skipped=!r.skipped;render();save();$('status').textContent=r.skipped?'Visit skipped. Your entries are saved.':'Visit reopened.';$('skip').focus()};
+$('finish').onclick=()=>finish(false);
+$('short').onclick=()=>finish(true);
+for(const field of ['week','day','route'])$(field).onchange=()=>{state[field]=field==='week'?Number($(field).value):$(field).value;render();save()};
+function logText(){
+ const rows=['Build Your Glutes · Workout log'];
+ for(const visit of visits){
+  const r=state.records[visit.week+visit.day];
+  if(!r||(!hasWork(r)&&!r.done&&!r.skipped))continue;
+  rows.push('',visitLabel(visit)+' · '+(r.skipped?'Skipped':r.done?(r.shortened?'Shortened':'Complete'):'In progress'));
+  for(const [k,v] of Object.entries(r.moves)){
+   if(!hasSets(v)&&v.weight==='')continue;
+   rows.push(lifts[k][0]+' · '+(v.weight===''?'Weight wasn’t logged':v.weight+' '+v.unit)+' · '+v.reps.map((rep,i)=>'Set '+(i+1)+': '+(rep||'—')).join(' · '));
+  }
+  if(r.note)rows.push(r.note);
+ }
+ for(const [week,note] of Object.entries(state.reviews))if(note)rows.push('','Week '+week+' check-in',note);
+ return rows.length===1?rows[0]+'\nYour sets will appear here.':rows.join('\n');
+}
+$('note').oninput=()=>{record().note=$('note').value;status();save()};
+$('reviewNote').oninput=()=>{state.reviews[state.week]=$('reviewNote').value;status();save()};
+$('copy').onclick=async()=>{
+ const value=logText();
+ try{await navigator.clipboard.writeText(value);$('warning').textContent='Log copied.'}
+ catch{$('manual').hidden=false;const field=$('manual').querySelector('textarea');field.value=value;field.focus();field.select();$('warning').textContent='Use your device’s Copy command.'}
+};
+$('download').onclick=()=>{
+ const url=URL.createObjectURL(new Blob([logText()],{type:'text/plain'})),link=document.createElement('a');
+ link.href=url;link.download='Build-Your-Glutes-log.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+$('basics').open=state.basicsOpen??(!Object.values(state.records).some(hasWork));
+$('basics').ontoggle=()=>{state.basicsOpen=$('basics').open;save()};
+render();
+</script></body></html>
