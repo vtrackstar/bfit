@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const base = 'https://vtrackstar.github.io/bfit/';
-const paths = ['index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html','guides/50-plus/index.html','guides/50-plus/activities/index.html','guides/50-plus/plan/index.html','guides/50-plus/progress/index.html','coaching/index.html','resources/workout-record.html'];
+const paths = ['index.html','guides/weekend-warrior/index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html','guides/50-plus/index.html','guides/50-plus/activities/index.html','guides/50-plus/plan/index.html','guides/50-plus/progress/index.html','coaching/index.html','resources/workout-record.html'];
 const pages = new Map(paths.map(path => [path, fs.readFileSync(path, 'utf8')]));
 const errors = [];
 let scriptsChecked = 0, jsonChecked = 0, linksChecked = 0, anchorsChecked = 0;
