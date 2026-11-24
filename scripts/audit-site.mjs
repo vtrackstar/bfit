@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const base = 'https://vtrackstar.github.io/bfit/';
-const paths = ['index.html','guides/weekend-warrior/index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html','guides/50-plus/index.html','guides/50-plus/activities/index.html','guides/50-plus/plan/index.html','guides/50-plus/progress/index.html','coaching/index.html','resources/workout-record.html'];
+const paths = ['index.html','milestones/first-push-up/index.html','guides/weekend-warrior/index.html','guides/foundation/index.html','guides/athleticism/index.html','guides/gamer-fit/index.html','guides/run-strong/index.html','guides/50-plus/index.html','guides/50-plus/activities/index.html','guides/50-plus/plan/index.html','guides/50-plus/progress/index.html','coaching/index.html','resources/workout-record.html'];
 const pages = new Map(paths.map(path => [path, fs.readFileSync(path, 'utf8')]));
 const errors = [];
 let scriptsChecked = 0, jsonChecked = 0, linksChecked = 0, anchorsChecked = 0;
@@ -25,7 +25,7 @@ for (const [path, html] of pages) {
   if (path === 'coaching/index.html') {
     if (!/getting ready to welcome more coaching clients/i.test(html)) add(path, 'coaching intake pause notice missing');
     if (/href=["']https:\/\/forms\.gle\//i.test(html)) add(path, 'paused intake should not send visitors to the closed form');
-  } else if (!path.startsWith('resources/')) for (const required of [
+  } else if (!path.startsWith('resources/') && !path.startsWith('milestones/')) for (const required of [
     'https://www.instagram.com/_trainwithbfit/',
     'https://www.tiktok.com/@_trainwithbfit',
     'https://www.twitch.tv/gamewithbfit',
