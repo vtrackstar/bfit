@@ -3,9 +3,9 @@
   "id": "first-push-up",
   "title": "Your First Push-Up",
   "kind": "strength-skill",
-  "state": "planning",
-  "ownerDecisionStatus": "programming-to-be-designed",
-  "successfulCompletionCriteria": null,
+  "state": "review",
+  "ownerDecisionStatus": "public-release-authorized-with-outstanding-verification",
+  "successfulCompletionCriteria": "One floor push-up with knees off the floor, chest lightly touching the floor, then straight arms with chest and hips moving together.",
   "delivery": {
     "format": "interactive-guide",
     "primaryMode": "adaptive-milestones",
@@ -83,11 +83,9 @@
     }
   },
   "unresolved": [
-    "Exact starting assessments and variations",
-    "Programming dose and frequency by schedule",
-    "Requirements for each progression milestone",
-    "Safety and substitution choices",
-    "Post-success progression"
+    "Latest phone layout",
+    "Real iPhone Safari download and restore",
+    "YouTube playback"
   ],
-  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+  "notes": "Public release authorized by Bryan with remaining checks accepted. See RELEASE_CHECKS.md. Historical planning fields are retained; index.html contains the current program."
 }
