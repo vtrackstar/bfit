@@ -139,3 +139,30 @@ All 21 Node test groups passed. Added handler-level checks use simulated form da
 The attempted browser continuation was blocked by the browser security/URL policy. No bypass was attempted. The earlier Chromium starting-flow result remains the only confirmed live-browser walkthrough. Download clicks, import confirmation, timer sound, full keyboard behavior, mobile rendering, and iPhone Safari remain unverified. Do not mark their release gates passed.
 
 Next: restore an authorized preview route and complete the browser checklist; select and verify demonstration videos; obtain novice/coaching review; then decide on release. No publication in this audit.
+
+## Approved follow-up changes: November 25, 2026
+
+This section supersedes conflicting earlier draft details.
+
+- Onboarding now asks equipment, assistance description, and pain status. Weekly frequency and existing-training questions were removed. Existing-training integration is explained beside the workout.
+- Equipment choices distinguish a bar without assistance from no suitable pulling equipment. The first gets guidance on arranging stable foot support; the second gets a clear equipment requirement and preparation route. Neither promises equipment-free pull-up achievement.
+- One existing lowering set can use a stable-platform-to-top technique. Start feet-supported; reduce leg help gradually; only lift the feet when descent and exit can be controlled. Log usual setup, supported, controlled without help, or needed more help. No extra sets are added.
+- Coaching readiness checkpoint: comfortable still hanging plus roughly three seconds lowering without help through the full range. It is not a validated predictor or mandatory prerequisite for documenting an already achieved repetition.
+- A first unassisted attempt is one replacement working set. The 'I tried one; continue with assistance' control assigns just the remaining assisted set and skips additional lowerings. No repeat all-out attempts.
+- Machine reductions use the smallest available step. Feet and bands use a repeatable small change, not fabricated pound equivalents.
+- A harder-check attempt can return to the previous accepted assistance and targets. One check consumes one of today's two working sets; two or more finish today's practice. Recovery work does not advance normal targets. Pain removes this shortcut and requires the pause pathway.
+- Observable full-range, quiet-leg, controlled-descent cues lead effort choices. About two remaining repetitions stays as a supporting workout cue.
+- Eight-session reviews can be acknowledged, with dated review history retained. The panel no longer reopens on every subsequent session after eight.
+- Training logs have a selectable-text fallback. Timer uses role=timer and aria-live=off; completion uses the existing status announcement.
+- Certificate now states the non-expiring technique-review voucher, paused intake, Hub location, and one-review-per-person terms.
+- Added page description, Open Graph text, Twitter summary metadata, and an inline favicon. Draft banner and noindex deliberately remain until publication. A verified sharing image and final canonical URL remain release tasks.
+- Same-page setup links rerender correctly after the equipment off-ramp.
+
+Validation: 27 automated test groups passed, including rollback after one/two failed checks, reduced recovery volume, pain disabling rollback, and lowering records in exports. Browser security restrictions from the prior audit remain unresolved; these results are not phone, screen-reader, or download-click verification.
+
+Demo research candidates (not approved or embedded):
+- https://www.youtube.com/watch?v=JcGwiiGyYFA — assisted-machine tutorial discovered by title; playback and cues not visually verified.
+- https://www.puregym.com/exercises/back/pull-up/assisted-pull-ups/ — primary gym instruction page for machine/band route, candidate demo source.
+- https://citizenathletics.com/blog/how-to-get-your-first-pull-up/ — candidate foot-supported/lowering explanation.
+
+Before release: visually verify demos and attribution; complete authorized browser/phone checks, certificate appearance and download, copy-log fallback, restore confirmation, keyboard and screen-reader behavior; review new bridge/rollback flows with a novice; remove draft/noindex and set production metadata only at publication. Keep the voucher paused until Bryan provides intake.
