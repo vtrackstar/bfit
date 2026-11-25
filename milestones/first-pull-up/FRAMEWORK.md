@@ -35,7 +35,7 @@ These numerical rules are coaching choices, not thresholds validated in a beginn
 | Warm-up | A few minutes easy movement, gentle arm movement, 1–2 generously assisted reps, then rest |
 | Check | Up to 3 assisted repetitions; no preselected effort or rep result |
 | Accept | 3 controlled reps, easy or about 2 more available |
-| Too hard or position changes | More assistance, rest, retry; at most 3 attempts in the current check sequence |
+| Too hard or position changes | More assistance, rest, retry; at most 3 attempts per local calendar day, retained across reloads |
 | Accepted check | Counts as set 1 that day; the remaining work is set 2 and the small lowering dose |
 | Main work | 2 sets, initially 3/3 reps, about 2 minutes rest or longer as needed |
 | Holds/lowerings | 2 sets of 1 assisted lowering, ~1 second top hold, ~3 second descent, ~2 minutes rest |
@@ -89,7 +89,7 @@ Research supports ingredients, not our exact formula, universal timelines, or su
 ## Validation performed
 
 - JavaScript parsed and executed in a Node VM with browser globals stubbed.
-- 12 automated test groups passed: valid record round-trip; all 12 equipment × frequency × existing-training combinations; progression; easy route; position-repeat behavior; hard/incomplete holds; yes/unsure pause; unassisted progression; invalid backup rejection; curated log; unfinished-entry preservation; no unverified embedded videos.
+- 21 automated test groups passed: valid record round-trip; all 12 equipment × frequency × existing-training combinations; progression; easy route; position-repeat behavior; hard/incomplete holds; yes/unsure pause; unassisted progression; invalid backup rejection; curated log; unfinished-entry preservation; no unverified embedded videos.
 - Actual Chromium walkthrough before the environment interruption: Start → machine setup (70 lb assistance) → three controlled check reps → correct 3/3 workout with check counted as set 1. No guide-code error observed in that path. Browser-extension errors were unrelated.
 - Source language audit: plain words for effort, lowerings and assistance; first-person coach intro; research limits disclosed; no promise of a deadline; certificate says self-recorded; no live intake claim.
 
@@ -105,4 +105,37 @@ These checks do not establish full accessibility, novice usability, or clinical 
 6. Review long-break and post-success doses with feedback; audit all loaded plans after any programming change.
 7. Refresh research links before release, update manifest evidence honestly, run repository checks, then approve publication and Hub placement under Your First… .
 
-Known draft limitations: checking attempts is limited per sequence rather than enforced per calendar day; foot assistance is not objectively quantified; the app cannot verify a repetition or a voucher holder's identity; no actual intake or demo videos yet. Do not call this launch-ready.
+Known draft limitations: foot assistance is not objectively quantified; the app cannot verify a repetition or a voucher holder's identity; no actual intake or demo videos yet. Do not call this launch-ready.
+
+
+## Latest audit: November 24, 2026
+
+### Fixes implemented and checked
+
+- Returning from a pain pause requires a new starting check before a saved workout can be resumed.
+- Three starting attempts are counted from saved timestamps for the current local day. Restarting setup or reloading does not grant extra attempts.
+- Accepted checks clear the pending attempt, preventing duplicate submissions through Back navigation.
+- Pain/uncertainty on a starting check is retained in the record and human-readable export.
+- A hard, incomplete, or position-change session clears an older suggestion to reduce assistance.
+- Restored milestone records require an actual calendar date up to today; invalid dates and missing milestone dates are rejected.
+- The last visited guide page is retained for reopening without a URL hash.
+- Starting unassisted practice again does not reset an existing unassisted progression.
+- A return-after-break session archives unfinished entries before reducing targets.
+- The workout does not repeat warm-up instructions after an accepted same-day starting check.
+
+### Language and tone pass
+
+- Changed “Your practice paid off” to “Save your certificate and take a moment to enjoy what you accomplished.” This also fits someone who arrived already able to perform the movement.
+- Replaced the mixed assisted/unassisted effort paragraph with instructions specific to the selected practice mode.
+- Simplified existing-training advice to “Count these sets toward your usual pulling work.”
+- Replaced a vague guarantee disclaimer beside the first attempt with the action cue “Keep the attempt smooth and stop if you start swinging or straining.”
+- Pain text uses neutral “Stop here and review the guidance” wording for both Yes and Unsure.
+- Retained explicit research limitations in the research section, rather than scattering qualifiers through the workout.
+
+### Verification limits
+
+All 21 Node test groups passed. Added handler-level checks use simulated form data and browser stubs; these are not real-browser interaction tests. They exercise accepted checks, duplicate-check protection, pause recovery, recorded pain, the daily cap, and equipment-change logging.
+
+The attempted browser continuation was blocked by the browser security/URL policy. No bypass was attempted. The earlier Chromium starting-flow result remains the only confirmed live-browser walkthrough. Download clicks, import confirmation, timer sound, full keyboard behavior, mobile rendering, and iPhone Safari remain unverified. Do not mark their release gates passed.
+
+Next: restore an authorized preview route and complete the browser checklist; select and verify demonstration videos; obtain novice/coaching review; then decide on release. No publication in this audit.
