@@ -166,3 +166,19 @@ Demo research candidates (not approved or embedded):
 - https://citizenathletics.com/blog/how-to-get-your-first-pull-up/ — candidate foot-supported/lowering explanation.
 
 Before release: visually verify demos and attribution; complete authorized browser/phone checks, certificate appearance and download, copy-log fallback, restore confirmation, keyboard and screen-reader behavior; review new bridge/rollback flows with a novice; remove draft/noindex and set production metadata only at publication. Keep the voucher paused until Bryan provides intake.
+
+## November 25 browser verification
+
+Tested latest draft in real Chromium through visible UI: saved 3/3 easy session advances to 4/3; reload preserves record; log and JSON backup downloads complete; downloaded backup restores through confirmation; a failed 60 lb check restores the prior 70 lb setting and assigns only the remaining set without extra lowerings; milestone form reaches celebration and named certificate download completes. These were disposable test entries. Certificate visual appearance and PDF contents were not independently inspected in this pass.
+
+Browser inspection found a stale harder-assistance offer after rollback. Fixed by clearing the suggestion on rollback and suppressing the card during same-day recovery. Also fixed singular session grammar and repeated copy. All 27 engine test groups pass after these edits. Browser test harness locator detached after restore because the page re-rendered; fresh observation confirmed restoration. This was not an application failure.
+
+Timer visibly counted down and survived route changes. End sound, keyboard-only journey, narrow-width layout, real iPhone Safari, and iOS downloads remain unverified. Native desktop inspection failed with an AT-SPI provider unavailable error. Do not convert these items to passed based on code inspection.
+
+### Demo candidates, not approved embeds
+
+- Machine: PureGym, “How To Use The Assisted Pull Up Machine”: https://www.youtube.com/watch?v=wFj808u2HWU . Linked from its own exercise page https://www.puregym.com/exercises/back/pull-up/assisted-pull-ups/ . Creator and title confirmed on YouTube. Direct embed returned Error 153; watch page loaded but video remained buffering at 0:00. Playback and full cue review NOT verified.
+- Bands: PureGym: https://www.youtube-nocookie.com/embed/JpsiZGnlQ_4 . Linked from the same official exercise page. Video playback NOT checked.
+- General pull-up progression: Citizen Athletics: https://www.youtube.com/embed/Ml-Mihv1nQ4 . Linked from https://citizenathletics.com/blog/how-to-get-your-first-pull-up/ . Candidate for feet assistance and lowering, but exact sections and alignment NOT visually checked.
+
+Keep guide diagram and written instructions. Do not describe candidate videos as approved or insert them as verified demonstrations. Finish dead-hang, foot-assisted and platform-lowering video coverage, plus playback checks, before release review. Draft remains unpublished in PR 19.
