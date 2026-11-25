@@ -3,26 +3,25 @@
   "id": "first-pull-up",
   "title": "Your First Pull-Up",
   "kind": "strength-skill",
-  "state": "planning",
-  "ownerDecisionStatus": "programming-to-be-designed",
-  "successfulCompletionCriteria": null,
+  "state": "published",
+  "ownerDecisionStatus": "publication-authorized",
+  "successfulCompletionCriteria": "One controlled overhand dead-hang pull-up without assistance",
   "delivery": {
     "format": "interactive-guide",
     "primaryMode": "adaptive-milestones",
     "standaloneWorkoutShortcut": true,
-    "cycleWeeks": 4,
+    "cycleWeeks": null,
     "hardCompletionDeadline": false,
     "localBrowserSave": true,
     "jsonExport": true,
     "jsonImport": true,
-    "portableCode": "proposed-not-final"
+    "portableCode": "json-backup",
+    "reviewEveryCompletedSessions": 8
   },
   "requiredIntakeDomains": [
-    "startingAbility",
     "equipment",
-    "trainingDays",
-    "existingTraining",
-    "limitations"
+    "assistanceDescription",
+    "painStatus"
   ],
   "reviewOutcomes": [
     "progress",
@@ -38,28 +37,28 @@
   ],
   "qualityGates": {
     "programming": {
-      "status": "pending",
-      "evidence": ""
+      "status": "reviewed",
+      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
     },
     "evidence": {
-      "status": "pending",
-      "evidence": ""
+      "status": "reviewed",
+      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
     },
     "exerciseLibrary": {
       "status": "pending",
       "evidence": ""
     },
     "loadTotals": {
-      "status": "pending",
-      "evidence": ""
+      "status": "reviewed",
+      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
     },
     "progression": {
-      "status": "pending",
-      "evidence": ""
+      "status": "reviewed",
+      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
     },
     "editorial": {
-      "status": "pending",
-      "evidence": ""
+      "status": "reviewed",
+      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
     },
     "accessibility": {
       "status": "pending",
@@ -70,24 +69,23 @@
       "evidence": ""
     },
     "saveAndRestore": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partially-tested",
+      "evidence": "Chromium verified previously; iPhone pending."
     },
     "beginnerTest": {
       "status": "pending",
       "evidence": ""
     },
     "releaseLinks": {
-      "status": "pending",
-      "evidence": ""
+      "status": "published",
+      "evidence": "Public GitHub Pages and Hub card."
     }
   },
   "unresolved": [
-    "Equipment and safe negative entry options",
-    "Exact starting assessments and grip variations",
-    "Programming dose and frequency by schedule",
-    "Requirements for each progression milestone",
-    "Post-success progression"
+    "Videos",
+    "Phone and accessibility checks",
+    "Latest browser regression tests",
+    "Certificate visual retest"
   ],
-  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+  "notes": "Public initial release. See FRAMEWORK.md for current rules and verification limits. 31 test groups available; 29 passed before latest edits. Latest suite execution pending."
 }
