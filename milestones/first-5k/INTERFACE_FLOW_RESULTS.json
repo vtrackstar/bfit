@@ -136,8 +136,40 @@
     {
       "name": "Completion stops regular workout recommendations",
       "pass": true
+    },
+    {
+      "name": "Unstarted workout can be selected",
+      "pass": true
+    },
+    {
+      "name": "Zero-time finish returns without log",
+      "pass": true
+    },
+    {
+      "name": "Explicit cancellation returns to training",
+      "pass": true
+    },
+    {
+      "name": "Long absence exposes reassessment",
+      "pass": true
+    },
+    {
+      "name": "Reentry requires readiness confirmation",
+      "pass": true
+    },
+    {
+      "name": "Reentry preserves history and starts conservatively",
+      "pass": true
+    },
+    {
+      "name": "Reentry survives reopening",
+      "pass": true
+    },
+    {
+      "name": "Reentry prescribes introductory dose",
+      "pass": true
     }
   ],
-  "passed": 34,
-  "total": 34
+  "passed": 42,
+  "total": 42
 }
