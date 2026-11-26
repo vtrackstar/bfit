@@ -141,7 +141,7 @@ const createEngine = function createEngine(){
     // A regression is not a dead end: restore the closest supported library
     // dose; if none, increment running by a small amount in its current rhythm.
     const n=P.filter(x=>x.runSec<=p.runSec+60&&x.longestBout<=p.longestBout+30&&x.mainSec<=p.mainSec+120&&x.runSec>=p.runSec&&x.longestBout>=p.longestBout).sort((a,b)=>a.runSec-b.runSec||a.longestBout-b.longestBout)[0];
-    return n??p;
+    return n??(strategy(p)==="continuous"&&p.runSec<1800?continuous("bridge-cont-"+Math.min(1800,p.runSec+30),Math.min(1800,p.runSec+30)):p);
   }
   function rhythm(id,run,rest,main,extras={}){
     if(!pos(run)||!pos(rest)||!pos(main))throw Error("Invalid rhythm");
@@ -312,16 +312,43 @@ const createEngine = function createEngine(){
       if(!capExposures)return result("repeat","Need another comparable successful exposure.");
     }
     const c=focus==="long"?longCandidate(p,h,day,state.goal,state.practice):{workout:nextPractice(p,h,day,accelerate),reason:accelerate?"Easy recovered training plus recent running exposure supports a modest reassessment.":"Two successful exposures support progression.",flag:"unknown"};
-    const n=c.workout;
-    if(n.id===p.id)return result("repeat",c.reason);
-    const next={...state,[focus]:n},proposed=weekly(next,hardLegDays);
+    let n=c.workout,reason=c.reason;
+    if(n.id===p.id)return result("repeat",c.reason,{paceDeferred});
     const actualRun=total(r,"runSec"),actualTotal=total(r,"totalSec"),runCap=actualRun===0?180:clamp(Math.ceil(actualRun*.15/30)*30,60,180);
-    if(proposed.runSec>actualRun+runCap||proposed.totalSec>actualTotal+300||n.totalSec>p.totalSec+300)return result("repeat","Candidate exceeds the draft absolute load increment; use an intermediate prescription.");
     const b=bounds(h,day);
-    const observed=last&&pos(last.runningDistanceM)&&p.runSec>0?last.runningDistanceM*n.runSec/p.runSec:null;
-    const flag=c.flag==="review"||distanceCaution(observed,b.runningDistanceM)==="review"?"review":c.flag;
+    const reference=last&&pos(last.runningDistanceM)&&p.runSec>0?last:null;
+    const flagFor=x=>distanceCaution(reference?reference.runningDistanceM*x.runSec/p.runSec:null,b.runningDistanceM);
+    const fits=x=>{
+      const plan=weekly({...state,[focus]:x},hardLegDays);
+      return plan.runSec<=actualRun+runCap&&plan.totalSec<=actualTotal+300&&x.totalSec<=p.totalSec+300;
+    };
+    const meaningful=x=>x.runSec>p.runSec||x.longestBout>p.longestBout||x.mainSec>p.mainSec||x.distanceGoal!==null&&x.distanceGoal>(p.distanceGoal??0);
+    if(!fits(n)||(!approvedCaution&&(c.flag==="review"||flagFor(n)==="review"))){
+      const options=[];
+      // Smaller continuous increases retain the current running strategy.
+      if(strategy(p)==="continuous"&&strategy(n)==="continuous"){
+        for(let s=Math.min(n.runSec,p.runSec+180);s>p.runSec;s-=15)options.push(continuous("bridge-cont-"+s,s));
+      }else if(p.runSec&&p.pattern){
+        // Prefer a same-volume or small-volume bridge toward the longer bout.
+        if(n.longestBout>p.longestBout){
+          for(let bout=Math.min(n.longestBout,p.longestBout+30);bout>p.longestBout;bout-=5){
+            const count=Math.max(1,Math.floor(p.runSec/bout));
+            options.push(repeat("bridge-bout-"+count+"-"+bout+"-"+p.pattern.walk,count,bout,p.pattern.walk,true));
+          }
+        }
+        for(let s=Math.min(p.mainSec+180,Math.max(n.mainSec,p.mainSec+15));s>p.mainSec;s-=15)options.push(rhythm("bridge-time-"+p.pattern.run+"-"+p.pattern.walk+"-"+s,p.pattern.run,p.pattern.walk,s));
+        if(focus==="long")options.push(workout("bridge-walk-"+(p.mainSec+60),p.runs,p.rests,p.tail+60,{pattern:p.pattern}));
+      }else if(!p.runSec&&!n.runSec){
+        for(let s=Math.min(n.mainSec,p.mainSec+300);s>p.mainSec;s-=30)options.push(walk("bridge-walk-"+s,s));
+      }
+      const smaller=options.find(x=>meaningful(x)&&fits(x)&&(approvedCaution||flagFor(x)!=="review")&&x.fasterSec===0);
+      if(!smaller)return result("repeat","Keep the current dose; no smaller suitable progression fits recent work and recovery.",{paceDeferred});
+      n=smaller;reason="Use a smaller intermediate workout that fits recent training.";
+    }
+    const next={...state,[focus]:n};
+    const flag=flagFor(n)==="review"||n===c.workout&&c.flag==="review"?"review":flagFor(n);
     if(flag==="review"&&!approvedCaution)return result("review-distance","Running-distance change needs review; a percentage is not a safety guarantee.",{candidate:n,flag});
-    return result("progress",c.reason,{state:next,lever:focus,flag,paceDeferred});
+    return result("progress",reason,{state:next,lever:focus,flag,paceDeferred});
   }
   return {workout,repeat,continuous,walk,rhythm,library,byId,check,validRecord,recent,good,bounds,initial,schedule,weekly,gap,reentry,reduced,achieved,exposures,nextPractice,distanceCaution,longCandidate,paceOption,ready,achievement,thirdDay,review,strategy,successCheck};
 };
