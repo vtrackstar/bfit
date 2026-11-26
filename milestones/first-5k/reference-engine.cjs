@@ -5,7 +5,7 @@ const reference=function reference(E){
  // minimum main duration seconds. Warmup/cooldown add 480 seconds.
  const common=[
  [[180,30,90,720],[180,30,90,720],[240,30,90,960]],
- [[240,40,80,720],[240,40,80,720],[300,50,80,840]],
+ [[240,40,80,720],[240,40,80,720],[300,50,80,960]],
  [[360,60,75,810],[300,60,75,720],[420,90,90,1020]],
  [[480,120,90,840],[360,90,90,720],[540,120,90,1080]]
  ];
@@ -47,20 +47,23 @@ const reference=function reference(E){
  if(run.length>=4){const recent=E.good(h,day,14);const half=[recent.filter(r=>r.day>day-7),recent.filter(r=>r.day<=day-7)];const wk=Math.min(...half.map(r=>sum(r,"runSec")));const found=plan(intake.goal,n).findLastIndex(row=>sum(row,"runSec")<=wk&&max(row,"runSec")<=max(run,"runSec")&&max(row,"longestBout")<=max(run,"longestBout")&&max(row,"mainSec")<=max(run,"mainSec"));level=Math.max(0,found);}
  return {action:"start",goal:intake.goal,days:n,requestedDays:days,level,index:0,week:1,walkMin:intake.walkMin<30&&!run.length?Math.max(5,Math.floor(intake.walkMin/5)*5):null,goalTimeSec:intake.goalTimeSec??null,goalRevision:0,ack:null,history:[],cycleRecords:[],lastDay:null,paused:false,returnHold:false};
  }
- function changeGoal(s,goal,time=null){if(!["runwalk","continuous"].includes(goal))throw Error("Invalid goal");return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:Math.min(s.level,3)};}
+ function changeGoal(s,goal,time=null){if(!["runwalk","continuous"].includes(goal))throw Error("Invalid goal");return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:Math.min(s.level,3),completed:false,completion:null};}
  function next(s,h,d){
  const result=(action,workout,reason,extra={})=>({action,workout,state:s,reason,...extra});
+ if(s.completed)return result("complete",null,"Your selected 5K milestone is complete.");
  if(s.action!=="start"||s.paused)return result("pause",null,"Resolve health or symptom concerns.");
  const all=E.recent(h,d,90).sort((a,b)=>b.day-a.day),last=all[0];
  if(all.some(r=>r.unresolved)||last&&["pause","urgent"].includes(E.check(last.check)))return result("pause",null,"Pause and assess symptoms.");
  if(last&&d-last.day<2)return result("rest",null,"Rest between workouts.");
  if(last&&E.check(last.check)==="hold"||last?.check?.recovery==="unknown")return result("hold",null,"Confirm recovery.");
  let row=plan(s.goal,s.days)[Math.min(s.level,14)],p=row[s.index%row.length];
+ // Distance ceiling applies to every measured outing, including ordinary practice.
+ if(p.runSec)p={...p,distanceGoal:5000};
  if(s.walkMin!==null)p={...E.walk("walk-"+s.walkMin,s.walkMin*60),lane:p.lane};
  const g=E.good(h,d,30),run=g.filter(r=>r.runSec>0),prior=g.filter(r=>r.day>=d-14);
  if(last&&d-last.day>=28)return result("reassess",null,"Reassess recent activity.");
  if(last&&(d-last.day>=8||E.check(last.check)==="reduce")){
- const base=run[0];let q=E.reduced(p);
+ const base=run.slice().sort((a,b)=>b.day-a.day)[0];let q=E.reduced(p);
  if(base&&q.runSec>base.runSec)q=E.byId("A1");
  return result("reduce",{...q,lane:p.lane},"Return to a reduced familiar dose.");
  }
@@ -91,7 +94,7 @@ const reference=function reference(E){
  while(left>0){let n=Math.min(left,bout);runs.push(n);left-=n;if(left)rests.push(rest);}
  const base=dose+sum(rests.map(x=>({x})),"x");
  if(base>limitMain)return result("repeat",{...E.reduced(p),lane:p.lane},"Use an intermediate recovered dose.",{flag});
- const q=E.workout("bridge-"+p.id+"-"+dose+"-"+bout,runs,rests,Math.max(0,Math.max(base,main)-base),{pattern:rest?{run:bout,walk:rest}:null});
+ const q=E.workout("bridge-"+p.id+"-"+dose+"-"+bout,runs,rests,Math.max(0,Math.max(base,main)-base),{pattern:rest?{run:bout,walk:rest}:null,distanceGoal:5000});
  return result("bridge",{...q,lane:p.lane},"Use a smaller step toward the reference workout.",{flag,target:p});
  }
  return result("train",p,"Follow the current reference workout.",{flag});
@@ -104,6 +107,7 @@ const reference=function reference(E){
  const c=E.check(record.check);let next={...s,lastDay:record.day,history:[...s.history,record]};
  if(c==="urgent"||c==="pause")return {...next,paused:true};
  if(c!=="success"||!record.completed)return next;
+ if(E.achievement(record)[s.goal])return {...next,completed:true,completion:record};
  if(s.walkMin!==null){const n=s.cycleRecords.length+1;if(n>=s.days){return {...next,walkMin:s.walkMin>=30?null:Math.min(30,s.walkMin+5),cycleRecords:[],index:0,week:s.week+1};}return {...next,cycleRecords:[...s.cycleRecords,record],index:s.index+1};}
  if(["reduce","repeat","bridge"].includes(decision.action)){
  // A successful bridge is evidence but does not unlock the reference row.
