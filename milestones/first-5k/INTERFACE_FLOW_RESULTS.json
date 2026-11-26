@@ -138,6 +138,10 @@
       "pass": true
     },
     {
+      "name": "Certificate includes name, achievement and recorded time",
+      "pass": true
+    },
+    {
       "name": "Unstarted workout can be selected",
       "pass": true
     },
@@ -168,8 +172,32 @@
     {
       "name": "Reentry prescribes introductory dose",
       "pass": true
+    },
+    {
+      "name": "Assessment offered inside familiar practice",
+      "pass": true
+    },
+    {
+      "name": "Unconfirmed segment measurement rejected",
+      "pass": true
+    },
+    {
+      "name": "Assessment data saved pending recovery",
+      "pass": true
+    },
+    {
+      "name": "Recovered assessment saved with measured distance",
+      "pass": true
+    },
+    {
+      "name": "Goal pace practice offered",
+      "pass": true
+    },
+    {
+      "name": "Pace segment distance and duration retained",
+      "pass": true
     }
   ],
-  "passed": 42,
-  "total": 42
+  "passed": 49,
+  "total": 49
 }
