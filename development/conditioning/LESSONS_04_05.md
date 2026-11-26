@@ -1,81 +1,76 @@
-# Conditioning Training — educational draft, chapters 4–5
-2026-11-26 | Development only; reader-facing draft and editorial requirements. Companion to LESSONS_01_03.md. Distinct from Run Strong's running pace, five-zone cards and workout catalog. References verified selectively this turn; final medical/editorial review pending.
+# Conditioning Training — chapters 4–5, revised reader draft
+2026-11-26 | Development only. Optional depth to be collapsible; no interactive widget implemented.
 
 ## Chapter 4 — How hard should I work?
-### Why can the same workout feel different on different days?
-Imagine cycling at the same resistance and pedaling speed on two different days. On Monday you feel comfortable; on Thursday your breathing is heavier and your legs feel tired. The bike setting is the same, but your response is different.
-The work you do is called external workload: speed, resistance, power, distance or repetitions. How your body responds is your internal response: breathing, heart rate, perceived effort and fatigue. I use both to decide whether your workout is meeting its purpose. You can adjust the workload when the same activity feels unusually demanding. [ACSM/ESSA intensity consensus, 2025](https://doi.org/10.1249/MSS.0000000000003795).
-
-### Learn what your effort feels like
-Use our simple 0–10 effort rating (RPE, or rating of perceived exertion). Zero is resting; ten is the hardest effort you can imagine. Our descriptions are approximate coaching anchors, not laboratory thresholds, the Borg CR10 scale, or CDC's exact numeric categories. For a familiar, safe land activity, try a comfortable full sentence. Do not deliberately talk during movements where it is unsafe.
-| Effort | BFit target | How it may feel |
-|---|---|---|
-| Easy | 2–3 | Comfortable breathing and conversation |
-| Steady | 4–5 | Breathing faster; still able to speak in full sentences |
-| Challenging | 6–7 | Shorter phrases; demanding but controlled |
-| Hard | 8 | Only a few words comfortably; hard, repeatable effort |
-| Near maximal/maximal | 9–10 | Outside this guide's default prescriptions |
-If your breathing, perceived effort or technique suggests the work is too hard, ease off. If you have unusual breathlessness, chest pressure, dizziness or other warning symptoms, stop and follow the safety guidance. A rating of effort is not medical clearance. [CDC talk test and relative intensity](https://www.cdc.gov/physical-activity-basics/measuring/index.html).
-### How do I find the right effort on my equipment?
-| Activity | What to adjust | What to pay attention to |
-|---|---|---|
-| Walking | Pace or incline | Breathing, comfortable steps, balance |
-| Cycling | Resistance or pedaling speed, one at a time | Breathing, leg fatigue; same bike and settings for comparison |
-| Elliptical | Resistance or cadence | Smooth steps, breathing |
-| Rowing | Stroke pace or resistance appropriate to the machine | Controlled technique; stop if technique deteriorates |
-| Stair climber | Step speed | Balance and leg fatigue; use safe support |
-| Swimming | Comfortable pace and number of familiar lengths; recover at wall | Perceived effort, technique and breathing at wall; no mid-length talk test |
-| Mixed movements | Exercise difficulty, work time or rest | Technique and local muscle fatigue separately from breathing |
-Running is optional for people who already tolerate it. For developing running ability or race pace see [Run Strong](../../guides/run-strong/). Use the live canonical URL https://vtrackstar.github.io/bfit/guides/run-strong/ when rendering.
-Try an easy start in your chosen activity, then gradually adjust one setting to the prescribed effort. Do not use a calibration test to exceed your current training ability. Write down a familiar setting if you want; a watch is not necessary. Use the same setup when comparing output later. Changes in equipment or terrain can change what a number means.
-### Why does my watch seem late?
-Heart rate does not instantly respond to changes in workload. During short intervals, it can still be rising when a work period ends and may remain elevated during recovery. Trying to force it into a target zone before a short interval ends can make the effort too demanding. Use the prescribed effort, repeatability and, when available, a familiar workload. Do not speed up merely because your watch has not reached a number. [Heart rate and oxygen uptake during recovery from HIIT](https://pmc.ncbi.nlm.nih.gov/articles/PMC12294763/).
-Visual: conceptual workload step and delayed heart-rate curve over three bouts; axes time and relative response, not bpm or predicted values; distinct line styles and text alternative. No implication HR lag always follows exact shape.
-### Why does my heart rate rise at the same pace?
-During prolonged activity, heart rate can gradually rise while the amount of blood pumped per beat falls. This is one aspect of cardiovascular drift. Heat can make it more pronounced. Your effort may also rise, so lower the pace if needed, choose a cooler environment, take breaks and use appropriate hydration. Do not ignore symptoms or chase a fixed workload in the heat. [Wingo, 2015](https://pubmed.ncbi.nlm.nih.gov/25943659/); [Exercise under heat stress, Physiol Rev](https://doi.org/10.1152/physrev.00038.2020).
-Visual: fictional example at fixed bike settings, HR 125/131/137 bpm at 10/20/30 minutes, clearly illustrative, not a required HR pattern. Use a table fallback; never imply the rise alone is diagnostic or proof of poor fitness.
-### What about Zone 2, thresholds and VO2 max? (optional depth)
-Zones are a way to group intensities, not a universal numbered scale. Three-zone research models and five-zone watches can use different boundaries. A watch may estimate zones from age, maximum HR or other data. Those estimates are not necessarily your measured physiological thresholds and can differ by activity. Some medications and device errors also change interpretation. Zone 2 in one system is not automatically the same as Zone 2 in another. In a common five-zone convention, Zone 2 generally describes easier aerobic work; the practical goal here is the effort prescribed for your session, not chasing the zone label. If you want the running-specific five-zone guide, see Run Strong.
-A threshold is a boundary in the way the body responds to rising workload. The 2025 consensus describes four physiological domains: moderate (below first metabolic threshold), heavy (between first and second), severe (above the second boundary, where VO2max can be reached before task failure), and extreme (task failure occurs before VO2max can be reached). These are not direct translations of our RPE anchors or watch zones. Tests use different estimates; we will not calculate your personal threshold from a questionnaire. [ACSM/ESSA consensus](https://doi.org/10.1249/MSS.0000000000003795).
-VO2 max is the maximum rate at which your body takes up and uses oxygen during intense exercise. It is one measure of maximal aerobic power, not a complete measure of conditioning. Aerobic endurance is your ability to sustain predominantly aerobic work; movement economy and the fraction of aerobic power you can sustain also matter. Some watches estimate VO2 max rather than measure it directly. Improvement in steady duration or repeatability can be meaningful even without a VO2 max reading. No max test is required.
-**Take this into your workout:** Choose the intended effort, adjust one workload variable, and note how your breathing and muscles respond. If you cannot match yesterday's setting without exceeding the effort, use a setting you can manage today.
-Optional check: Your bike resistance is unchanged but your breathing is much harder. Should you keep the setting just because it matched your last workout? No. Adjust to the intended effort and follow safety guidance if symptoms are unusual.
+### Why can the same workout feel different?
+You might use the same bike resistance and speed on two days but feel more tired on the second. The setting is the external workload (what you do); your breathing, heart rate and effort are the internal response (how your body responds). I adjust the setting when your response is different.
+### Find a comfortable effort first
+Start slowly in a familiar activity. When it feels comfortable, try a full sentence if talking is safe. Gradually adjust one setting until you reach the effort in your plan. Do not test your maximum. Stop for concerning symptoms.
+| BFit effort rating (0–10) | How it may feel |
+|---|---|
+| Easy 2–3 | Comfortable breathing and conversation |
+| Steady 4–5 | Breathing faster; full sentences possible |
+| Challenging 6–7 | Short phrases; demanding but controlled |
+| Hard 8 | Few words comfortably; hard but repeatable |
+| 9–10 | Near-maximal/maximal; not prescribed here |
+Zero is rest, ten is maximal effort. RPE means rating of perceived exertion. These are approximate coaching cues, not laboratory thresholds, Run Strong's five numbered zones or the CDC's numeric moderate/vigorous classifications. The CDC talk test is another practical way to estimate effort. [CDC intensity guidance](https://www.cdc.gov/physical-activity-basics/measuring/index.html); [ACSM/ESSA intensity consensus](https://doi.org/10.1249/MSS.0000000000003795).
+### Adjust the activity you chose
+| Activity | What to change or check |
+|---|---|
+| Walking | Slow down or change incline; use comfortable steps |
+| Marching at home | Slow the steps, use clear stable floor space |
+| Bike | Lighten resistance or slow pedaling, one at a time |
+| Rowing | Use controlled strokes; stop if technique deteriorates |
+| Elliptical | Adjust resistance or pace; keep steps smooth |
+| Stair machine | Slow step speed and use safe support |
+| Swimming | Familiar lengths, comfortable pace, rest at the wall; assess breathing there, not mid-length |
+| Circuit | Easier familiar movement, shorter work or more rest; use stable equipment |
+Running is optional when you already tolerate it. Use [Run Strong](https://vtrackstar.github.io/bfit/guides/run-strong/) for running-specific intensity and pace. Do not operate a phone while moving if unsafe. Keep a familiar setting if you want to compare workouts later.
+### Optional depth — Why does my watch seem late?
+Heart rate takes time to respond when workload changes; it can remain elevated during recovery. Do not speed up simply because your watch hasn't reached a number in a short interval. Use effort, repeatability and a familiar workload. [HR and oxygen uptake during interval recovery, retrospective study](https://pmc.ncbi.nlm.nih.gov/articles/PMC12294763/) (does not establish every response curve).
+Visual: conceptual workload steps and delayed HR response, relative units, distinct line styles, accessible labels. Not measured/predicted bpm.
+### Optional depth — Why does heart rate rise at the same pace?
+During prolonged exercise, heart rate can rise while blood pumped per beat decreases (cardiovascular drift), especially in heat. Ease off if the effort rises; take breaks, choose a cooler setting and hydrate appropriately. This alone is not proof of poor fitness. [Wingo et al., cardiovascular drift](https://pubmed.ncbi.nlm.nih.gov/22410803/); [heat stress review](https://doi.org/10.1152/physrev.00038.2020). Fictional example: fixed bike setting, HR 125/131/137 at 10/20/30 min; optional labeled table, not a target.
+### Optional depth — Zones, thresholds and VO₂ max
+Three-zone research models and five-zone watches use different boundaries. In many five-zone systems Zone 2 means easier aerobic work; research Zone 2 may not mean that. A watch estimates zones; medications and measurement error can affect interpretation. Do not translate a BFit effort number into a watch zone. A threshold describes a boundary in the body's response to workload. Physiologists distinguish moderate, heavy, severe and extreme intensity domains; the first and second thresholds separate moderate/heavy/severe, while in the extreme domain task failure occurs before VO₂ max is reached. These are not our rating categories. [ACSM/ESSA 2025 consensus](https://doi.org/10.1249/MSS.0000000000003795).
+VO₂ max is the maximum rate of oxygen uptake and use during intense exercise, one measure of maximal aerobic power. You can make progress without measuring it; no maximal test required. For a running-specific zone guide, use Run Strong.
 
 ## Chapter 5 — How do we build a conditioning workout?
 ### What changes when I change the rest?
-Suppose you cycle for one minute at a challenging effort. With two minutes of easy recovery, you may be able to repeat a similar effort. With only thirty seconds, the next bout might feel harder, even if your bike setting hasn't changed. It is the whole prescription that matters, not just the exercise.
-I decide the type of conditioning work using the goal, work duration, intensity, recovery duration and intensity, number of efforts, exercise modality, total volume and other training. Changing one of those can change the demands of the session. [Buchheit and Laursen, interval programming](https://pubmed.ncbi.nlm.nih.gov/23539308/).
-### Work, recovery and total time
-A work interval is the period of the intended effort. Recovery is the time between efforts (in this guide we also count recovery after the last interval). A continuous session has no planned interval breaks, though a reader can slow down or stop. Warm-up and cooldown are separate.
-Worked example: 4 x 1 minute challenging + 2 minutes easy after each = 4 min challenging + 8 min easy recovery = 12 min interval block. With 5 min warm-up and 5 min cooldown, total planned visit is 22 min. Actual time logged may differ.
-Work-to-rest ratio compares the length of a single work effort with its recovery: 1 min work, 2 min recovery = 1:2. A ratio alone does not determine intensity or adaptation: 30s:60s and 3min:6min are both 1:2 but create different demands. Recovery can be active (easy motion) or passive (rest); the intended stimulus, activity, safety and ability determine choice. Don't shorten rest just to make the workout feel harder.
-### Compare different training purposes
-| Purpose | Illustrative prescription | What we prioritize |
-|---|---|---|
-| Build a base | 15 min continuous steady | Sustainable effort and regular activity |
-| Learn intervals | 3 x 30 s controlled, 90 s easy | Pacing and recovery practice |
-| Sustain harder work | 2 x 5 min challenging, 3 min easy | Controlled longer efforts |
-| Develop aerobic power | 3 x 3 min hard, 3 min easy | Accumulate demanding aerobic work after preparation |
-| Repeated efforts | 6 x 30 s challenging, 90 s easy | Consistent output and recovery |
-| Mixed-movement conditioning | 4 familiar stations, 30 s work/30 s rest, 2 rounds | Movement quality and manageable work across exercises |
-Examples are selected from or compatible with approved ladder, not a menu for unprepared readers. Every interval block includes final recovery. Warm-up and cooldown additional; hard intervals use 8–10 min warm-up and 5 min cooldown. Steady example excludes 5+5. Mixed circuit 8 min main (4 work+4 rest). No all-out training prescribed.
-### Does every interval workout count as HIIT?
-An interval workout alternates work and recovery; high-intensity interval training (HIIT) is a subset using relatively high-intensity bouts. Controlled beginner intervals are preparation, not automatically HIIT. Sprint interval training uses extremely intense or all-out/supramaximal efforts and repeated-sprint training typically uses very brief maximal sprints with limited recovery; neither is the default here. Short controlled efforts are not a validated repeated-sprint program.
-Tempo is a broad coaching term for a sustained purposeful pace; threshold work targets a physiological boundary, which we are not measuring. In this guide longer controlled intervals are tempo-style rather than verified threshold sessions. Fartlek means varying pace within an activity, such as faster walking between landmarks; a flexible structure, not a distinct energy system or compulsory plan. We focus on deliberate, comparable prescriptions for the interactive program. Running-specific workouts and race applications belong in Run Strong.
-Research suggests longer HIIT work bouts (at least 2 minutes) often accumulate more time near VO2max than shorter bouts in studied protocols. This is an acute physiological finding, not proof that one interval length is best for every person or produces greater long-term gains. [2026 systematic review and meta-analysis](https://pubmed.ncbi.nlm.nih.gov/42237396/). Our hard aerobic intervals follow a readiness progression; easy continuous training remains valuable. No need to reach a target watch heart rate or measured VO2max.
-### What about MetCon?
-Metabolic conditioning (MetCon) is a broad coaching label, often used for workouts that combine repeated movements with planned work and recovery. It is not a separate energy system, and there is no single standardized prescription. Some circuits focus more on local muscular endurance; others create a meaningful aerobic demand. Circuit training can improve fitness, but it is not automatically equivalent to aerobic-power intervals. [Resistance circuit training review](https://pubmed.ncbi.nlm.nih.gov/33924785/).
-Illustrative circuit (familiar movement, controlled technique): chair squat, standing march, stable incline push-up, supported low step-up or march. Each station 30s movement + 30s rest/transition, repeat twice = 8 min main (4 min work). RPE 4–6, rest longer or stop when needed. Choose familiar equipment and safe setup. If the arms tire before breathing gets challenging, use an easier variation or rest, not faster reps. This has a separate circuit log and progression. Ordinary moderate circuits do not require advanced aerobic-power readiness. No jumping, racing reps or forced muscular failure.
-### Try comparing two prescriptions (planned interactive educational tool)
-Use two complete examples: 6 x 1 min challenging + 2 min easy versus 3 x 2 min challenging + 2 min easy. Both have 6 min challenging work, first has 12 min recovery (18 min main) and second has 6 min recovery (12 min main). Longer continuous bouts change the stimulus; equal work time does not mean equal physiological load. This mirrors our bridge after demonstrated readiness; not a suggestion to select the harder bout without preparation.
-Then compare 4 x 30s + 90s easy and 4 x 30s + 30s easy, at the same illustrative effort. Work 2 min in both, rest 6 vs 2 min. Shortening recovery can reduce repeatability or increase fatigue; not necessarily better. The short-rest example is education only, not a guide prescription. Show totals and plain-language explanation; never make an unrestricted workout generator or allow calculator to overwrite prescription. Include warm/cool totals with proper intensity; if unknown, label block only. Accessible text table and distinct labels, not color alone.
-### Which workout should I choose?
-If your goal is to keep going longer, steady exercise is a useful starting point. If your goal is to repeat demanding efforts, build a manageable steady base and practice controlled intervals. A prepared reader can introduce harder aerobic or repeated efforts, or use a familiar mixed-movement circuit if it suits their goal. You do not have to train at the hardest level. If you already do demanding sports or classes, another interval day may be unnecessary. The plan builder takes that into account.
-**Take this into your workout:** Follow the work and recovery periods, and pace the early efforts so the later efforts are still controlled. More exhaustion is not automatically more progress.
-Optional check: If two workouts both contain six minutes of challenging exercise, are they necessarily equivalent? No: how the work and recovery are distributed, intensity, modality and current fitness all affect the demand.
+When you cycle for one challenging minute, two minutes of easy pedaling may help you repeat it. With less recovery, the next effort may be harder. I choose work duration, effort, recovery, repetitions and activity based on what the workout is meant to improve. [Buchheit and Laursen, interval programming](https://doi.org/10.1007/s40279-013-0029-x).
+Start with steady activity (continuous work) or controlled intervals (work alternating with recovery). A workout may use either. More specialized methods require preparation.
+### Count the time honestly
+Four one-minute efforts with two minutes easy after each = four minutes work, eight minutes recovery, 12 minutes main block. With five minutes warm-up and five cooldown, 22 minutes total. Count recovery after the last interval too. Work-to-rest ratio is one effort's duration compared with its recovery (1 minute:2 minutes = 1:2).
+### Compare prescriptions (educational examples, not selectable plans)
+| Example | Work | Recovery | Main block |
+|---|---:|---:|---:|
+| 4 × 30 sec / 90 sec easy | 2 min | 6 min | 8 min |
+| 4 × 30 sec / 30 sec easy | 2 min | 2 min | 4 min |
+Only recovery changes in this illustration, assuming the same intended work effort and activity. The shorter rest increases planned work density (work time relative to total block time); it may reduce repeatability. Shorter is not automatically better. The short-rest version is education only.
+| Example | Work | Recovery | Main block |
+|---|---:|---:|---:|
+| 6 × 1 min / 2 min easy | 6 min | 12 min | 18 min |
+| 3 × 2 min / 2 min easy | 6 min | 6 min | 12 min |
+The second comparison changes both continuous bout length and total recovery; we cannot isolate either variable. Same work minutes do not guarantee the same physiological load. Visuals use consistent time scales, labels and accessible tables. Warm-up/cooldown additional.
+### Choose the purpose
+| Purpose | Illustrative main workout |
+|---|---|
+| Build stamina | 15 min steady, if tolerated |
+| Learn intervals | 3 × 30 sec controlled, 90 sec easy |
+| Sustain challenging work | 2 × 5 min challenging, 3 min easy |
+| Develop aerobic power | 3 × 3 min hard, 3 min easy, after preparation |
+| Repeat efforts | 6 × 30 sec challenging, 90 sec easy |
+| Mixed movements | 4 familiar stations, 30 sec work/30 sec rest, twice |
+These are examples for different readiness levels, not a menu of equivalent workouts. Hard intervals use longer warm-ups (8–10 min) plus five minutes cooldown.
+### Optional depth — HIIT, tempo and anaerobic capacity
+HIIT is a subset of intervals using relatively high-intensity work; introductory controlled intervals are not necessarily HIIT. Sprint interval training involves very intense, often all-out/supramaximal efforts; repeated-sprint training typically uses brief maximal sprints with limited recovery. Neither is prescribed here. Anaerobic capacity refers to the amount of energy that can be supplied through nonoxidative pathways during demanding work; it is distinct from aerobic power, not a separate automatic training path. Tempo is a broad term for sustained purposeful effort; threshold work targets a physiological boundary we do not measure. Fartlek means varying pace, for example walking faster between landmarks.
+Both continuous and interval training can improve aerobic fitness. A 2026 analysis of 115 trials compares longer-term responses across diverse populations. Another 2026 review found longer work intervals often accumulated more time near VO₂ max in studied HIIT sessions. Immediate responses are not guaranteed long-term adaptations or proof that one format is optimal. [Long-term comparison](https://pubmed.ncbi.nlm.nih.gov/41804294/); [acute near-VO₂ max review](https://pubmed.ncbi.nlm.nih.gov/42237396/).
+### What is MetCon?
+Metabolic conditioning is a broad, nonstandard label, often used for sessions combining repeated movements. Circuits can challenge muscles and aerobic fitness, but not all produce the same stimulus as aerobic-power intervals. [Resistance circuit review](https://pubmed.ncbi.nlm.nih.gov/33924785/).
+Example: chair squat, standing march, stable incline push-up and supported low step-up (or march). Use familiar movements with 30 seconds work, 30 seconds rest/transition, twice around: eight minutes main (four work and four rest). Effort 4–6, controlled technique. Rest or simplify if arms or legs tire first. No racing reps or forced muscular failure. Moderate circuits can be appropriate before advanced conditioning, after learning movements. Use a separate circuit progression.
+Choose the method that helps you reach your goal and recover for the next workout. A demanding session does not automatically mean a better adaptation.
 
-## Editorial and implementation notes
-- Distinct practical tasks: effort calibration across modalities, internal vs external workload, heart-rate lag and drift, manipulating work/recovery variables, local muscular vs cardiovascular circuit limitations. Run Strong remains running-specific; keep shared definitions consistent. Do not copy its five-zone card structure or pace/event examples.
-- Verified this turn: CDC measuring intensity, ACSM/ESSA 2025 consensus, 2025 HR lag paper, 2015 and 2021 heat/drift reviews, Buchheit/Laursen interval programming, 2026 near-VO2max meta-analysis. Circuit review reference carried forward; verify its claim and exact article before release. Watch-estimation and medication caveats, SIT/RST terminology, movement economy, and long-term continuous/HIIT evidence need claim-level citation review. No medical clearance or systematic review. 
-- Avoid language suggesting RPE is an exact threshold, recovery is guaranteed, or heart rate is meaningless. Use effort and symptoms as practical guardrails; no threshold estimator or HR targets required.
-- No public HTML or implemented chapter interactive yet. Use actual engine dose data to generate example totals where possible; verify 4x1:2=12 min block, 6x1:2=18, 3x2:2=12, 3x3:3=18, 4x30:90=8, 4x30:30=4, circuit 8 min. Preserve prior programming constraints. Next: chapters 6–10 and engine workflow gaps.
+## Editorial notes (not reader copy)
+- Audit changes 16–22 addressed; standalone effort calibration, no duplicate five-zone cards or run workout catalog. Optional physiological depth. HR paper is retrospective, illustrative curve not validated. 
+- Work density explicitly defined as fraction of block time spent in planned work, not measured mechanical power; examples computed and educational only. No new training prescription. Verify SIT/RST, anaerobic capacity and medication/device claims in registry or narrow before release. 
+- Visuals, exercise demos and comparison interaction remain specifications, not implemented.
