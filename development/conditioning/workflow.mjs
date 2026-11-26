@@ -1,4 +1,4 @@
-import { MODES, screen, steady, interval, bouts, swim, circuit, phases, seconds, key, recent, success, latestDistinct, historicalPair, initial, schedule, fitTime, recommend } from './engine.mjs';
+import { MODES, screen, steady, interval, bouts, swim, circuit, phases, seconds, key, recent, success, latestDistinct, historicalPair, steadyGate, initial, schedule, fitTime, recommend } from './engine.mjs';
 
 const VERSION=1;
 const integer=(v,min,max)=>Number.isInteger(v)&&v>=min&&v<=max;
