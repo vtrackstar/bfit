@@ -4,7 +4,7 @@ const sessionEngine = function sessionEngine(E){
   const sum=a=>a.reduce((s,x)=>s+x,0), max=(a,k)=>Math.max(0,...a.map(r=>r[k]??0));
   // Candidate coaching settings, not experimentally validated thresholds.
   const settings={initialHold:4,exposureDays:14,distanceDays:30,minimumSpacing:2,weeklyRunIncreaseMin:120,weeklyRunIncreaseMax:480,weeklyTotalIncrease:900,minimumDistanceReference:500};
-  const good=(h,d,n=14)=>E.good(h,d,n).filter(r=>!r.fasterSec);
+  const good=(h,d,n=21)=>E.good(h,d,n).filter(r=>!r.fasterSec);
   const key=p=>[p.runs.join(","),p.rests.join(","),p.tail,p.distanceGoal??""].join("|");
   const pattern=(id,r,w,n)=>E.repeat(id,n,r,w);
   const recent=(h,d)=>E.recent(h,d,30).sort((a,b)=>b.day-a.day);
@@ -64,7 +64,7 @@ const sessionEngine = function sessionEngine(E){
     const projected=E.recent(h,d-1,6);
     const baselineRun=Math.max(rollingRun,sum(prior7.map(r=>r.runSec)),E.weekly(s).runSec);
     const baselineTotal=Math.max(rollingTotal,sum(prior7.map(r=>r.totalSec)),E.weekly(s).totalSec);
-    const increment=cap(Math.ceil(baselineRun*.15/30)*30,settings.weeklyRunIncreaseMin,settings.weeklyRunIncreaseMax);
+    const increment=baselineRun===0?180:cap(Math.ceil(baselineRun*.15/30)*30,settings.weeklyRunIncreaseMin,settings.weeklyRunIncreaseMax);
     return sum(projected.map(r=>r.runSec))+p.runSec<=baselineRun+increment&&sum(projected.map(r=>r.totalSec))+p.totalSec<=baselineTotal+settings.weeklyTotalIncrease;
   }
   function candidates(p,s,h,d,lane){
@@ -80,14 +80,21 @@ const sessionEngine = function sessionEngine(E){
     const cont=E.strategy(p)==="continuous";
     if(lane==="long"){
       // Transfer a demonstrated rhythm, keeping the running dose comparable.
-      const pr=s.practice,prSuccess=g.filter(r=>r.longestBout>=pr.longestBout&&r.runSec>=Math.min(pr.runSec,p.runSec));
+      const pr=s.practice,prSuccess=g.filter(r=>r.longestBout>=pr.longestBout*.80&&r.runSec>=Math.min(pr.runSec,p.runSec)*.80);
       if(pr.longestBout>p.longestBout&&unique(prSuccess)>=2){
         const bout=Math.min(pr.longestBout,p.runSec,Math.max(p.longestBout+30,Math.floor(pr.longestBout*.75)));
         const run=Math.min(p.runSec,maxRun),rest=pr.pattern?.walk??120;
-        if(s.goal==="continuous"&&pr.runs.length===1&&pr.runSec<=p.runSec)add(E.continuous("transfer-cont-"+pr.runSec,pr.runSec),"bout","Use the continuous dose you have already demonstrated.");
+        if(s.goal==="continuous"&&pr.runs.length===1&&pr.runSec<=p.runSec+60)add(E.continuous("transfer-cont-"+pr.runSec,pr.runSec),"bout","Use the continuous dose you have already demonstrated.");
         if(bout>p.longestBout){
           const n=makeDose("transfer-"+run+"-"+bout+"-"+p.mainSec,run,bout,p.mainSec,rest);
           add(n,"bout","Use a familiar longer running rhythm without adding running time.");
+        }
+      }
+      if(!cont&&p.pattern&&p.runSec<pr.runSec){
+        for(const inc of [60,30,15]){
+          const run=Math.min(pr.runSec,p.runSec+inc),bout=p.longestBout,rest=p.pattern.walk;
+          const main=Math.max(p.mainSec,run+Math.max(0,Math.ceil(run/bout)-1)*rest);
+          add(makeDose("long-dose-"+run+"-"+bout+"-"+main,run,bout,main,rest),"volume","Bring the longer outing toward your familiar running dose.");
         }
       }
       const comparableLong=g.filter(r=>r.lane==="long"&&r.mainDistanceM>=1000&&r.comparable!==false&&r.strategy===E.strategy(p)).sort((a,b)=>b.day-a.day);
@@ -109,7 +116,7 @@ const sessionEngine = function sessionEngine(E){
         else if(p.pattern){
           add(E.rhythm("long-rhythm-"+p.pattern.run+"-"+p.pattern.walk+"-"+seconds+"-"+(target??"time"),p.pattern.run,p.pattern.walk,seconds,{distanceGoal:target}),"duration","Extend your familiar run–walk rhythm.");
         }
-        if(!cont&&seconds>p.mainSec)add(E.workout("long-walk-"+seconds,p.runs,p.rests,p.tail+seconds-p.mainSec,{pattern:p.pattern,distanceGoal:target}),"duration","Add comfortable walking time while keeping running familiar.");
+        if(!cont&&seconds>p.mainSec&&p.tail<300&&p.mainSec<3600)add(E.workout("long-walk-"+seconds,p.runs,p.rests,p.tail+seconds-p.mainSec,{pattern:p.pattern,distanceGoal:target}),"duration","Add comfortable walking time while keeping running familiar.");
       }
     }else{
       // Select from a library, but generated intermediate doses can always
@@ -119,6 +126,17 @@ const sessionEngine = function sessionEngine(E){
         for(const inc of [180,120,90,60,30])add(E.continuous("practice-cont-"+(p.runSec+inc),p.runSec+inc),"duration","Extend comfortable continuous running.");
       }else{
         const step=r<60?10:r<180?30:r<600?60:120;
+        const nextBout=r+step;
+        if(r<120&&p.runSec<600){
+          const count=Math.max(3,Math.floor(p.runSec/nextBout));
+          const run=Math.max(p.runSec,count*nextBout);
+          const rest=Math.max(60,120-nextBout);
+          const main=Math.max(p.mainSec,run+Math.max(0,Math.ceil(run/nextBout)-1)*rest);
+          add(makeDose("intro-"+run+"-"+nextBout+"-"+main,run,nextBout,main,rest),"bout","Develop longer running bouts at a similar running dose.");
+        }
+        for(const candidate of E.library.filter(x=>x.runSec>=p.runSec&&x.longestBout>=p.longestBout&&x.runSec<=p.runSec+120&&x.longestBout<=p.longestBout+step&&x.mainSec<=p.mainSec+180).sort((a,b)=>b.runSec-a.runSec||b.longestBout-a.longestBout)){
+          add(candidate,candidate.longestBout>p.longestBout?"bout":"volume","Build on your recent comfortable running.");
+        }
         // Prefer a longer bout with similar volume, then more volume using
         // the familiar rhythm. Keep intermediate candidates in both directions.
         for(const delta of [step,Math.max(5,Math.floor(step/2))]){
@@ -186,7 +204,7 @@ const sessionEngine = function sessionEngine(E){
       // a bout increase with a large increase in running volume.
       const maxIncrease=maxRun===0?180:Math.min(180,Math.max(60,Math.ceil(maxRun*.15/30)*30));
       if(q.runSec>maxRun+maxIncrease||q.mainSec>Math.max(max(g,"mainSec"),p.mainSec)+300||q.longestBout>maxBout+Math.max(30,Math.min(180,Math.ceil(maxBout*.25/15)*15)))continue;
-      if(p.runSec&&q.longestBout>p.longestBout&&q.runSec>p.runSec+60)continue;
+      if(p.runSec&&q.longestBout>p.longestBout&&q.runSec>p.runSec+60&&!(E.strategy(p)==="continuous"&&E.strategy(q)==="continuous"))continue;
       const review=distanceReview(q,h,d,p);
       checks.push(review.flag);
       if(!review.allowed||!recentWeekLimit(q,s,h,d))continue;
