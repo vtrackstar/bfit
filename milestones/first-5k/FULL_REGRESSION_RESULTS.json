@@ -24,8 +24,8 @@
     }
   ],
   "interface": {
-    "passed": 49,
-    "total": 49
+    "passed": 57,
+    "total": 57
   },
   "journeys": [
     {
@@ -65,5 +65,11 @@
       "week": 18
     }
   ],
-  "environment": "JavaScript execution with dependency injection and simulated DOM; no actual browser."
+  "environment": "JavaScript dependency-injection regression; actual Chromium CI run 45874694381 separately passed both jobs on identical runtime files. Physical phone behavior remains unverified.",
+  "browserEvidence": {
+    "runId": 45874694381,
+    "siteAudit": "success",
+    "first5kBrowser": "success",
+    "runtimeCommit": "0c674c199d1b002964d374561cd9cf9f04e22900"
+  }
 }
