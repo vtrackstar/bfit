@@ -29,3 +29,5 @@
 | Hitting the wall | [2026 marathon-specific integrative review](https://pubmed.ncbi.nlm.nih.gov/42647332/) | prolonged endurance context, multifactorial |
 | Transfer | [Menges et al. 2026](https://pubmed.ncbi.nlm.nih.gov/42267259/) | running/cycling, limited generalization |
 Outstanding: final exact claim/abstract or full-text review (not every source fully read), sleep/stress/technique and wearable precision claims if expanded, safety/clinical editorial check, all deployed URL/anchor tests. No public release approval.
+## 2026-11-26 verification update (supersedes provisional status)
+See [scientific audit](../../CONDITIONING_SCIENCE_AUDIT_2026-11-26.md) and the annotated reference section in [preview](preview/index.html#references). Source identities and relevance checked via public search/abstracts, available publisher text and official guidance. Some direct fetches blocked, so not full-text verification for every source. The preview HTML is authoritative after revisions; older lesson drafts should not overwrite it. Numeric programming gates are coach choices, not clinically validated protocols.
