@@ -48,7 +48,7 @@ function appTests(){
  check("revision correct",appPersist(storage,a,128,0).ok);
  check("storage failure explicit",appPersist({getItem(){throw Error("quota")}},base,100).reason==="storage-unavailable");
  check("corruption explicit",appLoad({getItem(){return "broken"}},100).ok===false);
- let swimApp=appStart(base,{...p,mode:"swim",setup:"pool",waterCompetent:true},id,100,1800,"sw").app;
+ let swimApp=appStart(base,{...p,mode:"swim",setup:"pool",waterCompetent:true,poolLength:25,poolUnit:"m"},id,100,1800,"sw").app;
  check("swim manual only",swimApp.active.method==="manual"&&swimApp.active.timer===null);
  swimApp=appSave(swimApp,{confirmed:true,status:"full",actual:{lengths:4,swimSeconds:null,restSeconds:null},effort:3,quality:true,warning:false,pain:false,recoveryExtended:false},100);
  const sr=appReport(swimApp,100,100).byMode.swim;
