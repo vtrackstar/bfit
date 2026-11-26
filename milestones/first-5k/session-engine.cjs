@@ -81,7 +81,7 @@ const sessionEngine = function sessionEngine(E){
     if(lane==="long"){
       // Transfer a demonstrated rhythm, keeping the running dose comparable.
       const pr=s.practice,prSuccess=g.filter(r=>r.longestBout>=pr.longestBout*.80&&r.runSec>=Math.min(pr.runSec,p.runSec)*.80);
-      if(pr.longestBout>p.longestBout&&unique(prSuccess)>=2){
+      if(pr.longestBout>p.longestBout&&unique(prSuccess)>=2&&(s.goal==="continuous"||p.longestBout<180)){
         const bout=Math.min(pr.longestBout,p.runSec,Math.max(p.longestBout+30,Math.floor(pr.longestBout*.75)));
         const run=Math.min(p.runSec,maxRun),rest=pr.pattern?.walk??120;
         if(s.goal==="continuous"&&pr.runs.length===1&&pr.runSec<=p.runSec+60)add(E.continuous("transfer-cont-"+pr.runSec,pr.runSec),"bout","Use the continuous dose you have already demonstrated.");
@@ -90,7 +90,7 @@ const sessionEngine = function sessionEngine(E){
           add(n,"bout","Use a familiar longer running rhythm without adding running time.");
         }
       }
-      if(!cont&&p.pattern&&p.runSec<pr.runSec){
+      if(!cont&&p.pattern&&p.runSec<pr.runSec&&s.goal==="continuous"){
         for(const inc of [60,30,15]){
           const run=Math.min(pr.runSec,p.runSec+inc),bout=p.longestBout,rest=p.pattern.walk;
           const main=Math.max(p.mainSec,run+Math.max(0,Math.ceil(run/bout)-1)*rest);
@@ -116,7 +116,7 @@ const sessionEngine = function sessionEngine(E){
         else if(p.pattern){
           add(E.rhythm("long-rhythm-"+p.pattern.run+"-"+p.pattern.walk+"-"+seconds+"-"+(target??"time"),p.pattern.run,p.pattern.walk,seconds,{distanceGoal:target}),"duration","Extend your familiar run–walk rhythm.");
         }
-        if(!cont&&seconds>p.mainSec&&p.tail<300&&p.mainSec<3600)add(E.workout("long-walk-"+seconds,p.runs,p.rests,p.tail+seconds-p.mainSec,{pattern:p.pattern,distanceGoal:target}),"duration","Add comfortable walking time while keeping running familiar.");
+        if(!cont&&seconds>p.mainSec&&p.tail<300&&p.mainSec<3600&&s.goal==="runwalk")add(E.workout("long-walk-"+seconds,p.runs,p.rests,p.tail+seconds-p.mainSec,{pattern:p.pattern,distanceGoal:target}),"duration","Add comfortable walking time while keeping running familiar.");
       }
     }else{
       // Select from a library, but generated intermediate doses can always
@@ -126,6 +126,13 @@ const sessionEngine = function sessionEngine(E){
         for(const inc of [180,120,90,60,30])add(E.continuous("practice-cont-"+(p.runSec+inc),p.runSec+inc),"duration","Extend comfortable continuous running.");
       }else{
         const step=r<60?10:r<180?30:r<600?60:120;
+        if(s.goal==="runwalk"&&r>=180){
+          for(const inc of [120,60,30,15]){
+            const run=p.runSec+inc, count=Math.ceil(run/r), main=Math.max(p.mainSec,run+Math.max(0,count-1)*w);
+            add(makeDose("rw-practice-"+run+"-"+r+"-"+main,run,r,main,w),"volume","Build repeatable running at your familiar run–walk rhythm.");
+          }
+          return list.filter(x=>x.workout.runSec>=p.runSec);
+        }
         const nextBout=r+step;
         if(r<120&&p.runSec<600){
           const count=Math.max(3,Math.floor(p.runSec/nextBout));
