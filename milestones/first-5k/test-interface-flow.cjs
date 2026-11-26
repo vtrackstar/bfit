@@ -3,14 +3,14 @@ const fs=require("node:fs"),path=require("node:path");
 const read=p=>fs.readFileSync(path.join(__dirname,p),"utf8");
 const harness=async function harness(html,js,bundle,calc){
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const tests=[],check=(name,fn)=>{try{tests.push({name,pass:!!fn()})}catch(e){tests.push({name,pass:false,error:String(e)})}};
- let clock=0,date=Date.UTC(2026,10,26,12),store={},download="",interval=null,env;
+ let printed=null;let clock=0,date=Date.UTC(2026,10,26,12),store={},download="",interval=null,env;
  const NativeDate=Date;class FakeDate extends NativeDate{constructor(...a){super(...(a.length?a:[date]));}static now(){return date;}}
  function boot(){
  const elements={};for(const id of ids){elements[id]={value:"",checked:false,hidden:false,disabled:false,textContent:"",children:[],listeners:{},addEventListener(n,f){this.listeners[n]=f;},replaceChildren(...x){this.children=x;},click(){this.onclick?.();}};}
  const defaults={goal:"runwalk",walk:"30",days:"2",newGoal:"runwalk",unit:"km",paceUnit:"km",speedUnit:"kmh",scope:"unknown",basis:"unknown",surface:"unknown"};for(const [id,v] of Object.entries(defaults))elements[id].value=v;
  const doc={hidden:false,listeners:{},getElementById:id=>elements[id],createElement:tag=>({textContent:"",click(){download=this.download??"";}}),addEventListener(n,f){this.listeners[n]=f;}};
  const g={};new Function("globalThis","module",calc)(g,undefined);new Function("globalThis",bundle)(g);const localStorage={getItem:k=>store[k]??null,setItem:(k,v)=>store[k]=v};const url={createObjectURL:()=>"blob:mock",revokeObjectURL:()=>{}};
- new Function("globalThis","document","localStorage","Date","performance","setInterval","clearInterval","setTimeout","URL","Blob",js)(g,doc,localStorage,FakeDate,{now:()=>clock},f=>{interval=f;return 1;},()=>{interval=null;},()=>{},url,class{});
+ const popup={document:{createElement:tag=>({tag,textContent:""}),body:{append(...nodes){printed={nodes};}}},print(){printed.called=true;}};new Function("globalThis","document","localStorage","Date","performance","setInterval","clearInterval","setTimeout","URL","Blob","window",js)(g,doc,localStorage,FakeDate,{now:()=>clock},f=>{interval=f;return 1;},()=>{interval=null;},()=>{},url,class{},{open:()=>popup});
  const set=(id,v)=>{if(typeof v==="boolean")elements[id].checked=v;else elements[id].value=String(v);};const submit=id=>elements[id].listeners.submit({preventDefault(){}}),click=id=>elements[id].click(),state=()=>JSON.parse(Object.values(store)[0]??"null");return {elements,doc,g,set,submit,click,state};
  }
  const advance=n=>{for(let i=0;i<n;i++){clock+=1000;interval?.();}};
@@ -76,6 +76,7 @@ store={"bfit-first-5k-dev-v1":JSON.stringify(completed)};env=boot();
 check("Completion panel displays recorded time and distance",()=>!env.elements.celebration.hidden&&env.elements.resultSummary.textContent.includes("35:00")&&env.elements.resultSummary.textContent.includes("5.00 km"));
 check("Completion analysis converts average pace",()=>env.elements.resultPace.textContent.includes("7:00/km")&&env.elements.resultPace.textContent.includes("11:16/mile"));
 check("Completion stops regular workout recommendations",()=>env.elements.checkin.hidden);
+set("certificateName","Test Runner");click("certificate");check("Certificate includes name, achievement and recorded time",()=>printed?.called&&printed.nodes.some(n=>n.textContent==="Test Runner")&&printed.nodes.some(n=>n.textContent.includes("Continuous 5K")&&n.textContent.includes("35:00")));
 
 // Use a fresh beginner state for cancellation, not an advanced history at its workload limit.
 store={};env=boot();set("ready",true);submit("intake");set("recovery","normal");set("symptoms","none");submit("pre");
@@ -89,6 +90,15 @@ set("reentryWalk",30);submit("reentryForm");check("Reentry requires readiness co
 set("reentryReady",true);submit("reentryForm");check("Reentry preserves history and starts conservatively",()=>!state().state.reentryNeeded&&state().state.level===0&&state().state.history.length===backup.state.history.length);
 env=boot();check("Reentry survives reopening",()=>!env.elements.checkin.hidden&&state().state.reentrySelfReported===true);
 set("recovery","normal");set("symptoms","none");submit("pre");check("Reentry prescribes introductory dose",()=>state().active?.decision.workout.runSec===180);
+
+const today=Math.floor(date/86400000),seed=env.g.BFit5K.start({walkMin:30,goal:"continuous",days:2},[],today),p={...env.g.BFit5KCore.continuous("seed",1800),lane:"practice"};
+const history=[28,24,21,17,14,10,7,3].map(ago=>({day:today-ago,lane:"practice",prescriptionId:"seed",runSec:1800,mainSec:1800,totalSec:2280,longestBout:1800,fasterSec:0,mainDistanceM:3500,runningDistanceM:3500,continuousDistanceM:3500,strategy:"continuous",completed:true,check:env.g.BFit5KCore.successCheck,comparable:true,representative:true,measurement:{scope:"running-only",timeBasis:"elapsed",surface:"track",derived:{distance:false}}}));
+const readyState={...seed,level:11,history,lastDay:today-3,goalTimeSec:2700};
+function featureBoot(which){store={"bfit-first-5k-dev-v1":JSON.stringify({version:1,state:readyState,active:null,pending:null})};env=boot();set("recovery","normal");set("symptoms","none");set(which,true);submit("pre");}
+featureBoot("assess");check("Assessment offered inside familiar practice",()=>state().active?.decision.feature==="assessment"); 
+if(state().active){const duration=state().active.phases.reduce((n,p)=>n+p.sec,0);click("start");advance(duration);set("effort","comfortable");set("postSymptoms","none");set("done",true);set("segmentDistance",2000);set("segmentUnit","m");set("surface","track");submit("logForm");check("Unconfirmed segment measurement rejected",()=>!!state().active&&!state().pending);set("segmentConfirm",true);submit("logForm");check("Assessment data saved pending recovery",()=>!!state().pending?.details.assessment);date+=86400000;set("nextRecovery","normal");set("nextSymptoms","none");submit("recoverForm");check("Recovered assessment saved with measured distance",()=>state().state.history.at(-1).assessment?.accepted&&state().state.history.at(-1).assessment?.measurement.distanceM===2000);date-=86400000;}
+featureBoot("pace");check("Goal pace practice offered",()=>state().active?.decision.feature==="goal-pace");
+if(state().active){click("start");advance(state().active.phases.reduce((n,p)=>n+p.sec,0));set("effort","comfortable");set("postSymptoms","none");set("done",true);set("segmentDistance",333);set("segmentUnit","m");set("surface","track");set("segmentConfirm",true);submit("logForm");date+=86400000;set("nextRecovery","normal");set("nextSymptoms","none");submit("recoverForm");check("Pace segment distance and duration retained",()=>state().state.history.at(-1).paceMeasurement?.distanceM===333&&state().state.history.at(-1).fasterSec===180);}
 return {environment:"Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",tests,passed:tests.filter(x=>x.pass).length,total:tests.length};
 };
 harness(read("index.html"),read("workout.js"),read("browser-engine.js"),read("../../shared/running-calculator.js")).then(result=>{console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;});
