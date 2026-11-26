@@ -1,7 +1,7 @@
 "use strict";
 const fs=require("node:fs"),path=require("node:path");
 const read=p=>fs.readFileSync(path.join(__dirname,p),"utf8");
-const harness=function harness(html,js,bundle,calc){
+const harness=async function harness(html,js,bundle,calc){
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);const tests=[],check=(name,fn)=>{try{tests.push({name,pass:!!fn()})}catch(e){tests.push({name,pass:false,error:String(e)})}};
  let clock=0,date=Date.UTC(2026,10,26,12),store={},download="",interval=null,env;
  const NativeDate=Date;class FakeDate extends NativeDate{constructor(...a){super(...(a.length?a:[date]));}static now(){return date;}}
@@ -39,6 +39,28 @@ const harness=function harness(html,js,bundle,calc){
  check("Pre-session pain hold persists",()=>state().state.paused&&!state().active);
  env=boot();check("Reload cannot bypass pain hold",()=>env.elements.checkin.hidden&&state().state.paused);
  click("export");check("Export has expected filename",()=>download==="bfit-first-5k-progress.json");
+ 
+ // Fresh intake: optional recovered history moves the starting point forward.
+ const pausedBackup=state();store={};env=boot();set("ready",true);set("goal","continuous");
+ for(let i=0;i<4;i++){set("histDay"+i,[2,5,9,12][i]);set("histRun"+i,30);set("histMain"+i,30);set("histBout"+i,30);set("histRecovery"+i,"normal");}
+ submit("intake");check("Experienced intake uses four actual recent runs",()=>state().state.level>0&&state().state.history.length===4&&state().state.history.every(r=>r.source==="self-reported-intake"));
+ const backup=state();store={};env=boot();set("ready",true);set("histDay0",2);set("histRun0",20);set("histMain0",10);set("histBout0",15);set("histRecovery0","normal");submit("intake");
+ check("Invalid history rejected",()=>!state());
+ store={};env=boot();set("ready",true);for(let i=0;i<2;i++){set("histDay"+i,2);set("histRun"+i,10);set("histMain"+i,10);set("histBout"+i,10);set("histRecovery"+i,"normal");}submit("intake");
+ check("Duplicate history dates rejected",()=>!state());
+ const file=x=>({size:JSON.stringify(x).length,text:async()=>JSON.stringify(x)});
+ env.elements.importFile.files=[file(backup)];await env.elements.import.onclick();
+ check("Valid import restores plan and history",()=>state().state.level===backup.state.level&&state().state.history.length===4);
+ env.elements.importFile.files=[file({...backup,state:{...backup.state,level:999}})];set("replaceConfirm",true);await env.elements.import.onclick();
+ check("Invalid phase rejected without replacing progress",()=>state().state.level===backup.state.level);
+ const corrupt=JSON.parse(JSON.stringify(backup));corrupt.state.history.push(corrupt.state.history.at(-1));env.elements.importFile.files=[file(corrupt)];await env.elements.import.onclick();
+ check("Duplicate imported record rejected",()=>state().state.history.length===4);
+ set("replaceConfirm",false);env.elements.importFile.files=[file(pausedBackup)];await env.elements.import.onclick();
+ check("Replacement requires confirmation",()=>!state().state.paused);
+ store={};env=boot();env.elements.importFile.files=[file(pausedBackup)];await env.elements.import.onclick();
+ check("Imported symptom hold remains paused",()=>state().state.paused&&env.elements.checkin.hidden);
+ env.elements.importFile.files=[file(backup)];set("replaceConfirm",true);await env.elements.import.onclick();
+ check("Import cannot clear existing health hold",()=>state().state.paused);
  return {environment:"Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",tests,passed:tests.filter(x=>x.pass).length,total:tests.length};
 };
-const result=harness(read("index.html"),read("workout.js"),read("browser-engine.js"),read("../../shared/running-calculator.js"));console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;
+harness(read("index.html"),read("workout.js"),read("browser-engine.js"),read("../../shared/running-calculator.js")).then(result=>{console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;});
