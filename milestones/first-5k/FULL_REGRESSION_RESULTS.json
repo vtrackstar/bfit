@@ -24,8 +24,8 @@
     }
   ],
   "interface": {
-    "passed": 34,
-    "total": 34
+    "passed": 49,
+    "total": 49
   },
   "journeys": [
     {
@@ -65,5 +65,5 @@
       "week": 18
     }
   ],
-  "environment": "JavaScript execution with dependency injection; simulated DOM, not real browser."
+  "environment": "JavaScript execution with dependency injection and simulated DOM; no actual browser."
 }
