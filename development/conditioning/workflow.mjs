@@ -16,7 +16,7 @@ function canonical(d){
  if(d.kind==="circuit"){b={...o,rounds:2,n:8,w:20};}
  return !!b&&key(b)===key(d);}
  if(d.kind==="steady"){if(["swim","circuit"].includes(d.mode))return false;b=steady(d.mode,d.minutes,d.level,d.slot);}
- if(d.kind==="bouts"){if(["swim","circuit"].includes(d.mode)||!integer(d.minutes,1,5))return false;b=bouts(d.mode,d.minutes);}
+ if(d.kind==="bouts"){if(["swim","circuit"].includes(d.mode)||!integer(d.minutes,1,5))return false;b={...bouts(d.mode,d.minutes),slot:d.slot};}
  if(d.kind==="interval")b=interval(d.mode,d.id,d.slot);
  if(d.kind==="swim")b=swim(d.lengths,d.unit,d.pool);
  if(d.kind==="circuit")b=circuit(d.rounds,d.variant);
@@ -48,7 +48,7 @@ function validateLog(l,now){
 }
 function validateState(s,now){
  assert(plain(s)&&s.version===VERSION&&integer(s.started,0,now)&&Array.isArray(s.logs)&&s.logs.length<=5000,"Invalid state/version");
- const ids=new Set();for(const l of s.logs){assert(validateLog(l,now)&&l.day>=s.started&&!ids.has(l.id),"Invalid or duplicate log");ids.add(l.id);}
+ const ids=new Set();for(const l of s.logs){assert(validateLog(l,now)&&(l.source==="prior"?l.day>=Math.max(0,s.started-28):l.day>=s.started)&&!ids.has(l.id),"Invalid or duplicate log");ids.add(l.id);}
  assert(Array.isArray(s.external)&&s.external.length<=5000,"Invalid external history");
  for(const l of s.external){assert(plain(l)&&str(l.id)&&integer(l.day,s.started,now)&&str(l.activity)&&["easy","steady","challenging","hard","unknown"].includes(l.intensity)&&(l.minutes===null||integer(l.minutes,1,1440))&&!ids.has(l.id),"Invalid external log");ids.add(l.id);}
  return true;
@@ -79,13 +79,15 @@ function visit(s,p,now,budget){
   if(p.mode==="swim"&&p.waterCompetent!==true)return {action:"lessons-or-land",dose:null};
   if(p.mode==="run"&&p.recentRun!==true)return {action:"walk-or-run-guide",dose:null};
   if(p.mode==="circuit"&&p.movementsFamiliar!==true)return {action:"learn-movements",dose:null};
-  if(last.dose.kind==="interval"&&last.dose.effort[1]===8&&!historicalPair(s.logs,interval(p.mode,"b120x4",p.slot),now,p.setup)&&!historicalPair(s.logs,interval(p.mode,"hard120x3",p.slot),now,p.setup))return {action:"reassess-hard",dose:null};
+  if(last.dose.kind==="interval"&&last.dose.effort[1]===8&&!historicalPair(s.logs,interval(p.mode,"b120x4",p.slot),now,p.setup)&&!historicalPair(s.logs,interval(p.mode,"hard120x3",p.slot),now,p.setup)&&!historicalPair(s.logs,last.dose,now,p.setup))return {action:"reassess-hard",dose:null};
   pick=recommend(profile,last.dose,s.logs,now);
  }else pick=initial(profile,s.logs,now);
  if(!pick.dose)return pick;
- if(p.slot==="steady2"&&pick.dose.kind==="steady")pick={...pick,dose:{...pick.dose,slot:"steady2"}};
+ if(p.slot==="steady2"&&["steady","bouts"].includes(pick.dose.kind))pick={...pick,dose:{...pick.dose,slot:"steady2"}};
  const routed=schedule(profile,pick.dose);if(!routed.dose)return routed;
  if(!canonical(routed.dose))return {action:"reassess-dose",dose:null};
+ const isDemanding=routed.dose.kind==="interval"||routed.dose.kind==="circuit"&&routed.dose.effort[1]>5;
+ if(isDemanding&&s.logs.some(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day===now&&(l.dose.kind==="interval"||l.dose.kind==="circuit"&&l.dose.effort[1]>5)))return {action:"already-demanding-today",dose:null};
  const fit=fitTime(routed.dose,budget);return {...fit,recommendation:pick.action};
 }
 
