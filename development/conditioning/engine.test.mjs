@@ -1,4 +1,4 @@
-import { latestDistinct, reducedDose, nextVisit, screen, steady, interval, bouts, swim, circuit, phases, seconds, key, recent, success, matched, steadyGate, gate, initial, schedule, fitTime, reduce, recommend, comparableOutput, uniqueExternal, validActual } from './engine.mjs';
+import { historicalPair, latestDistinct, reducedDose, nextVisit, screen, steady, interval, bouts, swim, circuit, phases, seconds, key, recent, success, matched, steadyGate, gate, initial, schedule, fitTime, reduce, recommend, comparableOutput, uniqueExternal, validActual } from './engine.mjs';
 function fixtureTests(){const p={restricted:false,vigorousSuitable:true,mode:"bike",goal:"B",days:2,existingHard:false,recovery:"normal",setup:"bike1",hardOptIn:true};const now=100;const log=(dose,day,extra={})=>({dose,day,setup:"bike1",status:"full",recovery:"normal",quality:true,effort:dose.effort[1],...extra});const pair=(d)=>[log(d,98),log(d,95)];const i=interval("bike","b60x4"), long=interval("bike","b60x6"), steady25=steady("bike",25,2), steady35=steady("bike",35,3), hard=interval("bike","b120x4");const tests=[];const check=(name,condition)=>{if(!condition)throw Error(name);tests.push(name);};
 check("01 inactive short bouts",initial({...p,mode:"walk",comfortableMinutes:2},[],now).dose.kind==="bouts");
 check("02 strength not cardio readiness",initial(p,[],now).dose.level===1);
@@ -45,5 +45,14 @@ check("42 unresolved warning across modes",recommend(p,i,[log(steady("walk",10),
 check("43 schedule blocks progression at final gate",nextVisit({...p,existingHard:true},i,pair(i),now,2400).dose===null);
 check("44 limited visit actual phase duration",nextVisit(p,i,[],now,1200).action==="shortened");
 check("45 reduced hard dose needs reassessment",(()=>{const d=reduce(interval("bike","hard120x3"));return recommend(p,d,pair(d),now).action==="reassess-hard";})());
+check("46 preserve steady baseline",initial({...p,goal:"A"},pair(steady("bike",40,4)),now).dose.minutes===40);
+check("47 conflicting same-day evidence holds",recommend(p,i,[log(i,98),log(i,98,{quality:false}),log(i,95)],now).action==="repeat");
+check("48 onboarding warning blocks new mode",initial(p,[log(steady("walk",10),98,{warning:true})],now).dose===null);
+check("49 tempo bridge entry",initial({...p,goal:"A",slot:"interval",tempoOptIn:true},pair(steady25),now).dose.id==="bridge30");
+check("50 tempo transition",recommend({...p,goal:"A",tempoOptIn:true},i,[...pair(i),...pair(steady25)],now).dose.id==="tempo180x2");
+check("51 level boundary progress",recommend(p,steady25,pair(steady25),now).dose.level===3);
+check("52 caller cannot grant hard readiness",recommend({...p,specialization:"repeat-hard",hardPrepared:true},interval("bike","repeat30x6"),pair(interval("bike","repeat30x6")),now).dose.id==="repeat30x7");
+check("53 unknown screening blocks moderate dose",schedule({...p,vigorousSuitable:undefined},steady25).dose===null);
+check("54 prepared one-day interval",initial({...p,days:1,externalSteady:true,slot:"interval"},pair(steady25),now).dose.kind==="interval");
 return tests;}
 const results=fixtureTests(); for(const name of results) console.log('PASS '+name); console.log(results.length+' checks passed');
