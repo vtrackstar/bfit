@@ -116,3 +116,7 @@ Final combined rerun: 88/88 programming/feature checks, 49/49 simulated interfac
 ## Beginner UX revision before owner-authorized release
 
 Simplified intake and optional measurement hierarchy; minutes/seconds entry, phase cues, workout progress, next actions and focus management, configurable sound and screen wake lock when supported, and cross-training education. Retained inactivity pause and next-day recovery gates. Early distance completion requires matching elapsed time and running strategy. Revised candidate 57/57 simulated interface checks and 88/88 programming checks. GitHub Actions run 45874694381 independently confirmed both audit and first-5k-browser jobs successful on identical runtime files. Physical phone sound and screen-lock behavior, manual certificate appearance and real beginner testing remain unverified. No clinical validation claimed. Owner approved publication.
+
+## Final prepublication communication changes
+
+Added three-step introduction, current versus requested weekly schedule, workout-specific reason and preview, printable text instructions, timer status and prominent safety instructions. 61/61 simulated interface checks pass; engine unchanged (88 previous programming checks). Real phone testing remains outstanding. Owner explicitly authorized release.
