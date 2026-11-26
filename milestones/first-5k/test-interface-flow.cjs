@@ -61,6 +61,21 @@ const harness=async function harness(html,js,bundle,calc){
  check("Imported symptom hold remains paused",()=>state().state.paused&&env.elements.checkin.hidden);
  env.elements.importFile.files=[file(backup)];set("replaceConfirm",true);await env.elements.import.onclick();
  check("Import cannot clear existing health hold",()=>state().state.paused);
- return {environment:"Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",tests,passed:tests.filter(x=>x.pass).length,total:tests.length};
+ 
+// Verify new return workflow after the existing import safety checks.
+set("returnWalk",30);submit("returnForm");check("Return without medical advice stays paused",()=>state().state.paused);
+set("cleared",true);set("symptomFree",true);submit("returnForm");
+check("Cleared return restarts conservatively",()=>!state().state.paused&&state().state.level===0&&state().state.clearanceSelfReported===true&&state().state.history.length===pausedBackup.state.history.length);
+env=boot();check("Return checkpoint survives restore",()=>state().state.returnEpoch===Math.floor(date/86400000)&&!env.elements.checkin.hidden);
+set("recovery","normal");set("symptoms","none");submit("pre");
+check("Return workout uses introductory running dose",()=>state().active?.decision.workout.runSec===180);
+ // Completion fixture: seed a measured completed record, then restore and inspect the result.
+const completed=JSON.parse(JSON.stringify(backup));const last=completed.state.history.at(-1);const finish={...last,day:Math.floor(date/86400000)-1,runSec:2100,mainSec:2100,totalSec:2580,longestBout:2100,mainDistanceM:5000,runningDistanceM:5000,continuousDistanceM:5000,source:"test-fixture",completed:true,check:env.g.BFit5KCore.successCheck};
+completed.state.history.push(finish);completed.state.lastDay=finish.day;completed.state.completed=true;completed.state.completion=finish;
+store={"bfit-first-5k-dev-v1":JSON.stringify(completed)};env=boot();
+check("Completion panel displays recorded time and distance",()=>!env.elements.celebration.hidden&&env.elements.resultSummary.textContent.includes("35:00")&&env.elements.resultSummary.textContent.includes("5.00 km"));
+check("Completion analysis converts average pace",()=>env.elements.resultPace.textContent.includes("7:00/km")&&env.elements.resultPace.textContent.includes("11:16/mile"));
+check("Completion stops regular workout recommendations",()=>env.elements.checkin.hidden);
+return {environment:"Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",tests,passed:tests.filter(x=>x.pass).length,total:tests.length};
 };
 harness(read("index.html"),read("workout.js"),read("browser-engine.js"),read("../../shared/running-calculator.js")).then(result=>{console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;});
