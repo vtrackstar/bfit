@@ -1,0 +1,79 @@
+{
+  "environment": "Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",
+  "tests": [
+    {
+      "name": "Setup initial view",
+      "pass": true
+    },
+    {
+      "name": "Onboarding generates persisted plan",
+      "pass": true
+    },
+    {
+      "name": "Workout renders 20-minute initial session",
+      "pass": true
+    },
+    {
+      "name": "Pause records only elapsed time",
+      "pass": true
+    },
+    {
+      "name": "Paused timer does not advance",
+      "pass": true
+    },
+    {
+      "name": "Reload restores paused workout",
+      "pass": true
+    },
+    {
+      "name": "Resume crosses into run interval",
+      "pass": true
+    },
+    {
+      "name": "Hidden page pauses timer",
+      "pass": true
+    },
+    {
+      "name": "Timer finishes automatically",
+      "pass": true
+    },
+    {
+      "name": "Distance/time conversion rendered",
+      "pass": true
+    },
+    {
+      "name": "Workout pending next-day recovery",
+      "pass": true
+    },
+    {
+      "name": "Same-day recovery blocked",
+      "pass": true
+    },
+    {
+      "name": "Pending recovery restored",
+      "pass": true
+    },
+    {
+      "name": "Next-day recovery logs exactly once",
+      "pass": true
+    },
+    {
+      "name": "Next-day adjacent running blocked",
+      "pass": true
+    },
+    {
+      "name": "Pre-session pain hold persists",
+      "pass": true
+    },
+    {
+      "name": "Reload cannot bypass pain hold",
+      "pass": true
+    },
+    {
+      "name": "Export has expected filename",
+      "pass": true
+    }
+  ],
+  "passed": 18,
+  "total": 18
+}
