@@ -38,6 +38,34 @@ const reference=function reference(E){
  const make=(id,t)=>{const [run,bout,rest,main]=t;const runs=[],rests=[];let left=run;while(left){let n=Math.min(left,bout);runs.push(n);left-=n;if(left)rests.push(rest);}const base=run+rests.reduce((a,b)=>a+b,0);return E.workout(id,runs,rests,Math.max(0,main-base),{pattern:rest?{run:bout,walk:rest}:null});};
  function plan(goal,days){if(!["runwalk","continuous"].includes(goal)||![2,3].includes(days))throw Error("Invalid plan");return [...common,...(goal==="runwalk"?rw:continuous)].map((row,i)=>{const slots=days===2?[0,2]:[0,1,2];return slots.map(j=>({...make(goal+"-w"+(i+1)+"-"+j,row[j]),lane:["practice","easy","long"][j]}));});}
  const sum=(a,k)=>a.reduce((s,x)=>s+x[k],0), max=(a,k)=>Math.max(0,...a.map(x=>x[k]??0));
+ // Split the actual recovered practice prescription into two smaller doses.
+ // Keep the long outing familiar, count the extra warm-up/cooldown, and
+ // retain the current reference level during the transition cycle.
+ function transition(s,records){
+ const practice=records.find(r=>r.lane==="practice"),long=records.find(r=>r.lane==="long");
+ if(!practice||!long||!practice.runSec||!long.runSec)return null;
+ const original=plan(s.goal,2)[s.level];
+ if(practice.runSec<original[0].runSec||long.runSec<original[1].runSec)return null;
+ const first=original[0],last=original[1],half=Math.floor(first.runSec/2);
+ const a=make("frequency-practice-"+s.level,[half,Math.min(first.longestBout,half),first.pattern?.walk??90,Math.floor(first.mainSec/2)]);
+ const b=make("frequency-easy-"+s.level,[first.runSec-half,Math.min(first.longestBout,first.runSec-half),first.pattern?.walk??90,Math.ceil(first.mainSec/2)]);
+ const row=[{...a,lane:"practice"},{...b,lane:"easy"},{...last,lane:"long"}];
+ if(sum(row,"runSec")>sum(records,"runSec")||sum(row,"totalSec")>sum(records,"totalSec")+480)return null;
+ return row;
+ }
+ function currentRow(s,h,d){
+ if(s.transitionRow)return s.transitionRow;
+ const row=plan(s.goal,s.days)[Math.min(s.level,14)];
+ if(s.level<14)return row;
+ // Extend the last long outing only after two recent recovered exposures at
+ // the current duration. A time ceiling works even when distance is unknown.
+ const g=E.good(h,d,28).filter(r=>r.lane==="long"&&r.runSec>0&&(s.goal!=="continuous"||r.strategy==="continuous")).sort((a,b)=>b.day-a.day);
+ const last=row.at(-1),ext=s.extensionSec??0,base=last.mainSec+ext;
+ if(!ext&&g.filter(r=>r.mainSec>=last.mainSec-1).length<2)return row;
+ const target=base;
+ const q=s.goal==="continuous"?E.continuous("extension-"+target,target):E.rhythm("extension-"+target,last.pattern.run,last.pattern.walk,target);
+ return [...row.slice(0,-1),{...q,lane:"long"}];
+ }
  function start(intake,h=[],day=0){
  const base=E.initial(intake,h,day);if(base.action!=="start")return base;
  const days=intake.days;const rows=plan(intake.goal,days),g=E.good(h,day,14),run=g.filter(r=>r.runSec>0);
@@ -63,7 +91,7 @@ const reference=function reference(E){
  function changeGoal(s,goal,time=null,h=s.history??[],day=s.lastDay??0){
  const review=reassessGoal(s,goal,time,h,day);
  if(goal===s.goal)return {...s,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,goalReview:review,paused:s.paused||review.status==="pause"};
- return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:review.level,completed:false,completion:null,goalReview:review,paused:s.paused||review.status==="pause"};
+ return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:review.level,transitionRow:null,extensionSec:0,completed:false,completion:null,goalReview:review,paused:s.paused||review.status==="pause"};
  }
  function progressReview(s,h=s.history??[],day=s.lastDay??0){
  const rows=E.recent(h,day,28),done=rows.filter(r=>r.completed===true),recovered=E.good(h,day,28);
@@ -78,7 +106,7 @@ const reference=function reference(E){
  if(all.some(r=>r.unresolved)||last&&["pause","urgent"].includes(E.check(last.check)))return result("pause",null,"Pause and assess symptoms.");
  if(last&&d-last.day<2)return result("rest",null,"Rest between workouts.");
  if(last&&E.check(last.check)==="hold"||last?.check?.recovery==="unknown")return result("hold",null,"Confirm recovery.");
- let row=plan(s.goal,s.days)[Math.min(s.level,14)],p=row[s.index%row.length];
+ let row=currentRow(s,h,d),p=row[s.index%row.length];
  // Distance ceiling applies to every measured outing, including ordinary practice.
  if(p.runSec)p={...p,distanceGoal:5000};
  if(s.walkMin!==null)p={...E.walk("walk-"+s.walkMin,s.walkMin*60),lane:p.lane};
@@ -137,19 +165,26 @@ const reference=function reference(E){
  }
  const records=[...s.cycleRecords,record];let idx=s.index+1;
  if(idx>=s.days){
- let days=s.days;
- // Only add a third session after two weeks of regular recovered running,
- // then return to a reference row with no larger weekly running dose.
- let level=Math.min(14,s.level+1);
- if(s.days===2&&s.requestedDays===3&&s.level>=1&&E.good(next.history,record.day,14).filter(r=>r.runSec>0).length>=4){
- const old=sum(plan(s.goal,2)[s.level],"runSec");
- const eligible=plan(s.goal,3).findLastIndex(row=>sum(row,"runSec")<=old&&max(row,"longestBout")<=max(plan(s.goal,2)[s.level],"longestBout"));
- if(eligible>=0){days=3;level=eligible;}
+ let days=s.days,level=Math.min(14,s.level+1),transitionRow=null,extensionSec=s.extensionSec??0;
+ const recent=E.good(next.history,record.day,14).filter(r=>r.runSec>0&&r.check.recovery==="normal");
+ if(s.days===2&&s.requestedDays===3&&s.level>=1&&[recent.filter(r=>r.day>record.day-7),recent.filter(r=>r.day<=record.day-7)].every(w=>new Set(w.map(r=>r.day)).size>=2)){
+ const split=transition(s,records);
+ if(split){days=3;level=s.level;transitionRow=split;}
  }
- return {...next,days,level,index:0,cycleRecords:[],week:s.week+1};
+ if(s.transitionRow){
+ // A frequency transition does not immediately increase the whole reference
+ // dose. Retain the level; the ordinary adaptive limits apply next cycle.
+ level=s.level;
+ }
+ if(s.level===14&&!s.transitionRow){
+ const base=plan(s.goal,s.days)[14].at(-1).mainSec+extensionSec;
+ const recovered=E.good(next.history,record.day,28).filter(r=>r.lane==="long"&&r.mainSec>=base-1&&r.check.recovery==="normal"&&(s.goal!=="continuous"||r.strategy==="continuous"));
+ if(new Set(recovered.map(r=>r.day)).size>=2)extensionSec+=Math.min(180,Math.max(60,Math.floor(base*.08/30)*30));
+ }
+ return {...next,days,level,transitionRow,extensionSec,index:0,cycleRecords:[],week:s.week+1};
  }
  return {...next,index:idx,cycleRecords:records};
  }
- return {plan,start,next,log,changeGoal,reassessGoal,progressReview,ack:s=>({...s,ack:s.goalRevision})};
+ return {plan,start,next,log,changeGoal,reassessGoal,progressReview,transition,currentRow,ack:s=>({...s,ack:s.goalRevision})};
 };
 module.exports=reference(require("./engine.cjs"));
