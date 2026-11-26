@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { steady, interval, phases } from './engine.mjs';
+import { manualLand, outputRecord } from './preview/recording.mjs';
+const d=steady("bike",5),p=phases(d).map(x=>x.seconds);
+assert.equal(manualLand(d,p).status,"full");console.log("PASS full manual");
+const short=manualLand(d,[p[0],60,""],120);assert.equal(short.status,"shortened");assert.deepEqual(short.actual.at(-1),{type:"cool",seconds:120,earlyCooldown:true});console.log("PASS early cooldown");
+assert.equal(manualLand(d,[p[0],p[1],""],p[2]).status,"full");console.log("PASS regular cooldown");
+assert.equal(manualLand(d,["","",""]).status,"skipped");assert.throws(()=>manualLand(d,["","",""],60));console.log("PASS no phantom activity");
+assert.throws(()=>manualLand(d,[p[0],"",p[2]]));assert.throws(()=>manualLand(d,p,30));assert.throws(()=>manualLand(d,[p[0],60,p[2]]));console.log("PASS reject gaps and duplicated cooldown");
+const i=interval("bike","bridge30"),v=phases(i).map(x=>x.seconds);v[2]+=20;assert.equal(manualLand(i,v).recoveryExtended,true);v[4]+=20;assert.throws(()=>manualLand(i,v));console.log("PASS only one recovery extension");
+assert.deepEqual(outputRecord("bike","rpm","80"),{output:80,unit:"rpm"});assert.deepEqual(outputRecord("bike","",""),{});assert.throws(()=>outputRecord("bike","rpm",""));assert.throws(()=>outputRecord("swim","rpm","80"));console.log("PASS optional mode-appropriate measurements");
+console.log("7 recording checks passed");
