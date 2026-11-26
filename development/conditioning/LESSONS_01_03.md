@@ -62,7 +62,7 @@ If you pedal as fast as possible during your first interval, you may struggle to
 | New pain or concerning symptoms | Stop and follow the safety guidance |
 These observations are not diagnoses. Normal exertion is expected; unexpected or severe symptoms need appropriate attention.
 ### Why do my muscles burn?
-The burning sensation reflects changes in working muscle and how the nervous system senses them. Lactate is produced during metabolism and can be used as fuel. It is neither simply waste nor a complete explanation of fatigue. Next-day soreness is a different experience; neither soreness nor burning is needed to prove a workout worked. [Brooks, lactate shuttle theory](https://pubmed.ncbi.nlm.nih.gov/29617642/).
+The burning sensation reflects changes in working muscle and how the nervous system senses them. Lactate is produced during metabolism and can be used as fuel. It is neither simply waste nor a complete explanation of fatigue. Next-day soreness is a different experience; neither soreness nor burning is needed to prove a workout worked. [Lactate and delayed soreness review](https://pmc.ncbi.nlm.nih.gov/articles/PMC13559195/). [Brooks, lactate shuttle theory](https://pubmed.ncbi.nlm.nih.gov/29617642/).
 ### What is recovery for?
 Recovery helps you prepare for the next effort. You may move slowly (active recovery) or rest (passive recovery), depending on the activity and goal. Neither is universally better. On land, slow down until your breathing is comfortable; extend easy recovery once if appropriate. If you still do not feel ready, finish the demanding portion and cool down when safe. Swimming recovery is at the wall. Stop immediately for warning symptoms.
 ### Optional depth — Energy restoration
@@ -80,4 +80,4 @@ Sleep, heat, recent training, food and stress may change how an effort feels. On
 
 ## Editorial notes (not reader copy)
 - Audit changes 1–15 implemented as draft text/structure; visual specifications and navigation still require implementation. Safety stays visible. Remove repeated quizzes/takeaways. Optional layers preserve technical depth.
-- Verify AHA warmup, GeneReviews and Brooks references in registry; heart delivery claim limited to qualitative explanation, no universal improvement. Add independent safety review. All links/anchors and rendered diagrams pending. 
+- AHA warmup, GeneReviews and Brooks references confirmed in targeted review; heart delivery claim limited to qualitative explanation, no universal improvement. Add independent safety review. All links/anchors and rendered diagrams pending. 
