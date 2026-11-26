@@ -23,7 +23,7 @@ try{
  await check('Layout and navigation '+width+'px',()=>pageFor({width,height:900},async page=>{
  await load(page);await overflow(page);assert.equal(await page.locator('h1').count(),1);await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')),'#startHere');
  await page.locator('.jump a[href="#learn"]').click();assert.equal(new URL(page.url()).hash,'#learn');await page.locator('#learn details summary').first().click();await overflow(page);
- await page.locator('#setup details summary').click();await overflow(page);await page.screenshot({path:folder+'/layout-'+width+'.png',fullPage:true});await page.locator('#setup details summary').click();await intake(page);await prescribe(page);await overflow(page);await page.screenshot({path:folder+'/workout-'+width+'.png',fullPage:true});
+ await page.locator('#historyOptions > summary').click();await overflow(page);await page.screenshot({path:folder+'/layout-'+width+'.png',fullPage:true});await page.locator('#historyOptions > summary').click();await intake(page);await prescribe(page);await overflow(page);await page.screenshot({path:folder+'/workout-'+width+'.png',fullPage:true});
  }));}
  await check('Native required fields and accessibility',()=>pageFor({width:390,height:844},async page=>{await load(page);await page.locator('#intake button').last().click();assert.equal(await page.locator('#ready').evaluate(el=>el.validity.valueMissing),true);assert.equal(await state(page),null);await axe(page,'intake');await intake(page);await prescribe(page);await axe(page,'workout');}));
  await check('Timer, native reload, cancellation and recovery',()=>pageFor({width:390,height:844},async page=>{
