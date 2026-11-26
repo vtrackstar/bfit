@@ -99,10 +99,16 @@ try {
           const next=page.locator('#'+id+' [data-scroll="1"]');
           const previous=page.locator('#'+id+' [data-scroll="-1"]');
           if(overflows){
-            assert.ok(await previous.isDisabled());
-            assert.ok(await next.isEnabled());
+            await row.evaluate(el=>el.scrollTo({left:0,behavior:'instant'}));
+            await page.waitForFunction(id=>document.querySelector('#'+id+' [data-scroll="-1"]').disabled,id);
+            assert.ok(await next.isEnabled(),id+' next arrow initially unavailable');
+            const initial=await row.evaluate(el=>el.scrollLeft);
             await next.click();
-            await page.waitForFunction(id=>document.querySelector('#'+id+' .cards').scrollLeft>2,id);
+            await page.waitForFunction(({id,initial})=>document.querySelector('#'+id+' .cards').scrollLeft>initial+2,{id,initial});
+            await page.waitForFunction(id=>!document.querySelector('#'+id+' [data-scroll="-1"]').disabled,id);
+            await previous.click();
+            await page.waitForFunction(id=>document.querySelector('#'+id+' [data-scroll="-1"]').disabled,id);
+            assert.ok(await next.isEnabled(),id+' next arrow unavailable after returning');
           }
         }
         assert.equal(await page.locator('a[href*="twitch.tv/"]').count(),0);

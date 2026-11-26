@@ -101,6 +101,7 @@ header h1, #guides > h2, #plans-title, #first-title, #upcoming-title, #coaching-
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
+  scroll-padding-inline: 4px;
   padding: 6px 4px 12px;
 }
 #more-training-plans .card, #your-first .card {
@@ -156,14 +157,20 @@ for (const row of document.querySelectorAll('#more-training-plans .cards, #your-
   const next = tools.querySelector('[data-scroll="1"]');
   const updateHint = () => {
     const max = row.scrollWidth - row.clientWidth;
-    tools.hidden = max <= 2;
-    previous.disabled = row.scrollLeft <= 2;
+    const start = row.querySelector('.card').getBoundingClientRect().left - row.getBoundingClientRect().left - row.clientLeft;
+    const padding = parseFloat(getComputedStyle(row).paddingLeft) || 0;
+    const atStart = start >= padding - 2;
+    tools.hidden = max <= 1;
+    previous.disabled = atStart;
     next.disabled = row.scrollLeft >= max - 2;
   };
   for (const button of [previous,next]) button.addEventListener('click', () => {
     const card = row.querySelector('.card');
     const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
-    row.scrollBy({left:Number(button.dataset.scroll)*(card.getBoundingClientRect().width+gap),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+    const distance = card.getBoundingClientRect().width + gap;
+    const max = row.scrollWidth - row.clientWidth;
+    const target = Math.max(0, Math.min(max, row.scrollLeft + Number(button.dataset.scroll)*distance));
+    row.scrollTo({left:target,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
   });
   row.addEventListener('scroll',updateHint,{passive:true});
   updateHint();
