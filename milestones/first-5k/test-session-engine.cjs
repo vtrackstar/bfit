@@ -43,7 +43,7 @@ const simulate = function simulate(E,S){
  check("Missed 14 days reduces dose",()=>S.next(s,[record(a,1000,"practice",480)],1014).workout.runSec<a.runSec);
  check("Four-week review doesn't alter dose",()=>S.blockReview(s,[],1028).state===s);
  check("Acknowledgment resets with goal change",()=>S.goalChange(S.ack(s),"continuous",1800).noticeAck===null);
- check("Two comparable days with distinct IDs can qualify",()=>{const h=[record(a,1000,"practice",480),record({...a,id:"different"},1003,"long",480),record(a,1006,"practice",480),record(a,1009,"long",480)];return S.next({...s,started:980},h,1012,{lane:"practice"}).action==="progress";});
+ check("Two comparable days with distinct IDs can qualify",()=>{const h=[record(a,1000,"practice",480),record({...a,id:"different"},1003,"long",480),record(a,1006,"practice",480),record(a,1009,"long",480)];return S.next({...s,started:980},h,1013,{lane:"practice"}).action==="progress";});
  check("Initial history not replaced by goal time",()=>S.start({walkMin:30,goal:"continuous",days:2,goalTimeSec:1200},[],1000).practice.id==="A1");
  return {journeys,tests,summary:{complete:journeys.filter(x=>x.done).length,total:journeys.length,passed:tests.filter(x=>x.pass).length,checks:tests.length}};
 };
