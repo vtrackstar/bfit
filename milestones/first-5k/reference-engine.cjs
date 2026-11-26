@@ -45,9 +45,31 @@ const reference=function reference(E){
  const n=base.days;
  let level=0;
  if(run.length>=4){const recent=E.good(h,day,14);const half=[recent.filter(r=>r.day>day-7),recent.filter(r=>r.day<=day-7)];const wk=Math.min(...half.map(r=>sum(r,"runSec")));const found=plan(intake.goal,n).findLastIndex(row=>sum(row,"runSec")<=wk&&max(row,"runSec")<=max(run,"runSec")&&max(row,"longestBout")<=max(run,"longestBout")&&max(row,"mainSec")<=max(run,"mainSec"));level=Math.max(0,found);}
- return {action:"start",goal:intake.goal,days:n,requestedDays:days,level,index:0,week:1,walkMin:intake.walkMin<30&&!run.length?Math.max(5,Math.floor(intake.walkMin/5)*5):null,goalTimeSec:intake.goalTimeSec??null,goalRevision:0,ack:null,history:[],cycleRecords:[],lastDay:null,paused:false,returnHold:false};
+ return {action:"start",goal:intake.goal,days:n,requestedDays:days,level,index:0,week:1,walkMin:intake.walkMin<30&&!run.length?Math.max(5,Math.floor(intake.walkMin/5)*5):null,goalTimeSec:intake.goalTimeSec??null,goalRevision:0,ack:null,history:E.recent(h,day,30),cycleRecords:[],lastDay:E.recent(h,day,30).sort((a,b)=>b.day-a.day)[0]?.day??null,paused:false,returnHold:false};
  }
- function changeGoal(s,goal,time=null){if(!["runwalk","continuous"].includes(goal))throw Error("Invalid goal");return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:Math.min(s.level,3),completed:false,completion:null};}
+ function reassessGoal(s,goal,time=null,h=s.history??[],day=s.lastDay??0){
+ if(!["runwalk","continuous"].includes(goal)||time!==null&&(!Number.isFinite(time)||time<=0)||!Number.isInteger(day))throw Error("Invalid goal");
+ const rows=E.recent(h,day,30).sort((a,b)=>b.day-a.day),g=E.good(h,day,14).filter(r=>r.runSec>0&&!r.fasterSec);
+ const pause=s.paused||rows.some(r=>r.unresolved)||rows[0]&&["pause","urgent"].includes(E.check(rows[0].check));
+ const bouts=max(g,"longestBout"),run=max(g,"runSec"),main=max(g,"mainSec");
+ const windows=[g.filter(r=>r.day>day-7),g.filter(r=>r.day<=day-7)];
+ const regular=windows.every(w=>new Set(w.map(r=>r.day)).size>=2);
+ const wk=Math.min(...windows.map(w=>sum(w,"runSec")));
+ const level=regular?plan(goal,s.days).findLastIndex(row=>sum(row,"runSec")<=wk&&max(row,"runSec")<=run&&max(row,"longestBout")<=bouts&&max(row,"mainSec")<=main):-1;
+ // A controlled assessment replaces part of a familiar session; no pace-only advancement.
+ const assessmentSec=pause?null:[1200,600,300,120].find(n=>n<=bouts)??null;
+ return {goal,time,level:Math.max(0,level),status:pause?"pause":regular?"history-supported":"needs-recent-training",assessmentSec,optional:true,weeklyRunSec:regular?wk:null,longestBoutSec:bouts,reason:pause?"Resolve symptoms before assessing.":regular?"Use recent training to select the new starting point.":"Build recent comparable training before advancing."};
+ }
+ function changeGoal(s,goal,time=null,h=s.history??[],day=s.lastDay??0){
+ const review=reassessGoal(s,goal,time,h,day);
+ if(goal===s.goal)return {...s,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,goalReview:review,paused:s.paused||review.status==="pause"};
+ return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:review.level,completed:false,completion:null,goalReview:review,paused:s.paused||review.status==="pause"};
+ }
+ function progressReview(s,h=s.history??[],day=s.lastDay??0){
+ const rows=E.recent(h,day,28),done=rows.filter(r=>r.completed===true),recovered=E.good(h,day,28);
+ const weeks=Array.from({length:4},(_,i)=>{const end=day-7*(3-i),w=rows.filter(r=>r.day<=end&&r.day>end-7);return {runSec:sum(w,"runSec"),totalSec:sum(w,"totalSec"),completed:w.filter(r=>r.completed===true).length};});
+ return {completed:done.length,runSec:sum(rows,"runSec"),totalSec:sum(rows,"totalSec"),longestBoutSec:max(recovered,"longestBout"),longestMeasuredDistanceM:recovered.some(r=>r.mainDistanceM!=null)?max(recovered,"mainDistanceM"):null,weeks,analyticsCollapsed:true};
+ }
  function next(s,h,d){
  const result=(action,workout,reason,extra={})=>({action,workout,state:s,reason,...extra});
  if(s.completed)return result("complete",null,"Your selected 5K milestone is complete.");
@@ -128,6 +150,6 @@ const reference=function reference(E){
  }
  return {...next,index:idx,cycleRecords:records};
  }
- return {plan,start,next,log,changeGoal,ack:s=>({...s,ack:s.goalRevision})};
+ return {plan,start,next,log,changeGoal,reassessGoal,progressReview,ack:s=>({...s,ack:s.goalRevision})};
 };
 module.exports=reference(require("./engine.cjs"));
