@@ -24,8 +24,8 @@
     }
   ],
   "interface": {
-    "passed": 57,
-    "total": 57
+    "passed": 61,
+    "total": 61
   },
   "journeys": [
     {
@@ -65,7 +65,7 @@
       "week": 18
     }
   ],
-  "environment": "JavaScript dependency-injection regression; actual Chromium CI run 45874694381 separately passed both jobs on identical runtime files. Physical phone behavior remains unverified.",
+  "environment": "Simulated DOM and injected clock; previous runtime passed real Chromium CI. Final communication revision browser run pending.",
   "browserEvidence": {
     "runId": 45874694381,
     "siteAudit": "success",
