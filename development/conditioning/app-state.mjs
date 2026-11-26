@@ -11,6 +11,10 @@ const appEq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const appInt=(n,min,max)=>Number.isSafeInteger(n)&&n>=min&&n<=max;
 function appAssert(ok,msg){if(!ok)throw Error(msg);}
 function fields(o,allowed){return o&&typeof o==="object"&&!Array.isArray(o)&&Object.keys(o).every(k=>allowed.includes(k));}
+function validProfile(p){
+ const booleans=["restricted","vigorousSuitable","currentSevere","warning","pain","postIllness","waterCompetent","recentRun","movementsFamiliar","externalSteady","adjacentDemand","hardOptIn","tempoOptIn","knownCondition","alternatePrepared","rebaseline"];
+ return fields(p,["mode","goal","setup","existingHard","recovery","comfortableMinutes","specialization","poolLength","poolUnit","days","slot",...booleans])&&MODES.includes(p.mode)&&["A","B"].includes(p.goal)&&typeof p.setup==="string"&&p.setup.trim().length>0&&p.setup.length<=120&&booleans.every(k=>p[k]===undefined||typeof p[k]==="boolean")&&(p.existingHard===undefined||typeof p.existingHard==="boolean")&&(p.recovery===undefined||["normal","extra","limiting","unknown"].includes(p.recovery))&&(p.comfortableMinutes===undefined||appInt(p.comfortableMinutes,0,120))&&(p.specialization===undefined||["power","repeat","repeat-hard"].includes(p.specialization))&&(p.poolLength===undefined||Number.isFinite(p.poolLength)&&p.poolLength>0&&p.poolLength<=100)&&(p.poolUnit===undefined||["m","yd"].includes(p.poolUnit))&&(p.days===undefined||appInt(p.days,0,3))&&(p.slot===undefined||["steady","steady2","interval","circuit"].includes(p.slot));
+}
 function appNew(start,days,optional=null){
  return {version:APP_VERSION,revision:0,history:emptyState(start),cycles:[{calendar:makeCycle(start,days,optional),replacements:[],reviewedDay:null}],active:null};
 }
@@ -18,7 +22,7 @@ function appCurrent(a){return a.cycles[a.cycles.length-1];}
 function appTicketValid(a,active,now){
  appAssert(fields(active,["ticket","profile","budget","timer","method"])&&["timer","manual"].includes(active.method),"Invalid active session");
  const {ticket,profile,budget,timer}=active,c=appCurrent(a);
- appAssert(fields(profile,["mode","goal","setup","restricted","vigorousSuitable","existingHard","recovery","comfortableMinutes","currentSevere","warning","pain","postIllness","waterCompetent","recentRun","movementsFamiliar","externalSteady","adjacentDemand","hardOptIn","tempoOptIn","specialization","knownCondition","symptoms","days","slot","alternatePrepared","rebaseline","poolLength","poolUnit"]),"Unknown profile fields");
+ appAssert(validProfile(profile),"Invalid profile values");
  appAssert(fields(ticket,["version","id","slotId","day","cycleStart","setup","dose","optional"])&&ticket.version===1&&appInt(ticket.day,0,now)&&appInt(budget,1,86400),"Invalid ticket");
  const r=beginTicket(c.calendar,a.history,c.replacements,profile,ticket.slotId,ticket.day,budget,ticket.id);
  appAssert(r.ticket&&appEq(r.ticket,ticket),"Active prescription does not match eligibility");
@@ -66,6 +70,7 @@ function appValidate(a,now){
 function appChange(a,patch,now){const n={...a,...patch,revision:a.revision+1};appValidate(n,now);return n;}
 function appStart(a,p,slotId,day,budget,id,method="timer"){
  appValidate(a,day);appAssert(a.active===null,"Finish or save active session first");
+ if(!validProfile(p))return {action:"complete-setup",app:a};
  if(p.mode==="swim"&&(!Number.isFinite(p.poolLength)||p.poolLength<=0||p.poolLength>100||!["m","yd"].includes(p.poolUnit)))return {action:"choose-pool",app:a};
  const c=appCurrent(a),r=beginTicket(c.calendar,a.history,c.replacements,p,slotId,day,budget,id);
  if(!r.ticket)return {action:r.action,app:a};
@@ -96,7 +101,12 @@ function appSave(a,feedback,now){
 }
 function appRecovery(a,id,recovery,now){
  appValidate(a,now);appAssert(!a.active,"Finish active session before editing history");
- return appChange(a,{history:updateRecovery(a.history,id,recovery,now)},now);
+ const prior=a.history.logs.find(l=>l.id===id);
+ appAssert(prior&&prior.status!=="skipped"&&prior.source!=="prior","No eligible recovery record");
+ // Do not turn a previously reported poor recovery into progression evidence.
+ const h=updateRecovery(a.history,id,recovery,now);
+ const corrected=prior.recovery!=="unknown"&&prior.recovery!==recovery;
+ return appChange(a,{history:corrected?{...h,logs:h.logs.map(l=>l.id===id?{...l,timingInterrupted:true,quality:false}:l)}:h},now);
 }
 function appCorrect(a,id,patch,now){
  appValidate(a,now);appAssert(!a.active,"Finish active session first");
@@ -153,7 +163,7 @@ function appReport(a,start,now){
   comparisons.push({mode:first.dose.mode,setup:first.setup,unit:first.unit,firstDay:first.day,lastDay:last.day,first:first.output,last:last.output,change:last.output-first.output,interpretation:"Comparable reported output; not proof of adaptation"});
  }
  const outside=a.history.external.filter(x=>x.day>=start&&x.day<=end);
- return {...cycleReview(c.calendar,a.history,c.replacements,now),reviewedDay:c.reviewedDay,byMode,comparisons,unknownRecovery:logs.filter(l=>l.recovery==="unknown").length,warningRecords:a.history.logs.filter(l=>slots.has(l.plannedId)&&l.warning).length,outsideKnownMinutes:outside.reduce((n,x)=>n+(x.minutes??0),0),outsideUnknownMinutes:outside.filter(x=>x.minutes===null).length};
+ return {...cycleReview(c.calendar,a.history,c.replacements,now),reviewedDay:c.reviewedDay,byMode,comparisons,unknownRecovery:logs.filter(l=>l.recovery==="unknown").length,warningRecords:a.history.logs.filter(l=>l.day>=start&&l.day<=end&&l.warning).length,outsideKnownMinutes:outside.reduce((n,x)=>n+(x.minutes??0),0),outsideUnknownMinutes:outside.filter(x=>x.minutes===null).length};
 }
 function appBackup(a,now){appValidate(a,now);return JSON.stringify(a);}
 function appRestore(raw,now){
@@ -174,4 +184,4 @@ function appLoad(storage,now){
  catch{return {ok:false,reason:"storage-or-backup-invalid"};}
 }
 
-export { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appSafetyHold, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad };
+export { APP_KEY, validProfile, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appSafetyHold, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad };
