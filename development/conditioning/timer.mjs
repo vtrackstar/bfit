@@ -71,7 +71,7 @@ function timerResult(t,feedback){
  const warning=t.warning||feedback.warning===true,pain=t.pain||feedback.pain===true;
  timerAssert(typeof feedback.quality==="boolean"&&typeof feedback.warning==="boolean"&&typeof feedback.pain==="boolean","Complete workout feedback");
  const recoveryExtended=actual.some((a,i)=>a.type==="recovery"&&a.seconds>phases(d)[i].seconds);
- const l={source:"timer",status,actual,effort:status==="skipped"?null:feedback.effort,quality:feedback.quality&&!warning&&!pain,recovery:"unknown",recoveryDay:null,warning,pain,recoveryExtended,timingInterrupted:t.interrupted,...(t.reason?{reason:t.reason}:{})};
+ const l={source:"timer",status,actual,effort:status==="skipped"?null:feedback.effort,quality:feedback.quality&&!warning&&!pain,recovery:"unknown",recoveryDay:null,warning,pain,recoveryExtended,timingInterrupted:t.interrupted,...(t.reason?{reason:t.reason}:feedback.reason?{reason:feedback.reason}:{}),...(status!=="skipped"&&feedback.output!==undefined?{output:feedback.output,unit:feedback.unit}:{})};
  return l;
 }
 function saveTicket(c,s,replacements,ticket,feedback,now){
