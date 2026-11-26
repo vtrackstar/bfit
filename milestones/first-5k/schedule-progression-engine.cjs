@@ -107,7 +107,7 @@ const reference=function reference(E){
  const run=sum(actual,"runSec"),total=sum(actual,"totalSec");
  // Provisional coaching review corridors, not validated injury thresholds.
  // A new runner may establish the first low-dose reference week.
- const introductory=E.good(h,d-1,14).filter(r=>r.runSec>0).length<2&&s.level===0;
+ const introductory=s.walkMin===null&&E.good(h,d-1,14).filter(r=>r.runSec>0).length<2&&s.level===0;
  const initial=plan(s.goal,s.days)[0];
  const runBudget=introductory?sum(initial,"runSec"):baselineRun+Math.max(120,Math.min(600,baselineRun*.30));
  const totalBudget=introductory?sum(initial,"totalSec"):baselineTotal+Math.max(600,Math.min(1200,baselineTotal*.30));
@@ -222,10 +222,10 @@ const reference=function reference(E){
  if(s.walkMin!==null){const records=[...s.cycleRecords,record],n=records.length;if(n>=s.days){const ready=records.every(r=>r.mainSec>=s.walkMin*60-1)&&!recovering;return {...next,walkMin:ready?(s.walkMin>=30?null:Math.min(30,s.walkMin+5)):s.walkMin,cycleRecords:[],index:0,week:s.week+1};}return {...next,cycleRecords:records,index:s.index+1};}
  // A successfully recovered session advances the schedule independently of
  // workload or developmental level. Assess the full cycle against its reference.
- const records=[...s.cycleRecords,{...record,adjusted:recovering||["reduce","repeat","bridge","budget-bridge","recovery"].includes(decision.action)}];let idx=s.index+1;
+ const records=[...s.cycleRecords,{...record,recovering,adjusted:recovering||["reduce","repeat","bridge","budget-bridge","recovery"].includes(decision.action)}];let idx=s.index+1;
  if(idx>=s.days){
  const target=currentRow(s,next.history,record.day);
- const referenceReady=target.every(p=>records.some(r=>r.lane===p.lane&&r.runSec>=p.runSec*.95&&r.longestBout>=p.longestBout*.95&&r.mainSec>=p.mainSec*.90&&!r.adjusted));
+ const referenceReady=target.every(p=>records.some(r=>r.lane===p.lane&&r.runSec>=p.runSec*.95&&r.longestBout>=p.longestBout*.95&&r.mainSec>=p.mainSec*.90&&!r.recovering));
  let days=s.days,level=referenceReady?Math.min(14,s.level+1):s.level,transitionRow=s.transitionRow??null,extensionSec=s.extensionSec??0;
  const recent=E.good(next.history,record.day,14).filter(r=>r.runSec>0&&r.check.recovery==="normal");
  if(referenceReady&&s.days===2&&s.requestedDays===3&&s.level>=1&&[recent.filter(r=>r.day>record.day-7),recent.filter(r=>r.day<=record.day-7)].every(w=>new Set(w.map(r=>r.day)).size>=2)){
