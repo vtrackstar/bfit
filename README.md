@@ -35,3 +35,5 @@ The [release workflow](.github/workflows/site-smoke-tests.yml) lists the checks 
 Keep physical iPhone Safari downloads and restores, full demo playback and cue review, and uncoached first-reader testing open until someone records the result. Browser tests at phone widths cover layout and workflow. Use the [reader walkthrough](READER_WALKTHROUGH.md) for the hands-on checks.
 
 The [change log](CHANGELOG.md) records decisions by date. Dated launch and editorial reports describe the revision reviewed at the time. For current behavior, start here and check the relevant page on `main`.
+
+See the [November 26 audit handoff](HUB_AUDIT_HANDOFF_2026-11-26.md) for the latest refinements and remaining manual verification.

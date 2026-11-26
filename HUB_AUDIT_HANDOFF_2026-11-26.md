@@ -9,10 +9,12 @@ This handoff supersedes older recommendations where the current source differs. 
 - Run Strong headings and 5K link; 5K plain-language labels; Weekend Warrior first gym visit; Build Your Glutes exercise selection, integration and realistic expectations.
 - Existing paths, storage formats, training algorithms, coaching prices, paused intake and hub Twitch removal retained.
 
+- Foundation starting-weight and rest guidance, Athleticism program examples and readiness language, stable push-up surfaces and pull-up setup guidance added. Glute exercise and frequency research linked directly, including published correction.
+- Horizontal navigation regression corrected; responsive and arrow checks passed in workflow 45877375277. The later guide changes require their own run.
+
 ## Open work
 - Fresh complete Gamer Fit audit and mobile performance profiling (connector could not retrieve full >1 MB HTML).
 - Remaining guide-specific beginner copy, equipment setup, contextual links, storage wording, social images and metadata, and legacy CSS cleanup.
-- Direct research citation review for glute program.
 - Physical phone timers, sound, screen lock, watch/manual-recording feasibility, certificate printing, downloads and restoration.
 - Manual assistive-technology, font scaling, full demo playback, independent beginner and 50+ reader testing.
 - Additional 5K longitudinal simulations and manual recording design, without bypassing progression or recovery safeguards.
