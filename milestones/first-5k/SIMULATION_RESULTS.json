@@ -1,0 +1,1960 @@
+{
+  "version": 4,
+  "notes": "Scripted outcomes in fictional profiles; not a prediction of physiological adaptation, injury risk or completion time.",
+  "summary": {
+    "profiles": 12,
+    "profileFailures": 0,
+    "checks": 29,
+    "checkFailures": 0
+  },
+  "failures": [],
+  "profiles": [
+    {
+      "name": "01 sedentary beginner",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "W10",
+          "long": "W10",
+          "days": 2,
+          "plannedRunMin": 0,
+          "plannedTotalMin": 20,
+          "longestBoutMin": 0,
+          "longestOutingMin": 10,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "W15",
+          "long": "W10",
+          "days": 2,
+          "plannedRunMin": 0,
+          "plannedTotalMin": 25,
+          "longestBoutMin": 0,
+          "longestOutingMin": 10,
+          "action": "progress",
+          "reason": "Develop comfortable walking or begin running when ready.",
+          "flag": "unknown"
+        },
+        {
+          "week": 3,
+          "practice": "W15",
+          "long": "W15",
+          "days": 2,
+          "plannedRunMin": 0,
+          "plannedTotalMin": 30,
+          "longestBoutMin": 0,
+          "longestOutingMin": 15,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "W20",
+          "long": "W15",
+          "days": 2,
+          "plannedRunMin": 0,
+          "plannedTotalMin": 35,
+          "longestBoutMin": 0,
+          "longestOutingMin": 15,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "requestedDays": 2,
+        "days": 2,
+        "practice": {
+          "id": "W20",
+          "runs": [],
+          "rests": [],
+          "tail": 1200,
+          "runSec": 0,
+          "mainSec": 1200,
+          "totalSec": 1200,
+          "longestBout": 0,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        },
+        "easy": {
+          "id": "W10",
+          "runs": [],
+          "rests": [],
+          "tail": 600,
+          "runSec": 0,
+          "mainSec": 600,
+          "totalSec": 600,
+          "longestBout": 0,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        },
+        "long": {
+          "id": "W15",
+          "runs": [],
+          "rests": [],
+          "tail": 900,
+          "runSec": 0,
+          "mainSec": 900,
+          "totalSec": 900,
+          "longestBout": 0,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        }
+      }
+    },
+    {
+      "name": "02 active non-runner",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "A2",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 7,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Extend the familiar outing by time; measure distance if available.",
+          "flag": "unknown"
+        },
+        {
+          "week": 3,
+          "practice": "A2",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 7.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 13,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "A3",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 8.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.8333333333333334,
+          "longestOutingMin": 13,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "requestedDays": 2,
+        "days": 2,
+        "practice": {
+          "id": "A3",
+          "runs": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "rests": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "tail": 0,
+          "runSec": 300,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 50,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 50,
+            "walk": 70
+          }
+        },
+        "easy": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "long": {
+          "id": "L-rw-30-90-780-time",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90,
+            30
+          ],
+          "tail": 0,
+          "runSec": 210,
+          "mainSec": 780,
+          "totalSec": 1260,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        }
+      }
+    },
+    {
+      "name": "03 fit cyclist, no recent running",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Easy recovered training plus recent running exposure supports a modest reassessment.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "A2",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 7,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Extend the familiar outing by time; measure distance if available.",
+          "flag": "unknown"
+        },
+        {
+          "week": 3,
+          "practice": "A2",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 7.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 13,
+          "action": "progress",
+          "reason": "Easy recovered training plus recent running exposure supports a modest reassessment.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "A3",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 8.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.8333333333333334,
+          "longestOutingMin": 13,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "continuous",
+        "requestedDays": 3,
+        "days": 2,
+        "practice": {
+          "id": "A3",
+          "runs": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "rests": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "tail": 0,
+          "runSec": 300,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 50,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 50,
+            "walk": 70
+          }
+        },
+        "easy": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "long": {
+          "id": "L-rw-30-90-780-time",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90,
+            30
+          ],
+          "tail": 0,
+          "runSec": 210,
+          "mainSec": 780,
+          "totalSec": 1260,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        }
+      }
+    },
+    {
+      "name": "04 strength-trained beginner",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "A2",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 7,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 12,
+          "action": "reduce",
+          "reason": "Reduce the difficult session; keep other prescriptions stable.",
+          "flag": null
+        },
+        {
+          "week": 3,
+          "practice": "reduced-A2",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 39,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "requestedDays": 2,
+        "days": 2,
+        "practice": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "easy": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "long": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        }
+      }
+    },
+    {
+      "name": "05 fast adapter",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A4",
+          "long": "A4",
+          "days": 2,
+          "plannedRunMin": 12,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 1,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Easy recovered training plus recent running exposure supports a modest reassessment.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "B0",
+          "long": "A4",
+          "days": 2,
+          "plannedRunMin": 12,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 1.5,
+          "longestOutingMin": 12,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 3,
+          "practice": "B0",
+          "long": "A4",
+          "days": 2,
+          "plannedRunMin": 12,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 1.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Easy recovered training plus recent running exposure supports a modest reassessment.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "B1",
+          "long": "A4",
+          "days": 2,
+          "plannedRunMin": 13.5,
+          "plannedTotalMin": 43,
+          "longestBoutMin": 1.5,
+          "longestOutingMin": 12,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "requestedDays": 2,
+        "days": 2,
+        "practice": {
+          "id": "B1",
+          "runs": [
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 450,
+          "mainSec": 900,
+          "totalSec": 1380,
+          "longestBout": 90,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 90,
+            "walk": 90
+          }
+        },
+        "easy": {
+          "id": "A4",
+          "runs": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "rests": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "tail": 0,
+          "runSec": 360,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 60,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 60,
+            "walk": 60
+          }
+        },
+        "long": {
+          "id": "A4",
+          "runs": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "rests": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "tail": 0,
+          "runSec": 360,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 60,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 60,
+            "walk": 60
+          }
+        }
+      }
+    },
+    {
+      "name": "06 struggling beginner",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "reduce",
+          "reason": "Reduce the difficult session; keep other prescriptions stable.",
+          "flag": null
+        },
+        {
+          "week": 2,
+          "practice": "reduced-A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 5.2,
+          "plannedTotalMin": 39.2,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "reduce",
+          "reason": "Reduce the difficult session; keep other prescriptions stable.",
+          "flag": null
+        },
+        {
+          "week": 3,
+          "practice": "reduced-reduced-A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 4.6,
+          "plannedTotalMin": 38.6,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "A0a",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 5,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "days": 2,
+        "requestedDays": 2,
+        "practice": {
+          "id": "A0a",
+          "runs": [
+            20,
+            20,
+            20,
+            20,
+            20,
+            20
+          ],
+          "rests": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "tail": 0,
+          "runSec": 120,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 20,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 20,
+            "walk": 100
+          }
+        },
+        "easy": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "long": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        }
+      }
+    },
+    {
+      "name": "07 slow continuous runner",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "slow-30",
+          "long": "slow-30",
+          "days": 2,
+          "plannedRunMin": 60,
+          "plannedTotalMin": 76,
+          "longestBoutMin": 30,
+          "longestOutingMin": 30,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 2,
+          "practice": "slow-30",
+          "long": "L-cont-1897-3483",
+          "days": 2,
+          "plannedRunMin": 61.61666666666667,
+          "plannedTotalMin": 77.61666666666666,
+          "longestBoutMin": 31.616666666666667,
+          "longestOutingMin": 31.616666666666667,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 3,
+          "practice": "slow-30",
+          "long": "L-cont-1897-3483",
+          "days": 2,
+          "plannedRunMin": 61.61666666666667,
+          "plannedTotalMin": 77.61666666666666,
+          "longestBoutMin": 31.616666666666667,
+          "longestOutingMin": 31.616666666666667,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 4,
+          "practice": "slow-30",
+          "long": "L-cont-1978-3633",
+          "days": 2,
+          "plannedRunMin": 62.96666666666667,
+          "plannedTotalMin": 78.96666666666667,
+          "longestBoutMin": 32.96666666666667,
+          "longestOutingMin": 32.96666666666667,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "continuous",
+        "days": 2,
+        "requestedDays": 2,
+        "practice": {
+          "id": "slow-30",
+          "runs": [
+            1800
+          ],
+          "rests": [],
+          "tail": 0,
+          "runSec": 1800,
+          "mainSec": 1800,
+          "totalSec": 2280,
+          "longestBout": 1800,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        },
+        "easy": {
+          "id": "slow-30",
+          "runs": [
+            1800
+          ],
+          "rests": [],
+          "tail": 0,
+          "runSec": 1800,
+          "mainSec": 1800,
+          "totalSec": 2280,
+          "longestBout": 1800,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        },
+        "long": {
+          "id": "L-cont-1978-3633",
+          "runs": [
+            1978
+          ],
+          "rests": [],
+          "tail": 0,
+          "runSec": 1978,
+          "mainSec": 1978,
+          "totalSec": 2458,
+          "longestBout": 1978,
+          "fasterSec": 0,
+          "distanceGoal": 3633,
+          "pattern": null
+        }
+      },
+      "nearDistanceCheck": {
+        "ready": false,
+        "expected": 2700,
+        "cap": 2610,
+        "reason": "Build duration further before attempting the distance."
+      },
+      "capMinutes": 42.78333333333333
+    },
+    {
+      "name": "08 run-walk participant with 4km endurance",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "B5",
+          "long": "rw-four-k",
+          "days": 2,
+          "plannedRunMin": 36,
+          "plannedTotalMin": 76,
+          "longestBoutMin": 3,
+          "longestOutingMin": 40,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 2,
+          "practice": "B5",
+          "long": "L-rw-180-120-2535-4200",
+          "days": 2,
+          "plannedRunMin": 38.25,
+          "plannedTotalMin": 78.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 42.25,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 3,
+          "practice": "B5",
+          "long": "L-rw-180-120-2535-4200",
+          "days": 2,
+          "plannedRunMin": 38.25,
+          "plannedTotalMin": 78.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 42.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 4,
+          "practice": "B5",
+          "long": "L-rw-180-120-2655-4400",
+          "days": 2,
+          "plannedRunMin": 39,
+          "plannedTotalMin": 80.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 44.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 5,
+          "practice": "B5",
+          "long": "L-rw-180-120-2655-4400",
+          "days": 2,
+          "plannedRunMin": 39,
+          "plannedTotalMin": 80.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 44.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 6,
+          "practice": "B5",
+          "long": "L-rw-180-120-2775-4600",
+          "days": 2,
+          "plannedRunMin": 40.25,
+          "plannedTotalMin": 82.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 46.25,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 7,
+          "practice": "B5",
+          "long": "L-rw-180-120-2775-4600",
+          "days": 2,
+          "plannedRunMin": 40.25,
+          "plannedTotalMin": 82.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 46.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 8,
+          "practice": "B5",
+          "long": "L-rw-180-120-2910-4825",
+          "days": 2,
+          "plannedRunMin": 42,
+          "plannedTotalMin": 84.5,
+          "longestBoutMin": 3,
+          "longestOutingMin": 48.5,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 9,
+          "practice": "B5",
+          "long": "L-rw-180-120-2910-4825",
+          "days": 2,
+          "plannedRunMin": 42,
+          "plannedTotalMin": 84.5,
+          "longestBoutMin": 3,
+          "longestOutingMin": 48.5,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 10,
+          "practice": "B5",
+          "long": "L-rw-180-120-3015-5000",
+          "days": 2,
+          "plannedRunMin": 42.25,
+          "plannedTotalMin": 86.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 50.25,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 11,
+          "practice": "B5",
+          "long": "L-rw-180-120-3015-5000",
+          "days": 2,
+          "plannedRunMin": 42.25,
+          "plannedTotalMin": 86.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 50.25,
+          "action": "repeat",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": null
+        },
+        {
+          "week": 12,
+          "practice": "B5",
+          "long": "L-rw-180-120-3015-5000",
+          "days": 2,
+          "plannedRunMin": 42.25,
+          "plannedTotalMin": 86.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 50.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "days": 2,
+        "requestedDays": 2,
+        "practice": {
+          "id": "B5",
+          "runs": [
+            180,
+            180,
+            180,
+            180
+          ],
+          "rests": [
+            120,
+            120,
+            120,
+            120
+          ],
+          "tail": 0,
+          "runSec": 720,
+          "mainSec": 1200,
+          "totalSec": 1680,
+          "longestBout": 180,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 180,
+            "walk": 120
+          }
+        },
+        "easy": {
+          "id": "B5",
+          "runs": [
+            180,
+            180,
+            180,
+            180
+          ],
+          "rests": [
+            120,
+            120,
+            120,
+            120
+          ],
+          "tail": 0,
+          "runSec": 720,
+          "mainSec": 1200,
+          "totalSec": 1680,
+          "longestBout": 180,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 180,
+            "walk": 120
+          }
+        },
+        "long": {
+          "id": "L-rw-180-120-3015-5000",
+          "runs": [
+            180,
+            180,
+            180,
+            180,
+            180,
+            180,
+            180,
+            180,
+            180,
+            180,
+            15
+          ],
+          "rests": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            0
+          ],
+          "tail": 0,
+          "runSec": 1815,
+          "mainSec": 3015,
+          "totalSec": 3495,
+          "longestBout": 180,
+          "fasterSec": 0,
+          "distanceGoal": 5000,
+          "pattern": {
+            "run": 180,
+            "walk": 120
+          }
+        }
+      },
+      "candidate": {
+        "distanceM": 4200,
+        "timeCapMin": 42.25,
+        "longestBoutMin": 3
+      }
+    },
+    {
+      "name": "09 returning runner after several months",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "A2",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 7,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Extend the familiar outing by time; measure distance if available.",
+          "flag": "unknown"
+        },
+        {
+          "week": 3,
+          "practice": "A2",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 7.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 13,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "A3",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 8.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.8333333333333334,
+          "longestOutingMin": 13,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "continuous",
+        "requestedDays": 3,
+        "days": 2,
+        "practice": {
+          "id": "A3",
+          "runs": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "rests": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "tail": 0,
+          "runSec": 300,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 50,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 50,
+            "walk": 70
+          }
+        },
+        "easy": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "long": {
+          "id": "L-rw-30-90-780-time",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90,
+            30
+          ],
+          "tail": 0,
+          "runSec": 210,
+          "mainSec": 780,
+          "totalSec": 1260,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        }
+      }
+    },
+    {
+      "name": "10 eight-week event deadline",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "A1",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 6,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.5,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 2,
+          "practice": "A2",
+          "long": "A1",
+          "days": 2,
+          "plannedRunMin": 7,
+          "plannedTotalMin": 40,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 12,
+          "action": "progress",
+          "reason": "Extend the familiar outing by time; measure distance if available.",
+          "flag": "unknown"
+        },
+        {
+          "week": 3,
+          "practice": "A2",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 7.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.6666666666666666,
+          "longestOutingMin": 13,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
+        },
+        {
+          "week": 4,
+          "practice": "A3",
+          "long": "L-rw-30-90-780-time",
+          "days": 2,
+          "plannedRunMin": 8.5,
+          "plannedTotalMin": 41,
+          "longestBoutMin": 0.8333333333333334,
+          "longestOutingMin": 13,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "runwalk",
+        "requestedDays": 2,
+        "days": 2,
+        "practice": {
+          "id": "A3",
+          "runs": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "rests": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "tail": 0,
+          "runSec": 300,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 50,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 50,
+            "walk": 70
+          }
+        },
+        "easy": {
+          "id": "A1",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "tail": 0,
+          "runSec": 180,
+          "mainSec": 720,
+          "totalSec": 1200,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        },
+        "long": {
+          "id": "L-rw-30-90-780-time",
+          "runs": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "rests": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90,
+            30
+          ],
+          "tail": 0,
+          "runSec": 210,
+          "mainSec": 780,
+          "totalSec": 1260,
+          "longestBout": 30,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": {
+            "run": 30,
+            "walk": 90
+          }
+        }
+      }
+    },
+    {
+      "name": "11 inconsistent runner",
+      "gaps": [
+        {
+          "gapDays": 1,
+          "action": "rest",
+          "runMinutes": null,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 3,
+          "action": "normal",
+          "runMinutes": 6,
+          "holdProgression": false
+        },
+        {
+          "gapDays": 5,
+          "action": "repeat",
+          "runMinutes": 6,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 7,
+          "action": "repeat",
+          "runMinutes": 6,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 8,
+          "action": "reduce",
+          "runMinutes": 4.5,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 10,
+          "action": "reduce",
+          "runMinutes": 4.5,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 14,
+          "action": "return",
+          "runMinutes": 4.5,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 27,
+          "action": "return",
+          "runMinutes": 4.5,
+          "holdProgression": true
+        },
+        {
+          "gapDays": 28,
+          "action": "reassess",
+          "runMinutes": null,
+          "holdProgression": true
+        }
+      ]
+    },
+    {
+      "name": "12 ambitious runner, unrealistic time goal",
+      "weeks": [
+        {
+          "week": 1,
+          "practice": "C6",
+          "long": "C6",
+          "days": 2,
+          "plannedRunMin": 40,
+          "plannedTotalMin": 56,
+          "longestBoutMin": 20,
+          "longestOutingMin": 20,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 2,
+          "practice": "C7",
+          "long": "C6",
+          "days": 2,
+          "plannedRunMin": 42,
+          "plannedTotalMin": 58,
+          "longestBoutMin": 22,
+          "longestOutingMin": 20,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 3,
+          "practice": "C7",
+          "long": "L-cont-1275-2625",
+          "days": 2,
+          "plannedRunMin": 43.25,
+          "plannedTotalMin": 59.25,
+          "longestBoutMin": 22,
+          "longestOutingMin": 21.25,
+          "action": "progress",
+          "reason": "Use a smaller intermediate workout that fits recent training.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 4,
+          "practice": "bridge-cont-1440",
+          "long": "L-cont-1275-2625",
+          "days": 2,
+          "plannedRunMin": 45.25,
+          "plannedTotalMin": 61.25,
+          "longestBoutMin": 24,
+          "longestOutingMin": 21.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 5,
+          "practice": "bridge-cont-1440",
+          "long": "L-cont-1275-2625",
+          "days": 2,
+          "plannedRunMin": 45.25,
+          "plannedTotalMin": 61.25,
+          "longestBoutMin": 24,
+          "longestOutingMin": 21.25,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 6,
+          "practice": "bridge-cont-1470",
+          "long": "L-cont-1275-2625",
+          "days": 2,
+          "plannedRunMin": 45.75,
+          "plannedTotalMin": 61.75,
+          "longestBoutMin": 24.5,
+          "longestOutingMin": 21.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 7,
+          "practice": "bridge-cont-1470",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 46.75,
+          "plannedTotalMin": 62.75,
+          "longestBoutMin": 24.5,
+          "longestOutingMin": 22.25,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 8,
+          "practice": "C8",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 47.25,
+          "plannedTotalMin": 63.25,
+          "longestBoutMin": 25,
+          "longestOutingMin": 22.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 9,
+          "practice": "C8",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 47.25,
+          "plannedTotalMin": 63.25,
+          "longestBoutMin": 25,
+          "longestOutingMin": 22.25,
+          "action": "progress",
+          "reason": "Use a smaller intermediate workout that fits recent training.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 10,
+          "practice": "bridge-cont-1650",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 49.75,
+          "plannedTotalMin": 65.75,
+          "longestBoutMin": 27.5,
+          "longestOutingMin": 22.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 11,
+          "practice": "bridge-cont-1650",
+          "long": "L-cont-1395-2875",
+          "days": 2,
+          "plannedRunMin": 50.75,
+          "plannedTotalMin": 66.75,
+          "longestBoutMin": 27.5,
+          "longestOutingMin": 23.25,
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 12,
+          "practice": "C9",
+          "long": "L-cont-1395-2875",
+          "days": 2,
+          "plannedRunMin": 51.25,
+          "plannedTotalMin": 67.25,
+          "longestBoutMin": 28,
+          "longestOutingMin": 23.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        }
+      ],
+      "final": {
+        "action": "start",
+        "goal": "continuous",
+        "requestedDays": 2,
+        "days": 2,
+        "practice": {
+          "id": "C9",
+          "runs": [
+            1680
+          ],
+          "rests": [],
+          "tail": 0,
+          "runSec": 1680,
+          "mainSec": 1680,
+          "totalSec": 2160,
+          "longestBout": 1680,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        },
+        "easy": {
+          "id": "C6",
+          "runs": [
+            1200
+          ],
+          "rests": [],
+          "tail": 0,
+          "runSec": 1200,
+          "mainSec": 1200,
+          "totalSec": 1680,
+          "longestBout": 1200,
+          "fasterSec": 0,
+          "distanceGoal": null,
+          "pattern": null
+        },
+        "long": {
+          "id": "L-cont-1395-2875",
+          "runs": [
+            1395
+          ],
+          "rests": [],
+          "tail": 0,
+          "runSec": 1395,
+          "mainSec": 1395,
+          "totalSec": 1875,
+          "longestBout": 1395,
+          "fasterSec": 0,
+          "distanceGoal": 2875,
+          "pattern": null
+        }
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "All library arithmetic and positive prescriptions",
+      "pass": true
+    },
+    {
+      "name": "20-minute intro contains 3 actual running minutes",
+      "pass": true
+    },
+    {
+      "name": "B3 to B4 preserves running minutes and lengthens bout",
+      "pass": true
+    },
+    {
+      "name": "B8 to B9 reduces running volume while extending bouts",
+      "pass": true
+    },
+    {
+      "name": "C4 to C5 reduces volume for continuous progression",
+      "pass": true
+    },
+    {
+      "name": "Safety overrides easy effort including incomplete urgent report",
+      "pass": true
+    },
+    {
+      "name": "Unknown or missing recovery blocks advancement",
+      "pass": true
+    },
+    {
+      "name": "Mild soreness may qualify for standard exposure",
+      "pass": true
+    },
+    {
+      "name": "Unresolved health limitation blocks intake",
+      "pass": true
+    },
+    {
+      "name": "Reject invalid records and mixed distance contradictions",
+      "pass": true
+    },
+    {
+      "name": "No running on same or consecutive day",
+      "pass": true
+    },
+    {
+      "name": "Schedule includes spacing across weekly boundary",
+      "pass": true
+    },
+    {
+      "name": "10% is a caution, not a diagnostic threshold",
+      "pass": true
+    },
+    {
+      "name": "Time-only longer outings can continue without GPS",
+      "pass": true
+    },
+    {
+      "name": "Walking and run-walk distance not treated as running-only distance",
+      "pass": true
+    },
+    {
+      "name": "Measured time limit wins over distance",
+      "pass": true
+    },
+    {
+      "name": "Prescribed dose cap with distance achievement is not mandatory extra running",
+      "pass": true
+    },
+    {
+      "name": "A failed distance target still logs completed time but does not qualify as distance success",
+      "pass": true
+    },
+    {
+      "name": "Third day preserves weekly running dose and counts extra walking",
+      "pass": true
+    },
+    {
+      "name": "No third day from zero recent running",
+      "pass": true
+    },
+    {
+      "name": "Pace eligibility uses four weeks of actual running and plausible recent pace",
+      "pass": true
+    },
+    {
+      "name": "Goal pace is replacement with 9 minutes, not added training",
+      "pass": true
+    },
+    {
+      "name": "Actual 5K achievement distinguishes walking, run-walk and continuous",
+      "pass": true
+    },
+    {
+      "name": "4.75 km near-distance and normal recovery supports readiness",
+      "pass": true
+    },
+    {
+      "name": "Missing completion does not grant progress",
+      "pass": true
+    },
+    {
+      "name": "Pain has priority over volume or goal pace",
+      "pass": true
+    },
+    {
+      "name": "Week four does not force advancement",
+      "pass": true
+    },
+    {
+      "name": "Routine progression changes only one lane",
+      "pass": true
+    },
+    {
+      "name": "Distance caution requires explicit review before progression",
+      "pass": true
+    }
+  ]
+}

@@ -2,7 +2,7 @@ name: BFit site smoke tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, first-5k-programming-review]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -57,3 +57,30 @@ jobs:
           name: bfit-qa-screenshots
           path: qa-screenshots/
           if-no-files-found: ignore
+
+  first-5k-browser:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/first-5k-programming-review' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run 5K simulated interface checks
+        run: node milestones/first-5k/test-interface-flow.cjs
+      - name: Install headless browser
+        run: |
+          npm install --no-save playwright @axe-core/playwright
+          npx playwright install --with-deps chromium
+      - name: Test 5K in Chromium
+        run: node scripts/first-5k-flows.mjs
+      - name: Save 5K browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bfit-first-5k-qa
+          path: qa-screenshots/first-5k/
+          if-no-files-found: warn

@@ -1,0 +1,94 @@
+{
+  "checks": [
+    {
+      "name": "Meters and time",
+      "pass": true
+    },
+    {
+      "name": "Miles and time",
+      "pass": true
+    },
+    {
+      "name": "Time and pace",
+      "pass": true
+    },
+    {
+      "name": "Distance and pace",
+      "pass": true
+    },
+    {
+      "name": "Treadmill mph",
+      "pass": true
+    },
+    {
+      "name": "Treadmill kmh",
+      "pass": true
+    },
+    {
+      "name": "Duration alone",
+      "pass": true
+    },
+    {
+      "name": "Pace alone",
+      "pass": true
+    },
+    {
+      "name": "Invalid inputs",
+      "pass": true
+    },
+    {
+      "name": "Inconsistent metrics",
+      "pass": true
+    },
+    {
+      "name": "Mixed workout scope",
+      "pass": true
+    },
+    {
+      "name": "Moving versus elapsed",
+      "pass": true
+    },
+    {
+      "name": "Split equivalents",
+      "pass": true
+    },
+    {
+      "name": "Time formatting",
+      "pass": true
+    },
+    {
+      "name": "History-based goal switch",
+      "pass": true
+    },
+    {
+      "name": "Assessment capped by demonstrated bout",
+      "pass": true
+    },
+    {
+      "name": "No data means no prescribed assessment",
+      "pass": true
+    },
+    {
+      "name": "Goal time edit retains progression",
+      "pass": true
+    },
+    {
+      "name": "Unresolved symptoms pause",
+      "pass": true
+    },
+    {
+      "name": "Four-week summary",
+      "pass": true
+    },
+    {
+      "name": "Irregular history does not advance",
+      "pass": true
+    },
+    {
+      "name": "Intake preserves prior history",
+      "pass": true
+    }
+  ],
+  "passed": 22,
+  "total": 22
+}

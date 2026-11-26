@@ -3,9 +3,9 @@
   "id": "first-5k",
   "title": "Your First 5K",
   "kind": "running",
-  "state": "planning",
-  "ownerDecisionStatus": "programming-to-be-designed",
-  "successfulCompletionCriteria": null,
+  "state": "published",
+  "ownerDecisionStatus": "public-release-authorized-with-outstanding-verification",
+  "successfulCompletionCriteria": "Record a measured 5 km main outing with elapsed time and actual running/walking strategy, followed by the recovery check. A continuous 5K satisfies either goal; a run-walk 5K satisfies the run-walk goal. Walking-only does not earn a running certificate.",
   "delivery": {
     "format": "interactive-guide",
     "primaryMode": "adaptive-milestones",
@@ -15,7 +15,7 @@
     "localBrowserSave": true,
     "jsonExport": true,
     "jsonImport": true,
-    "portableCode": "proposed-not-final"
+    "portableCode": "json-backup"
   },
   "requiredIntakeDomains": [
     "startingAbility",
@@ -34,60 +34,176 @@
     "run-walk-when-appropriate",
     "gradual-session-exposure",
     "review-performance-and-recovery",
-    "repeat-cycles-until-milestone"
+    "repeat-cycles-until-milestone",
+    "independent-duration-and-distance-targets",
+    "one-progression-lever-per-review",
+    "current-fitness-before-optional-goal-pace",
+    "distance-or-duration-stop",
+    "smaller-distance-progression-before-manual-review",
+    "ineligible-goal-pace-does-not-block-endurance",
+    "dismissible-goal-pace-explanation-without-safeguard-override",
+    "session-based-readiness",
+    "four-week-review-not-mandatory-hold",
+    "contextual-distance-caution",
+    "reference-pathway-with-adaptive-bridges",
+    "9-to-15-week-planning-horizon-not-deadline",
+    "separate-two-and-three-day-reference-doses"
   ],
   "qualityGates": {
     "programming": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/FULL_REGRESSION_RESULTS.json"
     },
     "evidence": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/PROGRAMMING_REVIEW.md"
     },
     "exerciseLibrary": {
       "status": "pending",
       "evidence": ""
     },
     "loadTotals": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/FULL_REGRESSION_RESULTS.json"
     },
     "progression": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/FULL_REGRESSION_RESULTS.json"
     },
     "editorial": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/PROGRAMMING_REVIEW.md"
     },
     "accessibility": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/PROGRAMMING_REVIEW.md"
     },
     "deviceAndNavigation": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/PROGRAMMING_REVIEW.md"
     },
     "saveAndRestore": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/FULL_REGRESSION_RESULTS.json"
     },
     "beginnerTest": {
       "status": "pending",
       "evidence": ""
     },
     "releaseLinks": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partial",
+      "evidence": "milestones/first-5k/PROGRAMMING_REVIEW.md"
     }
   },
   "unresolved": [
-    "Define finish goal: any run-walk completion versus continuous running",
-    "Starting ability categories",
-    "Weekly schedule and conditional progressions",
-    "Training load and recovery rules",
-    "Longer timeline: four-week cycles without a four-week 5K promise"
+    "Final CI on communication and preview changes",
+    "Physical device sound, screen lock and assistive technology checks; real beginner feedback",
+    "Manual certificate appearance review and complete feature-enabled longitudinal journeys"
   ],
-  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending. Frequency transition and late endurance extension prototype: 9/9 scripted journeys complete at exactly 5000 m; 15/15 reference checks and 22/22 assessment checks pass. Prior seven simulated timelines unchanged. Separate workload-audit-engine.cjs candidate: 15/15 reference, 22/22 assessment, 14/14 dedicated edge checks; 9/9 scripted journeys complete. Efficiency regression: simulated beginner run-walk 17 weeks, continuous 21, interrupted 30 versus 14,17,18. Reference engine preserved; do not select audit candidate for release. Separate schedule-progression-engine.cjs candidate rotates successful adjusted sessions independently of reference advancement. Corrected walking-only budget deadlock; 9/9 journeys, 15/15 reference, 22/22 assessment and 14/14 edge checks. Completion weeks 23,17,21,5,22,29,15,13,18. Efficiency remains unresolved; no release selection. Coordinated-engine candidate retains nine complete journeys and 51 existing checks; simulated weeks 20,14,18,5,20,22,12,13,18. Six improve versus schedule candidate, three unchanged. No release selection. Refined-engine candidate fixes introductory partial-week budget and continuous bridge structure, downweights older exposure during return; nine journeys and 51 existing checks pass. Weeks 19,13,17,5,19,24,11,13,18. Interrupted scenario lengthens by two weeks versus coordinated candidate; no release selection. Core state audit: initial 13/15; corrected urgent symptom priority and persistent pre-session pain hold. Final 17/17 core checks, 68/68 combined, nine journeys unchanged. Refined engine selected for interface development only. Optional training-features.cjs wrapper implemented and tested: 20/20 feature checks, all 68 previous checks and nine scripted journeys pass. Four-week eligibility windows end before prospective session; controlled pace segment stays inside familiar practice dose; assessment measurement and recovery stored; normalized measurement scope safeguards. Browser UI and actual pace/assessment longitudinal journeys pending. Development interface files committed. JS syntax, static IDs and corrected bundle first-workout smoke check pass. Real browser testing pending. Interface flow 18/18 simulated DOM checks. Real Chromium/mobile testing not completed: local browser environment cannot resolve GitHub host or retrieve branch through direct network. No release gate approval. Optional recent history intake and structurally validated progress import implemented; 27/27 simulated interface tests. Prior 88 programming checks not rerun this turn; real browser pending. Batch 1 segment entry, medically advised conservative return, completion and print certificate implemented. Batch 2 beginner educational content, navigation, responsive CSS and field reset implemented. Full regression rerun: 122/122, nine journeys unchanged. Real browser and final evidence/editorial gates pending. Final combined rerun: 137/137 checks, 9/9 scripted journeys; actual local Chromium blocked by GitHub DNS resolution. No public deployment. Corrected manifest state to supported review enum. Real Chromium test suite added; CI run required. Owner authorized public release after reporting green first-5k-browser job and red audit job. Static inspection identified missing canonical and canonical hub link; corrected before publication. Browser logs not independently inspected. Release is owner-authorized with outstanding verification. Beginner audit addressed: simplified optional intake and measurements, next-step navigation, sound and wake lock when supported, cross-training education, matching elapsed time and scope for early 5K completion. Prior candidate's CI audit and browser job independently verified successful. New candidate requires final CI. Physical phone audio/wake-lock behavior and human beginner testing not verified. CI run 45874694381 independently verified both site-wide audit and dedicated browser job successful on revised beginner UI runtime. Owner approved release. Final communication improvements: three-step introduction, current/requested schedule, workout explanation and preview, downloadable text instructions, visible timer state and safety language. 61/61 simulated interface checks passed. No engine changes. User approved publication.",
+  "goalPaceNotice": {
+    "status": "prototype-integrated-browser-pending",
+    "heading": "Let's build toward your goal.",
+    "body": "Your workouts will start at a pace that fits your current fitness. As you progress, we'll revisit your target pace and begin working toward it when your training supports it. You can keep your original goal or change it at any time.",
+    "acknowledgment": "Got it. Keep my goal.",
+    "behavior": "Save acknowledgment locally per goal revision; dismiss repeated notice; never bypass pace eligibility. Reconsider when new training evidence changes eligibility. Never label a goal unrealistic in user-facing text."
+  },
+  "analytics": {
+    "status": "four-week-summary-and-conversions-integrated-optional-dropdown",
+    "sharedModule": "shared/running-calculator.js",
+    "dropdown": {
+      "label": "Explore my running numbers",
+      "collapsedByDefault": true,
+      "requiredForTraining": false
+    },
+    "entry": [
+      "distance-m-km-mi",
+      "duration-h-m-s",
+      "pace-sec-per-km-or-mile",
+      "speed-mph-kmh",
+      "single-known-measurement"
+    ],
+    "context": [
+      "running-only",
+      "runwalk",
+      "whole-workout",
+      "unknown",
+      "elapsed-or-moving-time",
+      "surface"
+    ],
+    "outputs": [
+      "normalized-measurements",
+      "constant-pace-equivalents",
+      "four-week-actual-work-summary"
+    ],
+    "predictionPolicy": "No race performance prediction from short assessments; equivalent splits are arithmetic, not physiological predictions. Preserve raw and derived data provenance."
+  },
+  "goalReassessment": {
+    "status": "history-selection-and-controlled-assessment-logging-prototype-tested",
+    "assessmentOptional": true,
+    "durationSeconds": [
+      120,
+      300,
+      600,
+      1200
+    ],
+    "maxDuration": "No greater than demonstrated recovered running bout; replaces part of familiar workout.",
+    "historyPolicy": "Two recent seven-day windows with at least two recovered running days each; select supported reference row by weekly running, single-session running, bout duration and main duration; no history means conservative entry. Time-only goal edits retain current progression.",
+    "remaining": "Browser workout timer/segment recording, normalized measurement entry, deferred recovery confirmation, use accepted assessment data for goal reassessment beyond existing whole-workout history, full feature-enabled journeys."
+  },
+  "workingEngine": {
+    "path": "refined-engine.cjs",
+    "status": "selected-for-interface-development-not-release",
+    "commit": "acdae1e5f7b14f4de5f1d4832d1f26ec5948ecc8",
+    "checks": {
+      "reference": 15,
+      "assessment": 22,
+      "workload": 14,
+      "core": 17,
+      "journeys": 9,
+      "features": 20
+    },
+    "limitations": [
+      "JSON round-trip is not browser storage or import validation",
+      "Caller must persist returned state from pre-session checks",
+      "Clinical validation and user testing pending",
+      "Explicit symptom resolution and safe reassessment workflow pending",
+      "Goal pace and assessment lifecycle pending"
+    ],
+    "featureWrapper": "training-features.cjs",
+    "featureCommit": "d26cb6c0cf1187b7050cfc8434c34a1be2c11c8c"
+  },
+  "interface": {
+    "status": "beginner-ux-revised-ci-passed",
+    "entry": "milestones/first-5k/index.html",
+    "scripts": [
+      "browser-engine.js",
+      "workout.js"
+    ],
+    "style": "workout.css",
+    "storage": "localStorage v1; JSON export and structurally validated replacement import",
+    "timer": "Active elapsed time; pauses when hidden or suspended",
+    "limitations": [
+      "Real desktop/mobile browser execution, native validation, accessibility and screen lock unverified",
+      "Certificate print layout and actual PDF output unverified",
+      "No GPS or wearable synchronization",
+      "Imported records structurally validated, not authenticated",
+      "Assessment evidence stored but not independently used for goal-phase selection",
+      "History entry uses self-reported sessions without warm-up/cooldown",
+      "Segment-entry and certificate content tested in simulated DOM; actual printing and full feature-enabled longitudinal journeys remain unverified"
+    ],
+    "flowChecks": {
+      "passed": 61,
+      "total": 61,
+      "environment": "Simulated DOM, clock and storage"
+    },
+    "browserTest": {
+      "status": "prior-runtime-ci-passed-final-copy-and-preview-awaiting-ci",
+      "script": "scripts/first-5k-flows.mjs",
+      "workflow": ".github/workflows/site-smoke-tests.yml",
+      "artifact": "bfit-first-5k-qa",
+      "previousSuccessfulRun": 45873853774,
+      "successfulRun": 45874694381
+    }
+  }
 }

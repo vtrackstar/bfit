@@ -1,0 +1,75 @@
+{
+  "programming": [
+    {
+      "completed": 9,
+      "total": 9,
+      "passed": 15,
+      "checks": 15
+    },
+    {
+      "passed": 22,
+      "total": 22
+    },
+    {
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "passed": 17,
+      "total": 17
+    },
+    {
+      "passed": 20,
+      "total": 20
+    }
+  ],
+  "interface": {
+    "passed": 61,
+    "total": 61
+  },
+  "journeys": [
+    {
+      "name": "Walking foundation",
+      "week": 19
+    },
+    {
+      "name": "Beginner run-walk 3 days",
+      "week": 13
+    },
+    {
+      "name": "Beginner continuous 3 days",
+      "week": 17
+    },
+    {
+      "name": "Slow established runner",
+      "week": 5
+    },
+    {
+      "name": "Goal change",
+      "week": 19
+    },
+    {
+      "name": "Interrupted training",
+      "week": 24
+    },
+    {
+      "name": "Two-day beginner",
+      "week": 11
+    },
+    {
+      "name": "Slow continuous beyond 45 min",
+      "week": 13
+    },
+    {
+      "name": "Slow run-walk beyond 61 min",
+      "week": 18
+    }
+  ],
+  "environment": "Simulated DOM and injected clock; previous runtime passed real Chromium CI. Final communication revision browser run pending.",
+  "browserEvidence": {
+    "runId": 45874694381,
+    "siteAudit": "success",
+    "first5kBrowser": "success",
+    "runtimeCommit": "0c674c199d1b002964d374561cd9cf9f04e22900"
+  }
+}

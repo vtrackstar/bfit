@@ -1,0 +1,23 @@
+"use strict";
+const audit=function audit(E,R){
+ const tests=[],check=(name,f)=>{try{tests.push({name,pass:!!f()})}catch(e){tests.push({name,pass:false,error:String(e)})}};
+ const rec=(p,day,extra={})=>({day,lane:p.lane,prescriptionId:p.id,runSec:p.runSec,mainSec:p.mainSec,totalSec:p.totalSec,longestBout:p.longestBout,fasterSec:0,mainDistanceM:null,runningDistanceM:null,continuousDistanceM:null,strategy:E.strategy(p),completed:true,check:E.successCheck,comparable:true,...extra});
+ const s=R.start({walkMin:30,goal:"runwalk",days:2},[],1000),row=R.plan("runwalk",2)[0],p=row[0],q=row[1];
+ const h=[rec(p,989),rec(q,992),rec(p,996),rec(q,999)];
+ check("Incomplete session counts in rolling exposure",()=>R.loadReview(s,[rec(p,999,{completed:false})],1002,q).runSec===p.runSec+q.runSec);
+ check("Third session inside rolling week blocked",()=>!R.fitBudget(s,[rec(p,998),rec(q,1000)],1003,p).workout);
+ check("Hard external activity delays running",()=>R.next(s,h,1002,{hardActivityYesterday:true}).action==="rest");
+ check("Unknown current recovery delays workout",()=>!R.next(s,h,1002,{recovery:"unknown"}).workout);
+ check("Current sharp pain blocks workout",()=>!R.next(s,h,1002,{symptoms:"sharp"}).workout);
+ check("Urgent symptoms route to urgent action",()=>R.next(s,h,1002,{symptoms:"urgent"}).action==="urgent");
+ check("No distance does not award completion",()=>!E.achievement(rec(q,999)).runwalk);
+ check("Return dose bounded by familiar exposure",()=>{const x=R.next({...s,level:10},h,1010);return x.workout&&x.workout.runSec<=Math.floor(p.runSec*.75);});
+ check("Recovery remains active across sessions",()=>{const x=R.next({...s,history:h,lastDay:999,level:10},h,1010);if(!x.workout)return false;const n=R.log({...s,history:h,lastDay:999,level:10},rec(x.workout,1010),x);return n.recoveryRemaining===1;});
+ check("Duplicate log rejected",()=>{const x=R.next(s,[],1000),rr=rec(x.workout,1000),n=R.log(s,rr,x);try{R.log(n,rr,x);return false}catch{return true}});
+ check("Persistent symptom latch",()=>{const x=R.next(s,[],1000),n=R.log(s,rec(x.workout,1000,{check:{...E.successCheck,symptoms:"sharp"}}),x);return n.paused&&!R.next(n,[],1100).workout});
+ check("Impossible continuous record rejected",()=>{const x=R.next(s,[],1000);try{R.log(s,rec(x.workout,1000,{strategy:"continuous"}),x);return false}catch{return true}});
+ check("No return after 28 days without reassessment",()=>R.next(s,h,1030).action==="reassess");
+ check("Budget truncation never lengthens bouts",()=>{const x=R.fitBudget(s,h,1002,R.plan("runwalk",2)[10][1]);return !x.workout||x.workout.longestBout<=R.plan("runwalk",2)[10][1].longestBout&&x.review.allowed});
+ return {tests,passed:tests.filter(t=>t.pass).length,total:tests.length};
+};
+const result=audit(require("./engine.cjs"),require("./workload-audit-engine.cjs"));console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;
