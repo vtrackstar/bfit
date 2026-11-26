@@ -21,9 +21,9 @@ Conditioning helps you sustain physical activity, handle repeated efforts and ma
 | Muscular endurance | How long a muscle can keep working |
 | Repeated-effort ability | How well you can repeat demanding efforts |
 | Movement economy | How much energy a familiar activity takes at a given workload |
-These abilities overlap. Your legs may tire on stairs before breathing becomes demanding. That can give you a clue about what to work on, but it cannot diagnose what is limiting you. A cyclist may be fit and still need time to adapt to running.
+These abilities overlap. Your legs may tire on stairs before breathing becomes demanding. That can give you a clue about what to work on, but it cannot diagnose what is limiting you. A cyclist may be fit and still need time to adapt to running. [Running/cycling transfer review](https://pubmed.ncbi.nlm.nih.gov/42267259/) (specific to those activities).
 ### What changes with training?
-Your heart pumps blood to your muscles. Tiny blood vessels help deliver oxygen, and structures inside muscle cells called mitochondria use oxygen to help supply energy. Regular endurance training can improve aspects of oxygen delivery and use, making everyday movement easier for some people. Improvements depend on your starting fitness and training. [Muscle mitochondria and capillary adaptations review](https://pubmed.ncbi.nlm.nih.gov/39390310/).
+Your heart pumps blood to your muscles. Tiny blood vessels help deliver oxygen, and structures inside muscle cells called mitochondria use oxygen to help supply energy. Regular endurance training can improve aspects of oxygen delivery and use, making everyday movement easier for some people. Improvements depend on your starting fitness and training. [Cardiovascular adaptations review](https://pubmed.ncbi.nlm.nih.gov/26756625/); [Muscle mitochondria and capillary adaptations review](https://pubmed.ncbi.nlm.nih.gov/39390310/).
 ### Choose what matters to you
 **Build Stamina — keep going longer.** Start at a manageable pace and build duration.
 **Improve Work Capacity — recover between efforts.** Develop a base, then practice controlled intervals when ready. Both goals can start with easy activity.
