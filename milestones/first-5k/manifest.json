@@ -98,14 +98,14 @@
   "unresolved": [
     "Integrate calculator and optional controlled assessment into actual workout logging and goal-change UI; validate assessment result/recovery before using it as training evidence",
     "Ensure history-based goal switch retains suitable volume with intermediate sessions when no reference row matches",
-    "Improve two-to-three-day redistribution without repeating earlier developmental phases",
     "Audit continuous beginner bridge sequence and 17-week simulated timeline",
     "Audit actual rolling weekly workload, repeated incomplete workouts, persistent symptom holds and re-entry across all lanes; current reference candidate has not passed these checks",
-    "Support slow runners needing beyond final reference row and unmeasured outings; verify 5K stopping in real interface",
     "Integrate optional goal pace eligibility and persistent acknowledgment; currently reference candidate stores acknowledgment only",
-    "Confirm certificate eligibility and complete evidence, programming, editorial, device, accessibility and user testing gates"
+    "Confirm certificate eligibility and complete evidence, programming, editorial, device, accessibility and user testing gates",
+    "Audit rolling weekly exposure during and after frequency redistribution, including additional warm-up/cooldown and actual calendar spacing; current split preserves prior reference running dose only for transition cycle",
+    "Audit late extensions with unmeasured or slower outings, fatigue, and missed sessions; verify distance stopping in real UI"
   ],
-  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending.",
+  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending. Frequency transition and late endurance extension prototype: 9/9 scripted journeys complete at exactly 5000 m; 15/15 reference checks and 22/22 assessment checks pass. Prior seven simulated timelines unchanged.",
   "goalPaceNotice": {
     "status": "approved-design-not-yet-integrated",
     "heading": "Let's build toward your goal.",
