@@ -93,13 +93,13 @@
     }
   },
   "unresolved": [
-    "Resolve failed comparable-exposure boundary test and five incomplete session-based journeys",
-    "Audit rolling workload limits, walking-to-running transition, and transfer between lanes before selecting engine",
-    "Integrate persistent re-entry, frequency changes, optional pace, goal acknowledgement and safety state",
-    "Confirm completion and certificate eligibility",
-    "Complete research, programming, editorial, accessibility, device and beginner release gates"
+    "Improve programming efficiency for new runners without removing recovery safeguards; benchmark 9–12 week established beginner plans and distinguish distance completion from continuous running",
+    "Audit long-outing dose versus practice dose; current traces can finish on practice while long outing lags",
+    "Add explicit test for run-walk versus continuous completion strategy and stop-at-5K behavior",
+    "Integrate persistent scheduling, frequency transitions, re-entry and goal pace acknowledgment",
+    "Confirm certificate eligibility and complete release gates"
   ],
-  "notes": "Session-based candidate added separately; v4 engine preserved. Latest session tests: 7/8 boundaries passed; 1/6 scripted journeys completed (slow continuous runner, week 17 versus v4 week 35). No release gates approved.",
+  "notes": "Session-engine candidate: six of six scripted journeys reach selected milestone, eight of eight boundary checks pass. Run-walk finishes use walking breaks. Absolute beginner timelines 40–49 weeks, walking foundation 45, interrupted 55; still too restrictive. No release gates approved.",
   "goalPaceNotice": {
     "status": "approved-design-not-yet-integrated",
     "heading": "Let's build toward your goal.",
