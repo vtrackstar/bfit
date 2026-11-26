@@ -1,0 +1,113 @@
+{
+  "features": {
+    "tests": [
+      {
+        "name": "New runner keeps target without prescription",
+        "pass": true
+      },
+      {
+        "name": "Faster than demonstrated goal withheld",
+        "pass": true
+      },
+      {
+        "name": "Supported target eligible",
+        "pass": true
+      },
+      {
+        "name": "Acknowledgment does not override eligibility",
+        "pass": true
+      },
+      {
+        "name": "Runwalk target not prescribed",
+        "pass": true
+      },
+      {
+        "name": "Moving time excluded",
+        "pass": true
+      },
+      {
+        "name": "Derived distance excluded",
+        "pass": true
+      },
+      {
+        "name": "Two-day schedule allows pace practice",
+        "pass": true
+      },
+      {
+        "name": "No opt-in no pace",
+        "pass": true
+      },
+      {
+        "name": "Pain overrides pace",
+        "pass": true
+      },
+      {
+        "name": "No repeat pace within seven days",
+        "pass": true
+      },
+      {
+        "name": "Assessment duration supported",
+        "pass": true
+      },
+      {
+        "name": "Assessment within existing first bout",
+        "pass": true
+      },
+      {
+        "name": "No assessment for new runner",
+        "pass": true
+      },
+      {
+        "name": "Assessment logged with recovery",
+        "pass": true
+      },
+      {
+        "name": "Wrong assessment duration rejected",
+        "pass": true
+      },
+      {
+        "name": "Pace practice does not add running time",
+        "pass": true
+      },
+      {
+        "name": "Whole workout distance excluded",
+        "pass": true
+      },
+      {
+        "name": "Derived distance not completion",
+        "pass": true
+      },
+      {
+        "name": "Assessment failure not accepted",
+        "pass": true
+      }
+    ],
+    "passed": 20,
+    "total": 20,
+    "fixture": {
+      "pace": "train",
+      "paceFeature": "goal-pace",
+      "assessmentFeature": "assessment"
+    }
+  },
+  "regression": [
+    {
+      "completed": 9,
+      "total": 9,
+      "passed": 15,
+      "checks": 15
+    },
+    {
+      "passed": 22,
+      "total": 22
+    },
+    {
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "passed": 17,
+      "total": 17
+    }
+  ]
+}
