@@ -44,6 +44,8 @@ jobs:
         run: node scripts/guide-layout-flows.mjs
       - name: Test new-visitor paths and shared guide navigation
         run: node scripts/beginner-entry-flows.mjs
+      - name: Audit Gamer Fit source size, first workout and local mobile performance
+        run: node scripts/gamer-fit-audit.mjs
       - name: Test 50+ activity builder, storage and mobile flows
         run: node scripts/50plus-flows.mjs
       - name: Check public guide, exercise library and inquiry URLs
