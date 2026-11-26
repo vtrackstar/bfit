@@ -4,8 +4,8 @@
   "title": "Your First 5K",
   "kind": "running",
   "state": "planning",
-  "ownerDecisionStatus": "programming-to-be-designed",
-  "successfulCompletionCriteria": null,
+  "ownerDecisionStatus": "programming-prototype-under-review",
+  "successfulCompletionCriteria": "Proposed: measured 5 km outing; distinguish walking, run-walk and continuous achievement; certificate eligibility pending final confirmation.",
   "delivery": {
     "format": "interactive-guide",
     "primaryMode": "adaptive-milestones",
@@ -34,7 +34,14 @@
     "run-walk-when-appropriate",
     "gradual-session-exposure",
     "review-performance-and-recovery",
-    "repeat-cycles-until-milestone"
+    "repeat-cycles-until-milestone",
+    "independent-duration-and-distance-targets",
+    "one-progression-lever-per-review",
+    "current-fitness-before-optional-goal-pace",
+    "distance-or-duration-stop",
+    "smaller-distance-progression-before-manual-review",
+    "ineligible-goal-pace-does-not-block-endurance",
+    "dismissible-goal-pace-explanation-without-safeguard-override"
   ],
   "qualityGates": {
     "programming": {
@@ -83,11 +90,18 @@
     }
   },
   "unresolved": [
-    "Define finish goal: any run-walk completion versus continuous running",
-    "Starting ability categories",
-    "Weekly schedule and conditional progressions",
-    "Training load and recovery rules",
-    "Longer timeline: four-week cycles without a four-week 5K promise"
+    "Confirm primary finish goal and certificate eligibility",
+    "Resolve repeated weekly load-limit holds with smaller intermediate prescriptions",
+    "Test end-to-end completion from all entry points and actual schedule changes",
+    "Integrate re-entry, safety holds, frequency transitions, pace substitutions, goal acknowledgment and completion into persistent session state",
+    "Complete programming, research, accessibility, device and beginner gates"
   ],
-  "notes": "Planning manifest only. No exercise prescriptions, outcomes, or tested sample workouts have been approved."
+  "notes": "Development branch only. Version 2: 12 scripted profiles, 29 additional checks; 0 failures on re-execution of committed source. Not clinical or real-world outcome tests. Formal release gates remain pending.",
+  "goalPaceNotice": {
+    "status": "approved-design-not-yet-integrated",
+    "heading": "Let's build toward your goal.",
+    "body": "Your workouts will start at a pace that fits your current fitness. As you progress, we'll revisit your target pace and begin working toward it when your training supports it. You can keep your original goal or change it at any time.",
+    "acknowledgment": "Got it. Keep my goal.",
+    "behavior": "Save acknowledgment locally per goal revision; dismiss repeated notice; never bypass pace eligibility. Reconsider when new training evidence changes eligibility. Never label a goal unrealistic in user-facing text."
+  }
 }
