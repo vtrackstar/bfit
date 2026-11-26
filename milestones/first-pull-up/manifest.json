@@ -45,8 +45,8 @@
       "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
     },
     "exerciseLibrary": {
-      "status": "pending",
-      "evidence": ""
+      "status": "partially-complete",
+      "evidence": "Four credited demo players with direct links; full playback and cue review pending."
     },
     "loadTotals": {
       "status": "reviewed",
@@ -87,5 +87,5 @@
     "Latest browser regression tests",
     "Certificate visual retest"
   ],
-  "notes": "Public initial release. See FRAMEWORK.md for current rules and verification limits. 31 test groups available; 29 passed before latest edits. Latest suite execution pending."
+  "notes": "Public release; 32 automated groups pass. Demo players and social image added. Full playback, device and visual tests remain pending."
 }
