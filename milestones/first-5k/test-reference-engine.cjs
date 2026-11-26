@@ -33,12 +33,16 @@ const test=function test(E,R){
  }
  return {name,done,final:{level:s.level+1,days:s.days,index:s.index,goal:s.goal},trace};
  }
- const journeys=[journey("Walking foundation",{walkMin:10,goal:"runwalk",days:3},480),journey("Beginner run-walk 3 days",{walkMin:30,goal:"runwalk",days:3},480),journey("Beginner continuous 3 days",{walkMin:30,goal:"continuous",days:3},480),journey("Slow established runner",{walkMin:30,goal:"continuous",days:2},540,{seed:E.byId("C10")}),journey("Goal change",{walkMin:30,goal:"runwalk",days:3},480,{switchWeek:8}),journey("Interrupted training",{walkMin:30,goal:"runwalk",days:3},480,{miss:[5,6,12]}),journey("Two-day beginner",{walkMin:30,goal:"runwalk",days:2},480)];
+ const journeys=[journey("Walking foundation",{walkMin:10,goal:"runwalk",days:3},480),journey("Beginner run-walk 3 days",{walkMin:30,goal:"runwalk",days:3},480),journey("Beginner continuous 3 days",{walkMin:30,goal:"continuous",days:3},480),journey("Slow established runner",{walkMin:30,goal:"continuous",days:2},540,{seed:E.byId("C10")}),journey("Goal change",{walkMin:30,goal:"runwalk",days:3},480,{switchWeek:8}),journey("Interrupted training",{walkMin:30,goal:"runwalk",days:3},480,{miss:[5,6,12]}),journey("Two-day beginner",{walkMin:30,goal:"runwalk",days:2},480),journey("Slow continuous beyond 45 min",{walkMin:30,goal:"continuous",days:2},660,{seed:E.byId("C10"),limit:45}),journey("Slow run-walk beyond 61 min",{walkMin:30,goal:"runwalk",days:2},780,{seed:E.byId("B7"),limit:45})];
  const a=R.start({walkMin:30,goal:"runwalk",days:2},[],1000),p=R.next(a,[],1000).workout;
  check("Pain pauses",()=>!R.next(a,[rec(p,1000,480,{check:{...E.successCheck,symptoms:"sharp"}})],1003).workout);
  check("Unknown recovery holds",()=>!R.next(a,[rec(p,1000,480,{check:{...E.successCheck,recovery:"unknown"}})],1003).workout);
  check("No adjacent sessions",()=>R.next(a,[rec(p,1000,480)],1001).action==="rest");
  check("Acknowledgment reset",()=>R.changeGoal(R.ack(a),"continuous").ack===null);
+ check("Frequency split retains phase and running dose",()=>{const s={...a,level:3,requestedDays:3},row=R.plan(s.goal,2)[3],records=row.map((p,i)=>rec(p,1000+4*i,480)),split=R.transition(s,records);return split?.length===3&&sum(split,"runSec")===sum(row,"runSec")&&split[2].longestBout===row[1].longestBout&&sum(split,"totalSec")<=sum(row,"totalSec")+480;});
+ check("Frequency request reaches three days",()=>journeys.find(j=>j.name==="Beginner run-walk 3 days").trace.some(x=>x.days===3));
+ check("Slow runner extends beyond 45 minutes",()=>journeys.find(j=>j.name==="Slow continuous beyond 45 min").done?.minutes>45);
+ check("Slow run-walk extends beyond 61 minutes",()=>journeys.find(j=>j.name==="Slow run-walk beyond 61 min").done?.minutes>61);
  check("All journey finishes stop at 5K",()=>journeys.every(j=>j.done&&j.done.distanceM===5000));
  check("Run-walk journeys finish using breaks",()=>journeys.filter(j=>j.final.goal==="runwalk").every(j=>j.done?.strategy==="runwalk"));
  check("Continuous journeys finish nonstop",()=>journeys.filter(j=>j.final.goal==="continuous").every(j=>j.done?.strategy==="continuous"));
