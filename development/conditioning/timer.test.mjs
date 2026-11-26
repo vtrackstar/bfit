@@ -69,6 +69,11 @@ function timerTests(){
  check("malformed actual rejected",fails(()=>saveManual(c,s,[],ticket,{...f,status:"full",actual:[{type:"warm",seconds:99999}],recoveryExtended:false},100)));
  check("invalid early jump rejected",!observed(ticket.dose,[{type:"warm",seconds:300},{type:"work",seconds:300},{type:"cool",seconds:300,earlyCooldown:true}],"shortened"));
  check("partial zero activity not completed",timerResult(timerEnd(makeTimer(ticket),"time"),f).status==="skipped");
+ let last=makeTimer(it);while(last.index<phases(d).length-2){last=timerAdvance(finishPhase(last));}last=finishPhase(last);
+ last=timerEnd(last,"time",true);check("completed final recovery uses regular cooldown",last.early===false&&timerPhase(last).type==="cool");
+ last=timerAdvance(finishPhase(last));check("final recovery plus cooldown validates full",timerResult(last,{...f,effort:6}).status==="full"&&observed(d,last.actual,"full"));
+ check("orphan cooldown rejected",!observed(ticket.dose,[{type:"cool",seconds:60,earlyCooldown:true}],"shortened"));
+ let early=timerAdvance(finishPhase(makeTimer(ticket)));early=timerStart(early,clock);clock+=1000;early=timerTick(early,clock);early=timerEnd(early,"fatigue",true);early=timerEnd(early,"time");check("fatigue reason preserved after stopping cooldown",timerResult(early,f).reason==="fatigue");
  return out;
 }
 
