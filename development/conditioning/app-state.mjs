@@ -18,6 +18,7 @@ function appCurrent(a){return a.cycles[a.cycles.length-1];}
 function appTicketValid(a,active,now){
  appAssert(fields(active,["ticket","profile","budget","timer","method"])&&["timer","manual"].includes(active.method),"Invalid active session");
  const {ticket,profile,budget,timer}=active,c=appCurrent(a);
+ appAssert(fields(profile,["mode","goal","setup","restricted","vigorousSuitable","existingHard","recovery","comfortableMinutes","currentSevere","warning","pain","postIllness","waterCompetent","recentRun","movementsFamiliar","externalSteady","adjacentDemand","hardOptIn","tempoOptIn","specialization","knownCondition","symptoms","days","slot","alternatePrepared"]),"Unknown profile fields");
  appAssert(fields(ticket,["version","id","slotId","day","cycleStart","setup","dose","optional"])&&ticket.version===1&&appInt(ticket.day,0,now)&&appInt(budget,1,86400),"Invalid ticket");
  const r=beginTicket(c.calendar,a.history,c.replacements,profile,ticket.slotId,ticket.day,budget,ticket.id);
  appAssert(r.ticket&&appEq(r.ticket,ticket),"Active prescription does not match eligibility");
@@ -42,6 +43,9 @@ function appTicketValid(a,active,now){
 function appValidate(a,now){
  appAssert(fields(a,["version","revision","history","cycles","active"])&&a.version===APP_VERSION&&appInt(a.revision,0,Number.MAX_SAFE_INTEGER),"Unsupported app version");
  validateState(a.history,now);
+ appAssert(fields(a.history,["version","started","logs","external"]),"Unknown history fields");
+ for(const l of a.history.logs){appAssert(fields(l,["id","day","setup","dose","source","status","actual","effort","quality","recovery","recoveryDay","warning","pain","recoveryExtended","timingInterrupted","output","unit","reason","plannedId","optional"]),"Unknown workout fields");appAssert(l.optional===undefined||typeof l.optional==="boolean","Invalid optional flag");appAssert(l.plannedId===undefined||typeof l.plannedId==="string"&&l.plannedId.length<=120,"Invalid slot ID");}
+ for(const l of a.history.external)appAssert(fields(l,["id","day","activity","minutes","intensity"]),"Unknown outside activity fields");
  appAssert(Array.isArray(a.cycles)&&a.cycles.length>=1&&a.cycles.length<=260,"Invalid cycles");
  const ids=new Set(),ext=new Set();
  for(let i=0;i<a.cycles.length;i++){
@@ -89,6 +93,14 @@ function appRecovery(a,id,recovery,now){
  appValidate(a,now);appAssert(!a.active,"Finish active session before editing history");
  return appChange(a,{history:updateRecovery(a.history,id,recovery,now)},now);
 }
+function appCorrect(a,id,patch,now){
+ appValidate(a,now);appAssert(!a.active,"Finish active session first");
+ const l=a.history.logs.find(x=>x.id===id);
+ appAssert(l&&l.source!=="prior"&&l.status!=="skipped"&&fields(patch,["effort","quality","warning","pain","output","unit"]),"Invalid correction");
+ appAssert(!(l.warning&&patch.warning===false)&&!(l.pain&&patch.pain===false),"Safety flags cannot be removed");
+ const updated={...l,...patch,warning:l.warning||patch.warning===true,pain:l.pain||patch.pain===true,quality:false,timingInterrupted:true,recovery:"unknown",recoveryDay:null};
+ return appChange(a,{history:{...a.history,logs:a.history.logs.map(x=>x.id===id?updated:x)}},now);
+}
 function appOutside(a,l,now){
  appValidate(a,now);appAssert(!a.active,"Finish active session before adding activity");
  return appChange(a,{history:addExternal(a.history,l,now)},now);
@@ -119,7 +131,7 @@ function appReport(a,start,now){
   const t=actualTotals(l),m=byMode[l.dose.mode]??={workSeconds:0,recoverySeconds:0,knownTotalSeconds:0,unknownTotalVisits:0,unknownWorkVisits:0,unknownRecoveryTimeVisits:0,lengthsByPool:{}};
   m.workSeconds+=t.work;m.recoverySeconds+=t.recovery;m.knownTotalSeconds+=t.total??0;m.unknownTotalVisits+=Number(t.total===null);m.unknownWorkVisits+=Number(t.unknown);
   if(l.dose.kind==="swim"){m.unknownRecoveryTimeVisits+=Number(l.actual.restSeconds===null);const k=l.dose.pool+" "+l.dose.unit;m.lengthsByPool[k]=(m.lengthsByPool[k]??0)+l.actual.lengths;}
-  if(l.optional||!success(l)||!Number.isFinite(l.output)||!l.unit)continue;
+  if(l.optional||!success(l)||l.dose.reduced||!Number.isFinite(l.output)||!l.unit)continue;
   const k=JSON.stringify([key(l.dose),l.setup,l.unit,l.effort]);if(!groups.has(k))groups.set(k,[]);groups.get(k).push(l);
  }
  const comparisons=[];
@@ -141,7 +153,7 @@ function appPersist(storage,a,now,expectedRevision=null){
  const raw=appBackup(a,now);
  try{
   const old=storage.getItem(APP_KEY);
-  if(expectedRevision!==null&&(!old||JSON.parse(old).revision!==expectedRevision))return {ok:false,reason:"storage-conflict"};
+  if(expectedRevision===null?!!old:(!old||JSON.parse(old).revision!==expectedRevision))return {ok:false,reason:"storage-conflict"};
   storage.setItem(APP_KEY,raw);return {ok:true};
  }catch{return {ok:false,reason:"storage-unavailable"};}
 }
@@ -150,4 +162,4 @@ function appLoad(storage,now){
  catch{return {ok:false,reason:"storage-or-backup-invalid"};}
 }
 
-export { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad };
+export { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad };
