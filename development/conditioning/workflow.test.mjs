@@ -42,6 +42,9 @@ function journeyTests(){
  check("return reduced",visit(s,{...p,slot:"interval"},day+20,3600).dose.reduced===true);
  check("four week review due",review(s,day+28).reviewDue);
  check("prior excluded from attendance",review(addLog(emptyState(0),entry(steady("bike",15,2),1,"prior",{source:"prior"}),1),2).full===0);
+ check("prior evidence can predate signup",addLog(emptyState(20),entry(steady("bike",15,2),10,"prior-old",{source:"prior"}),20).logs.length===1);
+ check("steady second slot retains identity for bouts",visit(emptyState(0),{...p,slot:"steady2",comfortableMinutes:2},1,1800).dose.slot==="steady2");
+ check("other same-day demanding slot blocked",visit(addLog(emptyState(0),entry(interval("bike","b60x4"),1,"other"),1),{...p,mode:"circuit",slot:"circuit",movementsFamiliar:true,setup:"home"},1,1800).action==="already-demanding-today");
  return checks;
 }
 const results=journeyTests(); for(const n of results) console.log('PASS '+n); console.log(results.length+' journey checks passed');
