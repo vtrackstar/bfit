@@ -58,7 +58,7 @@ check("missed weeks do not create catch-up sessions or a harder return",()=>{
  const first=perform(a,base,slots[0],1800);a=first.a;
  const second=perform(a,base,slots[1],1800);a=second.a;
  const r=perform(a,base,slots[5],1800);assert(r.dose);assert(r.dose.effort[1]<=second.dose.effort[1]);
- assert(appReport(r.a,100,slots[5].day).primary.missed>=3);
+ assert(appReport(r.a,100,slots[5].day+1).primary.missed>=3);
  assert.equal(appStart(r.a,base,slots[2].id,slots[5].day+1,1800,"late").action,"missed-no-catchup");
 });
 check("current fatigue blocks training even after successful past recovery",()=>{
