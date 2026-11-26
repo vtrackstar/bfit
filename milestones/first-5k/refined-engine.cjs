@@ -166,13 +166,16 @@ const reference=function reference(E){
  if(!fit.workout)return {action:"rest",workout:null,state:s,reason:"Allow more recovery before the next running session.",load:fit.review};
  return {action:fit.changed?"budget-bridge":action,workout:fit.workout,state:s,reason:fit.changed?"Keep the workout within recent training exposure.":reason,load:fit.review,...extra};
  };
+ // Current symptoms take priority over scheduling and completion; the caller must persist returned state.
+ if(context.symptoms==="urgent")return {action:"urgent",workout:null,state:{...s,paused:true,pauseReason:"urgent"},reason:"Seek urgent medical assessment."};
+ if(context.symptoms&&context.symptoms!=="none"||context.recovery==="limited")return {action:"pause",workout:null,state:{...s,paused:true,pauseReason:"symptoms"},reason:"Address symptoms before running."};
+ if(s.paused)return result(s.pauseReason==="urgent"?"urgent":"pause",null,"Resolve health or symptom concerns.");
  if(s.completed)return result("complete",null,"Your selected 5K milestone is complete.");
- if(s.action!=="start"||s.paused)return result("pause",null,"Resolve health or symptom concerns.");
+ if(s.action!=="start")return result("pause",null,"Resolve health or symptom concerns.");
  const all=E.recent(h,d,90).sort((a,b)=>b.day-a.day),last=all[0];
  if(all.some(r=>r.unresolved)||last&&["pause","urgent"].includes(E.check(last.check)))return result("pause",null,"Pause and assess symptoms.");
  if(last&&d-last.day<2)return result("rest",null,"Rest between workouts.");
- if(context.symptoms==="urgent")return result("urgent",null,"Seek urgent medical assessment.");
- if(context.symptoms&&context.symptoms!=="none"||context.recovery==="limited")return result("pause",null,"Address symptoms before running.");
+ 
  if(context.recovery==="unknown")return result("hold",null,"Confirm recovery.");
  if(context.hardActivityYesterday||context.hardActivityToday||context.recovery==="heavy")return result("rest",null,"Allow recovery from other activity before running.");
  if(last&&E.check(last.check)==="hold"||last?.check?.recovery==="unknown")return result("hold",null,"Confirm recovery.");
@@ -226,7 +229,7 @@ const reference=function reference(E){
  if(record.strategy==="continuous"&&(record.runSec!==record.mainSec||record.longestBout!==record.runSec)||record.strategy==="walk"&&record.runSec!==0)throw Error("Inconsistent running strategy");
  if(!decision.workout||record.prescriptionId!==decision.workout.id||record.lane!==decision.workout.lane)throw Error("Record does not match prescribed session");
  const c=E.check(record.check);let next={...s,lastDay:record.day,history:[...s.history,record]};
- if(c==="urgent"||c==="pause")return {...next,paused:true};
+ if(c==="urgent"||c==="pause")return {...next,paused:true,pauseReason:c==="urgent"?"urgent":"symptoms"};
  if(c!=="success"||!record.completed)return {...next,recoveryRemaining:c==="reduce"||!record.completed?s.days:next.recoveryRemaining??0};
  const recovering=!!decision.recoveryTrigger||s.recoveryRemaining>0;
  if(decision.recoveryTrigger){next.recoveryRemaining=Math.max(0,s.days-1);next.recoveryStartDay=record.day;}
