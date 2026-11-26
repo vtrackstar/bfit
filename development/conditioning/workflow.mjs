@@ -41,6 +41,7 @@ function observed(d,actual,status){
 function validateLog(l,now){
  if(!plain(l)||!str(l.id)||!integer(l.day,0,now)||!str(l.setup)||!canonical(l.dose)||!["timer","manual","prior"].includes(l.source)||!["full","shortened","skipped"].includes(l.status)||!["normal","extra","limiting","unknown"].includes(l.recovery)||typeof l.quality!=="boolean"||typeof l.warning!=="boolean"||typeof l.pain!=="boolean"||typeof l.recoveryExtended!=="boolean")return false;
  if(l.resolved!==undefined)return false;
+ if(l.reason==="symptoms"&&!l.warning||l.reason==="pain"&&!l.pain)return false;
  if(l.recovery==="unknown"){if(l.recoveryDay!==undefined&&l.recoveryDay!==null)return false;}else if(!integer(l.recoveryDay,l.day+1,now)||l.status==="skipped")return false; // never accept self-cleared historical warning flags
  if(l.status==="skipped"){if(l.effort!==null)return false;}else if(!integer(l.effort,0,10))return false;
  if(l.dose.kind==="swim"&&l.source==="timer")return false;
@@ -77,7 +78,7 @@ function visit(s,p,now,budget){
  if(p.postIllness===true)return {action:"reassess-after-illness",dose:null};
  let profile={...p,existingHard:p.existingHard===false&&!s.external.some(l=>l.day>now-7&&l.day<=now&&["challenging","hard","unknown"].includes(l.intensity))?false:true};
  const relevant=s.logs.filter(l=>l.dose.mode===p.mode&&l.dose.slot===p.slot&&l.setup===p.setup&&l.source!=="prior"&&l.status!=="skipped").sort((a,b)=>b.day-a.day);
- const last=relevant[0];if(last?.pain)return {action:"pause-mode",dose:null};
+ const last=relevant[0];if(s.logs.some(l=>l.dose.mode===p.mode&&l.pain))return {action:"pause-mode",dose:null};
  let pick;
  if(last){
   if(last.day===now)return {action:"already-trained-slot",dose:null};
@@ -90,6 +91,8 @@ function visit(s,p,now,budget){
  }else pick=initial(profile,s.logs,now);
  if(!pick.dose)return pick;
  if(p.slot==="steady2"&&["steady","bouts"].includes(pick.dose.kind)&&pick.dose.slot!=="steady2")pick={...pick,dose:{...pick.dose,slot:"steady2",...(pick.dose.original?{original:{...pick.dose.original,slot:"steady2"}}:{})}};
+ if(pick.dose.mode!==p.mode)return {action:pick.action,dose:null};
+ if(pick.dose.kind==="interval"&&p.slot!=="interval"||pick.dose.kind==="circuit"&&p.slot!=="circuit")return {action:"reassess-slot",dose:null};
  const routed=schedule(profile,pick.dose);if(!routed.dose)return routed;
  if(!canonical(routed.dose))return {action:"reassess-dose",dose:null};
  const isDemanding=routed.dose.kind==="interval"||routed.dose.kind==="circuit"&&routed.dose.effort[1]>5;
