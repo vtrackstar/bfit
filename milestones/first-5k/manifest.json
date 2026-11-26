@@ -90,13 +90,14 @@
     }
   },
   "unresolved": [
+    "Replace overly restrictive combined weekly gates with session-based progression and four-week review checkpoints",
+    "Improve coordination of practice and longer outing so demonstrated longer bouts can transfer without an unsupported running-volume jump",
+    "Retest six complete journeys with distinct running and walking speeds; check realistic completion pathways rather than requiring a promised deadline",
+    "Integrate persistent return, safety, frequency, pace substitutions, goal change and acknowledgment state",
     "Confirm primary finish goal and certificate eligibility",
-    "Resolve repeated weekly load-limit holds with smaller intermediate prescriptions",
-    "Test end-to-end completion from all entry points and actual schedule changes",
-    "Integrate re-entry, safety holds, frequency transitions, pace substitutions, goal acknowledgment and completion into persistent session state",
     "Complete programming, research, accessibility, device and beginner gates"
   ],
-  "notes": "Development branch only. Version 2: 12 scripted profiles, 29 additional checks; 0 failures on re-execution of committed source. Not clinical or real-world outcome tests. Formal release gates remain pending.",
+  "notes": "Version 4 prototype. 12 scripted profiles and 29 additional checks passed. Six exploratory journeys: one completion, five incomplete after 80 simulated weeks. Generated bridge workouts now progress, but timing and long-outing strategy adoption remain too restrictive. No release gates approved.",
   "goalPaceNotice": {
     "status": "approved-design-not-yet-integrated",
     "heading": "Let's build toward your goal.",
