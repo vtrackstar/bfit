@@ -708,4 +708,4 @@ const features=function features(R,E,C){
 module.exports=features(require("./refined-engine.cjs"),require("./engine.cjs"),require("../../shared/running-calculator.js"));
 
 };
-function load(id){if(id==="../../shared/running-calculator.js")return globalThis.BFitRunningCalculator;if(!modules[id])throw Error("Unknown module");if(!cache[id]){const m={exports:{}};modules[id](m,m.exports,load);cache[id]=m.exports;}return cache[id].exports;}globalThis.BFit5K=load("./training-features.cjs");globalThis.BFit5KCore=load("./engine.cjs");})();
+function load(id){if(id==="../../shared/running-calculator.js")return globalThis.BFitRunningCalculator;if(!modules[id])throw Error("Unknown module");if(!cache[id]){const m={exports:{}};modules[id](m,m.exports,load);cache[id]=m;}return cache[id].exports;}globalThis.BFit5K=load("./training-features.cjs");globalThis.BFit5KCore=load("./engine.cjs");})();
