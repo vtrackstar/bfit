@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "notes": "Scripted outcomes in fictional profiles; not a prediction of physiological adaptation, injury risk or completion time.",
   "summary": {
     "profiles": 12,
@@ -143,7 +143,7 @@
         {
           "week": 3,
           "practice": "A2",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 7.5,
           "plannedTotalMin": 41,
@@ -156,7 +156,7 @@
         {
           "week": 4,
           "practice": "A3",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 8.5,
           "plannedTotalMin": 41,
@@ -233,7 +233,7 @@
           }
         },
         "long": {
-          "id": "L-rw-30-90-780",
+          "id": "L-rw-30-90-780-time",
           "runs": [
             30,
             30,
@@ -298,7 +298,7 @@
         {
           "week": 3,
           "practice": "A2",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 7.5,
           "plannedTotalMin": 41,
@@ -311,7 +311,7 @@
         {
           "week": 4,
           "practice": "A3",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 8.5,
           "plannedTotalMin": 41,
@@ -388,7 +388,7 @@
           }
         },
         "long": {
-          "id": "L-rw-30-90-780",
+          "id": "L-rw-30-90-780-time",
           "runs": [
             30,
             30,
@@ -897,12 +897,12 @@
         {
           "week": 2,
           "practice": "slow-30",
-          "long": "L-cont-1980",
+          "long": "L-cont-1897-3483",
           "days": 2,
-          "plannedRunMin": 63,
-          "plannedTotalMin": 79,
-          "longestBoutMin": 33,
-          "longestOutingMin": 33,
+          "plannedRunMin": 61.61666666666667,
+          "plannedTotalMin": 77.61666666666666,
+          "longestBoutMin": 31.616666666666667,
+          "longestOutingMin": 31.616666666666667,
           "action": "repeat",
           "reason": "Need another comparable successful exposure.",
           "flag": null
@@ -910,12 +910,12 @@
         {
           "week": 3,
           "practice": "slow-30",
-          "long": "L-cont-1980",
+          "long": "L-cont-1897-3483",
           "days": 2,
-          "plannedRunMin": 63,
-          "plannedTotalMin": 79,
-          "longestBoutMin": 33,
-          "longestOutingMin": 33,
+          "plannedRunMin": 61.61666666666667,
+          "plannedTotalMin": 77.61666666666666,
+          "longestBoutMin": 31.616666666666667,
+          "longestOutingMin": 31.616666666666667,
           "action": "progress",
           "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
           "flag": "within-reference"
@@ -923,12 +923,12 @@
         {
           "week": 4,
           "practice": "slow-30",
-          "long": "L-cont-2160",
+          "long": "L-cont-1978-3633",
           "days": 2,
-          "plannedRunMin": 66,
-          "plannedTotalMin": 82,
-          "longestBoutMin": 36,
-          "longestOutingMin": 36,
+          "plannedRunMin": 62.96666666666667,
+          "plannedTotalMin": 78.96666666666667,
+          "longestBoutMin": 32.96666666666667,
+          "longestOutingMin": 32.96666666666667,
           "action": "repeat",
           "reason": "Four-week review: consolidate; reduce if recovery requires it.",
           "flag": null
@@ -970,18 +970,18 @@
           "pattern": null
         },
         "long": {
-          "id": "L-cont-2160",
+          "id": "L-cont-1978-3633",
           "runs": [
-            2160
+            1978
           ],
           "rests": [],
           "tail": 0,
-          "runSec": 2160,
-          "mainSec": 2160,
-          "totalSec": 2640,
-          "longestBout": 2160,
+          "runSec": 1978,
+          "mainSec": 1978,
+          "totalSec": 2458,
+          "longestBout": 1978,
           "fasterSec": 0,
-          "distanceGoal": 3842,
+          "distanceGoal": 3633,
           "pattern": null
         }
       },
@@ -991,7 +991,7 @@
         "cap": 2610,
         "reason": "Build duration further before attempting the distance."
       },
-      "capMinutes": 43.5
+      "capMinutes": 42.78333333333333
     },
     {
       "name": "08 run-walk participant with 4km endurance",
@@ -1005,45 +1005,149 @@
           "plannedTotalMin": 76,
           "longestBoutMin": 3,
           "longestOutingMin": 40,
-          "action": "review-distance",
-          "reason": "Running-distance change needs review; a percentage is not a safety guarantee.",
-          "flag": "review"
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
         },
         {
           "week": 2,
           "practice": "B5",
-          "long": "rw-four-k",
+          "long": "L-rw-180-120-2535-4200",
           "days": 2,
-          "plannedRunMin": 36,
-          "plannedTotalMin": 76,
+          "plannedRunMin": 38.25,
+          "plannedTotalMin": 78.25,
           "longestBoutMin": 3,
-          "longestOutingMin": 40,
-          "action": "review-distance",
-          "reason": "Running-distance change needs review; a percentage is not a safety guarantee.",
-          "flag": "review"
+          "longestOutingMin": 42.25,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
         },
         {
           "week": 3,
           "practice": "B5",
-          "long": "rw-four-k",
+          "long": "L-rw-180-120-2535-4200",
           "days": 2,
-          "plannedRunMin": 36,
-          "plannedTotalMin": 76,
+          "plannedRunMin": 38.25,
+          "plannedTotalMin": 78.25,
           "longestBoutMin": 3,
-          "longestOutingMin": 40,
-          "action": "review-distance",
-          "reason": "Running-distance change needs review; a percentage is not a safety guarantee.",
-          "flag": "review"
+          "longestOutingMin": 42.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
         },
         {
           "week": 4,
           "practice": "B5",
-          "long": "rw-four-k",
+          "long": "L-rw-180-120-2655-4400",
           "days": 2,
-          "plannedRunMin": 36,
-          "plannedTotalMin": 76,
+          "plannedRunMin": 39,
+          "plannedTotalMin": 80.25,
           "longestBoutMin": 3,
-          "longestOutingMin": 40,
+          "longestOutingMin": 44.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 5,
+          "practice": "B5",
+          "long": "L-rw-180-120-2655-4400",
+          "days": 2,
+          "plannedRunMin": 39,
+          "plannedTotalMin": 80.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 44.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 6,
+          "practice": "B5",
+          "long": "L-rw-180-120-2775-4600",
+          "days": 2,
+          "plannedRunMin": 40.25,
+          "plannedTotalMin": 82.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 46.25,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 7,
+          "practice": "B5",
+          "long": "L-rw-180-120-2775-4600",
+          "days": 2,
+          "plannedRunMin": 40.25,
+          "plannedTotalMin": 82.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 46.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 8,
+          "practice": "B5",
+          "long": "L-rw-180-120-2910-4825",
+          "days": 2,
+          "plannedRunMin": 42,
+          "plannedTotalMin": 84.5,
+          "longestBoutMin": 3,
+          "longestOutingMin": 48.5,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 9,
+          "practice": "B5",
+          "long": "L-rw-180-120-2910-4825",
+          "days": 2,
+          "plannedRunMin": 42,
+          "plannedTotalMin": 84.5,
+          "longestBoutMin": 3,
+          "longestOutingMin": 48.5,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 10,
+          "practice": "B5",
+          "long": "L-rw-180-120-3015-5000",
+          "days": 2,
+          "plannedRunMin": 42.25,
+          "plannedTotalMin": 86.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 50.25,
+          "action": "repeat",
+          "reason": "Need another comparable successful exposure.",
+          "flag": null
+        },
+        {
+          "week": 11,
+          "practice": "B5",
+          "long": "L-rw-180-120-3015-5000",
+          "days": 2,
+          "plannedRunMin": 42.25,
+          "plannedTotalMin": 86.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 50.25,
+          "action": "repeat",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": null
+        },
+        {
+          "week": 12,
+          "practice": "B5",
+          "long": "L-rw-180-120-3015-5000",
+          "days": 2,
+          "plannedRunMin": 42.25,
+          "plannedTotalMin": 86.25,
+          "longestBoutMin": 3,
+          "longestOutingMin": 50.25,
           "action": "repeat",
           "reason": "Four-week review: consolidate; reduce if recovery requires it.",
           "flag": null
@@ -1107,7 +1211,7 @@
           }
         },
         "long": {
-          "id": "rw-four-k",
+          "id": "L-rw-180-120-3015-5000",
           "runs": [
             180,
             180,
@@ -1116,7 +1220,10 @@
             180,
             180,
             180,
-            180
+            180,
+            180,
+            180,
+            15
           ],
           "rests": [
             120,
@@ -1126,15 +1233,18 @@
             120,
             120,
             120,
-            120
+            120,
+            120,
+            120,
+            0
           ],
           "tail": 0,
-          "runSec": 1440,
-          "mainSec": 2400,
-          "totalSec": 2880,
+          "runSec": 1815,
+          "mainSec": 3015,
+          "totalSec": 3495,
           "longestBout": 180,
           "fasterSec": 0,
-          "distanceGoal": null,
+          "distanceGoal": 5000,
           "pattern": {
             "run": 180,
             "walk": 120
@@ -1143,7 +1253,7 @@
       },
       "candidate": {
         "distanceM": 4200,
-        "timeCapMin": 43,
+        "timeCapMin": 42.25,
         "longestBoutMin": 3
       }
     },
@@ -1179,7 +1289,7 @@
         {
           "week": 3,
           "practice": "A2",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 7.5,
           "plannedTotalMin": 41,
@@ -1192,7 +1302,7 @@
         {
           "week": 4,
           "practice": "A3",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 8.5,
           "plannedTotalMin": 41,
@@ -1269,7 +1379,7 @@
           }
         },
         "long": {
-          "id": "L-rw-30-90-780",
+          "id": "L-rw-30-90-780-time",
           "runs": [
             30,
             30,
@@ -1334,7 +1444,7 @@
         {
           "week": 3,
           "practice": "A2",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 7.5,
           "plannedTotalMin": 41,
@@ -1347,7 +1457,7 @@
         {
           "week": 4,
           "practice": "A3",
-          "long": "L-rw-30-90-780",
+          "long": "L-rw-30-90-780-time",
           "days": 2,
           "plannedRunMin": 8.5,
           "plannedTotalMin": 41,
@@ -1424,7 +1534,7 @@
           }
         },
         "long": {
-          "id": "L-rw-30-90-780",
+          "id": "L-rw-30-90-780-time",
           "runs": [
             30,
             30,
@@ -1528,45 +1638,149 @@
           "plannedTotalMin": 56,
           "longestBoutMin": 20,
           "longestOutingMin": 20,
-          "action": "repeat",
-          "reason": "Need four consistent weeks and a recent representative continuous effort; do not prescribe a maximal test just to qualify.",
-          "flag": null
+          "action": "progress",
+          "reason": "Two successful exposures support progression.",
+          "flag": "unknown"
         },
         {
           "week": 2,
-          "practice": "C6",
+          "practice": "C7",
           "long": "C6",
           "days": 2,
-          "plannedRunMin": 40,
-          "plannedTotalMin": 56,
-          "longestBoutMin": 20,
+          "plannedRunMin": 42,
+          "plannedTotalMin": 58,
+          "longestBoutMin": 22,
           "longestOutingMin": 20,
-          "action": "repeat",
-          "reason": "Need four consistent weeks and a recent representative continuous effort; do not prescribe a maximal test just to qualify.",
-          "flag": null
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
         },
         {
           "week": 3,
-          "practice": "C6",
-          "long": "C6",
+          "practice": "C7",
+          "long": "L-cont-1275-2625",
           "days": 2,
-          "plannedRunMin": 40,
-          "plannedTotalMin": 56,
-          "longestBoutMin": 20,
-          "longestOutingMin": 20,
+          "plannedRunMin": 43.25,
+          "plannedTotalMin": 59.25,
+          "longestBoutMin": 22,
+          "longestOutingMin": 21.25,
           "action": "repeat",
-          "reason": "Need four consistent weeks and a recent representative continuous effort; do not prescribe a maximal test just to qualify.",
+          "reason": "Candidate exceeds the draft absolute load increment; use an intermediate prescription.",
           "flag": null
         },
         {
           "week": 4,
-          "practice": "C6",
-          "long": "C6",
+          "practice": "C7",
+          "long": "L-cont-1275-2625",
           "days": 2,
-          "plannedRunMin": 40,
-          "plannedTotalMin": 56,
-          "longestBoutMin": 20,
-          "longestOutingMin": 20,
+          "plannedRunMin": 43.25,
+          "plannedTotalMin": 59.25,
+          "longestBoutMin": 22,
+          "longestOutingMin": 21.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 5,
+          "practice": "C7",
+          "long": "L-cont-1275-2625",
+          "days": 2,
+          "plannedRunMin": 43.25,
+          "plannedTotalMin": 59.25,
+          "longestBoutMin": 22,
+          "longestOutingMin": 21.25,
+          "action": "repeat",
+          "reason": "Candidate exceeds the draft absolute load increment; use an intermediate prescription.",
+          "flag": null
+        },
+        {
+          "week": 6,
+          "practice": "C7",
+          "long": "L-cont-1275-2625",
+          "days": 2,
+          "plannedRunMin": 43.25,
+          "plannedTotalMin": 59.25,
+          "longestBoutMin": 22,
+          "longestOutingMin": 21.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 7,
+          "practice": "C7",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 44.25,
+          "plannedTotalMin": 60.25,
+          "longestBoutMin": 22.25,
+          "longestOutingMin": 22.25,
+          "action": "repeat",
+          "reason": "Candidate exceeds the draft absolute load increment; use an intermediate prescription.",
+          "flag": null
+        },
+        {
+          "week": 8,
+          "practice": "C7",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 44.25,
+          "plannedTotalMin": 60.25,
+          "longestBoutMin": 22.25,
+          "longestOutingMin": 22.25,
+          "action": "repeat",
+          "reason": "Four-week review: consolidate; reduce if recovery requires it.",
+          "flag": null
+        },
+        {
+          "week": 9,
+          "practice": "C7",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 44.25,
+          "plannedTotalMin": 60.25,
+          "longestBoutMin": 22.25,
+          "longestOutingMin": 22.25,
+          "action": "repeat",
+          "reason": "Candidate exceeds the draft absolute load increment; use an intermediate prescription.",
+          "flag": null
+        },
+        {
+          "week": 10,
+          "practice": "C7",
+          "long": "L-cont-1335-2750",
+          "days": 2,
+          "plannedRunMin": 44.25,
+          "plannedTotalMin": 60.25,
+          "longestBoutMin": 22.25,
+          "longestOutingMin": 22.25,
+          "action": "progress",
+          "reason": "Stop when the distance target or time limit is reached, whichever comes first.",
+          "flag": "within-reference"
+        },
+        {
+          "week": 11,
+          "practice": "C7",
+          "long": "L-cont-1395-2875",
+          "days": 2,
+          "plannedRunMin": 45.25,
+          "plannedTotalMin": 61.25,
+          "longestBoutMin": 23.25,
+          "longestOutingMin": 23.25,
+          "action": "repeat",
+          "reason": "Candidate exceeds the draft absolute load increment; use an intermediate prescription.",
+          "flag": null
+        },
+        {
+          "week": 12,
+          "practice": "C7",
+          "long": "L-cont-1395-2875",
+          "days": 2,
+          "plannedRunMin": 45.25,
+          "plannedTotalMin": 61.25,
+          "longestBoutMin": 23.25,
+          "longestOutingMin": 23.25,
           "action": "repeat",
           "reason": "Four-week review: consolidate; reduce if recovery requires it.",
           "flag": null
@@ -1578,16 +1792,16 @@
         "requestedDays": 2,
         "days": 2,
         "practice": {
-          "id": "C6",
+          "id": "C7",
           "runs": [
-            1200
+            1320
           ],
           "rests": [],
           "tail": 0,
-          "runSec": 1200,
-          "mainSec": 1200,
-          "totalSec": 1680,
-          "longestBout": 1200,
+          "runSec": 1320,
+          "mainSec": 1320,
+          "totalSec": 1800,
+          "longestBout": 1320,
           "fasterSec": 0,
           "distanceGoal": null,
           "pattern": null
@@ -1608,18 +1822,18 @@
           "pattern": null
         },
         "long": {
-          "id": "C6",
+          "id": "L-cont-1395-2875",
           "runs": [
-            1200
+            1395
           ],
           "rests": [],
           "tail": 0,
-          "runSec": 1200,
-          "mainSec": 1200,
-          "totalSec": 1680,
-          "longestBout": 1200,
+          "runSec": 1395,
+          "mainSec": 1395,
+          "totalSec": 1875,
+          "longestBout": 1395,
           "fasterSec": 0,
-          "distanceGoal": null,
+          "distanceGoal": 2875,
           "pattern": null
         }
       }
