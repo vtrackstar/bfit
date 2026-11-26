@@ -72,8 +72,44 @@
     {
       "name": "Export has expected filename",
       "pass": true
+    },
+    {
+      "name": "Experienced intake uses four actual recent runs",
+      "pass": true
+    },
+    {
+      "name": "Invalid history rejected",
+      "pass": true
+    },
+    {
+      "name": "Duplicate history dates rejected",
+      "pass": true
+    },
+    {
+      "name": "Valid import restores plan and history",
+      "pass": true
+    },
+    {
+      "name": "Invalid phase rejected without replacing progress",
+      "pass": true
+    },
+    {
+      "name": "Duplicate imported record rejected",
+      "pass": true
+    },
+    {
+      "name": "Replacement requires confirmation",
+      "pass": true
+    },
+    {
+      "name": "Imported symptom hold remains paused",
+      "pass": true
+    },
+    {
+      "name": "Import cannot clear existing health hold",
+      "pass": true
     }
   ],
-  "passed": 18,
-  "total": 18
+  "passed": 27,
+  "total": 27
 }
