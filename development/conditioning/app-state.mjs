@@ -131,7 +131,7 @@ function appCalendarEdit(a,command,id,value,now){
  appValidate(a,now);appAssert(!a.active,"Finish active session before changing schedule");
  const c=appCurrent(a);let n,h=a.history;
  if(command==="move")n={...c,calendar:reschedule(c.calendar,h,c.replacements,id,value,now)};
- else if(command==="replace")n={...c,replacements:replaceWithExternal(c.calendar,h,c.replacements,id,value,now)};
+ else if(command==="replace"){appAssert(!h.logs.some(l=>l.warning||l.pain),"Outside activity cannot replace a guide workout during a safety pause");n={...c,replacements:replaceWithExternal(c.calendar,h,c.replacements,id,value,now)};}
  else if(command==="skip"){n=c;h=skipScheduled(c.calendar,h,c.replacements,id,now);}
  else throw Error("Unknown calendar command");
  return appChange(a,{cycles:[...a.cycles.slice(0,-1),n],history:h},now);
