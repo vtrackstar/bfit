@@ -5,14 +5,14 @@
 ### What your body is doing
 **Do I need to catch a second wind?** No. Warming up and finding a sustainable pace may help you feel more comfortable. Never push through concerning symptoms waiting for it. See Chapter 2.
 
-**Does lactate make me sore the next day?** Lactate is not the cause of delayed-onset muscle soreness. The burning feeling during exercise and soreness afterward are different; neither proves a workout was effective. See Chapter 3.
+**Does lactate make me sore the next day?** Lactate is not the cause of delayed-onset muscle soreness. The burning feeling during exercise and soreness afterward are different; neither proves a workout was effective. [Lactate and soreness review](https://pmc.ncbi.nlm.nih.gov/articles/PMC13559195/). See Chapter 3.
 
-**What does hitting the wall mean?** A major drop in sustainable performance during prolonged endurance exercise, commonly discussed in marathon running. Reduced carbohydrate availability, pacing, heat and other fatigue factors can contribute; this isn't ordinary tiredness after a few minutes. Unexpected severe symptoms require stopping and appropriate help. See Chapters 2–3 and Run Strong for running-specific applications.
+**What does hitting the wall mean?** A major drop in sustainable performance during prolonged endurance exercise, commonly discussed in marathon running. Reduced carbohydrate availability, pacing, heat and other fatigue factors can contribute; this isn't ordinary tiredness after a few minutes. Unexpected severe symptoms require stopping and appropriate help. [Marathon-specific review](https://pubmed.ncbi.nlm.nih.gov/42647332/). See Chapters 2–3 and Run Strong for running-specific applications.
 
 **Does sweating more mean I got fitter?** Sweat helps cool your body as it evaporates. Heat, clothing and individual differences affect it. Do not deliberately overheat or restrict fluids to sweat more. [Heat stress review](https://doi.org/10.1152/physrev.00038.2020).
 
 ### Intensity and energy use
-**Is Zone 2 best for burning fat?** Fat may provide a larger *proportion* of energy at easier intensities. The actual amount used per minute can behave differently, and neither measurement guarantees body-fat loss over time. Choose activity you can sustain and recover from. [Body composition comparison](https://pubmed.ncbi.nlm.nih.gov/34822354/); [umbrella review](https://pubmed.ncbi.nlm.nih.gov/39003682/). See Chapter 4.
+**Is Zone 2 best for burning fat?** Fat may provide a larger *proportion* of energy at easier intensities. The actual amount used per minute can behave differently, and neither measurement guarantees body-fat loss over time. Choose activity you can sustain and recover from. [Fuel use review](https://pmc.ncbi.nlm.nih.gov/articles/PMC12375902/); [Body composition comparison](https://pubmed.ncbi.nlm.nih.gov/34822354/); [umbrella review](https://pubmed.ncbi.nlm.nih.gov/39003682/). See Chapter 4.
 
 **Is the afterburn effect real?** Yes: oxygen consumption can remain above resting levels after exercise, called excess post-exercise oxygen consumption (EPOC). The extra expenditure varies; harder workouts can increase it, but it is not a guarantee of fat loss or a reason to maximize fatigue. [EPOC systematic review](https://pubmed.ncbi.nlm.nih.gov/32656951/).
 
@@ -58,5 +58,5 @@
 Ready? Open Build my plan or your next workout. Use All guides for other goals.
 
 ## Editorial notes (not reader copy)
-- Audit changes 34–36 applied: shorten FAQ, cross-reference primary explanations, no universal fuel crossover plot, distinguish relative vs absolute fuel use, include glossary. Marathon wall context retained without specific unverified 2026 source until registry review. Lactate/DOMS and modality transfer references to be confirmed at claim level. 
+- Audit changes 34–36 applied: shorten FAQ, cross-reference primary explanations, no universal fuel crossover plot, distinguish relative vs absolute fuel use, include glossary. Marathon wall and lactate/DOMS references confirmed in targeted review; modality transfer remains to be checked. 
 - All 10 chapters now revised. Sources selectively confirmed, no comprehensive clinical review. Render links and interactive controls only when implemented. 
