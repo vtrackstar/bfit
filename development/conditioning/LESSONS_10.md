@@ -27,7 +27,7 @@
 
 **Can I improve without running?** Yes. Walking, cycling, swimming and other suitable activities can develop aerobic fitness. For running performance, running-specific practice matters. See Chapter 6.
 
-**Why am I fit at cycling but struggle with another activity?** Some adaptations transfer, but movements, muscle demands, coordination and impact differ. Establish a new baseline. See Chapters 1 and 6.
+**Why am I fit at cycling but struggle with another activity?** Some adaptations transfer, but movements, muscle demands, coordination and impact differ. Establish a new baseline. [Running/cycling cross-training review](https://pubmed.ncbi.nlm.nih.gov/42267259/). See Chapters 1 and 6.
 
 **I already play sports or attend classes. Do I need another interval day?** Not necessarily. Count existing demanding work; easy activity or rest may be more useful. See Chapter 8.
 
@@ -58,5 +58,5 @@
 Ready? Open Build my plan or your next workout. Use All guides for other goals.
 
 ## Editorial notes (not reader copy)
-- Audit changes 34–36 applied: shorten FAQ, cross-reference primary explanations, no universal fuel crossover plot, distinguish relative vs absolute fuel use, include glossary. Marathon wall and lactate/DOMS references confirmed in targeted review; modality transfer remains to be checked. 
+- Audit changes 34–36 applied: shorten FAQ, cross-reference primary explanations, no universal fuel crossover plot, distinguish relative vs absolute fuel use, include glossary. Marathon wall and lactate/DOMS references confirmed in targeted review; running/cycling transfer source checked; do not generalize to every sport. 
 - All 10 chapters now revised. Sources selectively confirmed, no comprehensive clinical review. Render links and interactive controls only when implemented. 
