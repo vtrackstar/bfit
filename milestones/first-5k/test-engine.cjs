@@ -137,7 +137,7 @@ const testEngine = function testEngine(E){
   check("Week four does not force advancement",()=>{const h=[record(A1,996,"practice"),record(A1,999,"long")];return E.review(state(A1),h,1000,{weekNumber:4}).action==="repeat";});
   check("Routine progression changes only one lane",()=>{const h=[record(A1,996,"practice"),record(A1,999,"long")],r=E.review(state(A1),h,1000);return r.action==="progress"&&r.state.practice.id==="A2"&&r.state.long.id==="A1"&&r.state.easy.id==="A1";});
   check("Distance caution requires explicit review before progression",()=>{const h=[record(A1,996,"practice",{measure:true,pace:480}),record(A1,999,"long",{measure:true,pace:480})];const r=E.review(state(A1),h,1000);return ["repeat","review-distance"].includes(r.action)||r.action==="progress"&&r.flag!=="review";});
-  return {version:3,notes:"Scripted outcomes in fictional profiles; not a prediction of physiological adaptation, injury risk or completion time.",summary:{profiles:profiles.length,profileFailures:profiles.filter(p=>p.error).length,checks:checks.length,checkFailures:checks.filter(c=>!c.pass).length},failures,profiles,checks};
+  return {version:4,notes:"Scripted outcomes in fictional profiles; not a prediction of physiological adaptation, injury risk or completion time.",summary:{profiles:profiles.length,profileFailures:profiles.filter(p=>p.error).length,checks:checks.length,checkFailures:checks.filter(c=>!c.pass).length},failures,profiles,checks};
 };
 const results = testEngine(require("./engine.cjs"));
 console.log(JSON.stringify(results,null,2));
