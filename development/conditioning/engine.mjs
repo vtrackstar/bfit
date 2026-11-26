@@ -284,7 +284,7 @@ function key(d){return JSON.stringify([d.mode,d.kind,d.slot,d.id??null,d.minutes
 
 function recent(log,now){return Number.isFinite(log.day)&&Number.isFinite(now)&&log.day<=now&&now-log.day<=28;}
 
-function success(l){return l.status==="full"&&l.recovery==="normal"&&l.quality===true&&Number.isFinite(l.effort)&&l.effort>=0&&l.effort<=l.dose.effort[1]&&!l.warning&&!l.pain&&!l.recoveryExtended&&!l.reduced&&!l.external;}
+function success(l){return l.status==="full"&&l.recovery==="normal"&&l.quality===true&&Number.isFinite(l.effort)&&l.effort>=0&&l.effort<=l.dose.effort[1]&&!l.warning&&!l.pain&&!l.recoveryExtended&&!l.timingInterrupted&&!l.reduced&&!l.external;}
 
 function latestDistinct(logs){const days=new Map();for(const l of logs.slice().sort((a,b)=>b.day-a.day)){if(!days.has(l.day))days.set(l.day,l);else{const old=days.get(l.day);if(JSON.stringify(old)!==JSON.stringify(l))days.set(l.day,{...old,quality:false,conflicting:true});}}return [...days.values()].slice(0,2);}
 function matched(logs,d,now,setup){const last=latestDistinct(logs.filter(l=>l.dose&&l.dose.mode===d.mode&&l.dose.slot===d.slot&&recent(l,now)&&!l.external));return last.length===2&&last.every(l=>key(l.dose)===key(d)&&l.setup===setup&&success(l));}
