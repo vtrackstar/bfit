@@ -2,6 +2,8 @@
 
 ## 2026-11-26
 
+- Prepared Conditioning Training as the sixth main training guide: ten lessons, adaptive land-based workouts, timers and actual records, recovery review and local backups. Initial public scope excludes automated swimming and the hardest intervals pending specialist review. Physical-device and independent reader testing remain open; publication requires passing release checks.
+
 - Completed low-risk hub polish: cross-guide recommendations, local saving descriptions, removal of obsolete coaching CSS, sharing metadata and two PNG preview cards. Added Gamer Fit source/performance report; see current audit handoff for measured results and open physical-device/reader checks.
 
 - Published Your First 5K, added an evergreen Coming Next card and synchronized the published catalog, sitemap and link checks. Added collection shortcuts, overflow controls, collection descriptions, clearer running-guide cards and guidance for combining programs.
