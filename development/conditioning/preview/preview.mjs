@@ -9,7 +9,7 @@ const esc=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const modeNames={walk:"Walking",march:"Marching",bike:"Stationary bike",row:"Rowing machine",elliptical:"Elliptical",stairs:"Stair machine",run:"Running",swim:"Swimming",circuit:"Movement circuit"};
 const actionText={"complete-setup":"Complete your activity and equipment setup.","reassess-dose":"This prescription needs reassessment; do not start it.","reassess-slot":"Choose a suitable planned activity.","already-trained-today":"You have already logged a guide workout today.","medical-review":"Stop. Seek appropriate medical assessment before returning to exercise. This preview cannot clear a warning or restriction.","emergency":"Stop and seek emergency help immediately if you have emergency symptoms.","pause-mode":"Pause this activity and seek appropriate advice about the pain before returning.","reassess-after-illness":"Follow appropriate advice before returning after illness.","easy-or-rest":"A demanding workout does not fit your readiness or current training. Rest or choose suitable easy activity.","outside-work-or-rest":"You've recorded demanding activity today. Rest or mark a suitable outside activity as covering this slot.","recover-or-rest":"Allow more recovery before training.","check-recovery":"Record your recovery from the previous workout first.","reassess-goal":"Your previous prescription belongs to a different goal. Review your plan and select a new controlled baseline.","walk-or-run-guide":"Choose walking or use Run Strong if you are learning to run.","learn-movements":"Learn the movements before starting this circuit.","lessons-or-land":"Choose supervised swimming lessons or a familiar land activity.","choose-pool":"Enter a pool length and unit.","easy-or-reschedule":"There is not enough time for the whole safe prescription. Choose another day or activity.","reschedule":"Choose another day or time.","steady-first":"Establish a steady aerobic base first.","optional-rest":"Rest today; optional activity is not required.","not-due":"No workout is scheduled for today."};
 const msg=(id,s)=>{$(id).textContent=s;};
-let app=null,settings=null,storedRaw=null,storageBlocked=false;
+let app=null,settings=null,storedRaw=null,storageBlocked=false,setupStep=0;
 function pack(a,setting){return JSON.stringify({version:1,app:JSON.parse(appBackup(a,today())),settings:setting});}
 function validSettings(s){return s&&Number.isInteger(s.budget)&&s.budget>=300&&s.budget<=5400&&s.profile&&Object.hasOwn(modeNames,s.profile.mode)&&typeof s.profile.setup==="string"&&s.profile.setup.length>0&&s.profile.setup.length<=120&&["A","B"].includes(s.profile.goal);}
 function decode(raw){if(raw.length>8000000)throw Error("Backup is too large");const o=JSON.parse(raw);if(o.version!==1||!validSettings(o.settings))throw Error("Unsupported preview backup");return {app:appRestore(JSON.stringify(o.app),today()),settings:o.settings};}
@@ -22,9 +22,45 @@ function commit(next,newSettings=settings){
 }
 function guard(fn,where="workout-message"){try{fn();}catch(e){msg(where,e.message||"Unable to complete this action.");}}
 function optionDays(){const d=today();const opts=Array.from({length:7},(_,i)=>'<option value="'+i+'">'+esc(date(d+i))+'</option>').join("");$("days").innerHTML='<label>First day<select name="day1">'+opts+'</select></label><label>Second day<select name="day2"><option value="">None</option>'+opts+'</select></label><label>Optional easy day<select name="optional"><option value="">None</option>'+opts+'</select></label>';form.elements.day2.value="3";}
-function profileFromForm(){const f=new FormData(form),v=k=>f.get(k),checked=k=>f.has(k);const p={goal:v("goal"),mode:v("mode"),setup:v("setup").trim(),comfortableMinutes:Number(v("comfortableMinutes")),existingHard:v("existingHard")==="false"?false:true,restricted:v("restricted")!=="false",vigorousSuitable:v("vigorousSuitable")==="true",recentRun:checked("recentRun"),movementsFamiliar:checked("movementsFamiliar"),waterCompetent:checked("waterCompetent"),tempoOptIn:checked("tempoOptIn"),hardOptIn:checked("hardOptIn"),specialization:v("specialization"),rebaseline:checked("rebaseline"),poolLength:Number(v("poolLength")),poolUnit:v("poolUnit"),recovery:"unknown"};return {profile:p,budget:Number(v("minutes"))*60};}
+function profileFromForm(){const f=new FormData(form),v=k=>f.get(k),checked=k=>f.has(k);const p={goal:v("goal"),mode:v("mode"),setup:v("setup").trim(),comfortableMinutes:Number(v("comfortableMinutes")),existingHard:v("existingHard")==="false"?false:true,restricted:v("restricted")!=="false",vigorousSuitable:v("vigorousSuitable")==="true",recentRun:checked("recentRun"),movementsFamiliar:checked("movementsFamiliar"),waterCompetent:checked("waterCompetent"),tempoOptIn:v("goal")==="A"&&checked("tempoOptIn"),hardOptIn:v("goal")==="B"&&checked("hardOptIn"),specialization:v("goal")==="B"?v("specialization"):"power",rebaseline:!!app&&settings?.profile.goal!==v("goal")&&checked("rebaseline"),poolLength:Number(v("poolLength")),poolUnit:v("poolUnit"),recovery:"unknown"};return {profile:p,budget:Number(v("minutes"))*60};}
 function getDays(){const a=[Number(form.elements.day1.value)];if(form.elements.day2.value!=="")a.push(Number(form.elements.day2.value));return [a,form.elements.optional.value===""?null:Number(form.elements.optional.value)];}
-function fillForm(){if(!settings)return;for(const [k,v] of Object.entries(settings.profile)){const el=form.elements[k];if(!el)continue;if(el.type==="checkbox")el.checked=v===true;else el.value=String(v);}form.elements.minutes.value=settings.budget/60;$("swim-fields").hidden=settings.profile.mode!=="swim";}
+function fillForm(){if(!settings)return;for(const [k,v] of Object.entries(settings.profile)){const el=form.elements[k];if(!el)continue;if(el.type==="checkbox")el.checked=v===true;else el.value=String(v);}form.elements.minutes.value=settings.budget/60;updateSetupFields();}
+function updateSetupFields(){
+ const mode=form.elements.mode.value,goal=form.elements.goal.value,minutes=Number(form.elements.comfortableMinutes.value);
+ $("swim-fields").hidden=mode!=="swim";$("run-fields").hidden=mode!=="run";$("circuit-fields").hidden=mode!=="circuit";
+ const land=!["swim","circuit"].includes(mode);
+ const prior=app?.history.logs.some(l=>l.dose.mode===mode&&l.dose.kind==="steady"&&l.dose.minutes>=15&&l.status==="full"&&!l.warning&&!l.pain);
+ const changed=!!settings&&settings.profile.goal!==goal;
+ $("advanced-fields").hidden=!land||!(minutes>=15||prior||changed);
+ $("tempo-fields").hidden=goal!=="A";$("work-capacity-fields").hidden=goal!=="B";$("rebaseline-fields").hidden=!changed;
+ if($("advanced-fields").hidden){form.elements.tempoOptIn.checked=false;form.elements.hardOptIn.checked=false;form.elements.specialization.value="power";form.elements.rebaseline.checked=false;}
+ if(!changed)form.elements.rebaseline.checked=false;
+}
+function setupReview(){
+ const s=profileFromForm(),p=s.profile,[days,opt]=getDays();
+ const label=p.goal==="A"?"Build Stamina — keep going longer":"Improve Work Capacity — recover between efforts";
+ const dayText=app?"Existing dates stay in place. Move days using your calendar.":days.map(d=>date(today()+d)).join(", ")+(opt!==null?" · optional "+date(today()+opt):"");
+ $("setup-review").innerHTML='<p><strong>'+esc(label)+'</strong></p><p>'+esc(modeNames[p.mode])+' · '+esc(p.setup)+'<br>'+s.budget/60+' minutes available per visit<br>'+esc(dayText)+'</p>'+(p.restricted?'<p class="warning">You indicated a restriction or uncertainty. Seek appropriate advice; the guide may hold your workout.</p>':'');
+}
+function showStep(n,focus=false){
+ setupStep=Math.max(0,Math.min(4,n));updateSetupFields();
+ for(const section of form.querySelectorAll("[data-step]"))section.hidden=Number(section.dataset.step)!==setupStep;
+ $("setup-count").textContent="Step "+(setupStep+1)+" of 5";$("setup-progress").value=setupStep+1;
+ $("setup-back").hidden=setupStep===0;$("setup-next").hidden=setupStep===4;$("setup-save").hidden=setupStep!==4;
+ if(setupStep===4)setupReview();
+ if(focus)form.querySelector('[data-step="'+setupStep+'"] h3').focus();
+}
+function validateStep(n){
+ const section=form.querySelector('[data-step="'+n+'"]');
+ for(const el of section.querySelectorAll("input,select")){
+  if(el.closest("[hidden]")&&el.closest("[hidden]")!==section)continue;
+  if(!el.checkValidity()){showStep(n);el.reportValidity();return false;}
+ }
+ if(n===1&&!form.elements.setup.value.trim()){showStep(n);msg("plan-message","Enter a short description of your activity setup.");form.elements.setup.focus();return false;}
+ if(n===2&&!app){const [days,opt]=getDays();if(new Set(days).size!==days.length||days.includes(opt)){showStep(n);msg("plan-message","Choose different days for each workout.");return false;}}
+ return true;
+}
+function validateSetup(){for(let n=0;n<5;n++){showStep(n);if(!validateStep(n))return false;}showStep(4);return true;}
 function due(){return app&&slotStatus(appCurrent(app).calendar,app.history,appCurrent(app).replacements,today()).find(x=>x.status==="due");}
 const statusText={full:"Completed",shortened:"Shortened",skipped:"Skipped",external:"Outside activity",missed:"Missed",due:"Today",upcoming:"Upcoming"};
 function drawCalendar(){if(!app){$("calendar").innerHTML="";return;}const c=appCurrent(app),rows=slotStatus(c.calendar,app.history,c.replacements,today());$("calendar").innerHTML='<div class="panel"><h3>Four-week schedule</h3>'+rows.map(r=>'<div class="calendar-row"><span>'+esc(date(r.day))+' · '+(r.kind==="optional"?"Optional easy":"Primary")+'</span><strong>'+statusText[r.status]+'</strong>'+(!app.active&&r.status==="due"?'<button data-skip="'+esc(r.id)+'">Skip</button>':"")+(!app.active&&["due","upcoming"].includes(r.status)?'<button data-move="'+esc(r.id)+'">Move day</button>':"")+'</div>').join("")+(today()>=c.calendar.start+28&&!app.active?'<p>Choose days above for your next four weeks.</p><button id="next-cycle">Start next four-week block</button>':"")+'</div>';}
@@ -59,12 +95,14 @@ function progress(){if(!app){$("progress-panel").innerHTML="<p>Records appear af
 function render(){drawCalendar();workout();progress();form.querySelectorAll("input,select,button").forEach(el=>el.disabled=!!app?.active);}
 function command(cmd,value){commit(appTimer(app,cmd,today(),Math.floor(performance.now()),value));render();}
 document.addEventListener("change",e=>{if(e.target.id==="report-cycle")progress();});
-form.addEventListener("change",()=>{$("swim-fields").hidden=form.elements.mode.value!=="swim";});
-form.addEventListener("submit",e=>{e.preventDefault();guard(()=>{const s=profileFromForm();if(!validSettings(s))throw Error("Complete your activity setup.");const [days,opt]=getDays();const n=app??appNew(today(),days,opt);commit(n,s);msg("plan-message",app.active?"":"Plan saved. Check today's workout when ready. To move an existing training day, use the calendar below.");render();},"plan-message");});
+form.addEventListener("change",()=>{updateSetupFields();if(setupStep===4)setupReview();});
+$("setup-next").addEventListener("click",()=>{msg("plan-message","");if(validateStep(setupStep))showStep(setupStep+1,true);});
+$("setup-back").addEventListener("click",()=>showStep(setupStep-1,true));
+form.addEventListener("submit",e=>{e.preventDefault();if(setupStep!==4){if(validateStep(setupStep))showStep(setupStep+1,true);return;}if(!validateSetup())return;guard(()=>{const s=profileFromForm();if(!validSettings(s))throw Error("Complete your activity setup.");const [days,opt]=getDays();const n=app??appNew(today(),days,opt);commit(n,s);msg("plan-message",app.active?"":"Plan saved. Check today's workout when ready. To move an existing training day, use the calendar below.");render();},"plan-message");});
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;guard(()=>{
  if(b.dataset.move){const c=appCurrent(app),sl=c.calendar.slots.find(x=>x.id===b.dataset.move),available=Array.from({length:7},(_,i)=>c.calendar.start+sl.week*7+i).filter(d=>d>=today()&&!c.calendar.slots.some(x=>x.id!==sl.id&&x.day===d));const old=$("move-form");if(old)old.remove();const f=document.createElement("form");f.id="move-form";f.dataset.id=sl.id;f.innerHTML='<label>New day<select name="day">'+available.map(d=>'<option value="'+d+'">'+esc(date(d))+'</option>').join("")+'</select></label><button type="submit">Save new day</button>';b.closest(".calendar-row").append(f);f.querySelector("select").focus();}
  else if(b.dataset.skip){commit(appCalendarEdit(app,"skip",b.dataset.skip,null,today()));render();}
- else if(b.id==="next-cycle"){if(!form.reportValidity())return;const [days,opt]=getDays();const s=profileFromForm();if(!validSettings(s))throw Error("Complete your activity setup.");commit(appNextCycle(app,today(),days,opt,today()),s);render();}
+ else if(b.id==="next-cycle"){if(!validateSetup())return;const [days,opt]=getDays();const s=profileFromForm();if(!validSettings(s))throw Error("Complete your activity setup.");commit(appNextCycle(app,today(),days,opt,today()),s);render();}
  else if(b.id==="ack-review"){commit(appAcknowledge(app,Number($("report-cycle").value),today()));render();}
  else if(b.hasAttribute("data-stop-warning")){command("end",{reason:"symptoms",cooldown:false});msg("workout-message","Stop exercising. Seek emergency help for emergency symptoms; otherwise seek appropriate assessment before returning.");}
  else if(b.dataset.timer){const cmd=b.dataset.timer;if(cmd==="extend")command(cmd,Math.min(30,phases(app.active.ticket.dose)[app.active.timer.index].seconds));else if(cmd==="end")command(cmd,{reason:$("end-reason").value,cooldown:$("end-cool").checked});else command(cmd);}
@@ -92,7 +130,7 @@ document.addEventListener("submit",e=>{const f=e.target;if(f===form)return;e.pre
  if(f.id==="outside"){const id="outside-"+crypto.randomUUID(),sl=due();let n=appOutside(app,{id,day:today(),activity:v("activity").trim(),minutes:v("minutes")===""?null:Number(v("minutes")),intensity:v("intensity")},today());if(checked("replace")&&sl?.kind==="primary")n=appCalendarEdit(n,"replace",sl.id,id,today());commit(n);render();}
  });});
 $("export").addEventListener("click",()=>guard(()=>{if(!app)throw Error("No saved plan yet.");const url=URL.createObjectURL(new Blob([pack(app,settings)],{type:"application/json"}));const link=document.createElement("a");link.href=url;link.download="bfit-conditioning-preview.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);},"storage-message"));
-$("import").addEventListener("change",async e=>{try{if(app&&(app.active||app.history.logs.length||app.history.external.length))throw Error("Existing records cannot be overwritten in this preview.");const file=e.target.files[0];if(!file)return;if(file.size>8000000)throw Error("Backup is too large");const n=decode(await file.text());commit(n.app,n.settings);fillForm();render();msg("storage-message","Backup restored.");}catch(err){msg("storage-message",err.message);}finally{e.target.value="";}});
+$("import").addEventListener("change",async e=>{try{if(app&&(app.active||app.history.logs.length||app.history.external.length))throw Error("Existing records cannot be overwritten in this preview.");const file=e.target.files[0];if(!file)return;if(file.size>8000000)throw Error("Backup is too large");const n=decode(await file.text());commit(n.app,n.settings);fillForm();showStep(4);render();msg("storage-message","Backup restored.");}catch(err){msg("storage-message",err.message);}finally{e.target.value="";}});
 document.addEventListener("visibilitychange",()=>{if(document.hidden&&app?.active?.timer?.state==="running")guard(()=>command("hidden"));});
 window.addEventListener("storage",e=>{if(e.key===STORE&&e.newValue!==storedRaw){storageBlocked=true;msg("storage-message","Another tab changed your records. Reload before making changes.");}});
 setInterval(()=>{if(!app?.active?.timer||app.active.timer.state!=="running"||storageBlocked)return;guard(()=>{const t=app.active.timer;if(app.active.ticket.day!==today()){command("hidden");return;}const next=appTimer(app,"tick",today(),Math.floor(performance.now()));commit(next);if(next.active.timer.state!==t.state)render();else if($("clock"))$("clock").textContent=clockText(Math.ceil((next.active.timer.targetMs-next.active.timer.elapsedMs)/1000));});},1000);
@@ -100,4 +138,4 @@ optionDays();
 if(matchMedia("(max-width:760px)").matches)$("contents").open=false;
 $("contents").addEventListener("click",e=>{if(e.target.closest("a")&&matchMedia("(max-width:760px)").matches)$("contents").open=false;});
 try{storedRaw=localStorage.getItem(STORE);if(storedRaw){const n=decode(storedRaw);app=n.app;settings=n.settings;fillForm();}}catch(e){storageBlocked=true;msg("storage-message","Saved data could not be loaded. Do not overwrite it.");}
-render();
+showStep(settings?4:0);render();
