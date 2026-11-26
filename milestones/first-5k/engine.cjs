@@ -185,7 +185,8 @@ const createEngine = function createEngine(){
     // Anchor on the most recent successfully completed comparable outing,
     // not a historic best. The plan is a time ceiling and optional distance goal.
     const baseline=latest?Math.min(p.mainSec,latest.mainSec):p.mainSec;
-    const cap=baseline+durationIncrement(baseline);
+    const hardCap=baseline+durationIncrement(baseline);
+    let cap=hardCap;
     if(cap<=p.mainSec&&p.distanceGoal===null)return {workout:p,reason:"Reestablish the planned time before increasing the duration.",flag:"unknown",cap};
     let target=null,expected=null,reason="Extend the familiar outing by time; measure distance if available.";
     if(latest&&pace!==null){
@@ -195,17 +196,39 @@ const createEngine = function createEngine(){
       if(p.distanceGoal!==null&&latest.mainDistanceM<p.distanceGoal)target=p.distanceGoal;
       expected=Math.ceil(target*pace/1000);
       if(expected>cap){reason="Distance target would exceed the duration limit; extend time first.";target=null;}
-      else reason="Stop when the distance target or time limit is reached, whichever comes first.";
+      else {
+        cap=Math.min(hardCap,Math.max(baseline,expected+15));
+        reason="Stop when the distance target or time limit is reached, whichever comes first.";
+      }
     }
-    let n;
-    if(mode==="continuous")n=continuous("L-cont-"+cap,cap,{distanceGoal:target});
-    else if(p.pattern)n=rhythm("L-rw-"+p.pattern.run+"-"+p.pattern.walk+"-"+cap,p.pattern.run,p.pattern.walk,cap,{distanceGoal:target});
-    else n=workout("L-time-"+cap,p.runs,p.rests,p.tail+Math.max(0,cap-p.mainSec),{distanceGoal:target});
+    const build=(seconds,meters)=>{
+      const suffix=seconds+"-"+(meters??"time");
+      if(mode==="continuous")return continuous("L-cont-"+suffix,seconds,{distanceGoal:meters});
+      if(p.pattern)return rhythm("L-rw-"+p.pattern.run+"-"+p.pattern.walk+"-"+suffix,p.pattern.run,p.pattern.walk,seconds,{distanceGoal:meters});
+      return workout("L-time-"+suffix,p.runs,p.rests,p.tail+Math.max(0,seconds-p.mainSec),{distanceGoal:meters});
+    };
     const reference=max(g,"runningDistanceM");
-    // Only use known running-only distance. Mixed outing distance is never
-    // treated as running distance for the research caution flag.
-    const projected=latest&&pos(latest.runningDistanceM)&&pos(latest.runSec)?latest.runningDistanceM*n.runSec/latest.runSec:null;
-    return {workout:n,reason,cap,expected,flag:distanceCaution(projected,reference)};
+    const flagFor=n=>distanceCaution(latest&&pos(latest.runningDistanceM)&&pos(latest.runSec)?latest.runningDistanceM*n.runSec/latest.runSec:null,reference);
+    let n=build(cap,target);
+    // Look for a smaller real increase before asking for a manual review.
+    // A distance goal remains attached only when its estimated duration fits.
+    if(flagFor(n)==="review"){
+      for(let seconds=cap-15;seconds>baseline;seconds-=15){
+        const meters=pace!==null&&latest?Math.min(5000,Math.floor(seconds*1000/pace/25)*25):null;
+        const smaller=build(seconds,meters!==null&&meters>latest.mainDistanceM?meters:null);
+        if(smaller.mainSec>baseline&&flagFor(smaller)!=="review"){
+          n=smaller;cap=seconds;expected=n.distanceGoal!==null?Math.ceil(n.distanceGoal*pace/1000):null;
+          reason="Use a smaller duration or distance increase within recent running exposure.";
+          break;
+        }
+      }
+      if(flagFor(n)==="review"&&mode==="runwalk"&&latest&&p.runSec<=latest.runSec&&hardCap>p.mainSec){
+        const tail=Math.min(60,hardCap-p.mainSec);
+        n=workout("L-walk-tail-"+(p.mainSec+tail),p.runs,p.rests,p.tail+tail,{pattern:p.pattern});
+        cap=n.mainSec;expected=null;reason="Keep the running dose familiar and add a short walking finish.";
+      }
+    }
+    return {workout:n,reason,cap,expected,flag:flagFor(n)};
   }
   function paceOption(state,h,d,goalTimeSec,plan){
     if(state.goal!=="continuous"||!pos(goalTimeSec)||!plan)return {eligible:false,reason:"Optional continuous time goal only."};
@@ -272,9 +295,12 @@ const createEngine = function createEngine(){
       const next=thirdDay(state,h,day,hardLegDays);
       if(next)return result("frequency","Redistribute running exposure; count added walking warm-up/cooldown.",{state:next,lever:"frequency"});
     }
+    let paceDeferred=null;
     if(wantPace){
       const pace=paceOption(state,h,day,goalTimeSec,plan);
-      return pace.eligible?result("pace",pace.reason,{substitute:pace.workout,lever:"pace"}):result("repeat",pace.reason);
+      if(pace.eligible)return result("pace",pace.reason,{substitute:pace.workout,lever:"pace"});
+      paceDeferred=pace.reason;
+      // Optional pace work must never veto an otherwise eligible easy progression.
     }
     const p=state[focus],same=exposures(h,day,p),last=same.slice().sort((a,b)=>b.day-a.day)[0];
     const near=good(h,day,14).filter(x=>x.runSec>=p.runSec&&x.longestBout>=p.longestBout&&x.mainSec>=p.mainSec&&x.check.recovery==="normal"&&x.day!==last?.day);
@@ -295,7 +321,7 @@ const createEngine = function createEngine(){
     const observed=last&&pos(last.runningDistanceM)&&p.runSec>0?last.runningDistanceM*n.runSec/p.runSec:null;
     const flag=c.flag==="review"||distanceCaution(observed,b.runningDistanceM)==="review"?"review":c.flag;
     if(flag==="review"&&!approvedCaution)return result("review-distance","Running-distance change needs review; a percentage is not a safety guarantee.",{candidate:n,flag});
-    return result("progress",c.reason,{state:next,lever:focus,flag});
+    return result("progress",c.reason,{state:next,lever:focus,flag,paceDeferred});
   }
   return {workout,repeat,continuous,walk,rhythm,library,byId,check,validRecord,recent,good,bounds,initial,schedule,weekly,gap,reentry,reduced,achieved,exposures,nextPractice,distanceCaution,longCandidate,paceOption,ready,achievement,thirdDay,review,strategy,successCheck};
 };
