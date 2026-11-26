@@ -1,5 +1,5 @@
-import { phases, key, success } from './engine.mjs';
-import { emptyState, validateState, observed, actualTotals, updateRecovery, addExternal } from './workflow.mjs';
+import { phases, key, success, steady, swim, circuit, MODES } from './engine.mjs';
+import { emptyState, validateState, observed, actualTotals, updateRecovery, addExternal, addLog } from './workflow.mjs';
 import { makeCycle, validateLinks, reschedule, replaceWithExternal, skipScheduled, cycleReview } from './calendar.mjs';
 import { beginTicket, makeTimer, timerStart, timerTick, timerPause, timerHidden, timerAdvance, timerExtend, timerEnd, saveTimer, saveManual } from './timer.mjs';
 
@@ -106,6 +106,13 @@ function appCorrect(a,id,patch,now){
  const updated={...l,...patch,warning:l.warning||patch.warning===true,pain:l.pain||patch.pain===true,quality:false,timingInterrupted:true,recovery:"unknown",recoveryDay:null};
  return appChange(a,{history:{...a.history,logs:a.history.logs.map(x=>x.id===id?updated:x)}},now);
 }
+function appSafetyHold(a,mode,setup,id,kind,now){
+ appValidate(a,now);appAssert(!a.active&&MODES.includes(mode)&&["warning","pain"].includes(kind),"Invalid safety record");
+ const dose=mode==="swim"?swim():mode==="circuit"?circuit():steady(mode,1);
+ // Zero exercise, unplanned safety event: never counts as attendance or a performed activity.
+ const l={id,day:now,setup,dose,source:"manual",status:"skipped",actual:[],effort:null,quality:false,recovery:"unknown",recoveryDay:null,warning:kind==="warning",pain:kind==="pain",recoveryExtended:false,reason:kind==="warning"?"symptoms":"pain"};
+ return appChange(a,{history:addLog(a.history,l,now)},now);
+}
 function appOutside(a,l,now){
  appValidate(a,now);appAssert(!a.active,"Finish active session before adding activity");
  return appChange(a,{history:addExternal(a.history,l,now)},now);
@@ -167,4 +174,4 @@ function appLoad(storage,now){
  catch{return {ok:false,reason:"storage-or-backup-invalid"};}
 }
 
-export { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad };
+export { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appSafetyHold, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad };
