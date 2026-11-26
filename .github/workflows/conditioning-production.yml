@@ -1,0 +1,41 @@
+name: Conditioning production checks
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'guides/conditioning/**'
+      - 'scripts/conditioning-release-flow.mjs'
+      - '.github/workflows/conditioning-production.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'guides/conditioning/**'
+      - 'scripts/conditioning-release-flow.mjs'
+      - '.github/workflows/conditioning-production.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check runtime modules
+        run: |
+          for f in guides/conditioning/*.mjs; do node --check "$f" || exit 1; done
+      - name: Install browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps ${{ matrix.engine }}
+      - name: Test production reader journey
+        env:
+          BFIT_BROWSER: ${{ matrix.engine }}
+        run: node scripts/conditioning-release-flow.mjs

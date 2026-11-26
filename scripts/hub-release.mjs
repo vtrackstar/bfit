@@ -13,6 +13,7 @@ const expected = [
   { name: 'Athleticism', slug: 'athleticism' },
   { name: 'Gamer Fit', slug: 'gamer-fit' },
   { name: 'Run Strong', slug: 'run-strong' },
+  { name: 'Conditioning Training', slug: 'conditioning' },
   { name: 'Keep Moving 50+', slug: '50-plus' }
 ];
 const social = {
