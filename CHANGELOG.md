@@ -2,6 +2,8 @@
 
 ## 2026-11-26
 
+- Completed low-risk hub polish: cross-guide recommendations, local saving descriptions, removal of obsolete coaching CSS, sharing metadata and two PNG preview cards. Added Gamer Fit source/performance report; see current audit handoff for measured results and open physical-device/reader checks.
+
 - Published Your First 5K, added an evergreen Coming Next card and synchronized the published catalog, sitemap and link checks. Added collection shortcuts, overflow controls, collection descriptions, clearer running-guide cards and guidance for combining programs.
 
 - Published the beginner-language and navigation update across the hub and nine guides and plans in `2298d0c`. Changes include Foundation’s general starting route, Athleticism’s rest labels, clearer first workouts, and equipment-specific Pull-Up instructions. Dead hang is defined on both the hub and guide.

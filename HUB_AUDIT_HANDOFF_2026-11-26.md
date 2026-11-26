@@ -12,15 +12,18 @@ This handoff supersedes older recommendations where the current source differs. 
 - Foundation starting-weight and rest guidance, Athleticism program examples and readiness language, stable push-up surfaces and pull-up setup guidance added. Glute exercise and frequency research linked directly, including published correction.
 - Horizontal navigation regression corrected; responsive and arrow checks passed in workflow 45877375277. The later guide changes require their own run.
 
-- Added missing Open Graph/Twitter text metadata on hub, Foundation, Run Strong, Keep Moving, Push-Up and 5K; updated local-storage copy on relevant pages. Existing images retained; new hub and 5K preview images not yet added.
-- Added a focused Gamer Fit source/browser report to CI. It inspects full HTML locally, isolates first-party traffic, checks initial navigation and overflow at 320/390/1366 px, and records local throttled timing. Report results and full editorial review are still pending.
+- Added missing Open Graph/Twitter text metadata on hub, Foundation, Run Strong, Keep Moving, Push-Up and 5K; updated local-storage copy on relevant pages. Existing images retained; new 1200 × 630 PNG sharing cards added for the hub and 5K.
+- Added a focused Gamer Fit source/browser report to CI. It inspects full HTML locally, isolates first-party traffic, checks initial navigation and overflow at 320/390/1366 px, and records local throttled timing. Report passed in run 45877853005: 1,112,980 source bytes, 189,096 gzip bytes, 11,701 DOM elements, zero overflow at all three widths, 199–243 ms local load and 5,747 ms uncompressed local transfer at simulated 1.6 Mbps. Not production or physical-device measurements. First-entry text and workout reviewed; full chapter-by-chapter human editorial review remains open.
 
-## Open work
-- Fresh complete Gamer Fit audit and mobile performance profiling (connector could not retrieve full >1 MB HTML).
-- Remaining guide-specific beginner copy, equipment setup, contextual links, storage wording, social images and metadata, and legacy CSS cleanup.
+- Removed unused hub coaching styles and standardized local storage copy across Keep Moving and Pull-Up. Added contextual links for strength training and glute-plan integration. Hub, 5K and glute sharing metadata/copy updated.
+
+## Stable-baseline verification and open work
+- Verify the final commit's Actions results and sharing images on real platforms. No final pass is claimed until the workflow completes.
+- Full Gamer Fit chapter-by-chapter manual review and production/mobile performance remain open; no urgent rebuild indicated by the local report.
+- Further guide-specific copy changes should be driven by independent reader feedback rather than repeating the same audit.
 - Physical phone timers, sound, screen lock, watch/manual-recording feasibility, certificate printing, downloads and restoration.
 - Manual assistive-technology, font scaling, full demo playback, independent beginner and 50+ reader testing.
-- Additional 5K longitudinal simulations and manual recording design, without bypassing progression or recovery safeguards. The current timer tracks individual phases; import validation enforces recorded time and completed phases. Manual recording must preserve phase bounds, effort, symptoms, next-day recovery, and honest self-reported provenance. Do not credit planned duration as completed or automatically award a certificate based on an unverified distance/time entry. Treat a future manual path as separate tested functionality.
+- Defer 5K manual recording and major algorithm changes until reader/device testing identifies the need. Additional simulations belong to that separate feature work. The current timer tracks individual phases; import validation enforces recorded time and completed phases. Manual recording must preserve phase bounds, effort, symptoms, next-day recovery, and honest self-reported provenance. Do not credit planned duration as completed or automatically award a certificate based on an unverified distance/time entry. Treat a future manual path as separate tested functionality.
 - Verify CI and deployment against the actual revision; do not confuse earlier passing runs with new tests. Do not claim clinical validation or independent user feedback.
 
 No physical-device or human verification was performed in this follow-up.
