@@ -30,3 +30,11 @@ Re-executed committed engine and test source: 12 profiles and 29 additional chec
 - Test end-to-end completion from all entry points and actual schedule changes
 - Integrate re-entry, safety holds, frequency transitions, pace substitutions, goal acknowledgment and completion into persistent session state
 - Complete programming, research, accessibility, device and beginner gates
+
+## November 26 — workload fallback and full journey audit
+
+Version 4 adds smaller intermediate prescriptions for workload/distance holds, and allows generated prescriptions to progress beyond their original library IDs. Original 12 profiles and 29 boundary checks pass when re-executed. The ambitious pace scenario progresses rather than stalling, with weekly prescribed running increasing from 40 to 51.25 minutes over 12 weeks in the scripted case. See SIMULATION_RESULTS.json.
+
+Six exploratory full journeys use different walking and running speeds, stop at the prescribed distance or duration, and simulate missed training and goal switching. See test-journeys.cjs and JOURNEY_RESULTS.json. Only one reaches its selected 5K in the 80-week horizon (existing 30-minute runner at week 35). The remaining five progress but remain incomplete. These are deliberately scripted outcomes, not actual human timelines. Do not present this as ready for implementation or clinical validation.
+
+Next: simplify the interaction between weekly review, alternating progression, repeat requirements, and four-week holds; use session-level progression with global rolling exposure checks, and ensure demonstrated running rhythm can transfer to the long outing at comparable volume. Four weeks is a checkpoint, not a compulsory hold. Do not relax symptom/recovery rules. Run full journeys again before UI work. Current pace acknowledgment remains documented and not integrated. Re-entry in exploratory harness is manually applied, not a tested persistent application flow.
