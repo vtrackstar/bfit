@@ -14,9 +14,19 @@ const check=async(page,text)=>{await page.getByText(text,{exact:false}).first().
 const startDate=new Date('2026-11-26T12:00:00Z');
 async function setup(page){
  await page.clock.setFixedTime(startDate);await page.goto(url);await page.locator('[name=day1]').waitFor();
- await page.locator('[name=setup]').fill('Fictional bike');await page.locator('[name=mode]').selectOption('bike');
- await page.locator('[name=goal]').selectOption('B');await page.locator('[name=comfortableMinutes]').fill('5');
- await page.locator('[name=existingHard]').selectOption('false');await page.locator('[name=restricted]').selectOption('false');await page.locator('[name=vigorousSuitable]').selectOption('true');
+ assert.equal(await page.locator('.setup-step:visible').count(),1);
+ await page.locator('[name=mode]').selectOption('bike');await page.locator('[name=goal]').selectOption('B');
+ await page.getByRole('button',{name:'Continue',exact:true}).click();
+ assert.equal(await page.locator('#swim-fields').isVisible(),false);
+ await page.getByRole('button',{name:'Continue',exact:true}).click();assert.equal(await page.locator('#setup-count').textContent(),'Step 2 of 5');
+ await page.locator('[name=setup]').fill('Fictional bike');await page.locator('[name=comfortableMinutes]').fill('5');
+ await page.getByRole('button',{name:'Continue',exact:true}).click();
+ await page.locator('[name=existingHard]').selectOption('false');
+ await page.getByRole('button',{name:'Continue',exact:true}).click();
+ await page.locator('[name=restricted]').selectOption('false');await page.locator('[name=vigorousSuitable]').selectOption('true');
+ await page.getByRole('button',{name:'Continue',exact:true}).click();
+ assert.equal(await page.locator('#advanced-fields').isVisible(),false);
+ assert.equal(await page.locator('#setup-count').textContent(),'Step 5 of 5');
  await page.getByRole('button',{name:'Save my plan'}).click();await check(page,'Plan saved.');
 }
 async function begin(page,method){await page.locator('#start-workout [name=recovery]').selectOption('normal');await page.locator('#start-workout [name=method]').selectOption(method);await page.getByRole('button',{name:'Check today’s workout'}).click();}
