@@ -88,6 +88,13 @@ function renderGoals(){
 }
 function renderStrength(){
  if(!el('strengthRoutine'))return;
+ var suggestion=el('firstMovementSuggestion');
+ if(state.confidence==='review'){
+  suggestion.textContent='Check with your clinician about which movements and support to use for your first session.';
+ } else {
+  var third=state.goals.includes('reach')?'a comfortable overhead reach':state.goals.includes('stairs')&&state.confidence==='steady'?'a low step-up with a secure railing':'a heel raise holding a sturdy counter';
+  suggestion.textContent='Unsure what to pick? Start with standing up from a sturdy chair and a wall push-up. If you have time and the support you need, try '+third+'. You can swap any of these for a movement below that suits you.';
+ }
  if(state.confidence==='review'){
   el('strengthIntro').textContent='With recent or repeated falls, or unexplained dizziness, your first step is a healthcare review before starting a new exercise program.';
   el('strengthRoutine').innerHTML='<div class="notice warn"><strong>Discuss a supported starting point first.</strong> Ask which seated or supported movements fit your situation. Examples to discuss are seated marching, ankle movements, and sitting down and standing up with help. Follow that guidance before trying standing balance or floor drills.</div>';
