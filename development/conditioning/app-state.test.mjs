@@ -1,5 +1,5 @@
 import { steady } from './engine.mjs';
-import { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad } from './app-state.mjs';
+import { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appSafetyHold, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad } from './app-state.mjs';
 
 function appTests(){
  const out=[];const check=(n,b)=>{if(!b)throw Error(n);out.push(n)};const fails=f=>{try{f();return false}catch{return true}};
@@ -61,6 +61,10 @@ function appTests(){
  check("correction invalidates success",corrected.history.logs[0].timingInterrupted&&corrected.history.logs[0].recovery==="unknown"&&!corrected.history.logs[0].quality);
  check("cannot erase warning",fails(()=>appCorrect(corrected,"one",{warning:false},128)));
  check("cannot change dose through correction",fails(()=>appCorrect(a,"one",{dose:steady("bike",45,4)},128)));
+ const held=appSafetyHold(base,"bike","bike1","warning-before","warning",100);
+ check("pre-start safety event survives restore",appRestore(appBackup(held,100),100).history.logs[0].warning);
+ check("pre-start warning blocks all modes",appStart(held,{...p,mode:"walk"},id,100,1800,"next").action==="medical-review");
+ check("pre-start hold not attendance",appReport(held,100,100).primary.skipped===0);
  return out;
 }
 
