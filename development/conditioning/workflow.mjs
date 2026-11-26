@@ -29,7 +29,7 @@ function observed(d,actual,status){
  if(d.kind==="swim")return plain(actual)&&integer(actual.lengths,1,d.lengths)&&(status!=="full"||actual.lengths===d.lengths)&&(status!=="shortened"||actual.lengths<d.lengths)&&(actual.swimSeconds===null||integer(actual.swimSeconds,1,7200))&&(actual.restSeconds===null||integer(actual.restSeconds,0,7200));
  const plan=phases(d);if(!Array.isArray(actual)||!actual.length||actual.length>plan.length)return false;
  const early=actual[actual.length-1]?.earlyCooldown===true;
- if(early&&(status!=="shortened"||actual.length<1||actual.length>=plan.length&&actual.slice(0,-1).every((a,i)=>a.seconds>=plan[i].seconds)))return false;
+ if(early&&(status!=="shortened"||actual.length<2||actual.length>=plan.length&&actual.slice(0,-1).every((a,i)=>a.seconds>=plan[i].seconds)))return false;
  for(let i=0;i<actual.length;i++){
   const a=actual[i],jump=early&&i===actual.length-1,p=jump?plan[plan.length-1]:plan[i];
   if(!plain(a)||a.type!==p.type||!integer(a.seconds,0,p.type==="recovery"?p.seconds*2:p.seconds)||(!jump&&a.earlyCooldown!==undefined)||jump&&a.seconds===0)return false;
