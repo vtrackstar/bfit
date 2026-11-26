@@ -39,6 +39,9 @@ const test=function test(E,R){
  check("Unknown recovery holds",()=>!R.next(a,[rec(p,1000,480,{check:{...E.successCheck,recovery:"unknown"}})],1003).workout);
  check("No adjacent sessions",()=>R.next(a,[rec(p,1000,480)],1001).action==="rest");
  check("Acknowledgment reset",()=>R.changeGoal(R.ack(a),"continuous").ack===null);
+ check("All journey finishes stop at 5K",()=>journeys.every(j=>j.done&&j.done.distanceM===5000));
+ check("Run-walk journeys finish using breaks",()=>journeys.filter(j=>j.final.goal==="runwalk").every(j=>j.done?.strategy==="runwalk"));
+ check("Continuous journeys finish nonstop",()=>journeys.filter(j=>j.final.goal==="continuous").every(j=>j.done?.strategy==="continuous"));
  return {workloads,journeys,tests,summary:{completed:journeys.filter(x=>x.done).length,total:journeys.length,passed:tests.filter(x=>x.pass).length,checks:tests.length}};
 };
 const result=test(require("./engine.cjs"),require("./reference-engine.cjs"));
