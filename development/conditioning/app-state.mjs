@@ -30,7 +30,11 @@ function appTicketValid(a,active,now){
  appAssert(["ready","running","paused","awaiting","interrupted","finished"].includes(timer.state)&&["interrupted","extended","early","warning","pain"].every(k=>typeof timer[k]==="boolean")&&(timer.reason===null||["time","fatigue","other","pain","symptoms"].includes(timer.reason)),"Invalid timer status");
  appAssert(timer.state==="running"?appInt(timer.lastMs,0,Number.MAX_SAFE_INTEGER):timer.lastMs===null,"Invalid running clock");
  appAssert(timer.state!=="awaiting"||timer.elapsedMs===timer.targetMs,"Incomplete phase boundary");
+ appAssert(!timer.warning&&!timer.pain||timer.state==="finished","Stop flagged session");
  appAssert(Array.isArray(timer.actual)&&timer.actual.length<=pp.length,"Invalid actual phases");
+ const extCount=timer.actual.filter((x,i)=>x.type==="recovery"&&x.seconds>pp[i].seconds).length;
+ const activeExt=timer.state!=="finished"&&p.type==="recovery"&&timer.targetMs>p.seconds*1000?1:0;
+ appAssert(extCount+activeExt<=1&&(!extCount&&!activeExt||timer.extended),"Invalid recovery extension");
  if(timer.state==="finished"){
   const status=timer.actual.length===0?"skipped":observed(ticket.dose,timer.actual,"full")?"full":"shortened";
   appAssert(observed(ticket.dose,timer.actual,status),"Invalid finished record");
