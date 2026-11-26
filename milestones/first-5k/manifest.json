@@ -41,7 +41,10 @@
     "distance-or-duration-stop",
     "smaller-distance-progression-before-manual-review",
     "ineligible-goal-pace-does-not-block-endurance",
-    "dismissible-goal-pace-explanation-without-safeguard-override"
+    "dismissible-goal-pace-explanation-without-safeguard-override",
+    "session-based-readiness",
+    "four-week-review-not-mandatory-hold",
+    "contextual-distance-caution"
   ],
   "qualityGates": {
     "programming": {
@@ -90,14 +93,13 @@
     }
   },
   "unresolved": [
-    "Replace overly restrictive combined weekly gates with session-based progression and four-week review checkpoints",
-    "Improve coordination of practice and longer outing so demonstrated longer bouts can transfer without an unsupported running-volume jump",
-    "Retest six complete journeys with distinct running and walking speeds; check realistic completion pathways rather than requiring a promised deadline",
-    "Integrate persistent return, safety, frequency, pace substitutions, goal change and acknowledgment state",
-    "Confirm primary finish goal and certificate eligibility",
-    "Complete programming, research, accessibility, device and beginner gates"
+    "Resolve failed comparable-exposure boundary test and five incomplete session-based journeys",
+    "Audit rolling workload limits, walking-to-running transition, and transfer between lanes before selecting engine",
+    "Integrate persistent re-entry, frequency changes, optional pace, goal acknowledgement and safety state",
+    "Confirm completion and certificate eligibility",
+    "Complete research, programming, editorial, accessibility, device and beginner release gates"
   ],
-  "notes": "Version 4 prototype. 12 scripted profiles and 29 additional checks passed. Six exploratory journeys: one completion, five incomplete after 80 simulated weeks. Generated bridge workouts now progress, but timing and long-outing strategy adoption remain too restrictive. No release gates approved.",
+  "notes": "Session-based candidate added separately; v4 engine preserved. Latest session tests: 7/8 boundaries passed; 1/6 scripted journeys completed (slow continuous runner, week 17 versus v4 week 35). No release gates approved.",
   "goalPaceNotice": {
     "status": "approved-design-not-yet-integrated",
     "heading": "Let's build toward your goal.",
