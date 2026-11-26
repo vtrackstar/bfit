@@ -1,0 +1,66 @@
+{
+  "tests": [
+    {
+      "name": "Successful session rotates lane without phase increase",
+      "pass": true
+    },
+    {
+      "name": "Complete comparable cycle advances phase",
+      "pass": true
+    },
+    {
+      "name": "Reduced bridge rotates lane",
+      "pass": true
+    },
+    {
+      "name": "Underdosed cycle retains phase",
+      "pass": true
+    },
+    {
+      "name": "Return session rotates but holds phase",
+      "pass": true
+    },
+    {
+      "name": "Recovered cycle does not advance after return",
+      "pass": true
+    },
+    {
+      "name": "JSON round trip retains goal and history",
+      "pass": true
+    },
+    {
+      "name": "JSON round trip retains recovery",
+      "pass": true
+    },
+    {
+      "name": "JSON round trip retains symptom hold",
+      "pass": true
+    },
+    {
+      "name": "Incomplete session cannot advance",
+      "pass": true
+    },
+    {
+      "name": "Unmeasured cycle can advance but not finish",
+      "pass": true
+    },
+    {
+      "name": "Old exposure excluded during return",
+      "pass": true
+    },
+    {
+      "name": "Current urgent symptoms override rest day",
+      "pass": false
+    },
+    {
+      "name": "Pre-session pain persists in returned state",
+      "pass": false
+    },
+    {
+      "name": "Budget-shortened continuous workout stays continuous",
+      "pass": true
+    }
+  ],
+  "passed": 13,
+  "total": 15
+}
