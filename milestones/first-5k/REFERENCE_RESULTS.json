@@ -15,8 +15,8 @@
           "week": 2,
           "runMin": 9,
           "longestBoutMin": 0.8333333333333334,
-          "longMainMin": 14,
-          "totalMin": 42
+          "longMainMin": 16,
+          "totalMin": 44
         },
         {
           "week": 3,
@@ -126,8 +126,8 @@
           "week": 2,
           "runMin": 13,
           "longestBoutMin": 0.8333333333333334,
-          "longMainMin": 14,
-          "totalMin": 62
+          "longMainMin": 16,
+          "totalMin": 64
         },
         {
           "week": 3,
@@ -237,8 +237,8 @@
           "week": 2,
           "runMin": 9,
           "longestBoutMin": 0.8333333333333334,
-          "longMainMin": 14,
-          "totalMin": 42
+          "longMainMin": 16,
+          "totalMin": 44
         },
         {
           "week": 3,
@@ -348,8 +348,8 @@
           "week": 2,
           "runMin": 13,
           "longestBoutMin": 0.8333333333333334,
-          "longMainMin": 14,
-          "totalMin": 62
+          "longMainMin": 16,
+          "totalMin": 64
         },
         {
           "week": 3,
@@ -456,9 +456,9 @@
         "lane": "long"
       },
       "final": {
-        "level": 12,
+        "level": 11,
         "days": 3,
-        "index": 0,
+        "index": 2,
         "goal": "runwalk"
       },
       "trace": [
@@ -626,8 +626,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "review"
         },
         {
@@ -686,8 +686,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "within-or-unknown"
         },
         {
@@ -1016,7 +1016,7 @@
         },
         {
           "week": 19,
-          "level": 12,
+          "level": 11,
           "days": 3,
           "lane": "long",
           "action": "attempt",
@@ -1038,9 +1038,9 @@
         "lane": "long"
       },
       "final": {
-        "level": 12,
+        "level": 11,
         "days": 3,
-        "index": 0,
+        "index": 2,
         "goal": "runwalk"
       },
       "trace": [
@@ -1088,8 +1088,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "review"
         },
         {
@@ -1148,8 +1148,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "within-or-unknown"
         },
         {
@@ -1478,7 +1478,7 @@
         },
         {
           "week": 14,
-          "level": 12,
+          "level": 11,
           "days": 3,
           "lane": "long",
           "action": "attempt",
@@ -1500,9 +1500,9 @@
         "lane": "long"
       },
       "final": {
-        "level": 15,
+        "level": 14,
         "days": 3,
-        "index": 0,
+        "index": 2,
         "goal": "continuous"
       },
       "trace": [
@@ -1550,8 +1550,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "review"
         },
         {
@@ -1610,8 +1610,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "within-or-unknown"
         },
         {
@@ -2060,7 +2060,7 @@
         },
         {
           "week": 17,
-          "level": 15,
+          "level": 14,
           "days": 3,
           "lane": "long",
           "action": "train",
@@ -2084,7 +2084,7 @@
       "final": {
         "level": 15,
         "days": 2,
-        "index": 0,
+        "index": 1,
         "goal": "continuous"
       },
       "trace": [
@@ -2232,9 +2232,9 @@
         "lane": "long"
       },
       "final": {
-        "level": 15,
+        "level": 14,
         "days": 3,
-        "index": 0,
+        "index": 2,
         "goal": "continuous"
       },
       "trace": [
@@ -2282,8 +2282,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "review"
         },
         {
@@ -2342,8 +2342,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "within-or-unknown"
         },
         {
@@ -2864,7 +2864,7 @@
         },
         {
           "week": 19,
-          "level": 15,
+          "level": 14,
           "days": 3,
           "lane": "long",
           "action": "train",
@@ -2886,9 +2886,9 @@
         "lane": "long"
       },
       "final": {
-        "level": 12,
+        "level": 11,
         "days": 3,
-        "index": 0,
+        "index": 2,
         "goal": "runwalk"
       },
       "trace": [
@@ -2936,8 +2936,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "review"
         },
         {
@@ -2996,8 +2996,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "within-or-unknown"
         },
         {
@@ -3362,7 +3362,7 @@
         },
         {
           "week": 18,
-          "level": 12,
+          "level": 11,
           "days": 3,
           "lane": "long",
           "action": "attempt",
@@ -3378,15 +3378,15 @@
       "name": "Two-day beginner",
       "done": {
         "week": 12,
-        "distanceM": 5114,
+        "distanceM": 5000,
         "strategy": "runwalk",
-        "minutes": 45,
+        "minutes": 43.74999999999999,
         "lane": "long"
       },
       "final": {
-        "level": 12,
+        "level": 11,
         "days": 2,
-        "index": 0,
+        "index": 1,
         "goal": "runwalk"
       },
       "trace": [
@@ -3434,8 +3434,8 @@
           "action": "train",
           "runMin": 5,
           "boutMin": 0.8333333333333334,
-          "mainMin": 14,
-          "distanceM": 1443,
+          "mainMin": 16,
+          "distanceM": 1625,
           "flag": "review"
         },
         {
@@ -3656,14 +3656,14 @@
         },
         {
           "week": 12,
-          "level": 12,
+          "level": 11,
           "days": 2,
           "lane": "long",
           "action": "train",
           "runMin": 30,
           "boutMin": 3,
-          "mainMin": 45,
-          "distanceM": 5114,
+          "mainMin": 43.74999999999999,
+          "distanceM": 5000,
           "flag": "review"
         }
       ]
@@ -3701,12 +3701,24 @@
     {
       "name": "Acknowledgment reset",
       "pass": true
+    },
+    {
+      "name": "All journey finishes stop at 5K",
+      "pass": true
+    },
+    {
+      "name": "Run-walk journeys finish using breaks",
+      "pass": true
+    },
+    {
+      "name": "Continuous journeys finish nonstop",
+      "pass": true
     }
   ],
   "summary": {
     "completed": 7,
     "total": 7,
-    "passed": 8,
-    "checks": 8
+    "passed": 11,
+    "checks": 11
   }
 }
