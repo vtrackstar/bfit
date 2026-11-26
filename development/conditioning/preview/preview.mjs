@@ -112,7 +112,7 @@ function nextAction(){
  }
  $("next-title").textContent=title;$("next-copy").textContent=copy;
  for(const id of ["hero-next","next-link"]){$(id).textContent=label;$(id).href=href;}
- $("hero-progress").hidden=!app;
+ $("hero-progress").hidden=!app;$("next-action").hidden=!app;
 }
 function focusSection(id){const el=$(id);if(!el)return;el.focus({preventScroll:true});el.scrollIntoView({block:"start",behavior:"auto"});}
 function render(){drawCalendar();workout();progress();nextAction();form.querySelectorAll("input,select,button").forEach(el=>el.disabled=!!app?.active);}
