@@ -141,7 +141,20 @@ const createEngine = function createEngine(){
     // A regression is not a dead end: restore the closest supported library
     // dose; if none, increment running by a small amount in its current rhythm.
     const n=P.filter(x=>x.runSec<=p.runSec+60&&x.longestBout<=p.longestBout+30&&x.mainSec<=p.mainSec+120&&x.runSec>=p.runSec&&x.longestBout>=p.longestBout).sort((a,b)=>a.runSec-b.runSec||a.longestBout-b.longestBout)[0];
-    return n??(strategy(p)==="continuous"&&p.runSec<1800?continuous("bridge-cont-"+Math.min(1800,p.runSec+30),Math.min(1800,p.runSec+30)):p);
+    if(n)return n;
+    if(strategy(p)==="continuous"&&p.runSec<1800)return continuous("bridge-cont-"+Math.min(1800,p.runSec+30),Math.min(1800,p.runSec+30));
+    if(p.pattern){
+      // A generated dose can develop independently of library IDs. Add work
+      // at the familiar rhythm first, or extend a bout with comparable volume.
+      const r=p.pattern.run,w=p.pattern.walk;
+      const target=Math.min(1800,p.runSec+Math.min(90,Math.max(15,Math.ceil(p.runSec*.15/5)*5)));
+      if(target>p.runSec){
+        const runs=[],rests=[];let left=target;
+        while(left>0){let part=Math.min(r,left);runs.push(part);left-=part;if(left>0)rests.push(w);}
+        return workout("bridge-rhythm-"+r+"-"+w+"-"+target,runs,rests,0,{pattern:{run:r,walk:w}});
+      }
+    }
+    return p;
   }
   function rhythm(id,run,rest,main,extras={}){
     if(!pos(run)||!pos(rest)||!pos(main))throw Error("Invalid rhythm");
@@ -167,7 +180,7 @@ const createEngine = function createEngine(){
     const mode=strategy(p),g=good(h,d,30);
     // Continuous route: use a pattern already demonstrated during practice at
     // similar or lower long-outing running volume, before lengthening the outing.
-    if(goal==="continuous"&&mode!=="continuous"&&practice&&practice.longestBout>p.longestBout&&distinctDays(g.filter(r=>achieved(r,practice)))>=2){
+    if((goal==="continuous"||p.longestBout<180)&&mode!=="continuous"&&practice&&practice.longestBout>p.longestBout&&distinctDays(g.filter(r=>achieved(r,practice)))>=2){
       if(strategy(practice)==="continuous"&&practice.runSec<=p.runSec){
         return {workout:continuous("adopt-cont-"+practice.runSec,practice.runSec),reason:"Use the proven continuous-running dose; keep the other sessions unchanged.",flag:"unknown"};
       }
@@ -305,7 +318,8 @@ const createEngine = function createEngine(){
     const p=state[focus],same=exposures(h,day,p),last=same.slice().sort((a,b)=>b.day-a.day)[0];
     const near=good(h,day,14).filter(x=>x.runSec>=p.runSec&&x.longestBout>=p.longestBout&&x.mainSec>=p.mainSec&&x.check.recovery==="normal"&&x.day!==last?.day);
     const accelerate=!!last&&p.runSec>0&&last.check.effort==="easy"&&last.check.recovery==="normal"&&distinctDays(near)>=1;
-    if(distinctDays(same)<2&&!accelerate){
+    const comparablePractice=focus==="practice"&&!!last&&distinctDays(near)>=1;
+    if(distinctDays(same)<2&&!accelerate&&!comparablePractice){
       // A longer outing that reached its duration cap but not its distance
       // can build time after two recovered attempts at that same cap.
       const capExposures=p.distanceGoal!==null&&distinctDays(good(h,day,28).filter(x=>x.prescriptionId===p.id&&x.lane===focus&&x.mainSec>=p.mainSec))>=2;
@@ -317,7 +331,7 @@ const createEngine = function createEngine(){
     const actualRun=total(r,"runSec"),actualTotal=total(r,"totalSec"),runCap=actualRun===0?180:clamp(Math.ceil(actualRun*.15/30)*30,60,180);
     const b=bounds(h,day);
     const reference=last&&pos(last.runningDistanceM)&&p.runSec>0?last:null;
-    const flagFor=x=>distanceCaution(reference?reference.runningDistanceM*x.runSec/p.runSec:null,b.runningDistanceM);
+    const flagFor=x=>distanceCaution(reference?reference.runningDistanceM*x.runSec/reference.runSec:null,b.runningDistanceM);
     const fits=x=>{
       const plan=weekly({...state,[focus]:x},hardLegDays);
       return plan.runSec<=actualRun+runCap&&plan.totalSec<=actualTotal+300&&x.totalSec<=p.totalSec+300;
@@ -336,10 +350,14 @@ const createEngine = function createEngine(){
             options.push(repeat("bridge-bout-"+count+"-"+bout+"-"+p.pattern.walk,count,bout,p.pattern.walk,true));
           }
         }
+        // A short additional running bout can fit when extending the full rhythm does not.
+        for(let extra=Math.min(60,p.pattern.run);extra>=5;extra-=5)options.push(workout("bridge-extra-"+p.id+"-"+extra,[...p.runs,extra],p.rests.length===p.runs.length?[...p.rests]:[...p.rests,p.pattern.walk],p.tail,{pattern:p.pattern}));
         for(let s=Math.min(p.mainSec+180,Math.max(n.mainSec,p.mainSec+15));s>p.mainSec;s-=15)options.push(rhythm("bridge-time-"+p.pattern.run+"-"+p.pattern.walk+"-"+s,p.pattern.run,p.pattern.walk,s));
         if(focus==="long")options.push(workout("bridge-walk-"+(p.mainSec+60),p.runs,p.rests,p.tail+60,{pattern:p.pattern}));
       }else if(!p.runSec&&!n.runSec){
         for(let s=Math.min(n.mainSec,p.mainSec+300);s>p.mainSec;s-=30)options.push(walk("bridge-walk-"+s,s));
+      }else if(!p.runSec&&n.runSec){
+        for(let k=6;k>=1;k--)options.push(repeat("bridge-intro-"+k,k,15,105));
       }
       const smaller=options.find(x=>meaningful(x)&&fits(x)&&(approvedCaution||flagFor(x)!=="review")&&x.fasterSec===0);
       if(!smaller)return result("repeat","Keep the current dose; no smaller suitable progression fits recent work and recovery.",{paceDeferred});
