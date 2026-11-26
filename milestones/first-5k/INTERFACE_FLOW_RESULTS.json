@@ -228,8 +228,24 @@
     {
       "name": "Recovery screen explains next action",
       "pass": true
+    },
+    {
+      "name": "Requested and current schedule are clear",
+      "pass": true
+    },
+    {
+      "name": "Workout preview shows activities before timer starts",
+      "pass": true
+    },
+    {
+      "name": "Workout includes coaching reason",
+      "pass": true
+    },
+    {
+      "name": "Explicit paused state",
+      "pass": true
     }
   ],
-  "passed": 57,
-  "total": 57
+  "passed": 61,
+  "total": 61
 }
