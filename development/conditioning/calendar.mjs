@@ -64,7 +64,8 @@ function scheduledVisit(c,s,replacements,p,id,now,budget){
  const view=trainingView(s);
  const adjacent=s.logs.some(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day===now-1&&demand(l))||s.external.some(l=>l.day===now-1&&externalDemand(l))||p.adjacentDemand===true;
  const latest=s.logs.filter(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day<now).sort((a,b)=>b.day-a.day)[0];
- const recovery=latest&&latest.recovery!=="normal"?latest.recovery:p.recovery;
+ const poor=latest&&["limiting","extra"].includes(latest.recovery);
+ const recovery=latest&&latest.recovery!=="normal"&&(!poor||now-latest.day<=2||p.recovery!=="normal")?latest.recovery:p.recovery;
  if(recovery==="limiting"||recovery==="extra")return {action:"recover-or-rest",dose:null};
  if(slot.kind==="optional"){
   if(recovery!=="normal"||!["walk","march","bike","row","elliptical","stairs","run"].includes(p.mode)||p.mode==="run"&&p.recentRun!==true||screen(p)!=="ok")return {action:"optional-rest",dose:null};
