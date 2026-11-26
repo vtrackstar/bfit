@@ -10,6 +10,7 @@ I built these guides so you can choose a workout that fits your week, try it, an
 | Training guides | [Athleticism](guides/athleticism/) | Choose four weeks of sprint, jump, field and court, or multisport training. The starting screen links new exercisers to Foundation. |
 | Training guides | [Gamer Fit](guides/gamer-fit/) | Take a five-minute break or start a 15–25-minute workout. |
 | Training guides | [Run Strong](guides/run-strong/) | Choose a first run–walk session or start from the running you already do. |
+| Training guides | [Conditioning Training](guides/conditioning/) | Build an adaptive land-based conditioning plan for stamina or repeated efforts, with recovery and progress records. |
 | Training guides | [Keep Moving 50+](guides/50-plus/) | Choose everyday priorities and activities, build a week, and save check-ins across four pages. |
 | More training plans | [Weekend Warrior](guides/weekend-warrior/) | Fit two short home visits and a gym visit around work and log four weeks. |
 | More training plans | [Build Your Glutes](guides/build-your-glutes/) | Follow two leg days a week for eight weeks, swap equipment, and log each set. |
