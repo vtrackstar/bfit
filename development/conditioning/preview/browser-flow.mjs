@@ -73,5 +73,38 @@ try{
  await navContext.close();
  }
  console.log('PASS navigation, focus and horizontal overflow at 320, 390 and 1366 pixels');
+ // Cross-mode journeys use fictional inputs and do not ask anyone to exercise.
+ for(const scenario of [
+ {mode:"walk",goal:"A",minutes:"0",budget:"20",expected:"bouts",easy:true},
+ {mode:"run",goal:"A",minutes:"10",budget:"20",block:"Choose walking"},
+ {mode:"swim",goal:"A",minutes:"5",budget:"20",block:"Choose supervised swimming lessons"},
+ {mode:"swim",goal:"A",minutes:"5",budget:"20",water:true,expected:"swim",easy:true},
+ {mode:"circuit",goal:"B",minutes:"5",budget:"20",block:"Learn the movements"},
+ {mode:"circuit",goal:"B",minutes:"5",budget:"20",familiar:true,expected:"circuit"},
+ {mode:"walk",goal:"A",minutes:"0",budget:"5",block:"There isn’t enough time"},
+ {mode:"bike",goal:"B",minutes:"10",budget:"20",restricted:true,block:"Seek appropriate medical assessment"}
+ ]){
+ const profileCtx=await browser.newContext({viewport:{width:390,height:844},timezoneId:'UTC'});const p=await profileCtx.newPage();p.on('pageerror',e=>errors.push(e.message));await p.clock.setFixedTime(startDate);await p.goto(url);
+ await p.locator('[name=mode]').selectOption(scenario.mode);await p.locator('[name=goal]').selectOption(scenario.goal);
+ await p.getByRole('button',{name:'Continue',exact:true}).click();
+ assert.equal(await p.locator('#swim-fields').isVisible(),scenario.mode==='swim');
+ assert.equal(await p.locator('#run-fields').isVisible(),scenario.mode==='run');
+ assert.equal(await p.locator('#circuit-fields').isVisible(),scenario.mode==='circuit');
+ await p.locator('[name=setup]').fill('Fictional '+scenario.mode);
+ await p.locator('[name=comfortableMinutes]').fill(scenario.minutes);
+ if(scenario.water)await p.locator('[name=waterCompetent]').check();
+ if(scenario.familiar)await p.locator('[name=movementsFamiliar]').check();
+ await p.getByRole('button',{name:'Continue',exact:true}).click();
+ await p.locator('[name=minutes]').fill(scenario.budget);await p.locator('[name=existingHard]').selectOption('false');
+ await p.getByRole('button',{name:'Continue',exact:true}).click();
+ await p.locator('[name=restricted]').selectOption(scenario.restricted?'true':'false');await p.locator('[name=vigorousSuitable]').selectOption(scenario.restricted?'false':'true');
+ await p.getByRole('button',{name:'Continue',exact:true}).click();await p.getByRole('button',{name:'Save my plan'}).click();
+ await begin(p,'manual');
+ const state=await read(p);
+ if(scenario.block){assert.equal(state.app.active,null);await check(p,scenario.block);}
+ else {assert.equal(state.app.active.ticket.dose.kind,scenario.expected);if(scenario.easy)assert(state.app.active.ticket.dose.effort[1]<=3);if(scenario.expected==='swim'){assert.equal(state.app.active.method,'manual');assert.equal(await p.locator('#feedback [name=lengths]').count(),1);} }
+ assert(await p.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'profile overflow: '+scenario.mode);
+ await profileCtx.close();console.log('PASS browser profile '+scenario.mode+' '+(scenario.block?'blocked as expected':'starts '+scenario.expected));
+ }
  assert.deepEqual(errors,[]);await ctx.close();
 }finally{await browser.close();await new Promise(r=>server.close(r));}
