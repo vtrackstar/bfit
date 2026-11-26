@@ -30,11 +30,13 @@ Use Bryan's direct explanation of plan design, observable movement cues, and nex
 
 ## Verification
 Previous version: 29 automated groups passed; Chromium logging, rollback, reload, backup restore and log/certificate download were exercised. These are historical results, not a pass for every current edit.
-Current source syntax checked. Suite restored and expanded to 31 groups, not executed this pass because execution environment unavailable. Certificate coordinates corrected but visual rendering not retested. Browser/device retest remains open.
-Outstanding: demo playback/attribution, narrow screens, keyboard/screen reader, iPhone PDF/backup downloads and restore, timer sound, novice walkthrough. Public release authorized by Bryan despite these pending checks. Never mark them passed without evidence.
+Current source syntax checked and all 32 automated groups pass. Certificate coordinates corrected but visual rendering not retested. Broader browser/device retest remains open.
+Outstanding: full demo playback/cue alignment, narrow screens, keyboard/screen reader, iPhone PDF/backup downloads and restore, timer sound, novice walkthrough. Public release authorized by Bryan despite these pending checks. Never mark them passed without evidence.
 
 
 ## Latest completion pass
 Readiness now requires a pain-free logged controlled lowering within 14 days. It hides during pause/recheck/return and clears on pain or a return session; later help/drop also replaces it. The 14-day window is a coaching rule. The remaining RIR estimate was removed. No-equipment route links to Foundation Training.
 Four credited YouTube players cover pull-up, machine, band and a longer foot-assistance/lowering tutorial. Direct YouTube fallback links remain visible. Source provenance checked; full playback and exact segment review remain open. Never describe these as fully video-verified.
 32 automated test groups pass in this completion pass. Current PNG sharing image added. Real iPhone downloads/restore and screen-reader testing remain unperformed.
+
+Live-page check: all four embedded players load the expected titles and creator credits. Machine playback remained at 0:00 in cloud Chromium, so playback is not marked passed. The demonstration layout renders within the desktop content column.
