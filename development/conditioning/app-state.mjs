@@ -18,7 +18,7 @@ function appCurrent(a){return a.cycles[a.cycles.length-1];}
 function appTicketValid(a,active,now){
  appAssert(fields(active,["ticket","profile","budget","timer","method"])&&["timer","manual"].includes(active.method),"Invalid active session");
  const {ticket,profile,budget,timer}=active,c=appCurrent(a);
- appAssert(fields(profile,["mode","goal","setup","restricted","vigorousSuitable","existingHard","recovery","comfortableMinutes","currentSevere","warning","pain","postIllness","waterCompetent","recentRun","movementsFamiliar","externalSteady","adjacentDemand","hardOptIn","tempoOptIn","specialization","knownCondition","symptoms","days","slot","alternatePrepared"]),"Unknown profile fields");
+ appAssert(fields(profile,["mode","goal","setup","restricted","vigorousSuitable","existingHard","recovery","comfortableMinutes","currentSevere","warning","pain","postIllness","waterCompetent","recentRun","movementsFamiliar","externalSteady","adjacentDemand","hardOptIn","tempoOptIn","specialization","knownCondition","symptoms","days","slot","alternatePrepared","rebaseline","poolLength","poolUnit"]),"Unknown profile fields");
  appAssert(fields(ticket,["version","id","slotId","day","cycleStart","setup","dose","optional"])&&ticket.version===1&&appInt(ticket.day,0,now)&&appInt(budget,1,86400),"Invalid ticket");
  const r=beginTicket(c.calendar,a.history,c.replacements,profile,ticket.slotId,ticket.day,budget,ticket.id);
  appAssert(r.ticket&&appEq(r.ticket,ticket),"Active prescription does not match eligibility");
@@ -66,6 +66,7 @@ function appValidate(a,now){
 function appChange(a,patch,now){const n={...a,...patch,revision:a.revision+1};appValidate(n,now);return n;}
 function appStart(a,p,slotId,day,budget,id,method="timer"){
  appValidate(a,day);appAssert(a.active===null,"Finish or save active session first");
+ if(p.mode==="swim"&&(!Number.isFinite(p.poolLength)||p.poolLength<=0||p.poolLength>100||!["m","yd"].includes(p.poolUnit)))return {action:"choose-pool",app:a};
  const c=appCurrent(a),r=beginTicket(c.calendar,a.history,c.replacements,p,slotId,day,budget,id);
  if(!r.ticket)return {action:r.action,app:a};
  const actualMethod=r.ticket.dose.kind==="swim"?"manual":method;
