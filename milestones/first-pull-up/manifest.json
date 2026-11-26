@@ -38,27 +38,27 @@
   "qualityGates": {
     "programming": {
       "status": "reviewed",
-      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
+      "evidence": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
     },
     "evidence": {
       "status": "reviewed",
-      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
+      "evidence": "Research scope and source links documented in FRAMEWORK.md; exact progression gates are coaching decisions."
     },
     "exerciseLibrary": {
       "status": "partially-complete",
-      "evidence": "Four credited demo players with direct links; full playback and cue review pending."
+      "evidence": "All four embedded players load the expected titles and creator credits on the live page. Machine playback remained at 0:00 in cloud Chromium; full playback and cue review remain unverified."
     },
     "loadTotals": {
       "status": "reviewed",
-      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
+      "evidence": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
     },
     "progression": {
       "status": "reviewed",
-      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
+      "evidence": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
     },
     "editorial": {
       "status": "reviewed",
-      "evidence": "FRAMEWORK.md; current source; prior 29-test pass. Latest changes await runtime retest."
+      "evidence": "Observable effort cues, plain-language recovery messages, Foundation link, and recent-readiness wording reviewed."
     },
     "accessibility": {
       "status": "pending",
@@ -82,7 +82,7 @@
     }
   },
   "unresolved": [
-    "Videos",
+    "Full video playback and cue alignment",
     "Phone and accessibility checks",
     "Latest browser regression tests",
     "Certificate visual retest"
