@@ -36,7 +36,8 @@ function observed(d,actual,status){
 }
 function validateLog(l,now){
  if(!plain(l)||!str(l.id)||!integer(l.day,0,now)||!str(l.setup)||!canonical(l.dose)||!["timer","manual","prior"].includes(l.source)||!["full","shortened","skipped"].includes(l.status)||!["normal","extra","limiting","unknown"].includes(l.recovery)||typeof l.quality!=="boolean"||typeof l.warning!=="boolean"||typeof l.pain!=="boolean"||typeof l.recoveryExtended!=="boolean")return false;
- if(l.resolved!==undefined)return false; // never accept self-cleared historical warning flags
+ if(l.resolved!==undefined)return false;
+ if(l.recovery==="unknown"){if(l.recoveryDay!==undefined&&l.recoveryDay!==null)return false;}else if(!integer(l.recoveryDay,l.day+1,now)||l.status==="skipped")return false; // never accept self-cleared historical warning flags
  if(l.status==="skipped"){if(l.effort!==null)return false;}else if(!integer(l.effort,0,10))return false;
  if(l.dose.kind==="swim"&&l.source==="timer")return false;
  if(!observed(l.dose,l.actual,l.status))return false;
@@ -58,7 +59,7 @@ function restore(json,now){assert(typeof json==="string"&&json.length<=8000000,"
 function backup(s,now){validateState(s,now);return JSON.stringify(s);}
 function addLog(s,l,now){const n={...s,logs:[...s.logs,l]};validateState(n,now);return n;}
 function addExternal(s,l,now){if(s.external.some(x=>x.day===l.day&&x.activity.trim().toLowerCase()===l.activity?.trim().toLowerCase()))return s;const n={...s,external:[...s.external,l]};validateState(n,now);return n;}
-function updateRecovery(s,id,recovery,now){assert(["normal","extra","limiting","unknown"].includes(recovery),"Invalid recovery");const l=s.logs.find(x=>x.id===id);assert(l&&now>l.day,"Next-day response not due");const n={...s,logs:s.logs.map(x=>x.id===id?{...x,recovery}:x)};validateState(n,now);return n;}
+function updateRecovery(s,id,recovery,now){assert(["normal","extra","limiting","unknown"].includes(recovery),"Invalid recovery");const l=s.logs.find(x=>x.id===id);assert(l&&now>l.day,"Next-day response not due");const n={...s,logs:s.logs.map(x=>x.id===id?{...x,recovery,recoveryDay:recovery==="unknown"?null:now}:x)};validateState(n,now);return n;}
 function actualTotals(l){if(l.status==="skipped")return {work:0,recovery:0,total:0,unknown:false};if(l.dose.kind==="swim"){return {work:l.actual.swimSeconds??0,recovery:l.actual.restSeconds??0,total:null,unknown:l.actual.swimSeconds===null};}return {work:l.actual.filter(a=>a.type==="work").reduce((n,a)=>n+a.seconds,0),recovery:l.actual.filter(a=>a.type==="recovery").reduce((n,a)=>n+a.seconds,0),total:l.actual.reduce((n,a)=>n+a.seconds,0),unknown:false};}
 function review(s,now,days=28){validateState(s,now);assert(integer(days,1,365),"Invalid review interval");const logs=s.logs.filter(l=>l.day>now-days&&l.source!=="prior"),external=s.external.filter(l=>l.day>now-days);const byMode={};for(const l of logs){const t=actualTotals(l);const m=byMode[l.dose.mode]??={workSeconds:0,recoverySeconds:0,completedLengths:0,unknownWorkLogs:0};m.workSeconds+=t.work;m.recoverySeconds+=t.recovery;if(l.dose.kind==="swim"&&l.status!=="skipped")m.completedLengths+=l.actual.lengths;m.unknownWorkLogs+=Number(t.unknown);}
  return {days,full:logs.filter(l=>l.status==="full").length,shortened:logs.filter(l=>l.status==="shortened").length,skipped:logs.filter(l=>l.status==="skipped").length,unknownRecovery:logs.filter(l=>l.status!=="skipped"&&l.recovery==="unknown").length,byMode,externalVisits:external.length,externalKnownMinutes:external.reduce((a,l)=>a+(l.minutes??0),0),externalUnknownMinutes:external.filter(l=>l.minutes===null).length,reviewDue:now-s.started>=28};}
@@ -83,12 +84,12 @@ function visit(s,p,now,budget){
   pick=recommend(profile,last.dose,s.logs,now);
  }else pick=initial(profile,s.logs,now);
  if(!pick.dose)return pick;
- if(p.slot==="steady2"&&["steady","bouts"].includes(pick.dose.kind))pick={...pick,dose:{...pick.dose,slot:"steady2"}};
+ if(p.slot==="steady2"&&["steady","bouts"].includes(pick.dose.kind)&&pick.dose.slot!=="steady2")pick={...pick,dose:{...pick.dose,slot:"steady2",...(pick.dose.original?{original:{...pick.dose.original,slot:"steady2"}}:{})}};
  const routed=schedule(profile,pick.dose);if(!routed.dose)return routed;
  if(!canonical(routed.dose))return {action:"reassess-dose",dose:null};
  const isDemanding=routed.dose.kind==="interval"||routed.dose.kind==="circuit"&&routed.dose.effort[1]>5;
  if(isDemanding&&s.logs.some(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day===now&&(l.dose.kind==="interval"||l.dose.kind==="circuit"&&l.dose.effort[1]>5)))return {action:"already-demanding-today",dose:null};
- const fit=fitTime(routed.dose,budget);return {...fit,recommendation:pick.action};
+ const fit=fitTime(routed.dose,budget);if(fit.dose&&!canonical(fit.dose))return {action:"reassess-dose",dose:null};return {...fit,recommendation:pick.action};
 }
 
 export { canonical, observed, validateLog, validateState, emptyState, restore, backup, addLog, addExternal, updateRecovery, actualTotals, review, visit };
