@@ -112,3 +112,7 @@ Batch 1 added optional segment-entry, medical-advice-confirmed conservative retu
 ## Release candidate regression and browser blocker
 
 Final combined rerun: 88/88 programming/feature checks, 49/49 simulated interface checks, nine scripted journeys unchanged. Cancellation fixture corrected without changing workload rules. Segment entry and certificate content/print invocation tested in simulated DOM. Chromium executable is available, but git ls-remote for the development branch fails with Could not resolve host github.com. No real-browser pass claimed. No release gates approved. Next: real browser/device and certificate print verification using a local checkout or CI browser runner, then user testing and publication approval.
+
+## Beginner UX revision before owner-authorized release
+
+Simplified intake and optional measurement hierarchy; minutes/seconds entry, phase cues, workout progress, next actions and focus management, configurable sound and screen wake lock when supported, and cross-training education. Retained inactivity pause and next-day recovery gates. Early distance completion requires matching elapsed time and running strategy. Revised candidate 57/57 simulated interface checks and 88/88 programming checks. GitHub Actions run 45874694381 independently confirmed both audit and first-5k-browser jobs successful on identical runtime files. Physical phone sound and screen-lock behavior, manual certificate appearance and real beginner testing remain unverified. No clinical validation claimed. Owner approved publication.
