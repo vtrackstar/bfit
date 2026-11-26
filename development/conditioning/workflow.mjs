@@ -3,7 +3,9 @@ import { MODES, screen, steady, interval, bouts, swim, circuit, phases, seconds,
 const VERSION=1;
 const integer=(v,min,max)=>Number.isInteger(v)&&v>=min&&v<=max;
 const plain=v=>v!==null&&typeof v==="object"&&!Array.isArray(v);
-const str=v=>typeof v==="string"&&v.length>0&&v.length<=120;
+const str=v=>typeof v==="string"&&v.trim().length>0&&v.length<=120;
+const only=(o,keys)=>plain(o)&&Object.keys(o).every(k=>keys.includes(k));
+function sameDoseFields(a,b){return Object.keys(a).length===Object.keys(b).length&&Object.keys(b).every(k=>Object.hasOwn(a,k)&&JSON.stringify(a[k])===JSON.stringify(b[k]));}
 function assert(ok,msg){if(!ok)throw Error(msg);}
 function canonical(d){
  if(!plain(d)||!MODES.includes(d.mode)||!["steady","interval","bouts","swim","circuit"].includes(d.kind)||!["steady","interval","circuit","steady2"].includes(d.slot))return false;
@@ -14,25 +16,25 @@ function canonical(d){
  if(d.kind==="steady"||d.kind==="bouts"){if(!integer(d.minutes,1,o.minutes)||!(JSON.stringify(d.effort)===JSON.stringify(o.effort)||JSON.stringify(d.effort)==="[2,3]"))return false;b={...o,minutes:d.minutes,effort:d.effort};}
  if(d.kind==="swim"){if(!integer(d.lengths,1,o.lengths))return false;b={...o,lengths:d.lengths};}
  if(d.kind==="circuit"){b={...o,rounds:2,n:8,w:20};}
- return !!b&&key(b)===key(d);}
+ return !!b&&sameDoseFields(d,{...b,reduced:true,reductionReason:d.reductionReason,original:o});}
  if(d.kind==="steady"){if(["swim","circuit"].includes(d.mode))return false;b=steady(d.mode,d.minutes,d.level,d.slot);}
  if(d.kind==="bouts"){if(["swim","circuit"].includes(d.mode)||!integer(d.minutes,1,5))return false;b={...bouts(d.mode,d.minutes),slot:d.slot};}
  if(d.kind==="interval")b=interval(d.mode,d.id,d.slot);
  if(d.kind==="swim")b=swim(d.lengths,d.unit,d.pool);
  if(d.kind==="circuit")b=circuit(d.rounds,d.variant);
- return !!b&&key(b)===key(d);
+ return !!b&&sameDoseFields(d,b);
  }catch{return false;}
 }
 function observed(d,actual,status){
  if(!canonical(d)||!["full","shortened","skipped"].includes(status))return false;
  if(status==="skipped")return Array.isArray(actual)&&actual.length===0;
- if(d.kind==="swim")return plain(actual)&&integer(actual.lengths,1,d.lengths)&&(status!=="full"||actual.lengths===d.lengths)&&(status!=="shortened"||actual.lengths<d.lengths)&&(actual.swimSeconds===null||integer(actual.swimSeconds,1,7200))&&(actual.restSeconds===null||integer(actual.restSeconds,0,7200));
+ if(d.kind==="swim")return only(actual,["lengths","swimSeconds","restSeconds"])&&integer(actual.lengths,1,d.lengths)&&(status!=="full"||actual.lengths===d.lengths)&&(status!=="shortened"||actual.lengths<d.lengths)&&(actual.swimSeconds===null||integer(actual.swimSeconds,1,7200))&&(actual.restSeconds===null||integer(actual.restSeconds,0,7200));
  const plan=phases(d);if(!Array.isArray(actual)||!actual.length||actual.length>plan.length)return false;
  const early=actual[actual.length-1]?.earlyCooldown===true;
  if(early&&(status!=="shortened"||actual.length<2||actual.length>=plan.length&&actual.slice(0,-1).every((a,i)=>a.seconds>=plan[i].seconds)))return false;
  for(let i=0;i<actual.length;i++){
   const a=actual[i],jump=early&&i===actual.length-1,p=jump?plan[plan.length-1]:plan[i];
-  if(!plain(a)||a.type!==p.type||!integer(a.seconds,0,p.type==="recovery"?p.seconds*2:p.seconds)||(!jump&&a.earlyCooldown!==undefined)||jump&&a.seconds===0)return false;
+  if(!only(a,["type","seconds","earlyCooldown"])||a.type!==p.type||!integer(a.seconds,0,p.type==="recovery"?p.seconds*2:p.seconds)||(!jump&&a.earlyCooldown!==undefined)||jump&&a.seconds===0)return false;
   if(i<actual.length-1&&!(early&&i===actual.length-2)&&a.seconds<p.seconds)return false;
  }
  const complete=!early&&actual.length===plan.length&&actual.every((a,i)=>a.seconds>=plan[i].seconds);
@@ -46,10 +48,12 @@ function validateLog(l,now){
  if(l.status==="skipped"){if(l.effort!==null)return false;}else if(!integer(l.effort,0,10))return false;
  if(l.dose.kind==="swim"&&l.source==="timer")return false;
  if(!observed(l.dose,l.actual,l.status))return false;
- const ext=l.dose.kind!=="swim"&&l.status!=="skipped"&&l.actual.some((a,i)=>a.type==="recovery"&&a.seconds>phases(l.dose)[i].seconds);
+ const extensions=l.dose.kind!=="swim"&&l.status!=="skipped"?l.actual.filter((a,i)=>a.type==="recovery"&&a.seconds>phases(l.dose)[i].seconds).length:0;
+ if(extensions>1)return false;const ext=extensions>0;
  if(l.timingInterrupted!==undefined&&typeof l.timingInterrupted!=="boolean")return false;
  if(ext!==l.recoveryExtended)return false;
- if(l.output!==undefined&&(!Number.isFinite(l.output)||l.output<0||!["rpm","watts","m","km","mi","seconds","m/s","km/h","mph","spm"].includes(l.unit)))return false;
+ if((l.output===undefined)!==(l.unit===undefined)||l.status==="skipped"&&l.output!==undefined)return false;
+ if(l.output!==undefined&&(!Number.isFinite(l.output)||l.output<0||l.output>1000000||!["rpm","watts","m","km","mi","seconds","m/s","km/h","mph","spm"].includes(l.unit)))return false;
  if(l.reason!==undefined&&!["time","fatigue","other","pain","symptoms"].includes(l.reason))return false;
  return true;
 }
