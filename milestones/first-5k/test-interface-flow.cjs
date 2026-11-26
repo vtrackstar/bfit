@@ -76,6 +76,19 @@ store={"bfit-first-5k-dev-v1":JSON.stringify(completed)};env=boot();
 check("Completion panel displays recorded time and distance",()=>!env.elements.celebration.hidden&&env.elements.resultSummary.textContent.includes("35:00")&&env.elements.resultSummary.textContent.includes("5.00 km"));
 check("Completion analysis converts average pace",()=>env.elements.resultPace.textContent.includes("7:00/km")&&env.elements.resultPace.textContent.includes("11:16/mile"));
 check("Completion stops regular workout recommendations",()=>env.elements.checkin.hidden);
+
+// Use a fresh beginner state for cancellation, not an advanced history at its workload limit.
+store={};env=boot();set("ready",true);submit("intake");set("recovery","normal");set("symptoms","none");submit("pre");
+check("Unstarted workout can be selected",()=>!!state().active);
+click("finish");check("Zero-time finish returns without log",()=>!state().active&&state().state.history.length===0&&!env.elements.checkin.hidden);
+set("recovery","normal");set("symptoms","none");submit("pre");click("discard");
+check("Explicit cancellation returns to training",()=>!state().active&&state().state.history.length===0);
+store={"bfit-first-5k-dev-v1":JSON.stringify(backup)};date+=30*86400000;env=boot();set("recovery","normal");set("symptoms","none");submit("pre");
+check("Long absence exposes reassessment",()=>state().state.reentryNeeded&&!env.elements.reentryPanel.hidden&&env.elements.checkin.hidden);
+set("reentryWalk",30);submit("reentryForm");check("Reentry requires readiness confirmation",()=>state().state.reentryNeeded);
+set("reentryReady",true);submit("reentryForm");check("Reentry preserves history and starts conservatively",()=>!state().state.reentryNeeded&&state().state.level===0&&state().state.history.length===backup.state.history.length);
+env=boot();check("Reentry survives reopening",()=>!env.elements.checkin.hidden&&state().state.reentrySelfReported===true);
+set("recovery","normal");set("symptoms","none");submit("pre");check("Reentry prescribes introductory dose",()=>state().active?.decision.workout.runSec===180);
 return {environment:"Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",tests,passed:tests.filter(x=>x.pass).length,total:tests.length};
 };
 harness(read("index.html"),read("workout.js"),read("browser-engine.js"),read("../../shared/running-calculator.js")).then(result=>{console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;});
