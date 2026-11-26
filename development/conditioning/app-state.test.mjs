@@ -1,6 +1,7 @@
 import { steady } from './engine.mjs';
 import { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appSafetyHold, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad } from './app-state.mjs';
 
+const equalJSON=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 function appTests(){
  const out=[];const check=(n,b)=>{if(!b)throw Error(n);out.push(n)};const fails=f=>{try{f();return false}catch{return true}};
  const p={mode:"bike",goal:"B",setup:"bike1",restricted:false,vigorousSuitable:true,existingHard:false,recovery:"normal",comfortableMinutes:5};
@@ -13,7 +14,7 @@ function appTests(){
  a=appTimer(a,"start",100,0);a=appTimer(a,"tick",100,1000);
  const restored=appRestore(appBackup(a,100),100);
  check("reload interrupts running clock",restored.active.timer.state==="interrupted"&&restored.active.timer.elapsedMs===1000);
- check("reload preserves ticket",appEq(restored.active.ticket,a.active.ticket));
+ check("reload preserves ticket",equalJSON(restored.active.ticket,a.active.ticket));
  check("malformed timer rejected",fails(()=>appRestore(JSON.stringify({...a,active:{...a.active,timer:{...a.active.timer,elapsedMs:99999999}}}),100)));
  check("forged prescription rejected",fails(()=>appRestore(JSON.stringify({...a,active:{...a.active,ticket:{...a.active.ticket,dose:steady("bike",45,4)}}}),100)));
  check("unknown version rejected",fails(()=>appRestore(JSON.stringify({...base,version:99}),100)));
@@ -40,10 +41,10 @@ function appTests(){
  check("review not required for rollover",appReport(a,100,128).reviewedDay===null);
  a=appAcknowledge(a,100,128);
  check("review acknowledgment dated",appReport(a,100,128).reviewedDay===128);
- check("round trip",appEq(appRestore(appBackup(a,128),128),a));
+ check("round trip",equalJSON(appRestore(appBackup(a,128),128),a));
  const m=new Map(),storage={getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,v)};
  check("save local adapter",appPersist(storage,base,100).ok);
- check("load local adapter",appEq(appLoad(storage,100).app,base));
+ check("load local adapter",equalJSON(appLoad(storage,100).app,base));
  check("revision conflict",appPersist(storage,a,128,99).reason==="storage-conflict");
  check("revision correct",appPersist(storage,a,128,0).ok);
  check("storage failure explicit",appPersist({getItem(){throw Error("quota")}},base,100).reason==="storage-unavailable");
@@ -57,7 +58,7 @@ function appTests(){
  check("reject unknown log fields",fails(()=>appRestore(JSON.stringify({...a,history:{...a.history,logs:a.history.logs.map(l=>({...l,secret:true}))}}),128)));
  check("refuse unguarded overwrite",appPersist(storage,base,100).reason==="storage-conflict");
  const corrected=appCorrect(a,"one",{effort:1,warning:true},128);
- check("correction preserves actual dose and time",appEq(corrected.history.logs[0].dose,a.history.logs[0].dose)&&appEq(corrected.history.logs[0].actual,a.history.logs[0].actual));
+ check("correction preserves actual dose and time",equalJSON(corrected.history.logs[0].dose,a.history.logs[0].dose)&&equalJSON(corrected.history.logs[0].actual,a.history.logs[0].actual));
  check("correction invalidates success",corrected.history.logs[0].timingInterrupted&&corrected.history.logs[0].recovery==="unknown"&&!corrected.history.logs[0].quality);
  check("cannot erase warning",fails(()=>appCorrect(corrected,"one",{warning:false},128)));
  check("cannot change dose through correction",fails(()=>appCorrect(a,"one",{dose:steady("bike",45,4)},128)));
