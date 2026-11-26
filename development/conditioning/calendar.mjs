@@ -56,7 +56,7 @@ function scheduledVisit(c,s,replacements,p,id,now,budget){
  const slot=slotStatus(c,s,replacements,now).find(x=>x.id===id);
  if(p.currentSevere===true)return {action:"emergency",dose:null};
  if(s.logs.some(l=>l.warning)||p.warning===true)return {action:"medical-review",dose:null};
- if(p.pain===true||s.logs.filter(l=>l.dose?.mode===p.mode&&l.status!=="skipped").sort((a,b)=>b.day-a.day)[0]?.pain)return {action:"pause-mode",dose:null};
+ if(p.pain===true||s.logs.some(l=>l.dose?.mode===p.mode&&l.pain))return {action:"pause-mode",dose:null};
  if(p.postIllness===true)return {action:"reassess-after-illness",dose:null};
  if(!slot||slot.status!=="due")return {action:slot?.status==="missed"?"missed-no-catchup":"not-due",dose:null};
  if(s.logs.some(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day===now))return {action:"already-trained-today",dose:null};
@@ -65,9 +65,14 @@ function scheduledVisit(c,s,replacements,p,id,now,budget){
  const adjacent=s.logs.some(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day===now-1&&demand(l))||s.external.some(l=>l.day===now-1&&externalDemand(l))||p.adjacentDemand===true;
  const latest=s.logs.filter(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day<now).sort((a,b)=>b.day-a.day)[0];
  const recovery=latest&&latest.recovery!=="normal"?latest.recovery:p.recovery;
+ if(recovery==="limiting"||recovery==="extra")return {action:"recover-or-rest",dose:null};
  if(slot.kind==="optional"){
   if(recovery!=="normal"||!["walk","march","bike","row","elliptical","stairs","run"].includes(p.mode)||p.mode==="run"&&p.recentRun!==true||screen(p)!=="ok")return {action:"optional-rest",dose:null};
-  const fit=fitTime(steady(p.mode,5,1,"steady2"),budget);
+  const comfortable=Number.isFinite(p.comfortableMinutes)?Math.floor(p.comfortableMinutes):0;
+  const confirmed=view.logs.filter(l=>l.dose.mode===p.mode&&l.setup===p.setup&&l.dose.kind==="steady"&&l.status==="full"&&l.quality&&!l.pain&&!l.warning&&l.day<now&&now-l.day<=28);
+  const n=Math.min(5,Math.max(0,comfortable,...confirmed.map(l=>l.dose.minutes)));
+  if(n<5)return {action:"optional-rest",dose:null};
+  const fit=fitTime(steady(p.mode,n,1,"steady2"),budget);
   return {...fit,slotId:id,optional:true,recommendation:"optional-easy"};
  }
  const days=c.primaryOffsets.length,ready=steadyGate(view.logs,p.mode,15,now,p.setup),tempoReady=steadyGate(view.logs,p.mode,25,now,p.setup);
