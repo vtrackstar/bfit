@@ -61,8 +61,8 @@ function timerEnd(t,reason,withCooldown=false){
  const warning=reason==="symptoms"||t.warning,pain=reason==="pain"||t.pain;
  // Never require continued activity after symptoms or pain. No time is inferred.
  if(withCooldown&&!warning&&!pain&&t.index<plan.length-1&&actual.length>0)
-  return {...t,index:plan.length-1,actual,elapsedMs:0,targetMs:plan[plan.length-1].seconds*1000,state:"ready",lastMs:null,early:true,reason,warning,pain};
- return {...t,actual,state:"finished",lastMs:null,reason,warning,pain};
+  return {...t,index:plan.length-1,actual,elapsedMs:0,targetMs:plan[plan.length-1].seconds*1000,state:"ready",lastMs:null,early:!(t.index===plan.length-2&&t.elapsedMs===t.targetMs),reason,warning,pain};
+ return {...t,actual,state:"finished",lastMs:null,reason:warning?"symptoms":pain?"pain":t.reason??reason,warning,pain};
 }
 function timerResult(t,feedback){
  timerAssert(t.state==="finished"&&feedback?.confirmed===true,"Confirm actual workout before saving");
