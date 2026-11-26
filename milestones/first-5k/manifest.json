@@ -3,7 +3,7 @@
   "id": "first-5k",
   "title": "Your First 5K",
   "kind": "running",
-  "state": "planning",
+  "state": "development-guide-content-complete-release-audit-pending",
   "ownerDecisionStatus": "programming-prototype-under-review",
   "successfulCompletionCriteria": "Proposed: measured 5 km outing; distinguish walking, run-walk and continuous achievement; certificate eligibility pending final confirmation.",
   "delivery": {
@@ -96,17 +96,13 @@
     }
   },
   "unresolved": [
-    "Connect training-features.cjs to browser workout and segment timers, measurement-entry and recovery confirmation, local storage and validated imports; test full feature-enabled journeys including pace and assessment interruptions.",
-    "Audit optional pace practice for actual pace and faster-distance exposure, verify representative measurement provenance and prevent bypass through raw imported records; assessment results are stored but do not independently advance goal reassessment.",
-    "Implement and test actual browser state persistence including returned pre-session symptom holds, validated imports, recovery confirmation and explicit symptom-resolution/reassessment workflow; retain all release gates.",
-    "Ensure history-based goal switch retains suitable volume with intermediate sessions when no reference row matches",
-    "Audit continuous beginner bridge sequence and 17-week simulated timeline",
-    "Audit actual rolling weekly workload, repeated incomplete workouts, persistent symptom holds and re-entry across all lanes; current reference candidate has not passed these checks",
-    "Confirm certificate eligibility and complete evidence, programming, editorial, device, accessibility and user testing gates",
-    "Audit rolling weekly exposure during and after frequency redistribution, including additional warm-up/cooldown and actual calendar spacing; current split preserves prior reference running dose only for transition cycle",
-    "Audit late extensions with unmeasured or slower outings, fatigue, and missed sessions; verify distance stopping in real UI"
+    "Real browser/device execution, timer usability with screen lock, native storage/import/export and certificate printing",
+    "Dedicated segment-entry and full feature-enabled longitudinal journeys; actual faster-distance audit",
+    "Verify source links, research interpretation, Foundation link, editorial/accessibility and beginner testing",
+    "Validate return-after-28-days pathway and recovery-state edge cases; verify imported state provenance and completion evidence",
+    "Confirm certificate eligibility and public release decision"
   ],
-  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending. Frequency transition and late endurance extension prototype: 9/9 scripted journeys complete at exactly 5000 m; 15/15 reference checks and 22/22 assessment checks pass. Prior seven simulated timelines unchanged. Separate workload-audit-engine.cjs candidate: 15/15 reference, 22/22 assessment, 14/14 dedicated edge checks; 9/9 scripted journeys complete. Efficiency regression: simulated beginner run-walk 17 weeks, continuous 21, interrupted 30 versus 14,17,18. Reference engine preserved; do not select audit candidate for release. Separate schedule-progression-engine.cjs candidate rotates successful adjusted sessions independently of reference advancement. Corrected walking-only budget deadlock; 9/9 journeys, 15/15 reference, 22/22 assessment and 14/14 edge checks. Completion weeks 23,17,21,5,22,29,15,13,18. Efficiency remains unresolved; no release selection. Coordinated-engine candidate retains nine complete journeys and 51 existing checks; simulated weeks 20,14,18,5,20,22,12,13,18. Six improve versus schedule candidate, three unchanged. No release selection. Refined-engine candidate fixes introductory partial-week budget and continuous bridge structure, downweights older exposure during return; nine journeys and 51 existing checks pass. Weeks 19,13,17,5,19,24,11,13,18. Interrupted scenario lengthens by two weeks versus coordinated candidate; no release selection. Core state audit: initial 13/15; corrected urgent symptom priority and persistent pre-session pain hold. Final 17/17 core checks, 68/68 combined, nine journeys unchanged. Refined engine selected for interface development only. Optional training-features.cjs wrapper implemented and tested: 20/20 feature checks, all 68 previous checks and nine scripted journeys pass. Four-week eligibility windows end before prospective session; controlled pace segment stays inside familiar practice dose; assessment measurement and recovery stored; normalized measurement scope safeguards. Browser UI and actual pace/assessment longitudinal journeys pending. Development interface files committed. JS syntax, static IDs and corrected bundle first-workout smoke check pass. Real browser testing pending. Interface flow 18/18 simulated DOM checks. Real Chromium/mobile testing not completed: local browser environment cannot resolve GitHub host or retrieve branch through direct network. No release gate approval. Optional recent history intake and structurally validated progress import implemented; 27/27 simulated interface tests. Prior 88 programming checks not rerun this turn; real browser pending.",
+  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending. Frequency transition and late endurance extension prototype: 9/9 scripted journeys complete at exactly 5000 m; 15/15 reference checks and 22/22 assessment checks pass. Prior seven simulated timelines unchanged. Separate workload-audit-engine.cjs candidate: 15/15 reference, 22/22 assessment, 14/14 dedicated edge checks; 9/9 scripted journeys complete. Efficiency regression: simulated beginner run-walk 17 weeks, continuous 21, interrupted 30 versus 14,17,18. Reference engine preserved; do not select audit candidate for release. Separate schedule-progression-engine.cjs candidate rotates successful adjusted sessions independently of reference advancement. Corrected walking-only budget deadlock; 9/9 journeys, 15/15 reference, 22/22 assessment and 14/14 edge checks. Completion weeks 23,17,21,5,22,29,15,13,18. Efficiency remains unresolved; no release selection. Coordinated-engine candidate retains nine complete journeys and 51 existing checks; simulated weeks 20,14,18,5,20,22,12,13,18. Six improve versus schedule candidate, three unchanged. No release selection. Refined-engine candidate fixes introductory partial-week budget and continuous bridge structure, downweights older exposure during return; nine journeys and 51 existing checks pass. Weeks 19,13,17,5,19,24,11,13,18. Interrupted scenario lengthens by two weeks versus coordinated candidate; no release selection. Core state audit: initial 13/15; corrected urgent symptom priority and persistent pre-session pain hold. Final 17/17 core checks, 68/68 combined, nine journeys unchanged. Refined engine selected for interface development only. Optional training-features.cjs wrapper implemented and tested: 20/20 feature checks, all 68 previous checks and nine scripted journeys pass. Four-week eligibility windows end before prospective session; controlled pace segment stays inside familiar practice dose; assessment measurement and recovery stored; normalized measurement scope safeguards. Browser UI and actual pace/assessment longitudinal journeys pending. Development interface files committed. JS syntax, static IDs and corrected bundle first-workout smoke check pass. Real browser testing pending. Interface flow 18/18 simulated DOM checks. Real Chromium/mobile testing not completed: local browser environment cannot resolve GitHub host or retrieve branch through direct network. No release gate approval. Optional recent history intake and structurally validated progress import implemented; 27/27 simulated interface tests. Prior 88 programming checks not rerun this turn; real browser pending. Batch 1 segment entry, medically advised conservative return, completion and print certificate implemented. Batch 2 beginner educational content, navigation, responsive CSS and field reset implemented. Full regression rerun: 122/122, nine journeys unchanged. Real browser and final evidence/editorial gates pending.",
   "goalPaceNotice": {
     "status": "prototype-integrated-browser-pending",
     "heading": "Let's build toward your goal.",
@@ -115,7 +111,7 @@
     "behavior": "Save acknowledgment locally per goal revision; dismiss repeated notice; never bypass pace eligibility. Reconsider when new training evidence changes eligibility. Never label a goal unrealistic in user-facing text."
   },
   "analytics": {
-    "status": "calculation-and-review-prototype-tested-ui-pending",
+    "status": "four-week-summary-and-conversions-integrated-optional-dropdown",
     "sharedModule": "shared/running-calculator.js",
     "dropdown": {
       "label": "Explore my running numbers",
@@ -180,7 +176,7 @@
     "featureCommit": "d26cb6c0cf1187b7050cfc8434c34a1be2c11c8c"
   },
   "interface": {
-    "status": "simulated-interface-flow-tested-real-browser-pending",
+    "status": "educational-content-and-simulated-regression-complete",
     "entry": "milestones/first-5k/index.html",
     "scripts": [
       "browser-engine.js",
@@ -190,18 +186,18 @@
     "storage": "localStorage v1; JSON export and structurally validated replacement import",
     "timer": "Active elapsed time; pauses when hidden or suspended",
     "limitations": [
-      "No browser/device execution yet",
-      "No symptom-resolution workflow",
-      "No assessment segment result entry or actual target pace measurement",
-      "No GPS tracking",
-      "No certificate or final 5K results section",
-      "Imported records are self-reported and structurally validated, not authenticated; native file picker and cross-device transfer untested",
-      "History entry uses up to six self-reported sessions; warm-up/cooldown history not captured"
+      "Real desktop/mobile browser execution, native validation, accessibility and screen lock unverified",
+      "Certificate print layout and actual PDF output unverified",
+      "Dedicated segment-entry interactions and feature-enabled longitudinal journeys pending",
+      "No GPS or wearable synchronization",
+      "Imported records structurally validated, not authenticated",
+      "Assessment evidence stored but not independently used for goal-phase selection",
+      "History entry uses self-reported sessions without warm-up/cooldown"
     ],
     "flowChecks": {
-      "passed": 27,
-      "total": 27,
-      "environment": "Simulated DOM, clock, localStorage and file objects; actual controller and engine. Real browser pending."
+      "passed": 34,
+      "total": 34,
+      "environment": "Simulated DOM, clock, storage and file objects; not real browser"
     }
   }
 }
