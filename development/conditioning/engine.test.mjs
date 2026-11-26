@@ -1,4 +1,4 @@
-import { screen, steady, interval, bouts, swim, circuit, phases, seconds, key, recent, success, matched, steadyGate, gate, initial, schedule, fitTime, reduce, recommend, comparableOutput, uniqueExternal, validActual } from './engine.mjs';
+import { latestDistinct, reducedDose, nextVisit, screen, steady, interval, bouts, swim, circuit, phases, seconds, key, recent, success, matched, steadyGate, gate, initial, schedule, fitTime, reduce, recommend, comparableOutput, uniqueExternal, validActual } from './engine.mjs';
 function fixtureTests(){const p={restricted:false,vigorousSuitable:true,mode:"bike",goal:"B",days:2,existingHard:false,recovery:"normal",setup:"bike1",hardOptIn:true};const now=100;const log=(dose,day,extra={})=>({dose,day,setup:"bike1",status:"full",recovery:"normal",quality:true,effort:dose.effort[1],...extra});const pair=(d)=>[log(d,98),log(d,95)];const i=interval("bike","b60x4"), long=interval("bike","b60x6"), steady25=steady("bike",25,2), steady35=steady("bike",35,3), hard=interval("bike","b120x4");const tests=[];const check=(name,condition)=>{if(!condition)throw Error(name);tests.push(name);};
 check("01 inactive short bouts",initial({...p,mode:"walk",comfortableMinutes:2},[],now).dose.kind==="bouts");
 check("02 strength not cardio readiness",initial(p,[],now).dose.level===1);
@@ -38,5 +38,12 @@ check("35 duration math",seconds(circuit())===1080&&seconds(interval("bike","har
 check("36 missing screening",screen({})==="easy-only");
 check("37 changed setup",recommend({...p,setup:"bike2"},i,pair(i),now).action==="repeat");
 check("38 no skipped credit",recommend(p,i,[log(i,98,{status:"skipped"}),log(i,95)],now).action==="repeat");
+check("39 duplicate same-day sessions do not advance",recommend(p,i,[log(i,98),log(i,98)],now).action==="repeat");
+check("40 reduced dose can restore",(()=>{const d=reduce(i);return recommend(p,d,pair(d),now).action==="restore-planned";})());
+check("41 shortened for time returns original",recommend(p,fitTime(i,1200).dose,[log(fitTime(i,1200).dose,98)],now).action==="repeat-planned");
+check("42 unresolved warning across modes",recommend(p,i,[log(steady("walk",10),98,{warning:true})],now).action==="medical-review");
+check("43 schedule blocks progression at final gate",nextVisit({...p,existingHard:true},i,pair(i),now,2400).dose===null);
+check("44 limited visit actual phase duration",nextVisit(p,i,[],now,1200).action==="shortened");
+check("45 reduced hard dose needs reassessment",(()=>{const d=reduce(interval("bike","hard120x3"));return recommend(p,d,pair(d),now).action==="reassess-hard";})());
 return tests;}
 const results=fixtureTests(); for(const name of results) console.log('PASS '+name); console.log(results.length+' checks passed');
