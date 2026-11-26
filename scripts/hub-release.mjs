@@ -125,6 +125,25 @@ try {
       } finally { await page.close(); }
     });
   }
+  for(const width of [320,390,1366]){
+    await check('Back to top after a section shortcut at '+width+'px',async()=>{
+      const page=await browser.newPage({viewport:{width,height:700}});
+      try{
+        await page.goto(host+'/');
+        const link=page.getByRole('link',{name:'Back to top',exact:true});
+        assert.equal(await link.evaluate(el=>el.classList.contains('is-floating')),false);
+        await page.locator('nav a[href="#connect"]').click();
+        await page.waitForFunction(()=>document.querySelector('.back-to-top').classList.contains('is-floating'));
+        const box=await link.boundingBox();
+        assert.ok(box&&box.height>=44&&box.x>=0&&box.x+box.width<=width+1&&box.y>=0&&box.y+box.height<=701);
+        await link.click();
+        await page.waitForFunction(()=>window.scrollY<=1);
+        assert.equal(await page.evaluate(()=>document.activeElement.id),'main-content');
+        assert.equal(await link.evaluate(el=>el.classList.contains('is-floating')),false);
+        assert.equal(new URL(page.url()).hash,'');
+      }finally{await page.close()}
+    });
+  }
   await check('Hub keyboard navigation and guide-card activation', async () => {
     const page=await browser.newPage({viewport:{width:1366,height:900}});
     try {
