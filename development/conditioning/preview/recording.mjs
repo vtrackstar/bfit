@@ -1,5 +1,5 @@
-import { phases } from './engine.mjs';
-import { observed } from './workflow.mjs';
+import { phases } from '../engine.mjs';
+import { observed } from '../workflow.mjs';
 // Each metric refers to the main work only, never warm-up or recovery.
 // Output is optional and self-reported. No estimate is derived from elapsed time.
 const metrics={walk:["m","km","mi","m/s","km/h","mph"],run:["m","km","mi","m/s","km/h","mph"],bike:["rpm","watts","km","mi"],row:["spm","watts","m"],elliptical:["spm","watts"],stairs:["spm"],march:[],swim:[],circuit:[]};
