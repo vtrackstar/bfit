@@ -3,7 +3,7 @@
   "id": "first-5k",
   "title": "Your First 5K",
   "kind": "running",
-  "state": "development-guide-content-complete-release-audit-pending",
+  "state": "release-candidate-browser-validation-pending",
   "ownerDecisionStatus": "programming-prototype-under-review",
   "successfulCompletionCriteria": "Proposed: measured 5 km outing; distinguish walking, run-walk and continuous achievement; certificate eligibility pending final confirmation.",
   "delivery": {
@@ -96,13 +96,11 @@
     }
   },
   "unresolved": [
-    "Real browser/device execution, timer usability with screen lock, native storage/import/export and certificate printing",
-    "Dedicated segment-entry and full feature-enabled longitudinal journeys; actual faster-distance audit",
-    "Verify source links, research interpretation, Foundation link, editorial/accessibility and beginner testing",
-    "Validate return-after-28-days pathway and recovery-state edge cases; verify imported state provenance and completion evidence",
-    "Confirm certificate eligibility and public release decision"
+    "Actual desktop/mobile browser execution, storage/import/export, timer screen-lock behavior and print layout",
+    "Full feature-enabled longitudinal journeys and actual faster-distance audit",
+    "Final external reference verification, beginner user testing and release approval"
   ],
-  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending. Frequency transition and late endurance extension prototype: 9/9 scripted journeys complete at exactly 5000 m; 15/15 reference checks and 22/22 assessment checks pass. Prior seven simulated timelines unchanged. Separate workload-audit-engine.cjs candidate: 15/15 reference, 22/22 assessment, 14/14 dedicated edge checks; 9/9 scripted journeys complete. Efficiency regression: simulated beginner run-walk 17 weeks, continuous 21, interrupted 30 versus 14,17,18. Reference engine preserved; do not select audit candidate for release. Separate schedule-progression-engine.cjs candidate rotates successful adjusted sessions independently of reference advancement. Corrected walking-only budget deadlock; 9/9 journeys, 15/15 reference, 22/22 assessment and 14/14 edge checks. Completion weeks 23,17,21,5,22,29,15,13,18. Efficiency remains unresolved; no release selection. Coordinated-engine candidate retains nine complete journeys and 51 existing checks; simulated weeks 20,14,18,5,20,22,12,13,18. Six improve versus schedule candidate, three unchanged. No release selection. Refined-engine candidate fixes introductory partial-week budget and continuous bridge structure, downweights older exposure during return; nine journeys and 51 existing checks pass. Weeks 19,13,17,5,19,24,11,13,18. Interrupted scenario lengthens by two weeks versus coordinated candidate; no release selection. Core state audit: initial 13/15; corrected urgent symptom priority and persistent pre-session pain hold. Final 17/17 core checks, 68/68 combined, nine journeys unchanged. Refined engine selected for interface development only. Optional training-features.cjs wrapper implemented and tested: 20/20 feature checks, all 68 previous checks and nine scripted journeys pass. Four-week eligibility windows end before prospective session; controlled pace segment stays inside familiar practice dose; assessment measurement and recovery stored; normalized measurement scope safeguards. Browser UI and actual pace/assessment longitudinal journeys pending. Development interface files committed. JS syntax, static IDs and corrected bundle first-workout smoke check pass. Real browser testing pending. Interface flow 18/18 simulated DOM checks. Real Chromium/mobile testing not completed: local browser environment cannot resolve GitHub host or retrieve branch through direct network. No release gate approval. Optional recent history intake and structurally validated progress import implemented; 27/27 simulated interface tests. Prior 88 programming checks not rerun this turn; real browser pending. Batch 1 segment entry, medically advised conservative return, completion and print certificate implemented. Batch 2 beginner educational content, navigation, responsive CSS and field reset implemented. Full regression rerun: 122/122, nine journeys unchanged. Real browser and final evidence/editorial gates pending.",
+  "notes": "15-week reference candidate implemented in reference-engine.cjs. Seven scripted journeys completed exactly 5000 m using selected strategy; 11/11 initial checks pass. Completion weeks 19,14,17,6,19,18,12. Prototype only; no release gates approved. Shared calculator and history reassessment prototype: 22/22 new checks, 11/11 reference regression checks, seven journeys complete at unchanged simulated weeks. Browser UI pending. Frequency transition and late endurance extension prototype: 9/9 scripted journeys complete at exactly 5000 m; 15/15 reference checks and 22/22 assessment checks pass. Prior seven simulated timelines unchanged. Separate workload-audit-engine.cjs candidate: 15/15 reference, 22/22 assessment, 14/14 dedicated edge checks; 9/9 scripted journeys complete. Efficiency regression: simulated beginner run-walk 17 weeks, continuous 21, interrupted 30 versus 14,17,18. Reference engine preserved; do not select audit candidate for release. Separate schedule-progression-engine.cjs candidate rotates successful adjusted sessions independently of reference advancement. Corrected walking-only budget deadlock; 9/9 journeys, 15/15 reference, 22/22 assessment and 14/14 edge checks. Completion weeks 23,17,21,5,22,29,15,13,18. Efficiency remains unresolved; no release selection. Coordinated-engine candidate retains nine complete journeys and 51 existing checks; simulated weeks 20,14,18,5,20,22,12,13,18. Six improve versus schedule candidate, three unchanged. No release selection. Refined-engine candidate fixes introductory partial-week budget and continuous bridge structure, downweights older exposure during return; nine journeys and 51 existing checks pass. Weeks 19,13,17,5,19,24,11,13,18. Interrupted scenario lengthens by two weeks versus coordinated candidate; no release selection. Core state audit: initial 13/15; corrected urgent symptom priority and persistent pre-session pain hold. Final 17/17 core checks, 68/68 combined, nine journeys unchanged. Refined engine selected for interface development only. Optional training-features.cjs wrapper implemented and tested: 20/20 feature checks, all 68 previous checks and nine scripted journeys pass. Four-week eligibility windows end before prospective session; controlled pace segment stays inside familiar practice dose; assessment measurement and recovery stored; normalized measurement scope safeguards. Browser UI and actual pace/assessment longitudinal journeys pending. Development interface files committed. JS syntax, static IDs and corrected bundle first-workout smoke check pass. Real browser testing pending. Interface flow 18/18 simulated DOM checks. Real Chromium/mobile testing not completed: local browser environment cannot resolve GitHub host or retrieve branch through direct network. No release gate approval. Optional recent history intake and structurally validated progress import implemented; 27/27 simulated interface tests. Prior 88 programming checks not rerun this turn; real browser pending. Batch 1 segment entry, medically advised conservative return, completion and print certificate implemented. Batch 2 beginner educational content, navigation, responsive CSS and field reset implemented. Full regression rerun: 122/122, nine journeys unchanged. Real browser and final evidence/editorial gates pending. Final combined rerun: 137/137 checks, 9/9 scripted journeys; actual local Chromium blocked by GitHub DNS resolution. No public deployment.",
   "goalPaceNotice": {
     "status": "prototype-integrated-browser-pending",
     "heading": "Let's build toward your goal.",
@@ -176,7 +174,7 @@
     "featureCommit": "d26cb6c0cf1187b7050cfc8434c34a1be2c11c8c"
   },
   "interface": {
-    "status": "educational-content-and-simulated-regression-complete",
+    "status": "full-regression-passed-real-browser-pending",
     "entry": "milestones/first-5k/index.html",
     "scripts": [
       "browser-engine.js",
@@ -188,16 +186,16 @@
     "limitations": [
       "Real desktop/mobile browser execution, native validation, accessibility and screen lock unverified",
       "Certificate print layout and actual PDF output unverified",
-      "Dedicated segment-entry interactions and feature-enabled longitudinal journeys pending",
       "No GPS or wearable synchronization",
       "Imported records structurally validated, not authenticated",
       "Assessment evidence stored but not independently used for goal-phase selection",
-      "History entry uses self-reported sessions without warm-up/cooldown"
+      "History entry uses self-reported sessions without warm-up/cooldown",
+      "Segment-entry and certificate content tested in simulated DOM; actual printing and full feature-enabled longitudinal journeys remain unverified"
     ],
     "flowChecks": {
-      "passed": 34,
-      "total": 34,
-      "environment": "Simulated DOM, clock, storage and file objects; not real browser"
+      "passed": 49,
+      "total": 49,
+      "environment": "JavaScript execution with dependency injection and simulated DOM; no actual browser."
     }
   }
 }
