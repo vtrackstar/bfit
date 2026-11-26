@@ -7,8 +7,11 @@ const testEngine = function testEngine(E){
   const assert=(v,msg)=>{if(!v)throw Error(msg);};
   const record=(p,day,lane="practice",opts={})=>{
     const mode=E.strategy(p),pace=opts.pace??480,measure=opts.measure??false;
-    const d=measure?Math.round(p.mainSec*1000/pace):null,rd=measure?Math.round(p.runSec*1000/pace):null;
-    const out={day,lane,prescriptionId:p.id,runSec:p.runSec,mainSec:p.mainSec,totalSec:p.totalSec,longestBout:p.longestBout,fasterSec:p.fasterSec,mainDistanceM:d,runningDistanceM:rd,continuousDistanceM:mode==="continuous"?d:null,strategy:mode,check:ok,completed:true,comparable:true,...opts};
+    const mainSec=measure&&p.distanceGoal!==null?Math.min(p.mainSec,Math.ceil(p.distanceGoal*pace/1000)):p.mainSec;
+    let left=mainSec,runSec=0,longestBout=0;
+    for(let i=0;i<p.runs.length&&left>0;i++){const run=Math.min(left,p.runs[i]);runSec+=run;longestBout=Math.max(longestBout,run);left-=run;left-=Math.min(left,p.rests[i]??0);}
+    const d=measure?Math.round(mainSec*1000/pace):null,rd=measure?Math.round(runSec*1000/pace):null;
+    const out={day,lane,prescriptionId:p.id,runSec,mainSec,totalSec:mainSec+(p.runSec?480:0),longestBout,fasterSec:Math.min(runSec,p.fasterSec),mainDistanceM:d,runningDistanceM:rd,continuousDistanceM:mode==="continuous"?d:null,strategy:mode,check:ok,completed:true,comparable:true,...opts};
     return out;
   };
   const history=(p,lastDay=1000,days=2,opts={})=>{
@@ -77,7 +80,10 @@ const testEngine = function testEngine(E){
     const s=state(E.byId("B5"),"runwalk",2,long),c=E.longCandidate(long,h,1000,"runwalk",s.practice);
     assert(c.workout.distanceGoal>4000&&c.workout.longestBout<=180,"Distance progression incorrectly requires longer bouts");
     assert(c.workout.mainSec<=c.cap,"Distance exceeds time cap");
-    return {...trace(s,h,{measure:true,pace:600,focus:()=>"long"}),candidate:{distanceM:c.workout.distanceGoal,timeCapMin:c.workout.mainSec/60,longestBoutMin:c.workout.longestBout/60}};
+    const r=trace(s,h,{measure:true,pace:600,focus:()=>"long",weeks:12});
+    assert(r.weeks.some(w=>w.action==="progress"),"Run-walk distance warning still stalls progression");
+    assert(r.final.long.longestBout<=180,"Long outing changed rhythm unexpectedly");
+    return {...r,candidate:{distanceM:c.workout.distanceGoal,timeCapMin:c.workout.mainSec/60,longestBoutMin:c.workout.longestBout/60}};
   });
   scenario("09 returning runner after several months",()=>{
     const h=history(C6,900,2,{measure:true});
@@ -97,7 +103,10 @@ const testEngine = function testEngine(E){
   scenario("12 ambitious runner, unrealistic time goal",()=>{
     const h=history(C6,1000,2,{measure:true,pace:480,representative:true}),s=E.initial(intake(30,"continuous",2),h,1000);
     assert(!E.paceOption(s,h,1000,1500,E.weekly(s)).eligible,"Unsupported pace authorized");
-    return trace(s,h,{wantPace:true,goalTimeSec:1500,measure:true,pace:480});
+    const r=trace(s,h,{wantPace:true,goalTimeSec:1500,measure:true,pace:480,weeks:12});
+    assert(r.weeks.some(w=>w.action==="progress"),"Ineligible pace still stalls easy progression");
+    assert(r.weeks.every(w=>w.action!=="pace"),"Unsupported pace introduced");
+    return r;
   });
   check("All library arithmetic and positive prescriptions",()=>E.library.every(p=>p.runSec===p.runs.reduce((a,b)=>a+b,0)&&p.mainSec===p.runSec+p.rests.reduce((a,b)=>a+b,0)+p.tail&&p.totalSec===p.mainSec+(p.runSec?480:0)&&p.longestBout<=p.runSec&&p.mainSec>0));
   check("20-minute intro contains 3 actual running minutes",()=>A1.totalSec===1200&&A1.runSec===180);
@@ -128,7 +137,7 @@ const testEngine = function testEngine(E){
   check("Week four does not force advancement",()=>{const h=[record(A1,996,"practice"),record(A1,999,"long")];return E.review(state(A1),h,1000,{weekNumber:4}).action==="repeat";});
   check("Routine progression changes only one lane",()=>{const h=[record(A1,996,"practice"),record(A1,999,"long")],r=E.review(state(A1),h,1000);return r.action==="progress"&&r.state.practice.id==="A2"&&r.state.long.id==="A1"&&r.state.easy.id==="A1";});
   check("Distance caution requires explicit review before progression",()=>{const h=[record(A1,996,"practice",{measure:true,pace:480}),record(A1,999,"long",{measure:true,pace:480})];return E.review(state(A1),h,1000).action==="review-distance"&&E.review(state(A1),h,1000,{approvedCaution:true}).action==="progress";});
-  return {version:1,notes:"Scripted outcomes in fictional profiles; not a prediction of physiological adaptation, injury risk or completion time.",summary:{profiles:profiles.length,profileFailures:profiles.filter(p=>p.error).length,checks:checks.length,checkFailures:checks.filter(c=>!c.pass).length},failures,profiles,checks};
+  return {version:2,notes:"Scripted outcomes in fictional profiles; not a prediction of physiological adaptation, injury risk or completion time.",summary:{profiles:profiles.length,profileFailures:profiles.filter(p=>p.error).length,checks:checks.length,checkFailures:checks.filter(c=>!c.pass).length},failures,profiles,checks};
 };
 const results = testEngine(require("./engine.cjs"));
 console.log(JSON.stringify(results,null,2));
