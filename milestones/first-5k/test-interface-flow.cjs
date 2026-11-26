@@ -99,6 +99,24 @@ featureBoot("assess");check("Assessment offered inside familiar practice",()=>st
 if(state().active){const duration=state().active.phases.reduce((n,p)=>n+p.sec,0);click("start");advance(duration);set("effort","comfortable");set("postSymptoms","none");set("done",true);set("segmentDistance",2000);set("segmentUnit","m");set("surface","track");submit("logForm");check("Unconfirmed segment measurement rejected",()=>!!state().active&&!state().pending);set("segmentConfirm",true);submit("logForm");check("Assessment data saved pending recovery",()=>!!state().pending?.details.assessment);date+=86400000;set("nextRecovery","normal");set("nextSymptoms","none");submit("recoverForm");check("Recovered assessment saved with measured distance",()=>state().state.history.at(-1).assessment?.accepted&&state().state.history.at(-1).assessment?.measurement.distanceM===2000);date-=86400000;}
 featureBoot("pace");check("Goal pace practice offered",()=>state().active?.decision.feature==="goal-pace");
 if(state().active){click("start");advance(state().active.phases.reduce((n,p)=>n+p.sec,0));set("effort","comfortable");set("postSymptoms","none");set("done",true);set("segmentDistance",333);set("segmentUnit","m");set("surface","track");set("segmentConfirm",true);submit("logForm");date+=86400000;set("nextRecovery","normal");set("nextSymptoms","none");submit("recoverForm");check("Pace segment distance and duration retained",()=>state().state.history.at(-1).paceMeasurement?.distanceM===333&&state().state.history.at(-1).fasterSec===180);}
+
+// Beginner UI and timer guidance regression.
+store={};env=boot();set("ready",true);submit("intake");
+check("Next action tells beginner to check in",()=>env.elements.nextAction.textContent.includes("feel today"));
+set("recovery","normal");set("symptoms","none");submit("pre");
+check("Initial timer coaching cue and next activity",()=>env.elements.phase.textContent.includes("comfortable walk")&&env.elements.phaseCue.textContent.includes("before you run")&&env.elements.upNext.textContent.includes("Comfortable run"));
+click("start");advance(300);
+check("Phase change updates cue and progress",()=>env.elements.phase.textContent==="Time to run"&&env.elements.phaseCount.textContent==="Step 2 of 14"&&Number(env.elements.timerProgress.value)>0);
+click("pause");
+check("Paused timer keeps elapsed time",()=>state().active.actual[0]===300&&!env.elements.start.disabled);
+click("start");advance(900);
+check("Finished timer directs to workout check-in",()=>env.elements.nextAction.textContent.includes("how your workout went"));
+set("distance",1.2);set("recordMinutes",12);set("recordSeconds",0);set("scope","runwalk");set("basis","elapsed");set("surface","track");click("convert");
+check("Minutes and seconds convert correctly",()=>env.elements.conversion.textContent.includes("10:00/km"));
+set("paceMin",3);set("paceSec",0);click("convert");
+check("Conflicting running data uses plain language",()=>env.elements.conversion.textContent.includes("numbers do not seem to match"));
+set("paceMin","");set("paceSec","");set("effort","comfortable");set("postSymptoms","none");set("done",true);submit("logForm");
+check("Recovery screen explains next action",()=>env.elements.nextAction.textContent.includes("recover")&&!!state().pending);
 return {environment:"Simulated DOM, clock and localStorage; actual controller and engine. Not real-browser or device execution.",tests,passed:tests.filter(x=>x.pass).length,total:tests.length};
 };
 harness(read("index.html"),read("workout.js"),read("browser-engine.js"),read("../../shared/running-calculator.js")).then(result=>{console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;});
