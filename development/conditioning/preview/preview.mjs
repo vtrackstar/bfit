@@ -1,6 +1,6 @@
 import { phases, seconds } from '../engine.mjs';
 import { slotStatus, scheduledVisit } from '../calendar.mjs';
-import { appNew, appCurrent, appStart, appTimer, appSave, appRecovery, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore } from '../app-state.mjs';
+import { appNew, appCurrent, appStart, appTimer, appSave, appRecovery, appSafetyHold, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore } from '../app-state.mjs';
 const $=id=>document.getElementById(id),form=$("setup"),panel=$("workout-panel");
 const STORE="bfit.conditioning.preview.v1",DAY=86400000;
 const today=()=>{const d=new Date();return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/DAY);};
@@ -51,6 +51,7 @@ function progress(){if(!app){$("progress-panel").innerHTML="<p>Records appear af
  if(r.reviewDue)html+='<p>Your four-week review is ready.</p>'+(r.reviewedDay===null&&!app.active?'<button id="ack-review">Mark review read</button>':'');
  html+='</div><h3>Recovery reports</h3>';
  const logs=app.history.logs.filter(l=>l.source!=="prior"&&l.status!=="skipped").slice().reverse();
+ const holds=app.history.logs.filter(l=>l.warning||l.pain);if(holds.length)html+='<p class="warning">Safety records are preserved. Warning symptoms require appropriate medical assessment; a pain restriction applies to the provoking activity. This preview has no medical restart control.</p>';
  html+=logs.length?logs.map(l=>'<div class="panel"><strong>'+esc(date(l.day))+' · '+esc(modeNames[l.dose.mode])+'</strong><p>'+esc(statusText[l.status])+' · Recovery: '+esc(l.recovery)+'</p>'+(!app.active&&l.day<today()&&l.recovery==="unknown"?'<form class="recover" data-id="'+esc(l.id)+'"><label>How did you feel the following day?<select name="recovery" required><option value="">Choose</option><option value="normal">Normal</option><option value="extra">More tired than usual</option><option value="limiting">Fatigue limited daily activities</option></select></label><button type="submit">Save recovery</button></form>':'')+'</div>').join(""):"<p>No completed activity recorded yet.</p>";
  if(!app.active)html+='<details class="depth"><summary>Record an outside activity</summary><form id="outside"><label>Activity<input name="activity" maxlength="100" required></label><label>Minutes (blank if unknown)<input name="minutes" type="number" min="1" max="1440"></label><label>Effort<select name="intensity"><option value="unknown">Unknown</option><option value="easy">Easy</option><option value="steady">Steady</option><option value="challenging">Challenging</option><option value="hard">Hard</option></select></label><label class="check"><input name="replace" type="checkbox"> Covers today’s primary slot, if applicable</label><button type="submit">Save outside activity</button></form></details>';
  $("progress-panel").innerHTML=html;}
@@ -60,7 +61,7 @@ form.addEventListener("change",()=>{$("swim-fields").hidden=form.elements.mode.v
 form.addEventListener("submit",e=>{e.preventDefault();guard(()=>{const s=profileFromForm();if(!validSettings(s))throw Error("Complete your activity setup.");const [days,opt]=getDays();const n=app??appNew(today(),days,opt);commit(n,s);msg("plan-message",app.active?"":"Plan saved. Check today's workout when ready.");render();},"plan-message");});
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;guard(()=>{
  if(b.dataset.skip){commit(appCalendarEdit(app,"skip",b.dataset.skip,null,today()));render();}
- else if(b.id==="next-cycle"){const [days,opt]=getDays();commit(appNextCycle(app,today(),days,opt,today()),profileFromForm());render();}
+ else if(b.id==="next-cycle"){if(!form.reportValidity())return;const [days,opt]=getDays();const s=profileFromForm();if(!validSettings(s))throw Error("Complete your activity setup.");commit(appNextCycle(app,today(),days,opt,today()),s);render();}
  else if(b.id==="ack-review"){commit(appAcknowledge(app,appCurrent(app).calendar.start,today()));render();}
  else if(b.hasAttribute("data-stop-warning")){command("end",{reason:"symptoms",cooldown:false});msg("workout-message","Stop exercising. Seek emergency help for emergency symptoms; otherwise seek appropriate assessment before returning.");}
  else if(b.dataset.timer){const cmd=b.dataset.timer;if(cmd==="extend")command(cmd,Math.min(30,phases(app.active.ticket.dose)[app.active.timer.index].seconds));else if(cmd==="end")command(cmd,{reason:$("end-reason").value,cooldown:$("end-cool").checked});else command(cmd);}
@@ -68,6 +69,11 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
 document.addEventListener("submit",e=>{const f=e.target;if(f===form)return;e.preventDefault();guard(()=>{const data=new FormData(f),v=k=>data.get(k),checked=k=>data.has(k);
  if(f.id==="start-workout"){
  const sl=due();if(!sl)throw Error("No due workout");const p={...settings.profile,recovery:v("recovery"),currentSevere:checked("currentSevere"),warning:checked("warning"),pain:checked("pain"),postIllness:checked("postIllness")};
+ if(p.currentSevere||p.warning||p.pain){
+ const kind=p.currentSevere||p.warning?"warning":"pain";
+ commit(appSafetyHold(app,p.mode,p.setup,"safety-"+crypto.randomUUID(),kind,today()));
+ render();msg("workout-message",actionText[p.currentSevere?"emergency":kind==="warning"?"medical-review":"pause-mode"]);return;
+ }
  const r=appStart(app,p,sl.id,today(),settings.budget,"session-"+crypto.randomUUID(),v("method"));
  if(!r.app.active){msg("workout-message",actionText[r.action]??"No suitable prescription yet. Review your plan.");return;}commit(r.app);msg("workout-message","");render();return;}
  if(f.id==="feedback"){
@@ -82,7 +88,7 @@ document.addEventListener("submit",e=>{const f=e.target;if(f===form)return;e.pre
  if(f.id==="outside"){const id="outside-"+crypto.randomUUID(),sl=due();let n=appOutside(app,{id,day:today(),activity:v("activity").trim(),minutes:v("minutes")===""?null:Number(v("minutes")),intensity:v("intensity")},today());if(checked("replace")&&sl?.kind==="primary")n=appCalendarEdit(n,"replace",sl.id,id,today());commit(n);render();}
  });});
 $("export").addEventListener("click",()=>guard(()=>{if(!app)throw Error("No saved plan yet.");const url=URL.createObjectURL(new Blob([pack(app,settings)],{type:"application/json"}));const link=document.createElement("a");link.href=url;link.download="bfit-conditioning-preview.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);},"storage-message"));
-$("import").addEventListener("change",async e=>{try{if(app&&(app.active||app.history.logs.length||app.history.external.length))throw Error("Existing records cannot be overwritten in this preview.");const file=e.target.files[0];if(!file)return;const n=decode(await file.text());commit(n.app,n.settings);fillForm();render();msg("storage-message","Backup restored.");}catch(err){msg("storage-message",err.message);}finally{e.target.value="";}});
+$("import").addEventListener("change",async e=>{try{if(app&&(app.active||app.history.logs.length||app.history.external.length))throw Error("Existing records cannot be overwritten in this preview.");const file=e.target.files[0];if(!file)return;if(file.size>8000000)throw Error("Backup is too large");const n=decode(await file.text());commit(n.app,n.settings);fillForm();render();msg("storage-message","Backup restored.");}catch(err){msg("storage-message",err.message);}finally{e.target.value="";}});
 document.addEventListener("visibilitychange",()=>{if(document.hidden&&app?.active?.timer?.state==="running")guard(()=>command("hidden"));});
 window.addEventListener("storage",e=>{if(e.key===STORE&&e.newValue!==storedRaw){storageBlocked=true;msg("storage-message","Another tab changed your records. Reload before making changes.");}});
 setInterval(()=>{if(!app?.active?.timer||app.active.timer.state!=="running"||storageBlocked)return;guard(()=>{const t=app.active.timer;if(app.active.ticket.day!==today()){command("hidden");return;}const next=appTimer(app,"tick",today(),Math.floor(performance.now()));commit(next);if(next.active.timer.state!==t.state)render();else if($("clock"))$("clock").textContent=clockText(Math.ceil((next.active.timer.targetMs-next.active.timer.elapsedMs)/1000));});},1000);
