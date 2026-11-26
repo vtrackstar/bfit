@@ -9,7 +9,7 @@ const sessionEngine = function sessionEngine(E){
   const pattern=(id,r,w,n)=>E.repeat(id,n,r,w);
   const recent=(h,d)=>E.recent(h,d,30).sort((a,b)=>b.day-a.day);
   const supported=(r,p)=>r.runSec>=p.runSec&&r.longestBout>=p.longestBout&&r.mainSec>=p.mainSec;
-  const comparable=(r,p)=>r.runSec>=p.runSec*.90&&r.longestBout>=p.longestBout&&r.mainSec>=p.mainSec*.85;
+  const comparable=(r,p)=>r.runSec>=p.runSec*.80&&r.longestBout>=p.longestBout*.75&&r.mainSec>=p.mainSec*.75;
   const unique=r=>new Set(r.map(x=>x.day)).size;
   const cap=(n,l,h)=>Math.max(l,Math.min(h,n));
   function makeDose(id,run,bout,main,rest){
@@ -164,9 +164,9 @@ const sessionEngine = function sessionEngine(E){
       const opt=E.paceOption(s,h,d,s.goalTimeSec,E.weekly(s));
       if(opt.eligible&&recentWeekLimit(opt.workout,s,h,d))return result("pace",opt.workout,opt.reason);
     }
-    const g=good(h,d),same=g.filter(r=>comparable(r,p)),initial=g.filter(r=>r.runSec>0).length<settings.initialHold&&s.started!==undefined&&d-s.started<14;
+    const g=good(h,d),same=g.filter(r=>comparable(r,p)),initial=g.filter(r=>r.runSec>0).length<settings.initialHold&&s.started!==undefined&&d-s.started<14&&p.runSec>0;
     // Need two comparable recovered days for progression; no same-ID rule.
-    if(unique(same)<2||initial||s.holdUntil!==null&&d<=s.holdUntil)return result("repeat",p,"Consolidate familiar work and recovery.");
+    if((unique(same)<2&&unique(g.filter(r=>r.lane===lane&&r.prescriptionId===p.id))<2)||initial||s.holdUntil!==null&&d<=s.holdUntil)return result("repeat",p,"Consolidate familiar work and recovery.");
     if(s.lastChange!==null&&d-s.lastChange<3)return result("repeat",p,"Consolidate the most recent training adjustment.");
     if(lane==="easy")return result("repeat",p,"Keep this session comfortable.");
     // Never allow a near-distance result to bypass symptom/recovery checks.
@@ -184,9 +184,9 @@ const sessionEngine = function sessionEngine(E){
       const q=c.workout;
       // Absolute per-session guardrails are coaching choices. Avoid compounding
       // a bout increase with a large increase in running volume.
-      const maxIncrease=Math.min(180,Math.max(60,Math.ceil(maxRun*.15/30)*30));
+      const maxIncrease=maxRun===0?180:Math.min(180,Math.max(60,Math.ceil(maxRun*.15/30)*30));
       if(q.runSec>maxRun+maxIncrease||q.mainSec>Math.max(max(g,"mainSec"),p.mainSec)+300||q.longestBout>maxBout+Math.max(30,Math.min(180,Math.ceil(maxBout*.25/15)*15)))continue;
-      if(q.longestBout>p.longestBout&&q.runSec>p.runSec+60)continue;
+      if(p.runSec&&q.longestBout>p.longestBout&&q.runSec>p.runSec+60)continue;
       const review=distanceReview(q,h,d,p);
       checks.push(review.flag);
       if(!review.allowed||!recentWeekLimit(q,s,h,d))continue;
