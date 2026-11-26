@@ -13,7 +13,7 @@ const read=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
 const check=async(page,text)=>{await page.getByText(text,{exact:false}).first().waitFor({timeout:5000});};
 const startDate=new Date('2026-11-26T12:00:00Z');
 async function setup(page){
- await page.clock.setFixedTime(startDate);await page.goto(url);await page.locator('[name=day1]').waitFor();
+ await page.clock.setFixedTime(startDate);await page.goto(url);await page.locator('[name=day1]').waitFor({state:'attached'});
  assert.equal(await page.locator('.setup-step:visible').count(),1);
  await page.locator('[name=mode]').selectOption('bike');await page.locator('[name=goal]').selectOption('B');
  await page.getByRole('button',{name:'Continue',exact:true}).click();
