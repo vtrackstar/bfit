@@ -1,0 +1,45 @@
+name: Conditioning preview checks
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'development/conditioning/**'
+      - '.github/workflows/conditioning-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run actual Node module suites
+        run: |
+          for test in development/conditioning/*.test.mjs; do node "$test" || exit 1; done
+          node --check development/conditioning/preview/preview.mjs
+      - name: Install browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test reader journey in Chromium
+        run: node development/conditioning/preview/browser-flow.mjs
+  webkit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install WebKit
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps webkit
+      - name: Test reader journey in WebKit
+        env:
+          BFIT_BROWSER: webkit
+        run: node development/conditioning/preview/browser-flow.mjs
