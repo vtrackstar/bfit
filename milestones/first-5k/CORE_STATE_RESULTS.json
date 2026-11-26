@@ -1,66 +1,238 @@
 {
-  "tests": [
-    {
-      "name": "Successful session rotates lane without phase increase",
-      "pass": true
-    },
-    {
-      "name": "Complete comparable cycle advances phase",
-      "pass": true
-    },
-    {
-      "name": "Reduced bridge rotates lane",
-      "pass": true
-    },
-    {
-      "name": "Underdosed cycle retains phase",
-      "pass": true
-    },
-    {
-      "name": "Return session rotates but holds phase",
-      "pass": true
-    },
-    {
-      "name": "Recovered cycle does not advance after return",
-      "pass": true
-    },
-    {
-      "name": "JSON round trip retains goal and history",
-      "pass": true
-    },
-    {
-      "name": "JSON round trip retains recovery",
-      "pass": true
-    },
-    {
-      "name": "JSON round trip retains symptom hold",
-      "pass": true
-    },
-    {
-      "name": "Incomplete session cannot advance",
-      "pass": true
-    },
-    {
-      "name": "Unmeasured cycle can advance but not finish",
-      "pass": true
-    },
-    {
-      "name": "Old exposure excluded during return",
-      "pass": true
-    },
-    {
-      "name": "Current urgent symptoms override rest day",
-      "pass": false
-    },
-    {
-      "name": "Pre-session pain persists in returned state",
-      "pass": false
-    },
-    {
-      "name": "Budget-shortened continuous workout stays continuous",
-      "pass": true
-    }
-  ],
-  "passed": 13,
-  "total": 15
+  "core": {
+    "tests": [
+      {
+        "name": "Successful session rotates lane without phase increase",
+        "pass": true
+      },
+      {
+        "name": "Complete comparable cycle advances phase",
+        "pass": true
+      },
+      {
+        "name": "Reduced bridge rotates lane",
+        "pass": true
+      },
+      {
+        "name": "Underdosed cycle retains phase",
+        "pass": true
+      },
+      {
+        "name": "Return session rotates but holds phase",
+        "pass": true
+      },
+      {
+        "name": "Recovered cycle does not advance after return",
+        "pass": true
+      },
+      {
+        "name": "JSON round trip retains goal and history",
+        "pass": true
+      },
+      {
+        "name": "JSON round trip retains recovery",
+        "pass": true
+      },
+      {
+        "name": "JSON round trip retains symptom hold",
+        "pass": true
+      },
+      {
+        "name": "Incomplete session cannot advance",
+        "pass": true
+      },
+      {
+        "name": "Unmeasured cycle can advance but not finish",
+        "pass": true
+      },
+      {
+        "name": "Old exposure excluded during return",
+        "pass": true
+      },
+      {
+        "name": "Current urgent symptoms override rest day",
+        "pass": true
+      },
+      {
+        "name": "Pre-session pain persists in returned state",
+        "pass": true
+      },
+      {
+        "name": "Budget-shortened continuous workout stays continuous",
+        "pass": true
+      },
+      {
+        "name": "Urgent hold persists after JSON restore",
+        "pass": true
+      },
+      {
+        "name": "Pre-session pain hold persists after JSON restore",
+        "pass": true
+      }
+    ],
+    "passed": 17,
+    "total": 17
+  },
+  "reference": {
+    "completed": 9,
+    "total": 9,
+    "passed": 15,
+    "checks": 15
+  },
+  "assessment": {
+    "checks": [
+      {
+        "name": "Meters and time",
+        "pass": true
+      },
+      {
+        "name": "Miles and time",
+        "pass": true
+      },
+      {
+        "name": "Time and pace",
+        "pass": true
+      },
+      {
+        "name": "Distance and pace",
+        "pass": true
+      },
+      {
+        "name": "Treadmill mph",
+        "pass": true
+      },
+      {
+        "name": "Treadmill kmh",
+        "pass": true
+      },
+      {
+        "name": "Duration alone",
+        "pass": true
+      },
+      {
+        "name": "Pace alone",
+        "pass": true
+      },
+      {
+        "name": "Invalid inputs",
+        "pass": true
+      },
+      {
+        "name": "Inconsistent metrics",
+        "pass": true
+      },
+      {
+        "name": "Mixed workout scope",
+        "pass": true
+      },
+      {
+        "name": "Moving versus elapsed",
+        "pass": true
+      },
+      {
+        "name": "Split equivalents",
+        "pass": true
+      },
+      {
+        "name": "Time formatting",
+        "pass": true
+      },
+      {
+        "name": "History-based goal switch",
+        "pass": true
+      },
+      {
+        "name": "Assessment capped by demonstrated bout",
+        "pass": true
+      },
+      {
+        "name": "No data means no prescribed assessment",
+        "pass": true
+      },
+      {
+        "name": "Goal time edit retains progression",
+        "pass": true
+      },
+      {
+        "name": "Unresolved symptoms pause",
+        "pass": true
+      },
+      {
+        "name": "Four-week summary",
+        "pass": true
+      },
+      {
+        "name": "Irregular history does not advance",
+        "pass": true
+      },
+      {
+        "name": "Intake preserves prior history",
+        "pass": true
+      }
+    ],
+    "passed": 22,
+    "total": 22
+  },
+  "workload": {
+    "tests": [
+      {
+        "name": "Incomplete session counts in rolling exposure",
+        "pass": true
+      },
+      {
+        "name": "Third session inside rolling week blocked",
+        "pass": true
+      },
+      {
+        "name": "Hard external activity delays running",
+        "pass": true
+      },
+      {
+        "name": "Unknown current recovery delays workout",
+        "pass": true
+      },
+      {
+        "name": "Current sharp pain blocks workout",
+        "pass": true
+      },
+      {
+        "name": "Urgent symptoms route to urgent action",
+        "pass": true
+      },
+      {
+        "name": "No distance does not award completion",
+        "pass": true
+      },
+      {
+        "name": "Return dose bounded by familiar exposure",
+        "pass": true
+      },
+      {
+        "name": "Recovery remains active across sessions",
+        "pass": true
+      },
+      {
+        "name": "Duplicate log rejected",
+        "pass": true
+      },
+      {
+        "name": "Persistent symptom latch",
+        "pass": true
+      },
+      {
+        "name": "Impossible continuous record rejected",
+        "pass": true
+      },
+      {
+        "name": "No return after 28 days without reassessment",
+        "pass": true
+      },
+      {
+        "name": "Budget truncation never lengthens bouts",
+        "pass": true
+      }
+    ],
+    "passed": 14,
+    "total": 14
+  }
 }
