@@ -620,8 +620,8 @@
         },
         {
           "week": 7,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "long",
           "action": "train",
           "runMin": 5,
@@ -632,15 +632,27 @@
         },
         {
           "week": 8,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "practice",
           "action": "train",
-          "runMin": 6,
-          "boutMin": 1,
-          "mainMin": 13.5,
-          "distanceM": 1432,
-          "flag": "review"
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 8,
+          "level": 2,
+          "days": 3,
+          "lane": "easy",
+          "action": "train",
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
         },
         {
           "week": 8,
@@ -648,11 +660,11 @@
           "days": 3,
           "lane": "long",
           "action": "train",
-          "runMin": 7,
-          "boutMin": 1.5,
-          "mainMin": 17,
-          "distanceM": 1784,
-          "flag": "review"
+          "runMin": 5,
+          "boutMin": 0.8333333333333334,
+          "mainMin": 16,
+          "distanceM": 1625,
+          "flag": "within-or-unknown"
         },
         {
           "week": 9,
@@ -700,7 +712,7 @@
           "boutMin": 1,
           "mainMin": 13.5,
           "distanceM": 1432,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 10,
@@ -724,7 +736,7 @@
           "boutMin": 1.5,
           "mainMin": 17,
           "distanceM": 1784,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 11,
@@ -1082,8 +1094,8 @@
         },
         {
           "week": 2,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "long",
           "action": "train",
           "runMin": 5,
@@ -1094,15 +1106,27 @@
         },
         {
           "week": 3,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "practice",
           "action": "train",
-          "runMin": 6,
-          "boutMin": 1,
-          "mainMin": 13.5,
-          "distanceM": 1432,
-          "flag": "review"
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 2,
+          "days": 3,
+          "lane": "easy",
+          "action": "train",
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
         },
         {
           "week": 3,
@@ -1110,11 +1134,11 @@
           "days": 3,
           "lane": "long",
           "action": "train",
-          "runMin": 7,
-          "boutMin": 1.5,
-          "mainMin": 17,
-          "distanceM": 1784,
-          "flag": "review"
+          "runMin": 5,
+          "boutMin": 0.8333333333333334,
+          "mainMin": 16,
+          "distanceM": 1625,
+          "flag": "within-or-unknown"
         },
         {
           "week": 4,
@@ -1162,7 +1186,7 @@
           "boutMin": 1,
           "mainMin": 13.5,
           "distanceM": 1432,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 5,
@@ -1186,7 +1210,7 @@
           "boutMin": 1.5,
           "mainMin": 17,
           "distanceM": 1784,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 6,
@@ -1544,8 +1568,8 @@
         },
         {
           "week": 2,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "long",
           "action": "train",
           "runMin": 5,
@@ -1556,15 +1580,27 @@
         },
         {
           "week": 3,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "practice",
           "action": "train",
-          "runMin": 6,
-          "boutMin": 1,
-          "mainMin": 13.5,
-          "distanceM": 1432,
-          "flag": "review"
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 2,
+          "days": 3,
+          "lane": "easy",
+          "action": "train",
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
         },
         {
           "week": 3,
@@ -1572,11 +1608,11 @@
           "days": 3,
           "lane": "long",
           "action": "train",
-          "runMin": 7,
-          "boutMin": 1.5,
-          "mainMin": 17,
-          "distanceM": 1784,
-          "flag": "review"
+          "runMin": 5,
+          "boutMin": 0.8333333333333334,
+          "mainMin": 16,
+          "distanceM": 1625,
+          "flag": "within-or-unknown"
         },
         {
           "week": 4,
@@ -1624,7 +1660,7 @@
           "boutMin": 1,
           "mainMin": 13.5,
           "distanceM": 1432,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 5,
@@ -1648,7 +1684,7 @@
           "boutMin": 1.5,
           "mainMin": 17,
           "distanceM": 1784,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 6,
@@ -2276,8 +2312,8 @@
         },
         {
           "week": 2,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "long",
           "action": "train",
           "runMin": 5,
@@ -2288,15 +2324,27 @@
         },
         {
           "week": 3,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "practice",
           "action": "train",
-          "runMin": 6,
-          "boutMin": 1,
-          "mainMin": 13.5,
-          "distanceM": 1432,
-          "flag": "review"
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 2,
+          "days": 3,
+          "lane": "easy",
+          "action": "train",
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
         },
         {
           "week": 3,
@@ -2304,11 +2352,11 @@
           "days": 3,
           "lane": "long",
           "action": "train",
-          "runMin": 7,
-          "boutMin": 1.5,
-          "mainMin": 17,
-          "distanceM": 1784,
-          "flag": "review"
+          "runMin": 5,
+          "boutMin": 0.8333333333333334,
+          "mainMin": 16,
+          "distanceM": 1625,
+          "flag": "within-or-unknown"
         },
         {
           "week": 4,
@@ -2356,7 +2404,7 @@
           "boutMin": 1,
           "mainMin": 13.5,
           "distanceM": 1432,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 5,
@@ -2380,7 +2428,7 @@
           "boutMin": 1.5,
           "mainMin": 17,
           "distanceM": 1784,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 6,
@@ -2930,8 +2978,8 @@
         },
         {
           "week": 2,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "long",
           "action": "train",
           "runMin": 5,
@@ -2942,15 +2990,27 @@
         },
         {
           "week": 3,
-          "level": 3,
-          "days": 2,
+          "level": 2,
+          "days": 3,
           "lane": "practice",
           "action": "train",
-          "runMin": 6,
-          "boutMin": 1,
-          "mainMin": 13.5,
-          "distanceM": 1432,
-          "flag": "review"
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 2,
+          "days": 3,
+          "lane": "easy",
+          "action": "train",
+          "runMin": 2,
+          "boutMin": 0.6666666666666666,
+          "mainMin": 6,
+          "distanceM": 614,
+          "flag": "within-or-unknown"
         },
         {
           "week": 3,
@@ -2958,11 +3018,11 @@
           "days": 3,
           "lane": "long",
           "action": "train",
-          "runMin": 7,
-          "boutMin": 1.5,
-          "mainMin": 17,
-          "distanceM": 1784,
-          "flag": "review"
+          "runMin": 5,
+          "boutMin": 0.8333333333333334,
+          "mainMin": 16,
+          "distanceM": 1625,
+          "flag": "within-or-unknown"
         },
         {
           "week": 4,
@@ -3022,7 +3082,7 @@
           "boutMin": 1,
           "mainMin": 13.5,
           "distanceM": 1432,
-          "flag": "within-or-unknown"
+          "flag": "review"
         },
         {
           "week": 7,
@@ -3667,6 +3727,810 @@
           "flag": "review"
         }
       ]
+    },
+    {
+      "name": "Slow continuous beyond 45 min",
+      "done": {
+        "week": 14,
+        "distanceM": 5000,
+        "strategy": "continuous",
+        "minutes": 55,
+        "lane": "long"
+      },
+      "final": {
+        "level": 15,
+        "days": 2,
+        "index": 1,
+        "goal": "continuous"
+      },
+      "trace": [
+        {
+          "week": 1,
+          "level": 12,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 25,
+          "boutMin": 25,
+          "mainMin": 25,
+          "distanceM": 2273,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 1,
+          "level": 13,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 30,
+          "boutMin": 30,
+          "mainMin": 30,
+          "distanceM": 2727,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 2,
+          "level": 13,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 26,
+          "boutMin": 26,
+          "mainMin": 26,
+          "distanceM": 2364,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 2,
+          "level": 13,
+          "days": 2,
+          "lane": "long",
+          "action": "bridge",
+          "runMin": 34,
+          "boutMin": 34,
+          "mainMin": 35,
+          "distanceM": 3162,
+          "flag": "review"
+        },
+        {
+          "week": 3,
+          "level": 14,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 35,
+          "boutMin": 35,
+          "mainMin": 35,
+          "distanceM": 3182,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 14,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 4,
+          "level": 14,
+          "days": 2,
+          "lane": "long",
+          "action": "bridge",
+          "runMin": 39,
+          "boutMin": 39,
+          "mainMin": 40,
+          "distanceM": 3617,
+          "flag": "review"
+        },
+        {
+          "week": 4,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 40,
+          "boutMin": 40,
+          "mainMin": 40,
+          "distanceM": 3636,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 5,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 5,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "bridge",
+          "runMin": 44,
+          "boutMin": 44,
+          "mainMin": 45,
+          "distanceM": 4071,
+          "flag": "review"
+        },
+        {
+          "week": 6,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 45,
+          "boutMin": 45,
+          "mainMin": 45,
+          "distanceM": 4091,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 6,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 7,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 45,
+          "boutMin": 45,
+          "mainMin": 45,
+          "distanceM": 4091,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 7,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 8,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 48,
+          "boutMin": 48,
+          "mainMin": 48,
+          "distanceM": 4364,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 8,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 9,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 48,
+          "boutMin": 48,
+          "mainMin": 48,
+          "distanceM": 4364,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 9,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 10,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 51,
+          "boutMin": 51,
+          "mainMin": 51,
+          "distanceM": 4636,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 10,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 11,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 51,
+          "boutMin": 51,
+          "mainMin": 51,
+          "distanceM": 4636,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 11,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 12,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 54,
+          "boutMin": 54,
+          "mainMin": 54,
+          "distanceM": 4909,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 12,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 13,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 54,
+          "boutMin": 54,
+          "mainMin": 54,
+          "distanceM": 4909,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 13,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 27,
+          "mainMin": 27,
+          "distanceM": 2455,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 14,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 55,
+          "boutMin": 55,
+          "mainMin": 55,
+          "distanceM": 5000,
+          "flag": "within-or-unknown"
+        }
+      ]
+    },
+    {
+      "name": "Slow run-walk beyond 61 min",
+      "done": {
+        "week": 19,
+        "distanceM": 5000,
+        "strategy": "runwalk",
+        "minutes": 69.21875,
+        "lane": "long"
+      },
+      "final": {
+        "level": 15,
+        "days": 2,
+        "index": 1,
+        "goal": "runwalk"
+      },
+      "trace": [
+        {
+          "week": 1,
+          "level": 4,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 8,
+          "boutMin": 2,
+          "mainMin": 14,
+          "distanceM": 990,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 1,
+          "level": 5,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 9,
+          "boutMin": 2,
+          "mainMin": 18,
+          "distanceM": 1255,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 2,
+          "level": 5,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 10,
+          "boutMin": 2,
+          "mainMin": 18,
+          "distanceM": 1269,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 2,
+          "level": 6,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 12,
+          "boutMin": 2,
+          "mainMin": 23,
+          "distanceM": 1611,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 6,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 12,
+          "boutMin": 2.5,
+          "mainMin": 20,
+          "distanceM": 1423,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 3,
+          "level": 7,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 15,
+          "boutMin": 2.5,
+          "mainMin": 26,
+          "distanceM": 1841,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 4,
+          "level": 7,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 14,
+          "boutMin": 3,
+          "mainMin": 21,
+          "distanceM": 1514,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 4,
+          "level": 8,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 18,
+          "boutMin": 3,
+          "mainMin": 29,
+          "distanceM": 2072,
+          "flag": "review"
+        },
+        {
+          "week": 5,
+          "level": 8,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 16,
+          "boutMin": 3,
+          "mainMin": 24,
+          "distanceM": 1731,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 5,
+          "level": 9,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 21,
+          "boutMin": 3,
+          "mainMin": 33,
+          "distanceM": 2365,
+          "flag": "review"
+        },
+        {
+          "week": 6,
+          "level": 9,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 18,
+          "boutMin": 3,
+          "mainMin": 27,
+          "distanceM": 1947,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 6,
+          "level": 10,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 24,
+          "boutMin": 3,
+          "mainMin": 36,
+          "distanceM": 2596,
+          "flag": "review"
+        },
+        {
+          "week": 7,
+          "level": 10,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 18,
+          "boutMin": 3,
+          "mainMin": 27,
+          "distanceM": 1947,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 7,
+          "level": 10,
+          "days": 2,
+          "lane": "long",
+          "action": "bridge",
+          "runMin": 27,
+          "boutMin": 3,
+          "mainMin": 41,
+          "distanceM": 2952,
+          "flag": "review"
+        },
+        {
+          "week": 8,
+          "level": 11,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 27,
+          "boutMin": 3,
+          "mainMin": 42,
+          "distanceM": 3014,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 8,
+          "level": 11,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 9,
+          "level": 12,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 30,
+          "boutMin": 3,
+          "mainMin": 45,
+          "distanceM": 3245,
+          "flag": "review"
+        },
+        {
+          "week": 9,
+          "level": 12,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 10,
+          "level": 13,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 32,
+          "boutMin": 3,
+          "mainMin": 49,
+          "distanceM": 3524,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 10,
+          "level": 13,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 11,
+          "level": 14,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 35,
+          "boutMin": 3,
+          "mainMin": 54,
+          "distanceM": 3880,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 11,
+          "level": 14,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 12,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 38,
+          "boutMin": 3,
+          "mainMin": 58,
+          "distanceM": 4173,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 12,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 13,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 40,
+          "boutMin": 3,
+          "mainMin": 61,
+          "distanceM": 4389,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 13,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 14,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 40,
+          "boutMin": 3,
+          "mainMin": 61,
+          "distanceM": 4389,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 14,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 15,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 43,
+          "boutMin": 3,
+          "mainMin": 64,
+          "distanceM": 4620,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 15,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 16,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 43,
+          "boutMin": 3,
+          "mainMin": 64,
+          "distanceM": 4620,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 16,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 17,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 45,
+          "boutMin": 3,
+          "mainMin": 67,
+          "distanceM": 4837,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 17,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 18,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 45,
+          "boutMin": 3,
+          "mainMin": 67,
+          "distanceM": 4837,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 18,
+          "level": 15,
+          "days": 2,
+          "lane": "practice",
+          "action": "train",
+          "runMin": 20,
+          "boutMin": 3,
+          "mainMin": 30,
+          "distanceM": 2163,
+          "flag": "within-or-unknown"
+        },
+        {
+          "week": 19,
+          "level": 15,
+          "days": 2,
+          "lane": "long",
+          "action": "train",
+          "runMin": 46.71874999999999,
+          "boutMin": 3,
+          "mainMin": 69.21875,
+          "distanceM": 5000,
+          "flag": "within-or-unknown"
+        }
+      ]
     }
   ],
   "tests": [
@@ -3703,6 +4567,22 @@
       "pass": true
     },
     {
+      "name": "Frequency split retains phase and running dose",
+      "pass": true
+    },
+    {
+      "name": "Frequency request reaches three days",
+      "pass": true
+    },
+    {
+      "name": "Slow runner extends beyond 45 minutes",
+      "pass": true
+    },
+    {
+      "name": "Slow run-walk extends beyond 61 minutes",
+      "pass": true
+    },
+    {
       "name": "All journey finishes stop at 5K",
       "pass": true
     },
@@ -3716,9 +4596,9 @@
     }
   ],
   "summary": {
-    "completed": 7,
-    "total": 7,
-    "passed": 11,
-    "checks": 11
+    "completed": 9,
+    "total": 9,
+    "passed": 15,
+    "checks": 15
   }
 }
