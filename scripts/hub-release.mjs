@@ -87,11 +87,23 @@ try {
           assert.equal(new URL(page.url()).hash, '#'+fragment, 'Nav did not open #'+fragment);
           assert.ok(await page.locator('#'+fragment).isVisible(), 'Section not visible: '+fragment);
         }
+        for (const href of ['#guides','#more-training-plans','#your-first','#exercise-library']) {
+          assert.equal(await page.locator('.collection-nav a[href="'+href+'"]').count(),1);
+        }
+        assert.equal(await page.locator('.combine-guides summary').count(),1);
         for (const id of ['more-training-plans','your-first']) {
           const row=page.locator('#'+id+' .cards');
           assert.ok(await row.locator('a.card').count() >= 2, 'Missing specialty cards in '+id);
           const overflows=await row.evaluate(el=>el.scrollWidth>el.clientWidth+1);
           assert.equal(await page.locator('#'+id+' .scroll-hint').isVisible(),overflows);
+          const next=page.locator('#'+id+' [data-scroll="1"]');
+          const previous=page.locator('#'+id+' [data-scroll="-1"]');
+          if(overflows){
+            assert.ok(await previous.isDisabled());
+            assert.ok(await next.isEnabled());
+            await next.click();
+            await page.waitForFunction(id=>document.querySelector('#'+id+' .cards').scrollLeft>2,id);
+          }
         }
         assert.equal(await page.locator('a[href*="twitch.tv/"]').count(),0);
         for (const [name, dest] of Object.entries(social)) {

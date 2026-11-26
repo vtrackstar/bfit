@@ -83,6 +83,22 @@ for (const [path, html] of pages) {
     if (!pages.has(target)) add(path, 'site link targets missing file: '+href);
   }
 }
+// Keep discovery documents synchronized with published homepage cards.
+const hub = pages.get('index.html');
+const catalog = fs.readFileSync('README.md','utf8');
+const sitemap = fs.readFileSync('sitemap.xml','utf8');
+const publicLinks = fs.readFileSync('scripts/public-links.mjs','utf8');
+const milestoneReadme = fs.readFileSync('milestones/README.md','utf8');
+for (const match of hub.matchAll(/<a\b[^>]*class="card[^"]*"[^>]*href="((?:guides|milestones)\/[^"]+\/)"/g)) {
+  const route=match[1];
+  for (const [name,source,needle] of [['README.md',catalog,']('+route+')'],['sitemap.xml',sitemap,'<loc>'+base+route+'</loc>'],['scripts/public-links.mjs',publicLinks,base+route]]) {
+    if (!source.includes(needle)) add(name,'missing published hub route: '+route);
+  }
+  if(route.startsWith('milestones/')){
+    const slug=route.split('/')[1];
+    if(!milestoneReadme.split('\n').some(line=>line.includes('| Published |')&&line.includes(']('+slug+'/index.html)'))) add('milestones/README.md','missing published milestone: '+slug);
+  }
+}
 console.log('Checked '+pages.size+' pages; '+scriptsChecked+' JS scripts; '+jsonChecked+' JSON scripts; '+linksChecked+' links; '+anchorsChecked+' static anchors.');
 if (errors.length) {
   for (const err of errors) console.error('FAIL: '+err);

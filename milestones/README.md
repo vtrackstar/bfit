@@ -5,9 +5,9 @@
 | Your First Push-Up | Published | [Guide](first-push-up/index.html), [release checks](first-push-up/RELEASE_CHECKS.md), [manifest](first-push-up/manifest.json) |
 | Your First Pull-Up | Published | [Guide](first-pull-up/index.html), [programming framework](first-pull-up/FRAMEWORK.md), [manifest](first-pull-up/manifest.json), [engine tests](first-pull-up/test-engine.cjs) |
 | Your First Pistol Squat | Planning | [Manifest](first-pistol-squat/manifest.json) |
-| Your First 5K | Planning | [Manifest](first-5k/manifest.json) |
+| Your First 5K | Published | [Guide](first-5k/index.html), [manifest](first-5k/manifest.json), [programming review](first-5k/PROGRAMMING_REVIEW.md) |
 
-The two published guides appear under **Your First…** on the hub. They review progress after eight completed sessions, about four weeks at twice a week. Reaching the milestone depends on the reader’s progress. Both support local saving and JSON backup and restore.
+Three published guides appear under **Your First…** on the hub. Push-Up and Pull-Up review progress after eight completed sessions, about four weeks at twice a week. 5K adjusts workouts using completed training and recovery, with no fixed completion deadline. All three support local saving and JSON backup and restore.
 
 Push-Up starts with a surface the reader can use comfortably. Pull-Up defines a dead hang on the opening page, asks which equipment the reader has, and shows the setup prompt for that equipment. Someone without safe pulling equipment gets a direct route to Foundation.
 

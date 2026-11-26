@@ -15,17 +15,18 @@ I built these guides so you can choose a workout that fits your week, try it, an
 | More training plans | [Build Your Glutes](guides/build-your-glutes/) | Follow two leg days a week for eight weeks, swap equipment, and log each set. |
 | Your First… | [Your First Push-Up](milestones/first-push-up/) | Start at a wall or raised surface and work toward one floor push-up. |
 | Your First… | [Your First Pull-Up](milestones/first-pull-up/) | Practice with assistance and work toward one pull-up from a dead hang. |
+| Your First… | [Your First 5K](milestones/first-5k/) | Build toward a run-walk or continuous 5K with adaptive workouts, recovery checks, and saved progress. |
 
-Pistol Squat and 5K are planned. The [exercise library](https://bfit-exercise-movement-library.balouissaint.chatgpt.site/) is a separately hosted reference.
+Pistol Squat is planned. The [exercise library](https://bfit-exercise-movement-library.balouissaint.chatgpt.site/) is a separately hosted reference.
 
 ## Current decisions for future edits
 
 - GitHub Pages publishes from `main` in `vtrackstar/bfit`. Start with the current repository files. Drive drafts and backups are separate copies. Preserve existing public paths, anchors, and saved workout data.
-- Keep the training plans and milestones in their own single-row collections. Show the swipe cue when more cards extend offscreen. Main guide cards stay in the regular grid.
-- Write for someone doing their first workout. Give the first physical action and explain unfamiliar terms where the reader needs them. For example, a dead hang means hanging still from the bar with straight arms and feet off the ground. Both milestone guides review progress after eight completed sessions.
+- Keep the training plans and milestones in their own single-row collections. Show the swipe cue and previous/next controls when more cards extend offscreen; the homepage also has direct collection shortcuts. Main guide cards stay in the regular grid.
+- Write for someone doing their first workout. Give the first physical action and explain unfamiliar terms where the reader needs them. For example, a dead hang means hanging still from the bar with straight arms and feet off the ground. Push-Up and Pull-Up review progress after eight completed sessions; 5K adjusts according to completed running sessions and recovery.
 - The hub links to Instagram, TikTok, and BFit Lounge on Discord. Bryan paused Twitch **on the hub** and will say when to restore it. Individual guides can retain their existing Twitch links.
 - Coaching intake is paused. The [coaching page](coaching/) holds the examples, nutrition information, and expandable comparison of Premium ($199/month) and Elite ($499/month). The hub links there. Keep intake closed until Bryan reopens it.
-- Foundation saves setup choices and exports a workout with a blank record sheet. Gamer Fit saves Skill Tree choices. Run Strong offers a printable record. Athleticism, Keep Moving, the two training plans, and the two milestone guides have their own recording tools. Check the specific guide before describing what it saves or transfers.
+- Foundation saves setup choices and exports a workout with a blank record sheet. Gamer Fit saves Skill Tree choices. Run Strong offers a printable record. Athleticism, Keep Moving, the two training plans, and the three milestone guides have their own recording tools. Check the specific guide before describing what it saves or transfers.
 
 ## Verification and handoff
 

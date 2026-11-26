@@ -2,6 +2,8 @@
 
 ## 2026-11-26
 
+- Published Your First 5K, added an evergreen Coming Next card and synchronized the published catalog, sitemap and link checks. Added collection shortcuts, overflow controls, collection descriptions, clearer running-guide cards and guidance for combining programs.
+
 - Published the beginner-language and navigation update across the hub and nine guides and plans in `2298d0c`. Changes include Foundation’s general starting route, Athleticism’s rest labels, clearer first workouts, and equipment-specific Pull-Up instructions. Dead hang is defined on both the hub and guide.
 - Updated the handoff, catalog, sitemap, release checks, and milestone publication records. Twitch stays off the hub until Bryan requests its return. Prices and the coaching comparison live on the coaching page. Physical-device and beginner reviews remain open.
 

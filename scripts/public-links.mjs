@@ -14,6 +14,7 @@ const urls = [
   ['Build Your Glutes', 'https://vtrackstar.github.io/bfit/guides/build-your-glutes/'],
   ['Your First Push-Up', 'https://vtrackstar.github.io/bfit/milestones/first-push-up/'],
   ['Your First Pull-Up', 'https://vtrackstar.github.io/bfit/milestones/first-pull-up/'],
+  ['Your First 5K', 'https://vtrackstar.github.io/bfit/milestones/first-5k/'],
   ['Exercise library', 'https://bfit-exercise-movement-library.balouissaint.chatgpt.site/'],
   ['Coaching availability', 'https://vtrackstar.github.io/bfit/coaching/'],
   ['Coaching form, currently paused (owner-side check)', 'https://forms.gle/f11PGA7PCUKaxrgq9'],
