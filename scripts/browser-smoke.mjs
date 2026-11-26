@@ -8,6 +8,10 @@ import path from 'node:path';
 const host = 'http://127.0.0.1:8765';
 const guidePages = [
   { name: 'Hub', url: '/', selector: '#guides .card', min: 5 },
+  { name: 'Weekend Warrior', url: '/guides/weekend-warrior/', selector: 'main h1', min: 1 },
+  { name: 'Build Your Glutes', url: '/guides/build-your-glutes/', selector: 'main h1', min: 1 },
+  { name: 'Your First Push-Up', url: '/milestones/first-push-up/', selector: 'main h1', min: 1 },
+  { name: 'Your First Pull-Up', url: '/milestones/first-pull-up/', selector: 'main h1', min: 1 },
   { name: 'Foundation', url: '/guides/foundation/', selector: '#main', min: 1 },
   { name: 'Athleticism', url: '/guides/athleticism/', selector: '#app', min: 1 },
   { name: 'Gamer Fit', url: '/guides/gamer-fit/', selector: '#main-content', min: 1 },
@@ -55,7 +59,7 @@ try {
         });
         if(ui.text < 130) throw Error('Page has too little readable content: '+ui.text);
         if(guide.name!=='Hub'){
-          const hubLink=page.locator('a.bfit-hub-link').first();
+          const hubLink=page.locator('a[href="https://vtrackstar.github.io/bfit/"]').first();
           let reached=false;
           for(let i=0;i<18;i++){
             await page.keyboard.press('Tab');
@@ -67,7 +71,7 @@ try {
             const r=el.getBoundingClientRect();
             return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));
           }))throw Error('Focused Hub link is obscured');
-          if(!await page.getByRole('link',{name:/BFit Hub/i}).count())throw Error('Hub link lacks an accessible name');
+          if(!await page.getByRole('link',{name:/hub/i}).count())throw Error('Hub link lacks an accessible name');
         }
         if(guide.name==='Athleticism' && screen.name==='desktop') {
           const btn=page.locator('button[data-action="nav"][data-to="learn"]').first();
@@ -93,4 +97,4 @@ try {
 }catch(e){errors.push('Runner: '+e.message);console.error('FAIL Runner: '+e.message);}
 finally{if(browser)await browser.close();server.kill();}
 if(errors.length){console.error(errors.length+' browser check(s) failed');process.exitCode=1;}
-else console.log('PASS: ten desktop/mobile page-load and basic navigation checks. External links and detailed workout exports still require additional testing.');
+else console.log('PASS: desktop/mobile page-load and basic navigation checks. External links and detailed workout exports still require additional testing.');

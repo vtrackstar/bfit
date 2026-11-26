@@ -1,5 +1,7 @@
 # Your First Push-Up: Design Brief
 
+Historical design brief. See the [published guide](index.html) and [release checks](RELEASE_CHECKS.md) for the implemented program.
+
 **Status:** Planning. **No program or exercise prescriptions approved.**  
 **Position:** First build in the "Your First…" series. This becomes the reusable interactive framework for Pull-Up, Pistol Squat and 5K.
 

@@ -8,4 +8,4 @@ Still unverified: latest phone layout, real iPhone Safari downloads/restore, and
 
 Technique reviews remain paused. The completion voucher has no expiration date. No email registration or paid trial is active.
 
-The existing planning manifest remains in review, rather than claiming all quality gates passed. Current programming is implemented in index.html; historical BRIEF.md is not the final specification.
+The manifest records publication and tracks outstanding checks separately. Current programming is implemented in index.html; historical BRIEF.md is not the final specification.

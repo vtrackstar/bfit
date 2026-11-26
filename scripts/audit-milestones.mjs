@@ -10,8 +10,8 @@ const ids=['first-push-up','first-pull-up','first-pistol-squat','first-5k'];
 const expectedGates=['programming','evidence','exerciseLibrary','loadTotals','progression','editorial','accessibility','deviceAndNavigation','saveAndRestore','beginnerTest','releaseLinks'];
 const requiredIntake=['startingAbility','equipment','trainingDays','existingTraining','limitations'];
 const requiredOutcomes=['progress','repeat','reduce','pause'];
-const allowedStates=['planning','building','review','ready'];
-const allowedStatuses=['pending','pass','fail'];
+const allowedStates=['planning','building','review','ready','published'];
+const allowedStatuses=['pending','partial','pass','fail'];
 
 function audit(manifest,id,checkEvidence=true){
   const issues=[];
@@ -20,15 +20,17 @@ function audit(manifest,id,checkEvidence=true){
   if(manifest.id!==id)flag('manifest id does not match folder');
   if(typeof manifest.title!=='string'||!manifest.title.startsWith('Your First '))flag('missing Your First title');
   if(!['strength-skill','running'].includes(manifest.kind))flag('invalid goal kind');
-  if(!allowedStates.includes(manifest.state))flag('state must be planning, building, review, or ready');
+  if(!allowedStates.includes(manifest.state))flag('state must be planning, building, review, ready, or published');
   const d=manifest.delivery||{};
   if(d.format!=='interactive-guide'||d.primaryMode!=='adaptive-milestones')flag('must be an adaptive interactive guide');
-  if(d.cycleWeeks!==4||d.hardCompletionDeadline!==false)flag('four weeks must be a review cycle, not a success deadline');
+  const reviewCycle = d.cycleWeeks===4 || (d.cycleWeeks===null && d.reviewEveryCompletedSessions===8);
+  if(!reviewCycle||d.hardCompletionDeadline!==false)flag('four weeks must be a review cycle, not a success deadline');
   for(const key of ['standaloneWorkoutShortcut','localBrowserSave','jsonExport','jsonImport']){
     if(d[key]!==true)flag('required delivery capability: '+key);
   }
-  if(!['proposed-not-final','supported','declined'].includes(d.portableCode))flag('portable-code decision must be recorded');
-  for(const field of requiredIntake){
+  if(!['proposed-not-final','supported','declined','json-backup'].includes(d.portableCode))flag('portable-code decision must be recorded');
+  const intake = id==='first-pull-up' ? ['equipment','assistanceDescription','painStatus'] : requiredIntake;
+  for(const field of intake){
     if(!manifest.requiredIntakeDomains?.includes(field))flag('required intake domain missing: '+field);
   }
   for(const outcome of requiredOutcomes){
@@ -45,13 +47,19 @@ function audit(manifest,id,checkEvidence=true){
   for(const gate of expectedGates){
     const entry=gates[gate];
     if(!entry||!allowedStatuses.includes(entry.status)){flag('missing or invalid quality gate '+gate);continue;}
-    if(entry.status==='pass'){
+    if(['pass','partial'].includes(entry.status)){
       if(typeof entry.evidence!=='string'||!entry.evidence.trim())flag('passed gate '+gate+' requires evidence path');
       else if(checkEvidence){
         if(!entry.evidence.startsWith('milestones/'+id+'/'))flag('evidence must be within this milestone folder: '+gate);
         else if(!fs.existsSync(entry.evidence))flag('gate evidence file does not exist: '+entry.evidence);
       }
     }
+  }
+  if(manifest.state==='published'){
+    if(!['publication-authorized','public-release-authorized-with-outstanding-verification'].includes(manifest.ownerDecisionStatus))flag('published guide needs recorded publication authorization');
+    if(!fs.existsSync(path.join('milestones',id,'index.html')))flag('published guide is missing its page');
+    if(!manifest.successfulCompletionCriteria?.trim())flag('published guide needs completion criteria');
+    if(!fs.readFileSync('index.html','utf8').includes('href="milestones/'+id+'/"'))flag('published guide is missing its hub card');
   }
   if(manifest.state==='ready'){
     if(typeof manifest.successfulCompletionCriteria!=='string'||manifest.successfulCompletionCriteria.trim().length<20)flag('ready program needs explicit measurable success criteria');
@@ -81,5 +89,5 @@ if(problems.length){
  process.exitCode=1;
 }else{
  console.log('PASS: four milestone manifests have day-one intake, progression, storage, and review contracts.');
- console.log('NOTE: Draft contracts are not approved programs. Release requires real workouts, evidence, browser tests, and a beginner review.');
+ console.log('See each published manifest for completed reviews and outstanding checks.');
 }

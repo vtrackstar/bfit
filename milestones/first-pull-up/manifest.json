@@ -37,28 +37,34 @@
   ],
   "qualityGates": {
     "programming": {
-      "status": "reviewed",
-      "evidence": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
     },
     "evidence": {
-      "status": "reviewed",
-      "evidence": "Research scope and source links documented in FRAMEWORK.md; exact progression gates are coaching decisions."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "Research scope and source links documented in FRAMEWORK.md; exact progression gates are coaching decisions."
     },
     "exerciseLibrary": {
-      "status": "partially-complete",
-      "evidence": "All four embedded players load the expected titles and creator credits on the live page. Machine playback remained at 0:00 in cloud Chromium; full playback and cue review remain unverified."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "All four embedded players load the expected titles and creator credits on the live page. Machine playback remained at 0:00 in cloud Chromium; full playback and cue review remain unverified."
     },
     "loadTotals": {
-      "status": "reviewed",
-      "evidence": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
     },
     "progression": {
-      "status": "reviewed",
-      "evidence": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "Current source and FRAMEWORK.md; all 32 automated rule-test groups pass."
     },
     "editorial": {
-      "status": "reviewed",
-      "evidence": "Observable effort cues, plain-language recovery messages, Foundation link, and recent-readiness wording reviewed."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "Observable effort cues, plain-language recovery messages, Foundation link, and recent-readiness wording reviewed."
     },
     "accessibility": {
       "status": "pending",
@@ -69,16 +75,18 @@
       "evidence": ""
     },
     "saveAndRestore": {
-      "status": "partially-tested",
-      "evidence": "Chromium verified previously; iPhone pending."
+      "status": "partial",
+      "evidence": "milestones/first-pull-up/FRAMEWORK.md",
+      "note": "Chromium verified previously; iPhone pending."
     },
     "beginnerTest": {
       "status": "pending",
       "evidence": ""
     },
     "releaseLinks": {
-      "status": "published",
-      "evidence": "Public GitHub Pages and Hub card."
+      "status": "pass",
+      "evidence": "milestones/first-pull-up/index.html",
+      "note": "Public GitHub Pages and Hub card."
     }
   },
   "unresolved": [

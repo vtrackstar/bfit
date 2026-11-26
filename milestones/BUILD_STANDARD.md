@@ -76,4 +76,4 @@ The `qualityGates` statuses in each manifest are:
 
 The checks correspond to `programming`, `evidence`, `exerciseLibrary`, `loadTotals`, `progression`, `editorial`, `accessibility`, `deviceAndNavigation`, `saveAndRestore`, `beginnerTest` and `releaseLinks`. The GitHub script refuses `ready` if even one has not passed or lacks evidence.
 
-**Important limitation:** A checked-box manifest can be falsified. A proper review must look at the actual tests, screenshots, source citations, workout numbers and recorded first-visitor feedback. For now all gate statuses are pending and no training prescriptions have been approved.
+**Important limitation:** A checked-box manifest can be falsified. A proper review must look at the actual tests, screenshots, source citations, workout numbers and recorded first-visitor feedback. See the individual manifests for current results. Published guides can have outstanding checks accepted by Bryan. The published strength milestones use eight completed sessions per review.

@@ -25,7 +25,9 @@ jobs:
       - name: Check editorial copy, guide summaries and coaching intake message
         run: node scripts/editorial-smoke.mjs
       - name: Check Your First milestone contracts and release gates
-        run: node scripts/audit-milestones.mjs
+        run: |
+          node scripts/audit-milestones.mjs
+          node milestones/first-pull-up/test-engine.cjs
       - name: Validate athletic training workload data and Starter totals
         run: node scripts/audit-program-data.mjs
       - name: Install headless browser

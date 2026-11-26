@@ -1,33 +1,18 @@
 # Your First… milestone programs
 
-These projects are **in planning**, not finished guides and not public training recommendations. They are separate from the existing Hub and four free guides.
+| Guide | Publication | Current material |
+| --- | --- | --- |
+| Your First Push-Up | Published | [Guide](first-push-up/index.html), [release checks](first-push-up/RELEASE_CHECKS.md), [manifest](first-push-up/manifest.json) |
+| Your First Pull-Up | Published | [Guide](first-pull-up/index.html), [programming framework](first-pull-up/FRAMEWORK.md), [manifest](first-pull-up/manifest.json), [engine tests](first-pull-up/test-engine.cjs) |
+| Your First Pistol Squat | Planning | [Manifest](first-pistol-squat/manifest.json) |
+| Your First 5K | Planning | [Manifest](first-5k/manifest.json) |
 
-## Order
+The two published guides appear under **Your First…** on the hub. They review progress after eight completed sessions, about four weeks at twice a week. Reaching the milestone depends on the reader’s progress. Both support local saving and JSON backup and restore.
 
-1. **[Your First Push-Up](first-push-up/BRIEF.md)**: build this first, then test its adaptive programming and save/reload workflow.
-2. **Your First Pull-Up**: reuse the tested interface, then build appropriate pulling progressions.
-3. **Your First Pistol Squat**: reuse the structure with its own balance, strength, and range criteria.
-4. **Your First 5K**: reuse the interface, but write running-specific progression logic. Four weeks is a check-in cycle; finishing a 5K may require 8–12 weeks or longer.
+Push-Up starts with a surface the reader can use comfortably. Pull-Up defines a dead hang on the opening page, asks which equipment the reader has, and shows the setup prompt for that equipment. Someone without safe pulling equipment gets a direct route to Foundation.
 
-The four JSON manifests record what has been agreed and what remains undecided. They don't contain exercise prescriptions.
+## Reading the manifests
 
-## Design commitments already agreed
+`published` records an authorized public release. Each quality gate records its own evidence and open work. `ready` is the build standard’s fully verified status. Keep partial reviews, physical-device checks, and independent-reader feedback explicit. For a new milestone, use the [build standard](BUILD_STANDARD.md) and retain its progression, recovery, and portability checks.
 
-- The main product is an **interactive, individualized milestone progression**, not a spreadsheet.
-- A visitor can also open a **complete sample workout** quickly and return to the learning material later.
-- Intake asks about ability, equipment, training days, existing exercise/sport, and limitations. Only ask follow-up questions that change the plan.
-- For push-ups and pull-ups, **skill practice, negative progressions, and supporting strength** are developed concurrently. Band assistance can help, but is optional. Negatives must have an appropriate entry/regression for the user's current strength.
-- Training progresses based on performance, execution, and recovery rather than a promise to achieve the milestone in four weeks.
-- After each four-week review, offer explicit next steps: **progress, repeat, reduce, or pause and review**.
-- Save locally and provide **JSON export/import** so the user can restore their own answers. A compact portable code was discussed but not finalized; a readable file is the reliable baseline.
-- Research-informed principles are used to design original workouts, not copy another program.
-
-## Preventing another retroactive audit
-
-**Read [BUILD_STANDARD.md](BUILD_STANDARD.md) before writing workouts or site copy.**
-
-Every project has a `manifest.json` checked automatically by `scripts/audit-milestones.mjs`. Every quality gate is pending until its evidence exists in that milestone's folder. A program cannot be marked `ready` with missing programming, evidence, exercise links, load totals, progression branches, editorial, accessibility, mobile, saving, beginner review, or release checks.
-
-The validator is intentionally stricter about **declaring a program ready** than about preserving early drafts. Automated checks establish structure and technical invariants. Human coaching review is still necessary for realistic training, exercise substitutions, safety, and whether first-time readers understand it.
-
-The milestone files are **not added to the Hub's public navigation** until approved. Existing guides and the hub remain unchanged by this preparation.
+From the repository root, run `node scripts/audit-milestones.mjs` and `node milestones/first-pull-up/test-engine.cjs`. The [hub README](../README.md) covers the rest of the catalog and the release workflow.

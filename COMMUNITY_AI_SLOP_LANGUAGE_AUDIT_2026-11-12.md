@@ -1,4 +1,6 @@
 # BFit: Community-Sourced AI-Slop Language Benchmark
+
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
 **Reviewed:** November 12, 2026  
 **Site source:** `vtrackstar/bfit`, public hub and four guides, based on current main text reviewed during the editorial audit  
 **Related audit:** [BFit Editorial Voice Audit](EDITORIAL_VOICE_AUDIT_2026-11-12.md)  

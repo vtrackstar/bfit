@@ -1,5 +1,7 @@
 # Keep Moving: Language, Evidence, and Visual Review
 
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
+
 **Reviewed November 19, 2026 | BFit 50+ guide**
 
 ## The writing standard

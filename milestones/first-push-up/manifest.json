@@ -3,19 +3,20 @@
   "id": "first-push-up",
   "title": "Your First Push-Up",
   "kind": "strength-skill",
-  "state": "review",
+  "state": "published",
   "ownerDecisionStatus": "public-release-authorized-with-outstanding-verification",
   "successfulCompletionCriteria": "One floor push-up with knees off the floor, chest lightly touching the floor, then straight arms with chest and hips moving together.",
   "delivery": {
     "format": "interactive-guide",
     "primaryMode": "adaptive-milestones",
     "standaloneWorkoutShortcut": true,
-    "cycleWeeks": 4,
+    "cycleWeeks": null,
     "hardCompletionDeadline": false,
     "localBrowserSave": true,
     "jsonExport": true,
     "jsonImport": true,
-    "portableCode": "proposed-not-final"
+    "portableCode": "proposed-not-final",
+    "reviewEveryCompletedSessions": 8
   },
   "requiredIntakeDomains": [
     "startingAbility",
@@ -78,8 +79,8 @@
       "evidence": ""
     },
     "releaseLinks": {
-      "status": "pending",
-      "evidence": ""
+      "status": "pass",
+      "evidence": "milestones/first-push-up/RELEASE_CHECKS.md"
     }
   },
   "unresolved": [
@@ -87,5 +88,5 @@
     "Real iPhone Safari download and restore",
     "YouTube playback"
   ],
-  "notes": "Public release authorized by Bryan with remaining checks accepted. See RELEASE_CHECKS.md. Historical planning fields are retained; index.html contains the current program."
+  "notes": "Published with outstanding checks recorded in RELEASE_CHECKS.md. The guide reviews progress every eight completed sessions."
 }

@@ -1,5 +1,7 @@
 # BFit Training Hub — launch audit
 
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
+
 ## November 5: coaching-funnel read-only verification
 
 The public coaching questionnaire was opened in signed-out Chromium and confirmed to show **Premium** and **Elite** with their monthly pricing shown in the form, along with the option to request an inquiry call. This resolves the earlier question of whether the public questionnaire reflects both plans. The form submission, Google response capture, Zapier routing, and follow-up emails remain untested. See [Coaching Funnel QA](COACHING_FUNNEL_QA_2026-11-05.md) for confirmed evidence and the remaining manual steps. The hub's fuller automated browser and accessibility checks passed in the November 5 CI run.

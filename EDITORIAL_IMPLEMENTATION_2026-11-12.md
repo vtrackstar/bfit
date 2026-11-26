@@ -1,4 +1,6 @@
 # BFit Editorial Voice Pass: Implementation
+
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
 **Date:** November 12, 2026  
 **Scope:** Public Training Hub, Foundation, Athleticism, Gamer Fit, Run Strong  
 **Source review:** [Editorial audit](EDITORIAL_VOICE_AUDIT_2026-11-12.md) and [Community language benchmark](COMMUNITY_AI_SLOP_LANGUAGE_AUDIT_2026-11-12.md)

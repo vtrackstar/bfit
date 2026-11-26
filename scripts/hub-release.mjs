@@ -18,7 +18,6 @@ const expected = [
 const social = {
   'Instagram': 'https://www.instagram.com/_trainwithbfit/',
   'TikTok': 'https://www.tiktok.com/@_trainwithbfit',
-  'Twitch': 'https://www.twitch.tv/gamewithbfit',
   'Discord': 'https://discord.gg/9yfqjvZPg'
 };
 const screens = [
@@ -59,14 +58,14 @@ try {
         assert.equal(await page.locator('main').count(), 1);
         assert.equal(await page.locator('h1').count(), 1);
         assert.equal(await page.locator('#guides > .cards > a.card').count(), expected.length);
-        assert.equal(await page.locator('#guides .card--coming[disabled]').count(), 1);
+        assert.equal(await page.locator('.card--coming[disabled]').count(), 1);
         assert.equal(await page.locator('a[href="#coaching"]').count() > 0, true, 'Coaching must be easy to find from hub nav');
         const metrics = await page.evaluate(() => ({
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           navRows: [...document.querySelectorAll('.site-nav-links a')].map(a=>Math.round(a.getBoundingClientRect().top)),
           lang: document.documentElement.lang,
           title: document.title,
-          cards: [...document.querySelectorAll('#guides .card')].map(a => {
+          cards: [...document.querySelectorAll('#guides > .cards > .card')].map(a => {
             const r=a.getBoundingClientRect();
             return {name:a.textContent.trim(), width:r.width, left:r.left, right:r.right, height:r.height};
           })
@@ -88,6 +87,13 @@ try {
           assert.equal(new URL(page.url()).hash, '#'+fragment, 'Nav did not open #'+fragment);
           assert.ok(await page.locator('#'+fragment).isVisible(), 'Section not visible: '+fragment);
         }
+        for (const id of ['more-training-plans','your-first']) {
+          const row=page.locator('#'+id+' .cards');
+          assert.ok(await row.locator('a.card').count() >= 2, 'Missing specialty cards in '+id);
+          const overflows=await row.evaluate(el=>el.scrollWidth>el.clientWidth+1);
+          assert.equal(await page.locator('#'+id+' .scroll-hint').isVisible(),overflows);
+        }
+        assert.equal(await page.locator('a[href*="twitch.tv/"]').count(),0);
         for (const [name, dest] of Object.entries(social)) {
           const link = page.locator('#connect a[href="'+dest+'"]');
           assert.equal(await link.count(), 1, name+' link missing');
@@ -121,13 +127,14 @@ try {
     } finally { await page.close(); }
   });
   await check('Published guide cards open correct pages and each has a hub return link', async () => {
-    for (const guide of [...expected, { name: 'Weekend Warrior', slug: 'weekend-warrior' }]) {
+    for (const guide of [...expected, ...['weekend-warrior','build-your-glutes'].map(slug=>({slug, section:'#more-training-plans'})), ...['first-push-up','first-pull-up'].map(slug=>({slug,section:'#your-first'}))]) {
       const page=await browser.newPage({viewport:{width:390,height:844}});
       try {
         await page.goto(host+'/');
-        const section=guide.slug==='weekend-warrior'?'#more-training-plans':'#guides';
-        await page.locator(section+' > .cards > a[href="guides/'+guide.slug+'/"]').click();
-        await page.waitForURL('**/guides/'+guide.slug+'/');
+        const section=guide.section || '#guides';
+        const href=(section==='#your-first'?'milestones/':'guides/')+guide.slug+'/';
+        await page.locator(section+' > .cards > a[href="'+href+'"]').click();
+        await page.waitForURL('**/'+href);
         assert.ok((await page.title()).length>0);
         assert.ok(await page.locator('a[href="https://vtrackstar.github.io/bfit/"]').count() > 0,
           'Guide lacks a hub return link: '+guide.name);

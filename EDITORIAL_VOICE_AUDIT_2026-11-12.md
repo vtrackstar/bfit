@@ -1,4 +1,6 @@
 # BFit Editorial Voice Audit
+
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
 **Date:** November 12, 2026  
 **Source reviewed:** `vtrackstar/bfit` main at commit `c6de7de451f416b27ab2c1c4c973effd851de405`  
 **Scope:** Hub, Foundation, Athleticism, Gamer Fit, Run Strong. Coaching availability page was checked as a related navigation context.  

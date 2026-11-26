@@ -1,5 +1,7 @@
 # BFit training programming and first-time user audit — November 5, 2026
 
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
+
 **Scope:** Current `main` source for the [Hub](index.html), [Foundation](guides/foundation/index.html), [Athleticism](guides/athleticism/index.html), [Gamer Fit](guides/gamer-fit/index.html), and [Run Strong](guides/run-strong/index.html). Review of programming logic, entry paths, novice suitability and public wording.
 
 **Method:** Source inspection and a numerical audit of Athleticism's embedded program data. The most recent pre-audit GitHub Actions run passed source, desktop/mobile and key interaction tests. This review did not include human participants, supervised exercise execution, signed-out exercise-library video-by-video checks or physical-phone/screen-reader tests. Avoid treating an editorial audit as clinical or sport-specific clearance.

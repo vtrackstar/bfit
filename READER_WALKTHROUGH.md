@@ -11,6 +11,14 @@ Ask 3–5 people to try the guides, including a new exerciser, a recreational at
 5. Show how you would record the session and decide what to do next.
 6. Return to the hub and find another guide.
 
+## Prompts for the published guides
+
+- “You want to get stronger at home. Show me what you’d do first.” Observe whether the reader can leave Foundation’s goals blank, choose equipment, start warming up, and explain the first exercise.
+- “You have five minutes between games.” See which Gamer Fit route they take. For Run Strong, ask how they would choose their starting session.
+- “You want a plan around your workweek.” On a phone, see whether the reader discovers both cards in the training-plan row and knows which workout comes next.
+- “What does a dead hang look like? What would you do without a safe place to hang?” Let the reader find the Pull-Up equipment choices and the Foundation link.
+- On the reader’s own phone, try a milestone backup download and restore using test data. Record the device and whether their next session and log survive.
+
 ## Observe
 
 Record device/browser, chosen guide, task, completed without help (yes/no), where they hesitated, exact wording they misunderstood, and any assistance provided. Do not put personal health details in this public repository. Use anonymous participant labels. Ask “What did you expect that to do?” instead of teaching the interface during a task.

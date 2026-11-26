@@ -1,4 +1,6 @@
 # BFit coaching funnel — release verification
+
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
 **Checked:** November 5, 2026  
 **Public site:** https://vtrackstar.github.io/bfit/  
 **Inquiry form:** https://forms.gle/f11PGA7PCUKaxrgq9  

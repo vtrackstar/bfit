@@ -1,4 +1,6 @@
 # BFit prelaunch handoff
+
+Historical review. See the [current site handoff](README.md) for the published catalog, coaching intake, social links, and open checks.
 **Prepared:** November 10, 2026  
 **Current phase:** Free guides available; paid coaching intake paused; hard launch deferred until account/storage access is restored and release checks pass.
 
