@@ -19,11 +19,11 @@ function makeCycle(start,primaryOffsets,optionalOffset=null){
  return {version:CYCLE_VERSION,start,primaryOffsets:sorted,optionalOffset,slots:slots.sort((a,b)=>a.day-b.day)};
 }
 function validateCycle(c){
- cycleAssert(c&&c.version===CYCLE_VERSION&&Array.isArray(c.slots),"Invalid cycle");
+ cycleAssert(c&&c.version===CYCLE_VERSION&&Array.isArray(c.slots)&&Object.keys(c).every(k=>["version","start","primaryOffsets","optionalOffset","slots"].includes(k)),"Invalid cycle");
  const base=makeCycle(c.start,c.primaryOffsets,c.optionalOffset);
  cycleAssert(c.slots.length===base.slots.length,"Invalid slot count");
  const dates=new Set();
- for(const b of base.slots){const s=c.slots.find(x=>x.id===b.id);cycleAssert(s&&s.week===b.week&&s.index===b.index&&s.kind===b.kind&&dayOK(s.day)&&s.day>=c.start+7*b.week&&s.day<=c.start+7*b.week+6&&!dates.has(s.day),"Invalid slot/date");dates.add(s.day);}
+ for(const b of base.slots){const s=c.slots.find(x=>x.id===b.id);cycleAssert(s&&Object.keys(s).every(k=>["id","week","index","kind","day"].includes(k))&&s.week===b.week&&s.index===b.index&&s.kind===b.kind&&dayOK(s.day)&&s.day>=c.start+7*b.week&&s.day<=c.start+7*b.week+6&&!dates.has(s.day),"Invalid slot/date");dates.add(s.day);}
  return true;
 }
 function validateLinks(c,s,replacements,now){
@@ -34,7 +34,7 @@ function validateLinks(c,s,replacements,now){
   cycleAssert(!ids.has(slot.id)&&l.source!=="prior"&&l.day===slot.day&&!!l.optional===(slot.kind==="optional"),"Invalid scheduled record");ids.add(slot.id);
  }
  for(const r of replacements){const slot=c.slots.find(x=>x.id===r.slotId),ext=s.external.find(x=>x.id===r.externalId);
-  cycleAssert(slot&&slot.kind==="primary"&&ext&&ext.day===slot.day&&ext.intensity!=="unknown"&&!ids.has(slot.id)&&!externalIds.has(ext.id),"Invalid or duplicate replacement");ids.add(slot.id);externalIds.add(ext.id);
+  cycleAssert(r&&Object.keys(r).every(k=>["slotId","externalId"].includes(k))&&slot&&slot.kind==="primary"&&ext&&ext.day===slot.day&&ext.intensity!=="unknown"&&!ids.has(slot.id)&&!externalIds.has(ext.id),"Invalid or duplicate replacement");ids.add(slot.id);externalIds.add(ext.id);
  }
  return true;
 }
@@ -64,6 +64,7 @@ function scheduledVisit(c,s,replacements,p,id,now,budget){
  const view=trainingView(s);
  const adjacent=s.logs.some(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day===now-1&&demand(l))||s.external.some(l=>l.day===now-1&&externalDemand(l))||p.adjacentDemand===true;
  const latest=s.logs.filter(l=>l.source!=="prior"&&l.status!=="skipped"&&l.day<now).sort((a,b)=>b.day-a.day)[0];
+ if(["limiting","extra"].includes(p.recovery))return {action:"recover-or-rest",dose:null};
  const poor=latest&&["limiting","extra"].includes(latest.recovery);
  const recovery=latest&&latest.recovery!=="normal"&&(!poor||now-latest.day<=2||p.recovery!=="normal")?latest.recovery:p.recovery;
  if(recovery==="limiting"||recovery==="extra")return {action:"recover-or-rest",dose:null};
