@@ -87,8 +87,10 @@ function visit(s,p,now,budget){
   if(p.mode==="swim"&&p.waterCompetent!==true)return {action:"lessons-or-land",dose:null};
   if(p.mode==="run"&&p.recentRun!==true)return {action:"walk-or-run-guide",dose:null};
   if(p.mode==="circuit"&&p.movementsFamiliar!==true)return {action:"learn-movements",dose:null};
-  if(last.dose.kind==="interval"&&last.dose.effort[1]===8&&!historicalPair(s.logs,interval(p.mode,"b120x4",p.slot),now,p.setup)&&!historicalPair(s.logs,interval(p.mode,"hard120x3",p.slot),now,p.setup)&&!historicalPair(s.logs,last.dose,now,p.setup)){
-   pick={action:"reassess-hard",dose:interval(p.mode,"bridge30",p.slot)};
+  const hardPrevious={hard120x3:"b120x4",power180x2:"hard120x3",power180x3:"power180x2",power180x4:"power180x3",repeatHard30x5:"repeat30x6",repeatHard30x6:"repeatHard30x5",repeatHard30x7:"repeatHard30x6",repeatHard30x8:"repeatHard30x7"};
+  const predecessor=last.dose.kind==="interval"?hardPrevious[last.dose.id]:null;
+  if(last.dose.kind==="interval"&&last.dose.effort[1]===8&&(!steadyGate(s.logs,p.mode,25,now,p.setup)||!(historicalPair(s.logs,last.dose,now,p.setup)||predecessor&&historicalPair(s.logs,interval(p.mode,predecessor,p.slot),now,p.setup)))){
+   pick=steadyGate(s.logs,p.mode,15,now,p.setup)?{action:"reassess-hard",dose:interval(p.mode,"bridge30",p.slot)}:{action:"steady-first",dose:null};
   }else pick=recommend(profile,last.dose,p.mode==="swim"&&p.poolLength!==undefined?s.logs.filter(l=>l.dose.mode!=="swim"||l.dose.pool===p.poolLength&&l.dose.unit===p.poolUnit):s.logs,now);
  }else pick=initial(profile,s.logs,now);
  if(!pick.dose)return pick;
