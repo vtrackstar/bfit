@@ -24,6 +24,8 @@ const audit=function audit(E,R){
  check("Current urgent symptoms override rest day",()=>R.next(one,one.history,1001,{symptoms:"urgent"}).action==="urgent");
  check("Pre-session pain persists in returned state",()=>R.next(one,one.history,1003,{symptoms:"sharp"}).state.paused===true);
  check("Budget-shortened continuous workout stays continuous",()=>{const p={...E.continuous("long",1800),lane:"long",distanceGoal:5000};const f=R.fitBudget({...s,level:8},[rec({...E.continuous("old",600),lane:"practice"},995)],1000,p);return !f.workout||E.strategy(f.workout)==="continuous"});
+ check("Urgent hold persists after JSON restore",()=>{const x=R.next(one,one.history,1001,{symptoms:"urgent"});return R.next(JSON.parse(JSON.stringify(x.state)),[],1200).action==="urgent";});
+ check("Pre-session pain hold persists after JSON restore",()=>{const x=R.next(one,one.history,1003,{symptoms:"sharp"});return !R.next(JSON.parse(JSON.stringify(x.state)),[],1200).workout;});
  return {tests,passed:tests.filter(t=>t.pass).length,total:tests.length};
 };
 const result=audit(require("./engine.cjs"),require("./refined-engine.cjs"));console.log(JSON.stringify(result,null,2));if(result.passed!==result.total)process.exitCode=1;
