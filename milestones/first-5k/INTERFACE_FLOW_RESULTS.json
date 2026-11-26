@@ -196,8 +196,40 @@
     {
       "name": "Pace segment distance and duration retained",
       "pass": true
+    },
+    {
+      "name": "Next action tells beginner to check in",
+      "pass": true
+    },
+    {
+      "name": "Initial timer coaching cue and next activity",
+      "pass": true
+    },
+    {
+      "name": "Phase change updates cue and progress",
+      "pass": true
+    },
+    {
+      "name": "Paused timer keeps elapsed time",
+      "pass": true
+    },
+    {
+      "name": "Finished timer directs to workout check-in",
+      "pass": true
+    },
+    {
+      "name": "Minutes and seconds convert correctly",
+      "pass": true
+    },
+    {
+      "name": "Conflicting running data uses plain language",
+      "pass": true
+    },
+    {
+      "name": "Recovery screen explains next action",
+      "pass": true
     }
   ],
-  "passed": 49,
-  "total": 49
+  "passed": 57,
+  "total": 57
 }
