@@ -11,6 +11,7 @@ const guidePages = [
   { name: 'Weekend Warrior', url: '/guides/weekend-warrior/', selector: 'main h1', min: 1 },
   { name: 'Build Your Glutes', url: '/guides/build-your-glutes/', selector: 'main h1', min: 1 },
   { name: 'Your First Push-Up', url: '/milestones/first-push-up/', selector: 'main h1', min: 1 },
+  { name: 'Your First 5K', url: '/milestones/first-5k/', selector: 'main h1', min: 1 },
   { name: 'Your First Pull-Up', url: '/milestones/first-pull-up/', selector: 'main h1', min: 1 },
   { name: 'Foundation', url: '/guides/foundation/', selector: '#main', min: 1 },
   { name: 'Athleticism', url: '/guides/athleticism/', selector: '#app', min: 1 },
