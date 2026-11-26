@@ -131,8 +131,10 @@ try {
       assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')), '#coaching');
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')), '#connect');
-      await page.keyboard.press('Tab');
-      assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')), 'guides/foundation/');
+      for(const href of ['#guides','#more-training-plans','#your-first','#exercise-library','guides/foundation/']){
+        await page.keyboard.press('Tab');
+        assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('href')),href);
+      }
       await page.keyboard.press('Enter');
       await page.waitForURL('**/guides/foundation/');
       assert.match(await page.title(), /Foundation/i);
