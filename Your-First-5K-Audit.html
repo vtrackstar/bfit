@@ -1,0 +1,847 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="canonical" href="https://vtrackstar.github.io/bfit/milestones/first-5k/"><meta name="description" content="Build toward your first 5K with adaptive running and walking workouts, recovery checks and progress tracking."><title>Your First 5K | BFit</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:dark;color:#f7f7f4;background:#101820;line-height:1.6}*{box-sizing:border-box}[hidden]{display:none!important}main{max-width:780px;margin:auto;padding:24px 18px 70px}nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid #394551;padding-bottom:18px}a{color:#b6dafa}header{padding:30px 0}small{color:#b9d5bc}h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1.1;margin:12px 0}h1,h2,h3{color:#b6dafa}p{color:#c0cbd0}section{background:#1b2832;border:1px solid #35444c;border-radius:16px;padding:20px;margin:14px 0}section section{padding:16px}label{display:block;margin:14px 0}select,input:not([type=checkbox]){display:block;width:100%;font:inherit;background:#101820;border:1px solid #657680;border-radius:8px;padding:10px;color:inherit}button{font:inherit;font-weight:700;background:#a7e3aa;color:#14251a;border:0;border-radius:9px;min-height:44px;padding:10px 16px;cursor:pointer}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #b6dafa;outline-offset:3px}details{margin:14px 0;border:1px solid #52616b;border-radius:10px;padding:12px}summary{cursor:pointer;min-height:44px;display:list-item}#clock{font-size:clamp(3rem,10vw,5rem);font-variant-numeric:tabular-nums;text-align:center}.buttons{display:flex;flex-wrap:wrap;gap:10px}pre,output{white-space:pre-wrap;overflow-wrap:anywhere;display:block}#status{color:#b6dafa}#notice{border-left:3px solid #a7e3aa;padding:10px 16px}
+.skip{position:absolute;left:12px;top:-100px;background:#a7e3aa;color:#14251a;padding:10px;z-index:3}.skip:focus{top:12px}.cta{display:inline-block;background:#a7e3aa;color:#14251a;font-weight:750;border-radius:9px;padding:10px 16px;min-height:44px;text-decoration:none}.jump{justify-content:flex-start;gap:8px 18px}.jump a{display:inline-flex;align-items:center;min-height:44px}fieldset{min-width:0;border:1px solid #52616b;border-radius:10px;padding:12px;margin:12px 0}input,select,button,fieldset{max-width:100%;min-width:0}#historyRows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#startHere{scroll-margin-top:12px}summary{font-weight:650}a{overflow-wrap:anywhere}#celebration{border-color:#a7e3aa} @media(max-width:560px){main{padding:16px 12px 50px}section{padding:14px}section section{padding:12px}#historyRows{grid-template-columns:1fr}.buttons button{flex:1 1 135px}h1{font-size:2.5rem}}
+</style><meta name="robots" content="noindex,nofollow"></head><body><a class="skip" href="#startHere">Skip to training</a><main><nav><a href="https://vtrackstar.github.io/bfit/">BFit Training Hub</a><a href="https://vtrackstar.github.io/bfit/guides/run-strong/">Run Strong</a></nav><header><small>YOUR FIRST · RUNNING</small><h1>Your First 5K</h1><p>Build toward five kilometers at a pace that fits your current fitness. Walking breaks are welcome.</p><p>Five kilometers is about 3.1 miles. You can finish with walking breaks or work toward running the whole distance. Most of your training will be comfortable running and walking. Some runners may need several months or longer. Your progress depends on your starting point, schedule and recovery.</p><p>I designed this program to help you build toward your first finish, one workout at a time.</p><a class="cta" href="#startHere">Get started or resume training</a></header><nav class="jump" aria-label="Guide sections"><a href="#startHere">My training</a><a href="#learn">Running basics</a><a href="#support">Training around your life</a><a href="#prepare">Prepare for 5K</a><a href="#transfer">Save and transfer</a></nav><div id="startHere" tabindex="-1"></div><p id="status" role="status" aria-live="polite"></p>
+<section id="setup"><h2>Find your starting point</h2><form id="intake"><label>What is your goal?<select id="goal"><option value="runwalk">Complete 5K with walking breaks</option><option value="continuous">Run 5K without stopping</option></select></label><label>How long can you comfortably walk?<select id="walk"><option value="0">Less than 5 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="25">25 minutes</option><option value="30">30 minutes or more</option></select></label><p>Start with at least one day between runs. If you choose three days, the plan may start with two and add the third as you build consistency.</p><label>Training days each week<select id="days"><option value="2">2 days</option><option value="3">3 days</option></select></label><p>You can leave the time goal blank and focus on finishing first.</p><label>Optional 5K finishing time (minutes)<input id="target" type="number" min="10" max="180" step="0.1"></label><details><summary>I've been running recently (optional)</summary><p>Add up to six runs from the past 14 days. Use actual running minutes, not total time including walking. Only add sessions you remember accurately. Leave this blank to begin with the introductory plan.</p><div id="historyRows"><fieldset><legend>Recent run 1</legend><label>Days ago (1–14)<input id="histDay0" type="number" min="1" max="14" step="1"></label><label>Running minutes<input id="histRun0" type="number" min="0.25" max="180" step="any"></label><label>Running and walking minutes, excluding warm-up and cooldown<input id="histMain0" type="number" min="0.25" max="240" step="any"></label><label>Longest time you ran without a walking break (minutes)<input id="histBout0" type="number" min="0.25" max="180" step="any"></label><label>How did you recover?<select id="histRecovery0"><option value="">Choose if entering this run</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited or concerning pain</option><option value="unknown">Not sure</option></select></label></fieldset><fieldset><legend>Recent run 2</legend><label>Days ago (1–14)<input id="histDay1" type="number" min="1" max="14" step="1"></label><label>Running minutes<input id="histRun1" type="number" min="0.25" max="180" step="any"></label><label>Running and walking minutes, excluding warm-up and cooldown<input id="histMain1" type="number" min="0.25" max="240" step="any"></label><label>Longest time you ran without a walking break (minutes)<input id="histBout1" type="number" min="0.25" max="180" step="any"></label><label>How did you recover?<select id="histRecovery1"><option value="">Choose if entering this run</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited or concerning pain</option><option value="unknown">Not sure</option></select></label></fieldset><fieldset><legend>Recent run 3</legend><label>Days ago (1–14)<input id="histDay2" type="number" min="1" max="14" step="1"></label><label>Running minutes<input id="histRun2" type="number" min="0.25" max="180" step="any"></label><label>Running and walking minutes, excluding warm-up and cooldown<input id="histMain2" type="number" min="0.25" max="240" step="any"></label><label>Longest time you ran without a walking break (minutes)<input id="histBout2" type="number" min="0.25" max="180" step="any"></label><label>How did you recover?<select id="histRecovery2"><option value="">Choose if entering this run</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited or concerning pain</option><option value="unknown">Not sure</option></select></label></fieldset><fieldset><legend>Recent run 4</legend><label>Days ago (1–14)<input id="histDay3" type="number" min="1" max="14" step="1"></label><label>Running minutes<input id="histRun3" type="number" min="0.25" max="180" step="any"></label><label>Running and walking minutes, excluding warm-up and cooldown<input id="histMain3" type="number" min="0.25" max="240" step="any"></label><label>Longest time you ran without a walking break (minutes)<input id="histBout3" type="number" min="0.25" max="180" step="any"></label><label>How did you recover?<select id="histRecovery3"><option value="">Choose if entering this run</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited or concerning pain</option><option value="unknown">Not sure</option></select></label></fieldset><fieldset><legend>Recent run 5</legend><label>Days ago (1–14)<input id="histDay4" type="number" min="1" max="14" step="1"></label><label>Running minutes<input id="histRun4" type="number" min="0.25" max="180" step="any"></label><label>Running and walking minutes, excluding warm-up and cooldown<input id="histMain4" type="number" min="0.25" max="240" step="any"></label><label>Longest time you ran without a walking break (minutes)<input id="histBout4" type="number" min="0.25" max="180" step="any"></label><label>How did you recover?<select id="histRecovery4"><option value="">Choose if entering this run</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited or concerning pain</option><option value="unknown">Not sure</option></select></label></fieldset><fieldset><legend>Recent run 6</legend><label>Days ago (1–14)<input id="histDay5" type="number" min="1" max="14" step="1"></label><label>Running minutes<input id="histRun5" type="number" min="0.25" max="180" step="any"></label><label>Running and walking minutes, excluding warm-up and cooldown<input id="histMain5" type="number" min="0.25" max="240" step="any"></label><label>Longest time you ran without a walking break (minutes)<input id="histBout5" type="number" min="0.25" max="180" step="any"></label><label>How did you recover?<select id="histRecovery5"><option value="">Choose if entering this run</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited or concerning pain</option><option value="unknown">Not sure</option></select></label></fieldset></div></details><label><input id="ready" type="checkbox" required> I can start light activity without concerning symptoms or medical restrictions.</label><button>Build my starting plan</button></form></section>
+<section id="dashboard" hidden><h2>My training</h2><p id="summary"></p><details id="goalSettings"><summary>Change my goal</summary><form id="goalForm"><label>Goal<select id="newGoal"><option value="runwalk">Complete with walking breaks</option><option value="continuous">Run without stopping</option></select></label><label>Optional finishing time (minutes)<input id="newTarget" type="number" min="10" max="180" step="0.1"></label><button>Update goal</button></form></details><div id="notice" hidden><h3>Let's build toward your goal.</h3><p>Your workouts will start at a pace that fits your current fitness. As you progress, we'll revisit your target pace and begin working toward it when your training supports it. You can keep your original goal or change it at any time.</p><button id="ack">Got it. Keep my goal.</button></div>
+<section id="returnPanel" hidden><h3>Return to training</h3><p>Wait until a qualified healthcare professional has advised that you can resume running or walking after the symptoms that paused your plan. This check does not provide medical clearance.</p><form id="returnForm"><label><input id="cleared" type="checkbox" required> A healthcare professional has advised that I can resume light exercise.</label><label><input id="symptomFree" type="checkbox" required> I have no concerning symptoms now.</label><label>How long can you comfortably walk now?<select id="returnWalk"><option value="0">Less than 5 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="25">25 minutes</option><option value="30">30 minutes or more</option></select></label><button>Reassess my starting point</button></form></section><section id="checkin"><h3>Before your workout</h3><form id="pre"><label>How are you feeling today?<select id="recovery" required><option value="">Choose an answer</option><option value="normal">Recovered and ready</option><option value="mild">A little sore, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement is limited</option></select></label><label>Any symptoms?<select id="symptoms" required><option value="">Choose an answer</option><option value="none">No concerning symptoms</option><option value="sharp">Sharp or localized pain</option><option value="urgent">Chest pain, fainting or severe breathing difficulty</option></select></label><label><input type="checkbox" id="other"> Strenuous exercise today or yesterday</label><label><input type="checkbox" id="assess"> Offer a short, comfortable measured run if I am ready</label><label><input type="checkbox" id="pace"> Offer practice at my target pace if I am ready</label><button>Show my workout</button></form></section>
+<section id="reentryPanel" hidden><h3>Find your starting point again</h3><p>After a longer break, start with your current ability. Your previous workouts stay in your history.</p><form id="reentryForm"><label>How long can you comfortably walk now?<select id="reentryWalk"><option value="0">Less than 5 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="25">25 minutes</option><option value="30">30 minutes or more</option></select></label><label><input id="reentryReady" type="checkbox" required> I have no concerning symptoms or medical restrictions.</label><button>Rebuild my starting plan</button></form></section><section id="workout" hidden><h3 id="workoutTitle"></h3><p id="workoutInfo"></p><ol id="steps"></ol><p id="phase" aria-live="polite"></p><div id="clock" role="timer" aria-label="Time remaining" aria-live="off">0:00</div><div class="buttons"><button id="start">Start or resume</button><button id="pause">Pause</button><button id="finish">Finish workout</button><button id="discard" type="button" hidden>Cancel unstarted workout</button></div><p>Keep your running easy enough to speak in full sentences. During optional pace practice, stay in control. Stop for concerning symptoms. If you reach 5 km, stop the main workout and cool down. This timer does not track GPS distance.</p></section>
+<section id="logging" hidden><h3>How did your workout go?</h3><p id="actual"></p><form id="logForm"><label>How did it feel?<select id="effort" required><option value="">Choose an answer</option><option value="easy">I could comfortably keep going</option><option value="comfortable">It felt like work, but I was in control</option><option value="hardLate">Hard toward the end</option><option value="hardEarly">Hard early on</option><option value="incomplete">I stopped early</option></select></label><label>Any symptoms during or after?<select id="postSymptoms" required><option value="">Choose an answer</option><option value="none">No concerning symptoms</option><option value="sharp">Sharp or localized pain</option><option value="urgent">Chest pain, fainting or severe breathing difficulty</option></select></label><label><input id="done" type="checkbox"> I completed the planned main workout or reached 5 km</label><details><summary>Add running data (optional)</summary><p>Enter measurements for the same part of the workout. Leave unknown numbers blank.</p><label>Distance<input id="distance" type="number" min="0.001" step="any"></label><label>Distance unit<select id="unit"><option value="km">Kilometers</option><option value="mi">Miles</option><option value="m">Meters</option></select></label><label>Recorded duration (seconds; 5 minutes = 300 seconds)<input id="recordTime" type="number" min="1" step="any"></label><label>Average pace minutes<input id="paceMin" type="number" min="0"></label><label>Average pace seconds<input id="paceSec" type="number" min="0" max="59"></label><label>Pace unit<select id="paceUnit"><option value="km">Per kilometer</option><option value="mi">Per mile</option></select></label><label>Or average speed<input id="speed" type="number" min="0.01" step="any"></label><label>Speed unit<select id="speedUnit"><option value="kmh">km/h</option><option value="mph">mph</option></select></label><label>What did your device record?<select id="scope"><option value="unknown">Not sure</option><option value="running-only">Running only</option><option value="runwalk">Main run and walk intervals</option><option value="whole-workout">Entire workout with warm-up and cooldown</option></select></label><label>Time type<select id="basis"><option value="unknown">Not sure</option><option value="elapsed">Elapsed time</option><option value="moving">Moving time</option></select></label><label>Where did you run?<select id="surface"><option value="unknown">Not sure</option><option value="outdoor">Outdoor route</option><option value="track">Measured track</option><option value="treadmill">Treadmill</option></select></label><label><input id="representative" type="checkbox"> This was a comfortable run without walking breaks, at a pace I could usually maintain.</label><button type="button" id="convert">Preview conversions</button><output id="conversion"></output></details><details id="segmentEntry" hidden><summary>Optional assessment or pace-practice data</summary><p id="segmentInfo"></p><p>Enter data for the indicated running segment only, not the entire workout. Use elapsed time.</p><label>Segment distance<input id="segmentDistance" type="number" min="0.001" step="any"></label><label>Unit<select id="segmentUnit"><option value="m">Meters</option><option value="km">Kilometers</option><option value="mi">Miles</option></select></label><label>Segment average pace (minutes)<input id="segmentPaceMin" type="number" min="0" step="1"></label><label>Seconds<input id="segmentPaceSec" type="number" min="0" max="59" step="1"></label><label>Pace unit<select id="segmentPaceUnit"><option value="km">Per kilometer</option><option value="mi">Per mile</option></select></label><label><input id="segmentConfirm" type="checkbox"> These measurements are for this running segment only.</label></details><button>Save workout</button></form></section>
+<section id="pending" hidden><h3>How did you recover?</h3><p>Confirm recovery on the next day before receiving another workout.</p><form id="recoverForm"><label>Recovery<select id="nextRecovery" required><option value="">Choose an answer</option><option value="normal">Back to normal</option><option value="mild">Mild soreness, moving normally</option><option value="heavy">Very tired or sore</option><option value="limited">Movement limited</option></select></label><label>Symptoms<select id="nextSymptoms" required><option value="">Choose an answer</option><option value="none">No concerning symptoms</option><option value="sharp">Sharp or localized pain</option><option value="urgent">Chest pain, fainting or severe breathing difficulty</option></select></label><button>Confirm recovery</button></form></section>
+<section id="celebration" hidden><h2>Congratulations! You completed your 5K.</h2><p id="resultSummary"></p><details><summary>Explore your 5K result</summary><p id="resultPace"></p><p>These are average paces across your recorded outing. Walking breaks and effort matter when interpreting the result. Equivalent splits are arithmetic, not predictions or prescribed training speeds.</p></details><h3>Where to go next</h3><p>Keep running comfortably, build toward a continuous 5K, or gradually work toward a faster time. Give yourself time to recover before your next run.</p><p><a href="https://vtrackstar.github.io/bfit/guides/run-strong/">Learn how to plan your next training phase in Run Strong</a>.</p><label>Name for your completion certificate (optional)<input id="certificateName" maxlength="80" autocomplete="name"></label><button id="certificate" type="button">Print / save completion certificate</button><p>This is a personal milestone certificate based on your recorded training, not an official race result.</p></section><section><h3>Look how far you've come</h3><p id="progress"></p><details><summary>Explore my running numbers</summary><pre id="numbers"></pre></details></section><button id="export">Export my progress</button><p>Progress is saved on this device. Keep a backup before transferring devices.</p></section><section id="learn"><h2>Make running feel easier</h2><details><summary>How fast should I run?</summary><p>Use the talk test. During most workouts you should be able to speak a full sentence without stopping to catch your breath. Slow down or walk if you cannot. Your pace is the time it takes to cover a mile or kilometer. A smaller number means a faster pace. The timer tells you how long to run, not how fast.</p><p>Walking breaks give you time to catch your breath and let you accumulate more practice. They count toward a run-and-walk 5K.</p></details><details><summary>How should running feel?</summary><p>Keep your shoulders relaxed, look ahead and let your arms swing naturally. Use comfortable steps rather than reaching far ahead with your feet. You do not need a particular foot strike or step count. Start on a flat, familiar route. Walk for five minutes before running and three minutes afterward when your workout includes running.</p></details><details><summary>When should I slow down or stop?</summary><p>Breathing harder and feeling your muscles work can be normal. Sharp or localized pain, pain that changes how you move, dizziness or unusual shortness of breath are reasons to stop. If you experience chest pain, fainting or severe breathing difficulty during exercise, stop and seek emergency medical help. Seek medical guidance before resuming after concerning symptoms.</p></details><details><summary>Why does my workout change?</summary><p>After you log a workout and confirm recovery the next day, the plan uses your recent training to decide whether to build, repeat or reduce the next session. Repeating a workout is part of training. Every four weeks, look at your completed sessions, running minutes and longest comfortable run. There is no deadline to reach the next phase.</p></details><details><summary>Using your watch or treadmill</summary><p>Record your running and walking intervals separately from the warm-up and cooldown if possible. Elapsed time includes all breaks; moving time may exclude stops. For your 5K result, use the measured distance and elapsed time of the main outing. You can enter miles, kilometers or meters. The timer does not measure distance or sync with your watch.</p><p>On a treadmill, use a comfortable speed and the safety clip. Start flat. On hills, keep the same comfortable effort rather than trying to maintain your flat-route pace.</p></details></section>
+<section id="support"><h2>Fit training into your week</h2><details><summary>Choose your running days</summary><p>Two-day example: Tuesday and Saturday. Three-day example: Tuesday, Thursday and Saturday. Keep a day between running workouts. Your longer outing builds time on your feet; practice days help you get familiar with running. If you already play sports or train hard, tell the plan about strenuous activity before your next run.</p></details><details><summary>Strength training alongside running</summary><p>Strength work can support running and everyday movement. If you are new to it, try one or two easy sessions each week: chair squats, calf raises, supported step-ups and a hip hinge. Start with one or two sets of 8 to 12 controlled repetitions. Keep enough energy for your running. If you already lift, use your existing routine rather than adding another full program. Avoid hard leg training immediately before your longer outing.</p><p><a href="https://vtrackstar.github.io/bfit/guides/foundation/">Learn the basics in Foundation Training</a>.</p></details><details><summary>Missed a workout or feeling tired?</summary><p>Continue on your next available day rather than squeezing missed runs together. After a longer break, the plan may reduce the workout or ask you to reassess. If you feel unusually tired, rest and check in again when you recover. Regular sleep, meals and water help support training.</p></details><details><summary>Shoes, weather and routes</summary><p>Choose comfortable shoes that fit securely. Expensive racing shoes are optional. Use well-lit routes and pay attention to traffic. In heat or humidity, slow down, choose cooler hours and take walking breaks. If conditions are unsafe, postpone the session or use an indoor option.</p></details></section>
+<section id="prepare"><h2>Prepare for your first 5K</h2><p>Choose a measured route, track or treadmill. Your longer workouts will gradually prepare you for the distance. A 400-meter track takes 12.5 laps to cover 5 km in lane one, starting from the appropriate mark. Use your watch or a measured route to confirm distance.</p><p>On the day, start at a familiar comfortable effort. Use the run-and-walk rhythm you practiced if that is your goal. Stop at five kilometers or the prescribed time limit, whichever comes first. If you reach the time limit first, record what you did and continue training. After you finish, walk to cool down and give yourself time to recover.</p><p>Your result can help you choose a new goal. A 35-minute 5K averages 7 minutes per kilometer, or about 11 minutes 16 seconds per mile. That average describes your outing; it does not automatically become your training pace.</p><p><a href="https://vtrackstar.github.io/bfit/guides/run-strong/">Read Run Strong for more about pace, training types and planning your next goal.</a> <a href="https://vtrackstar.github.io/bfit/">Back to the BFit Training Hub</a>.</p></section>
+<section id="sources"><h2>Why the plan is built this way</h2><p>The plan draws on beginner run-and-walk approaches, effort-based training and gradual exposure. These resources explain the principles behind the program. The adaptive BFit rules are coaching choices; the program has not been clinically validated.</p><ul><li><a href="https://www.nhs.uk/better-health/get-active/get-running-with-couch-to-5k/">NHS Couch to 5K</a> — beginner run-and-walk training.</li><li><a href="https://www.cdc.gov/physical-activity-basics/measuring/index.html">CDC: measuring physical activity intensity</a> — the talk test.</li><li><a href="https://www.nonetorun.com/">None to Run</a> — another beginner running approach.</li></ul></section><section id="transfer"><h2>Transfer saved progress</h2><p>Choose a BFit 5K progress file. Import replaces saved progress, so export a backup first. Files are checked before replacement. A health hold on this device cannot be cleared by importing.</p><label>Progress file<input id="importFile" type="file" accept=".json,application/json"></label><label><input id="replaceConfirm" type="checkbox"> Replace my current saved progress</label><button id="import" type="button">Import progress</button></section></main>
+<script>
+"use strict";
+// Shared dependency-free arithmetic; equivalents are not race predictions.
+(function(root,factory){if(typeof module==="object"&&module.exports)module.exports=factory();else root.BFitRunningCalculator=factory();})(typeof globalThis!=="undefined"?globalThis:this,function calculator(){
+ const units={m:1,km:1000,mi:1609.344};
+ const pos=x=>typeof x==="number"&&Number.isFinite(x)&&x>0;
+ function duration(h=0,m=0,s=0){if(![h,m,s].every(x=>Number.isInteger(x)&&x>=0)||m>=60||s>=60)throw Error("Enter valid hours, minutes and seconds");return h*3600+m*60+s;}
+ function normalize(x){
+ const {distance=null,timeSec=null,pace=null,speed=null,scope="unknown",timeBasis="unknown",surface="unknown"}=x;
+ if(!["running-only","runwalk","whole-workout","unknown"].includes(scope)||!["elapsed","moving","unknown"].includes(timeBasis)||!["outdoor","track","treadmill","unknown"].includes(surface))throw Error("Invalid measurement context");
+ let d=null,t=timeSec,p=null;
+ if(distance!==null){if(!pos(distance.value)||!Object.hasOwn(units,distance.unit))throw Error("Invalid distance");d=distance.value*units[distance.unit];}
+ if(t!==null&&!pos(t))throw Error("Invalid time");
+ if(pace!==null){if(!pos(pace.seconds)||!["km","mi"].includes(pace.per))throw Error("Invalid pace");p=pace.seconds*1000/units[pace.per];}
+ if(speed!==null){if(!pos(speed.value)||!["mph","kmh"].includes(speed.unit))throw Error("Invalid speed");const sp=3600/(speed.value*(speed.unit==="mph"?1.609344:1));if(p!==null&&Math.abs(p-sp)/p>.03)throw Error("Pace and speed disagree");p=p??sp;}
+ const entered={distanceM:d,timeSec:t,paceSecKm:p,raw:{distance,timeSec,pace,speed}};
+ if(d!==null&&t!==null){const calc=t*1000/d;if(p!==null&&Math.abs(calc-p)/calc>.03)throw Error("Distance, time and pace disagree; check recording scope");p=calc;}
+ else if(d!==null&&p!==null)t=d*p/1000;
+ else if(t!==null&&p!==null)d=t*1000/p;
+ if([d,t,p].some(v=>v!==null&&!pos(v))||d===null&&t===null&&p===null)throw Error("Enter valid measurements");
+ return {distanceM:d,timeSec:t,paceSecKm:p,paceSecMile:p===null?null:p*1.609344,kmh:p===null?null:3600/p,mph:p===null?null:3600/p/1.609344,scope,timeBasis,surface,entered,derived:{distance:d!==null&&entered.distanceM===null,time:t!==null&&entered.timeSec===null,pace:p!==null&&entered.paceSecKm===null},comparable:scope==="running-only"&&timeBasis==="elapsed"&&surface!=="unknown"&&d!==null&&t!==null};
+ }
+ function equivalents(n,distances=[200,400,800,1000,1609.344,5000,10000]){if(!pos(n.paceSecKm))return [];return distances.map(distanceM=>{if(!pos(distanceM))throw Error("Invalid split distance");return {distanceM,timeSec:n.paceSecKm*distanceM/1000};});}
+ function format(s){if(!Number.isFinite(s)||s<0)return null;let n=Math.round(s);return n>=3600?`${Math.floor(n/3600)}:${String(Math.floor(n%3600/60)).padStart(2,"0")}:${String(n%60).padStart(2,"0")}`:`${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`;}
+ return {duration,normalize,equivalents,format};
+});
+
+</script>
+<script>
+/* Generated from reviewed development modules. */
+(function(){const modules=Object.create(null),cache=Object.create(null);
+modules["./engine.cjs"]=function(module,exports,require){
+"use strict";
+// BFit programming review prototype. Not a released training program.
+const createEngine = function createEngine(){
+  "use strict";
+  // All times are seconds, distances are meters, and day is an integer day index.
+  // These are review-candidate rules, not validated injury thresholds.
+  const sum=a=>a.reduce((x,y)=>x+y,0), num=x=>typeof x==="number"&&Number.isFinite(x)&&x>=0, pos=x=>num(x)&&x>0, max=(a,k)=>Math.max(0,...a.map(x=>x[k]??0));
+  const clamp=(x,l,h)=>Math.min(h,Math.max(l,x));
+  function workout(id,runs,rests,tail=0,extras={}){
+    if(!id||!Array.isArray(runs)||!Array.isArray(rests)||runs.some(x=>!pos(x))||rests.some(x=>!num(x))||!num(tail)||!(rests.length===runs.length||rests.length===Math.max(0,runs.length-1)))throw Error("Invalid prescription: "+id);
+    const runSec=sum(runs), mainSec=runSec+sum(rests)+tail;
+    if(!pos(mainSec))throw Error("Empty workout: "+id);
+    const out={id,runs:[...runs],rests:[...rests],tail,runSec,mainSec,totalSec:mainSec+(runSec?480:0),longestBout:Math.max(0,...runs),fasterSec:0,distanceGoal:null,pattern:null,...extras};
+    if(!num(out.fasterSec)||out.fasterSec>runSec||!(out.distanceGoal===null||pos(out.distanceGoal)))throw Error("Invalid extra dose");
+    return out;
+  }
+  const repeat=(id,n,r,w,between=false)=>workout(id,Array(n).fill(r),Array(between?n-1:n).fill(w),0,{pattern:{run:r,walk:w}});
+  const continuous=(id,s,extras={})=>workout(id,[s],[],0,extras);
+  const walk=(id,s,extras={})=>workout(id,[],[],s,extras);
+  const W=[5,10,15,20,25,30].map(m=>walk("W"+m,m*60));
+  const P=[
+    repeat("A0",6,15,105),repeat("A0a",6,20,100),repeat("A0b",6,25,95),repeat("A1",6,30,90),repeat("A2",6,40,80),repeat("A3",6,50,70),repeat("A4",6,60,60),repeat("A5",7,60,60),repeat("A6",8,60,60),
+    repeat("B0",4,90,120,true),repeat("B1",5,90,90),repeat("B2",4,120,120),repeat("B3",5,120,120),repeat("B4",4,150,120),repeat("B5",4,180,120),repeat("B6",3,240,120),repeat("B7",3,300,120),repeat("B8",3,360,120),repeat("B8a",2,420,180),repeat("B9",2,480,180),
+    repeat("C1",2,540,180,true),repeat("C2",2,600,180,true),workout("C3",[720,480],[180]),workout("C4",[900,300],[180]),continuous("C5",1080),continuous("C6",1200),continuous("C7",1320),continuous("C8",1500),continuous("C9",1680),continuous("C10",1800)
+  ];
+  const library=[...W,...P], byId=id=>library.find(p=>p.id===id);
+  const successCheck={effort:"comfortable",recovery:"normal",symptoms:"none"};
+  const check=c=>{
+    if(c?.symptoms==="urgent")return "urgent";
+    if(["localized","sharp","unsure"].includes(c?.symptoms)||c?.recovery==="limited")return "pause";
+    if(!c||!["easy","comfortable","hardEarly","hardLate","incomplete"].includes(c.effort)||!["normal","mild","heavy","limited","unknown"].includes(c.recovery)||c.symptoms!=="none")return "hold";
+    if(c.effort==="incomplete"||c.effort==="hardEarly"||c.recovery==="heavy")return "reduce";
+    if(c.effort==="hardLate"||c.recovery==="unknown")return "repeat";
+    return "success";
+  };
+  function validRecord(r){
+    return !!r&&Number.isInteger(r.day)&&[r.runSec,r.mainSec,r.totalSec,r.longestBout,r.fasterSec].every(num)&&r.longestBout<=r.runSec&&r.runSec<=r.mainSec&&r.mainSec<=r.totalSec&&r.fasterSec<=r.runSec&&[r.mainDistanceM,r.runningDistanceM,r.continuousDistanceM].every(x=>x==null||num(x))&&(r.runningDistanceM==null||r.mainDistanceM==null||r.runningDistanceM<=r.mainDistanceM)&&(r.continuousDistanceM==null||r.runningDistanceM==null||r.continuousDistanceM<=r.runningDistanceM)&&(r.runSec>0||!r.runningDistanceM&&!r.continuousDistanceM)&&["walk","runwalk","continuous"].includes(r.strategy);
+  }
+  const recent=(h,d,n=30)=>h.filter(r=>validRecord(r)&&r.day<=d&&r.day>d-n);
+  const good=(h,d,n=30)=>recent(h,d,n).filter(r=>r.completed===true&&check(r.check)==="success"&&!r.unresolved);
+  const distinctDays=h=>new Set(h.map(r=>r.day)).size;
+  const total=(h,k)=>sum(h.map(r=>r[k]));
+  function bounds(h,d){
+    const g=good(h,d),w=recent(h,d,7);
+    return {runSec:max(g,"runSec"),mainSec:max(g,"mainSec"),totalSec:max(g,"totalSec"),longestBout:max(g,"longestBout"),mainDistanceM:max(g,"mainDistanceM"),runningDistanceM:max(g,"runningDistanceM"),continuousDistanceM:max(g,"continuousDistanceM"),weekRunSec:total(w,"runSec"),weekTotalSec:total(w,"totalSec"),weekFasterSec:total(w,"fasterSec")};
+  }
+  function supported(p,r){return p.runSec<=r.runSec&&p.longestBout<=r.longestBout&&p.mainSec<=r.mainSec&&p.totalSec<=r.totalSec;}
+  function initial(intake,h=[],day=0){
+    if(!["runwalk","continuous"].includes(intake.goal)||!num(intake.walkMin)||![2,3].includes(intake.days))throw Error("Invalid intake");
+    if(intake.healthHold||recent(h,day,14).some(r=>r.unresolved||["pause","urgent"].includes(check(r.check))))return {action:"pause",reason:"Resolve health/pain concerns before starting."};
+    const g=good(h,day,14),running=g.filter(r=>r.runSec>0),previous=g.filter(r=>r.day<=day-7),current=g.filter(r=>r.day>day-7);
+    let p,days=2;
+    if(intake.walkMin<30&&!running.length){
+      p=W.filter(x=>x.mainSec<=intake.walkMin*60).at(-1);
+      if(!p)return {action:"hold",reason:"Use an individualized comfortable walking start below five minutes."};
+    }else if(!running.length){
+      p=byId("A1");
+    }else{
+      if(intake.days===3&&distinctDays(previous.filter(r=>r.runSec>0))>=3&&distinctDays(current.filter(r=>r.runSec>0))>=3)days=3;
+      const weeklyMin=Math.min(total(previous,"runSec"),total(current,"runSec"));
+      const timeMin=Math.min(total(previous,"totalSec"),total(current,"totalSec"));
+      const supportedSet=P.filter(x=>running.some(r=>supported(x,r)));
+      // With two consistent weeks, retain only a dose whose weekly totals fit the records.
+      // With sparse history, use no more than half the most recently tolerated running dose
+      // over each of two days; never treat cycling or an old PB as running exposure.
+      if(weeklyMin>0&&timeMin>0){
+        p=supportedSet.filter(x=>x.runSec*days<=weeklyMin&&x.totalSec*days<=timeMin).at(-1);
+      }else{
+        const latest=running.slice().sort((a,b)=>b.day-a.day)[0];
+        p=supportedSet.filter(x=>x.runSec*2<=latest.runSec&&x.longestBout<=latest.longestBout).at(-1);
+      }
+      if(!p){
+        const latest=running.slice().sort((a,b)=>b.day-a.day)[0];
+        p=latest.runSec>=90&&latest.longestBout>=15?byId("A0"):walk("W-custom",Math.max(60,Math.min(600,intake.walkMin*60)));
+        if(p.runSec&&!supported(p,latest))p=walk("W-custom",Math.max(60,Math.min(600,intake.walkMin*60)));
+      }
+    }
+    return {action:"start",goal:intake.goal,requestedDays:intake.days,days,practice:p,easy:p,long:p};
+  }
+  // Repeated weekly schedule with at least one non-running day between sessions,
+  // including the boundary between weeks. Hard lower-body work is a preference
+  // constraint; if no workable arrangement exists, return a conflict for review.
+  function schedule(days,hardLegDays=[],preferred=null){
+    if(![2,3].includes(days)||hardLegDays.some(x=>!Number.isInteger(x)||x<0||x>6))throw Error("Invalid schedule");
+    const sets=[];
+    for(let a=0;a<7;a++)for(let b=a+2;b<7;b++){
+      if(days===2&&7-b+a>=2)sets.push([a,b]);
+      if(days===3)for(let c=b+2;c<7;c++)if(7-c+a>=2)sets.push([a,b,c]);
+    }
+    const cost=arr=>sum(arr.map(d=>sum(hardLegDays.map(l=>d===l?10:((d-l+7)%7===1||(l-d+7)%7===1)?1:0))));
+    const pref=Array.isArray(preferred)?sets.find(x=>x.every((n,i)=>n===preferred[i])&&x.length===preferred.length):null;
+    const best=sets.sort((a,b)=>cost(a)-cost(b)||Math.abs(a[0]-1)-Math.abs(b[0]-1)||Math.abs(a.at(-1)-5)-Math.abs(b.at(-1)-5))[0];
+    const chosen=pref&&cost(pref)<=cost(best)?pref:best;
+    return {days:chosen,conflict:cost(chosen)>0,hardSameDay:chosen.some(d=>hardLegDays.includes(d))};
+  }
+  function weekly(state,hardLegDays=[],preferred=null){
+    if(state.action!=="start")return null;
+    const s=schedule(state.days,hardLegDays,preferred);
+    const lanes=state.days===2?["practice","long"]:["practice","easy","long"];
+    const sessions=lanes.map((lane,i)=>({...state[lane],lane,day:s.days[i]}));
+    return {sessions,runSec:total(sessions,"runSec"),totalSec:total(sessions,"totalSec"),fasterSec:total(sessions,"fasterSec"),schedule:s};
+  }
+  function gap(days,reason="life",resolved=true){
+    if(!Number.isInteger(days)||days<0)throw Error("Invalid gap");
+    if(!resolved||["pain","concerning illness"].includes(reason))return "pause";
+    if(days<2)return "rest";
+    if(days<=4)return "normal";
+    if(days<=7)return "repeat";
+    if(days<=13)return "reduce";
+    if(days<=27)return "return";
+    return "reassess";
+  }
+  function reduced(p){
+    if(p.runSec===0)return walk("return-walk-"+Math.max(60,Math.floor(p.mainSec*.75)),Math.max(60,Math.floor(p.mainSec*.75)));
+    if(p.longestBout<=15&&p.runSec<=90)return walk("return-walk-600",600);
+    const runs=p.runs.map(x=>Math.max(1,Math.floor(x*.75))),rests=p.rests.slice();
+    const pattern=p.pattern?{run:Math.max(1,Math.floor(p.pattern.run*.75)),walk:p.pattern.walk}:null;
+    return workout("reduced-"+p.id,runs,rests,Math.floor(p.tail*.75),{pattern});
+  }
+  function reentry(p,days,reason="life",resolved=true){
+    const action=gap(days,reason,resolved);
+    return {action,workout:["reduce","return"].includes(action)?reduced(p):["normal","repeat"].includes(action)?p:null,holdProgression:action!=="normal"};
+  }
+  const distanceCaution=(proposed,previous)=>!pos(proposed)||!pos(previous)?"unknown":proposed>previous*1.10+1e-8?"review":"within-reference";
+  function achieved(r,p){
+    if(!validRecord(r)||r.completed!==true||check(r.check)!=="success"||r.prescriptionId!==p.id)return false;
+    if(p.distanceGoal!==null)return r.mainDistanceM>=p.distanceGoal&&r.mainSec<=p.mainSec&&r.runSec<=p.runSec&&r.longestBout<=p.longestBout;
+    return r.runSec>=p.runSec&&r.mainSec>=p.mainSec&&r.longestBout>=p.longestBout;
+  }
+  function exposures(h,d,p){return good(h,d,28).filter(r=>achieved(r,p));}
+  function nextPractice(p,h,d,accelerate=false){
+    if(p.runSec===0){
+      const n=W.find(x=>x.mainSec>p.mainSec);
+      return n??(distinctDays(good(h,d,28).filter(r=>r.mainSec>=1800))>=2?byId("A1"):p);
+    }
+    if(accelerate&&p.id==="A4")return byId("B0"); // 6 minutes running, 20 total, longer bouts.
+    if(p.id==="A6")return byId("B1");
+    if(p.id==="B0")return byId("B1");
+    const idx=P.findIndex(x=>x.id===p.id);
+    if(idx>=0)return P[idx+1]??p;
+    // A regression is not a dead end: restore the closest supported library
+    // dose; if none, increment running by a small amount in its current rhythm.
+    const n=P.filter(x=>x.runSec<=p.runSec+60&&x.longestBout<=p.longestBout+30&&x.mainSec<=p.mainSec+120&&x.runSec>=p.runSec&&x.longestBout>=p.longestBout).sort((a,b)=>a.runSec-b.runSec||a.longestBout-b.longestBout)[0];
+    if(n)return n;
+    if(strategy(p)==="continuous"&&p.runSec<1800)return continuous("bridge-cont-"+Math.min(1800,p.runSec+30),Math.min(1800,p.runSec+30));
+    if(p.pattern){
+      // A generated dose can develop independently of library IDs. Add work
+      // at the familiar rhythm first, or extend a bout with comparable volume.
+      const r=p.pattern.run,w=p.pattern.walk;
+      const target=Math.min(1800,p.runSec+Math.min(90,Math.max(15,Math.ceil(p.runSec*.15/5)*5)));
+      if(target>p.runSec){
+        const runs=[],rests=[];let left=target;
+        while(left>0){let part=Math.min(r,left);runs.push(part);left-=part;if(left>0)rests.push(w);}
+        return workout("bridge-rhythm-"+r+"-"+w+"-"+target,runs,rests,0,{pattern:{run:r,walk:w}});
+      }
+    }
+    return p;
+  }
+  function rhythm(id,run,rest,main,extras={}){
+    if(!pos(run)||!pos(rest)||!pos(main))throw Error("Invalid rhythm");
+    const runs=[],rests=[];let left=main;
+    while(left>0){
+      const r=Math.min(run,left);runs.push(r);left-=r;
+      const w=Math.min(rest,left);rests.push(w);left-=w;
+    }
+    return workout(id,runs,rests,0,{pattern:{run,walk:rest},...extras});
+  }
+  const strategy=p=>p.runSec===0?"walk":p.runs.length===1&&p.rests.every(x=>x===0)&&p.tail===0?"continuous":"runwalk";
+  function measuredPace(records){
+    const p=records.filter(r=>pos(r.mainDistanceM)&&pos(r.mainSec)&&r.comparable!==false).slice().sort((a,b)=>b.day-a.day).slice(0,3).map(r=>r.mainSec*1000/r.mainDistanceM).sort((a,b)=>a-b);
+    if(p.length<2)return null;
+    return p.length===2?(p[0]+p[1])/2:p[1];
+  }
+  const durationIncrement=s=>Math.min(180,Math.max(60,Math.floor(s*.10/30)*30));
+  function longCandidate(p,h,d,goal,practice){
+    if(p.runSec===0){
+      const n=nextPractice(p,h,d);
+      return {workout:n,reason:"Develop comfortable walking or begin running when ready.",flag:"unknown"};
+    }
+    const mode=strategy(p),g=good(h,d,30);
+    // Continuous route: use a pattern already demonstrated during practice at
+    // similar or lower long-outing running volume, before lengthening the outing.
+    if((goal==="continuous"||p.longestBout<180)&&mode!=="continuous"&&practice&&practice.longestBout>p.longestBout&&distinctDays(g.filter(r=>achieved(r,practice)))>=2){
+      if(strategy(practice)==="continuous"&&practice.runSec<=p.runSec){
+        return {workout:continuous("adopt-cont-"+practice.runSec,practice.runSec),reason:"Use the proven continuous-running dose; keep the other sessions unchanged.",flag:"unknown"};
+      }
+      if(practice.pattern&&practice.pattern.run<=p.runSec){
+        let n=rhythm("adopt-"+practice.pattern.run+"-"+p.mainSec,practice.pattern.run,practice.pattern.walk,p.mainSec);
+        if(n.runSec>p.runSec){
+          let t=p.mainSec;
+          while(t>0&&n.runSec>p.runSec){t=Math.max(1,t-15);n=rhythm("adopt-"+practice.pattern.run+"-"+t,practice.pattern.run,practice.pattern.walk,t);}
+        }
+        if(n.longestBout>p.longestBout&&n.runSec<=p.runSec)return {workout:n,reason:"Use a familiar longer running rhythm without adding running volume.",flag:"unknown"};
+      }
+    }
+    const comparable=g.filter(r=>r.lane==="long"&&r.strategy===mode&&r.comparable!==false&&pos(r.mainDistanceM)&&r.mainDistanceM>=1000).sort((a,b)=>b.day-a.day);
+    const latest=comparable[0],pace=measuredPace(comparable);
+    // Anchor on the most recent successfully completed comparable outing,
+    // not a historic best. The plan is a time ceiling and optional distance goal.
+    const baseline=latest?Math.min(p.mainSec,latest.mainSec):p.mainSec;
+    const hardCap=baseline+durationIncrement(baseline);
+    let cap=hardCap;
+    if(cap<=p.mainSec&&p.distanceGoal===null)return {workout:p,reason:"Reestablish the planned time before increasing the duration.",flag:"unknown",cap};
+    let target=null,expected=null,reason="Extend the familiar outing by time; measure distance if available.";
+    if(latest&&pace!==null){
+      const inc=Math.min(250,Math.max(50,Math.floor(latest.mainDistanceM*.05/25)*25));
+      target=Math.min(5000,latest.mainDistanceM+inc);
+      // If a distance target was not achieved, keep it instead of incrementing.
+      if(p.distanceGoal!==null&&latest.mainDistanceM<p.distanceGoal)target=p.distanceGoal;
+      expected=Math.ceil(target*pace/1000);
+      if(expected>cap){reason="Distance target would exceed the duration limit; extend time first.";target=null;}
+      else {
+        cap=Math.min(hardCap,Math.max(baseline,expected+15));
+        reason="Stop when the distance target or time limit is reached, whichever comes first.";
+      }
+    }
+    const build=(seconds,meters)=>{
+      const suffix=seconds+"-"+(meters??"time");
+      if(mode==="continuous")return continuous("L-cont-"+suffix,seconds,{distanceGoal:meters});
+      if(p.pattern)return rhythm("L-rw-"+p.pattern.run+"-"+p.pattern.walk+"-"+suffix,p.pattern.run,p.pattern.walk,seconds,{distanceGoal:meters});
+      return workout("L-time-"+suffix,p.runs,p.rests,p.tail+Math.max(0,seconds-p.mainSec),{distanceGoal:meters});
+    };
+    const reference=max(g,"runningDistanceM");
+    const flagFor=n=>distanceCaution(latest&&pos(latest.runningDistanceM)&&pos(latest.runSec)?latest.runningDistanceM*n.runSec/latest.runSec:null,reference);
+    let n=build(cap,target);
+    // Look for a smaller real increase before asking for a manual review.
+    // A distance goal remains attached only when its estimated duration fits.
+    if(flagFor(n)==="review"){
+      for(let seconds=cap-15;seconds>baseline;seconds-=15){
+        const meters=pace!==null&&latest?Math.min(5000,Math.floor(seconds*1000/pace/25)*25):null;
+        const smaller=build(seconds,meters!==null&&meters>latest.mainDistanceM?meters:null);
+        if(smaller.mainSec>baseline&&flagFor(smaller)!=="review"){
+          n=smaller;cap=seconds;expected=n.distanceGoal!==null?Math.ceil(n.distanceGoal*pace/1000):null;
+          reason="Use a smaller duration or distance increase within recent running exposure.";
+          break;
+        }
+      }
+      if(flagFor(n)==="review"&&mode==="runwalk"&&latest&&p.runSec<=latest.runSec&&hardCap>p.mainSec){
+        const tail=Math.min(60,hardCap-p.mainSec);
+        n=workout("L-walk-tail-"+(p.mainSec+tail),p.runs,p.rests,p.tail+tail,{pattern:p.pattern});
+        cap=n.mainSec;expected=null;reason="Keep the running dose familiar and add a short walking finish.";
+      }
+    }
+    return {workout:n,reason,cap,expected,flag:flagFor(n)};
+  }
+  function paceOption(state,h,d,goalTimeSec,plan){
+    if(state.goal!=="continuous"||!pos(goalTimeSec)||!plan)return {eligible:false,reason:"Optional continuous time goal only."};
+    const g=good(h,d,30);
+    const fourWeeks=[0,1,2,3].every(i=>distinctDays(g.filter(r=>r.runSec>0&&r.day>d-7*(i+1)&&r.day<=d-7*i))>=2);
+    const ref=g.filter(r=>r.representative===true&&r.comparable!==false&&r.strategy==="continuous"&&r.mainDistanceM>=3000&&r.longestBout===r.mainSec&&pos(r.mainSec)&&r.check.recovery==="normal").sort((a,b)=>b.day-a.day)[0];
+    if(!fourWeeks||!ref)return {eligible:false,reason:"Need four consistent weeks and a recent representative continuous effort; do not prescribe a maximal test just to qualify."};
+    const goalPace=goalTimeSec/5,demonstrated=ref.mainSec*1000/ref.mainDistanceM;
+    if(goalPace<demonstrated)return {eligible:false,goalPace,demonstrated,reason:"Requested pace is faster than the demonstrated reference; keep current-fitness training."};
+    const candidate={...repeat("goal-pace",3,180,120,true),fasterSec:540,goalPace},old=plan.sessions.find(p=>p.lane==="practice");
+    if(!old||candidate.runSec>old.runSec||candidate.longestBout>old.longestBout||candidate.totalSec>old.totalSec)return {eligible:false,reason:"Pace practice must fit inside a familiar training dose."};
+    return {eligible:true,workout:candidate,goalPace,demonstrated,reason:"Replace one session; keep effort controlled and slow or stop if needed."};
+  }
+  function ready(h,d,goal){
+    const g=good(h,d,30),consistent=[0,1].every(i=>distinctDays(g.filter(r=>r.runSec>0&&r.day>d-7*(i+1)&&r.day<=d-7*i))>=2);
+    if(!consistent)return {ready:false,reason:"Build recent consistency."};
+    const near=g.filter(r=>r.lane==="long"&&r.day>d-14&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
+    if(!near)return {ready:false,reason:"Need a recent comfortable measured outing near 5 km using the chosen strategy."};
+    const expected=Math.ceil(near.mainSec*5000/near.mainDistanceM),cap=near.mainSec+durationIncrement(near.mainSec);
+    if(expected>cap)return {ready:false,expected,cap,reason:"Build duration further before attempting the distance."};
+    if(goal==="continuous"&&near.longestBout+durationIncrement(near.longestBout)<expected)return {ready:false,reason:"Build continuous duration."};
+    return {ready:true,expected,cap,reason:"Optional 5K attempt replaces the longer outing; stop early if symptoms or effort require it."};
+  }
+  function achievement(r){
+    if(!validRecord(r)||r.mainDistanceM<5000)return {distance:false,runwalk:false,continuous:false,walk:false};
+    return {distance:true,runwalk:r.runSec>0&&["runwalk","continuous"].includes(r.strategy),continuous:r.strategy==="continuous"&&r.continuousDistanceM>=5000&&r.longestBout===r.mainSec,walk:r.strategy==="walk"&&r.runSec===0};
+  }
+  // Only redistribute an existing dose; extra warm-up/cooldown walking is
+  // explicit. This is a separate frequency change, not also a volume increase.
+  function thirdDay(state,h,d,hard=[]){
+    if(state.days!==2||state.requestedDays!==3||!state.practice.runSec||state.practice.distanceGoal!==null)return null;
+    const g=good(h,d,14);
+    if(![0,1].every(i=>distinctDays(g.filter(r=>r.runSec>0&&r.day>d-7*(i+1)&&r.day<=d-7*i))>=2)||g.some(r=>r.check.recovery!=="normal"))return null;
+    if(schedule(3,hard).hardSameDay)return null;
+    const p=state.practice;let a,b;
+    if(p.runs.length>=2){
+      const k=Math.ceil(p.runs.length/2);
+      a=workout("split-a-"+p.id,p.runs.slice(0,k),p.rests.slice(0,k),0,{pattern:p.pattern});
+      b=workout("split-b-"+p.id,p.runs.slice(k),p.rests.slice(k),p.tail,{pattern:p.pattern});
+    }else if(p.runSec>=600){
+      const k=Math.ceil(p.runSec/2);a=continuous("split-a-"+p.id,k);b=continuous("split-b-"+p.id,p.runSec-k);
+    }else return null;
+    const next={...state,days:3,practice:a,easy:b},before=weekly(state,hard),after=weekly(next,hard);
+    return after.runSec<=before.runSec&&after.totalSec<=before.totalSec+480?next:null;
+  }
+  function review(state,h,day,opt={}){
+    const {weekNumber=1,focus="practice",hardLegDays=[],approvedCaution=false,wantPace=false,goalTimeSec=null,wantThird=false}=opt;
+    if(!["practice","long"].includes(focus))throw Error("Unknown focus");
+    const plan=weekly(state,hardLegDays);if(!plan)return {action:state.action,state,reason:state.reason};
+    const r=recent(h,day,7);
+    const result=(action,reason,extra={})=>({action,state,reason,...extra});
+    if(r.some(x=>check(x.check)==="urgent"))return result("pause","Urgent symptoms: stop and seek urgent medical help.",{urgent:true});
+    if(r.some(x=>x.unresolved||check(x.check)==="pause"))return result("pause","Pause running and assess concerning symptoms.");
+    if(r.some(x=>check(x.check)==="reduce")){
+      const bad=r.filter(x=>check(x.check)==="reduce").sort((a,b)=>b.day-a.day)[0],lane=["practice","easy","long"].includes(bad.lane)?bad.lane:"practice";
+      return result("reduce","Reduce the difficult session; keep other prescriptions stable.",{state:{...state,[lane]:reduced(state[lane])},lever:lane});
+    }
+    if(r.some(x=>check(x.check)!=="success"||!x.completed)||distinctDays(r)<state.days||plan.schedule.hardSameDay)return result("repeat","Hold until completion, recovery and scheduling fit are confirmed.");
+    // Match each prescribed lane, allowing a distance session to end at the cap.
+    const allDone=plan.sessions.every(p=>r.some(x=>x.lane===p.lane&&x.prescriptionId===p.id&&(achieved(x,p)||p.distanceGoal!==null&&x.completed&&check(x.check)==="success"&&x.mainSec<=p.mainSec)));
+    if(!allDone)return result("repeat","Confirm actual prescribed sessions before advancing.");
+    if(weekNumber%4===0)return result("repeat","Four-week review: consolidate; reduce if recovery requires it.");
+    if(wantThird){
+      const next=thirdDay(state,h,day,hardLegDays);
+      if(next)return result("frequency","Redistribute running exposure; count added walking warm-up/cooldown.",{state:next,lever:"frequency"});
+    }
+    let paceDeferred=null;
+    if(wantPace){
+      const pace=paceOption(state,h,day,goalTimeSec,plan);
+      if(pace.eligible)return result("pace",pace.reason,{substitute:pace.workout,lever:"pace"});
+      paceDeferred=pace.reason;
+      // Optional pace work must never veto an otherwise eligible easy progression.
+    }
+    const p=state[focus],same=exposures(h,day,p),last=same.slice().sort((a,b)=>b.day-a.day)[0];
+    const near=good(h,day,14).filter(x=>x.runSec>=p.runSec&&x.longestBout>=p.longestBout&&x.mainSec>=p.mainSec&&x.check.recovery==="normal"&&x.day!==last?.day);
+    const accelerate=!!last&&p.runSec>0&&last.check.effort==="easy"&&last.check.recovery==="normal"&&distinctDays(near)>=1;
+    const comparablePractice=focus==="practice"&&!!last&&distinctDays(near)>=1;
+    if(distinctDays(same)<2&&!accelerate&&!comparablePractice){
+      // A longer outing that reached its duration cap but not its distance
+      // can build time after two recovered attempts at that same cap.
+      const capExposures=p.distanceGoal!==null&&distinctDays(good(h,day,28).filter(x=>x.prescriptionId===p.id&&x.lane===focus&&x.mainSec>=p.mainSec))>=2;
+      if(!capExposures)return result("repeat","Need another comparable successful exposure.");
+    }
+    const c=focus==="long"?longCandidate(p,h,day,state.goal,state.practice):{workout:nextPractice(p,h,day,accelerate),reason:accelerate?"Easy recovered training plus recent running exposure supports a modest reassessment.":"Two successful exposures support progression.",flag:"unknown"};
+    let n=c.workout,reason=c.reason;
+    if(n.id===p.id)return result("repeat",c.reason,{paceDeferred});
+    const actualRun=total(r,"runSec"),actualTotal=total(r,"totalSec"),runCap=actualRun===0?180:clamp(Math.ceil(actualRun*.15/30)*30,60,180);
+    const b=bounds(h,day);
+    const reference=last&&pos(last.runningDistanceM)&&p.runSec>0?last:null;
+    const flagFor=x=>distanceCaution(reference?reference.runningDistanceM*x.runSec/reference.runSec:null,b.runningDistanceM);
+    const fits=x=>{
+      const plan=weekly({...state,[focus]:x},hardLegDays);
+      return plan.runSec<=actualRun+runCap&&plan.totalSec<=actualTotal+300&&x.totalSec<=p.totalSec+300;
+    };
+    const meaningful=x=>x.runSec>p.runSec||x.longestBout>p.longestBout||x.mainSec>p.mainSec||x.distanceGoal!==null&&x.distanceGoal>(p.distanceGoal??0);
+    if(!fits(n)||(!approvedCaution&&(c.flag==="review"||flagFor(n)==="review"))){
+      const options=[];
+      // Smaller continuous increases retain the current running strategy.
+      if(strategy(p)==="continuous"&&strategy(n)==="continuous"){
+        for(let s=Math.min(n.runSec,p.runSec+180);s>p.runSec;s-=15)options.push(continuous("bridge-cont-"+s,s));
+      }else if(p.runSec&&p.pattern){
+        // Prefer a same-volume or small-volume bridge toward the longer bout.
+        if(n.longestBout>p.longestBout){
+          for(let bout=Math.min(n.longestBout,p.longestBout+30);bout>p.longestBout;bout-=5){
+            const count=Math.max(1,Math.floor(p.runSec/bout));
+            options.push(repeat("bridge-bout-"+count+"-"+bout+"-"+p.pattern.walk,count,bout,p.pattern.walk,true));
+          }
+        }
+        // A short additional running bout can fit when extending the full rhythm does not.
+        for(let extra=Math.min(60,p.pattern.run);extra>=5;extra-=5)options.push(workout("bridge-extra-"+p.id+"-"+extra,[...p.runs,extra],p.rests.length===p.runs.length?[...p.rests]:[...p.rests,p.pattern.walk],p.tail,{pattern:p.pattern}));
+        for(let s=Math.min(p.mainSec+180,Math.max(n.mainSec,p.mainSec+15));s>p.mainSec;s-=15)options.push(rhythm("bridge-time-"+p.pattern.run+"-"+p.pattern.walk+"-"+s,p.pattern.run,p.pattern.walk,s));
+        if(focus==="long")options.push(workout("bridge-walk-"+(p.mainSec+60),p.runs,p.rests,p.tail+60,{pattern:p.pattern}));
+      }else if(!p.runSec&&!n.runSec){
+        for(let s=Math.min(n.mainSec,p.mainSec+300);s>p.mainSec;s-=30)options.push(walk("bridge-walk-"+s,s));
+      }else if(!p.runSec&&n.runSec){
+        for(let k=6;k>=1;k--)options.push(repeat("bridge-intro-"+k,k,15,105));
+      }
+      const smaller=options.find(x=>meaningful(x)&&fits(x)&&(approvedCaution||flagFor(x)!=="review")&&x.fasterSec===0);
+      if(!smaller)return result("repeat","Keep the current dose; no smaller suitable progression fits recent work and recovery.",{paceDeferred});
+      n=smaller;reason="Use a smaller intermediate workout that fits recent training.";
+    }
+    const next={...state,[focus]:n};
+    const flag=flagFor(n)==="review"||n===c.workout&&c.flag==="review"?"review":flagFor(n);
+    if(flag==="review"&&!approvedCaution)return result("review-distance","Running-distance change needs review; a percentage is not a safety guarantee.",{candidate:n,flag});
+    return result("progress",reason,{state:next,lever:focus,flag,paceDeferred});
+  }
+  return {workout,repeat,continuous,walk,rhythm,library,byId,check,validRecord,recent,good,bounds,initial,schedule,weekly,gap,reentry,reduced,achieved,exposures,nextPractice,distanceCaution,longCandidate,paceOption,ready,achievement,thirdDay,review,strategy,successCheck};
+};
+module.exports = createEngine();
+
+};
+modules["./refined-engine.cjs"]=function(module,exports,require){
+"use strict";
+const reference=function reference(E){
+ // Original BFit prescriptions, not copied competitor schedules.
+ // Each tuple: total running seconds, maximum bout seconds, between-bout walk seconds,
+ // minimum main duration seconds. Warmup/cooldown add 480 seconds.
+ const common=[
+ [[180,30,90,720],[180,30,90,720],[240,30,90,960]],
+ [[240,40,80,720],[240,40,80,720],[300,50,80,960]],
+ [[360,60,75,810],[300,60,75,720],[420,90,90,1020]],
+ [[480,120,90,840],[360,90,90,720],[540,120,90,1080]]
+ ];
+ const rw=[
+ [[600,120,90,1080],[480,120,90,900],[720,120,90,1380]],
+ [[720,150,90,1200],[600,120,90,1080],[900,150,90,1560]],
+ [[840,180,90,1260],[720,150,90,1200],[1080,180,90,1740]],
+ [[960,180,90,1440],[840,180,90,1260],[1260,180,90,1980]],
+ [[1080,180,90,1620],[900,180,90,1380],[1440,180,90,2160]],
+ [[1080,180,90,1620],[960,180,90,1440],[1620,180,90,2520]],
+ [[1200,180,90,1800],[960,180,90,1440],[1800,180,90,2700]],
+ [[1200,180,90,1800],[1080,180,90,1620],[1920,180,90,2940]],
+ [[1200,180,90,1800],[1080,180,90,1620],[2100,180,90,3240]],
+ [[1200,180,90,1800],[1080,180,90,1620],[2280,180,90,3480]],
+ [[1200,180,90,1800],[1080,180,90,1620],[2400,180,90,3660]]
+ ];
+ const continuous=[
+ [[600,180,90,960],[480,120,90,900],[720,240,120,1200]],
+ [[720,300,120,1020],[600,180,90,1020],[900,360,120,1380]],
+ [[900,420,120,1140],[720,300,120,1080],[1080,540,120,1440]],
+ [[1080,600,120,1200],[840,420,120,1080],[1200,720,120,1500]],
+ [[1200,900,120,1320],[960,600,120,1200],[1440,960,120,1560]],
+ [[1320,1080,120,1440],[1080,720,120,1320],[1560,1200,120,1680]],
+ [[1440,1320,120,1560],[1200,900,120,1320],[1680,1560,120,1800]],
+ [[1500,1500,0,1500],[1200,1200,0,1200],[1800,1800,0,1800]],
+ [[1560,1560,0,1560],[1320,1320,0,1320],[2100,2100,0,2100]],
+ [[1620,1620,0,1620],[1320,1320,0,1320],[2400,2400,0,2400]],
+ [[1620,1620,0,1620],[1320,1320,0,1320],[2700,2700,0,2700]]
+ ];
+ const make=(id,t)=>{const [run,bout,rest,main]=t;const runs=[],rests=[];let left=run;while(left){let n=Math.min(left,bout);runs.push(n);left-=n;if(left)rests.push(rest);}const base=run+rests.reduce((a,b)=>a+b,0);return E.workout(id,runs,rests,Math.max(0,main-base),{pattern:rest?{run:bout,walk:rest}:null});};
+ function plan(goal,days){if(!["runwalk","continuous"].includes(goal)||![2,3].includes(days))throw Error("Invalid plan");return [...common,...(goal==="runwalk"?rw:continuous)].map((row,i)=>{const slots=days===2?[0,2]:[0,1,2];return slots.map(j=>({...make(goal+"-w"+(i+1)+"-"+j,row[j]),lane:["practice","easy","long"][j]}));});}
+ const sum=(a,k)=>a.reduce((s,x)=>s+x[k],0), max=(a,k)=>Math.max(0,...a.map(x=>x[k]??0));
+ // Split the actual recovered practice prescription into two smaller doses.
+ // Keep the long outing familiar, count the extra warm-up/cooldown, and
+ // retain the current reference level during the transition cycle.
+ function transition(s,records){
+ const practice=records.find(r=>r.lane==="practice"),long=records.find(r=>r.lane==="long");
+ if(!practice||!long||!practice.runSec||!long.runSec)return null;
+ const original=plan(s.goal,2)[s.level];
+ if(practice.runSec<original[0].runSec||long.runSec<original[1].runSec)return null;
+ const first=original[0],last=original[1],half=Math.floor(first.runSec/2);
+ const a=make("frequency-practice-"+s.level,[half,Math.min(first.longestBout,half),first.pattern?.walk??90,Math.floor(first.mainSec/2)]);
+ const b=make("frequency-easy-"+s.level,[first.runSec-half,Math.min(first.longestBout,first.runSec-half),first.pattern?.walk??90,Math.ceil(first.mainSec/2)]);
+ const row=[{...a,lane:"practice"},{...b,lane:"easy"},{...last,lane:"long"}];
+ if(sum(row,"runSec")>sum(records,"runSec")||sum(row,"totalSec")>sum(records,"totalSec")+480)return null;
+ return row;
+ }
+ function currentRow(s,h,d){
+ if(s.transitionRow)return s.transitionRow;
+ const row=plan(s.goal,s.days)[Math.min(s.level,14)];
+ if(s.level<14)return row;
+ // Extend the last long outing only after two recent recovered exposures at
+ // the current duration. A time ceiling works even when distance is unknown.
+ const g=E.good(h,d,28).filter(r=>r.lane==="long"&&r.runSec>0&&(s.goal!=="continuous"||r.strategy==="continuous")).sort((a,b)=>b.day-a.day);
+ const last=row.at(-1),ext=s.extensionSec??0,base=last.mainSec+ext;
+ if(!ext&&g.filter(r=>r.mainSec>=last.mainSec-1).length<2)return row;
+ const target=base;
+ const q=s.goal==="continuous"?E.continuous("extension-"+target,target):E.rhythm("extension-"+target,last.pattern.run,last.pattern.walk,target);
+ return [...row.slice(0,-1),{...q,lane:"long"}];
+ }
+ function start(intake,h=[],day=0){
+ const base=E.initial(intake,h,day);if(base.action!=="start")return base;
+ const days=intake.days;const rows=plan(intake.goal,days),g=E.good(h,day,14),run=g.filter(r=>r.runSec>0);
+ // New runner initially uses 2 days; third day is an explicit later transition.
+ const n=base.days;
+ let level=0;
+ if(run.length>=4){const recent=E.good(h,day,14);const half=[recent.filter(r=>r.day>day-7),recent.filter(r=>r.day<=day-7)];const wk=Math.min(...half.map(r=>sum(r,"runSec")));const found=plan(intake.goal,n).findLastIndex(row=>sum(row,"runSec")<=wk&&max(row,"runSec")<=max(run,"runSec")&&max(row,"longestBout")<=max(run,"longestBout")&&max(row,"mainSec")<=max(run,"mainSec"));level=Math.max(0,found);}
+ return {action:"start",goal:intake.goal,days:n,requestedDays:days,level,index:0,week:1,walkMin:intake.walkMin<30&&!run.length?Math.max(5,Math.floor(intake.walkMin/5)*5):null,goalTimeSec:intake.goalTimeSec??null,goalRevision:0,ack:null,history:E.recent(h,day,30),cycleRecords:[],lastDay:E.recent(h,day,30).sort((a,b)=>b.day-a.day)[0]?.day??null,paused:false,returnHold:false};
+ }
+ function reassessGoal(s,goal,time=null,h=s.history??[],day=s.lastDay??0){
+ if(!["runwalk","continuous"].includes(goal)||time!==null&&(!Number.isFinite(time)||time<=0)||!Number.isInteger(day))throw Error("Invalid goal");
+ const rows=E.recent(h,day,30).sort((a,b)=>b.day-a.day),g=E.good(h,day,14).filter(r=>r.runSec>0&&!r.fasterSec);
+ const pause=s.paused||rows.some(r=>r.unresolved)||rows[0]&&["pause","urgent"].includes(E.check(rows[0].check));
+ const bouts=max(g,"longestBout"),run=max(g,"runSec"),main=max(g,"mainSec");
+ const windows=[g.filter(r=>r.day>day-7),g.filter(r=>r.day<=day-7)];
+ const regular=windows.every(w=>new Set(w.map(r=>r.day)).size>=2);
+ const wk=Math.min(...windows.map(w=>sum(w,"runSec")));
+ const level=regular?plan(goal,s.days).findLastIndex(row=>sum(row,"runSec")<=wk&&max(row,"runSec")<=run&&max(row,"longestBout")<=bouts&&max(row,"mainSec")<=main):-1;
+ // A controlled assessment replaces part of a familiar session; no pace-only advancement.
+ const assessmentSec=pause?null:[1200,600,300,120].find(n=>n<=bouts)??null;
+ return {goal,time,level:Math.max(0,level),status:pause?"pause":regular?"history-supported":"needs-recent-training",assessmentSec,optional:true,weeklyRunSec:regular?wk:null,longestBoutSec:bouts,reason:pause?"Resolve symptoms before assessing.":regular?"Use recent training to select the new starting point.":"Build recent comparable training before advancing."};
+ }
+ function changeGoal(s,goal,time=null,h=s.history??[],day=s.lastDay??0){
+ const review=reassessGoal(s,goal,time,h,day);
+ if(goal===s.goal)return {...s,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,goalReview:review,paused:s.paused||review.status==="pause"};
+ return {...s,goal,goalTimeSec:time,goalRevision:s.goalRevision+1,ack:null,index:0,cycleRecords:[],level:review.level,transitionRow:null,extensionSec:0,completed:false,completion:null,goalReview:review,paused:s.paused||review.status==="pause"};
+ }
+ function progressReview(s,h=s.history??[],day=s.lastDay??0){
+ const rows=E.recent(h,day,28),done=rows.filter(r=>r.completed===true),recovered=E.good(h,day,28);
+ const weeks=Array.from({length:4},(_,i)=>{const end=day-7*(3-i),w=rows.filter(r=>r.day<=end&&r.day>end-7);return {runSec:sum(w,"runSec"),totalSec:sum(w,"totalSec"),completed:w.filter(r=>r.completed===true).length};});
+ return {completed:done.length,runSec:sum(rows,"runSec"),totalSec:sum(rows,"totalSec"),longestBoutSec:max(recovered,"longestBout"),longestMeasuredDistanceM:recovered.some(r=>r.mainDistanceM!=null)?max(recovered,"mainDistanceM"):null,weeks,analyticsCollapsed:true};
+ }
+ // Review actual exposure in the prospective seven-day window. Include
+ // incomplete sessions. Reference rows never count as completed workload.
+ function loadReview(s,h,d,p){
+ const actual=E.recent(h,d-1,6),previous=E.recent(h,d-7,7),last14=E.recent(h,d-1,14);
+ // Use the highest actual seven-day exposure in the prior 21 days,
+// excluding the prospective window. Avoid treating a partial week as a full baseline.
+ const older=E.recent(h,d-7,21);
+ const windows=Array.from({length:15},(_,i)=>older.filter(r=>r.day<=d-7-i&&r.day>d-14-i));
+ const latest=E.recent(h,d-1,28).sort((a,b)=>b.day-a.day);
+ const gap=latest.length?d-latest[0].day:0;
+ const returning=gap>=8||s.recoveryRemaining>0||latest.slice(0,2).some(r=>E.check(r.check)!=="success"||!r.completed);
+ const completedCycle=latest.slice(0,s.days);
+ const cycleOK=!returning&&completedCycle.length===s.days&&completedCycle.every(r=>r.completed&&E.check(r.check)==="success"&&r.check.recovery==="normal")&&completedCycle[0].day-completedCycle.at(-1).day<=6&&gap<=5;
+ const recentWindows=returning?[]:windows;
+ const baselineRun=Math.max(sum(previous,"runSec"),sum(last14,"runSec")/2,...recentWindows.map(w=>sum(w,"runSec")),cycleOK?sum(completedCycle,"runSec"):0);
+ const baselineTotal=Math.max(sum(previous,"totalSec"),sum(last14,"totalSec")/2,...recentWindows.map(w=>sum(w,"totalSec")),cycleOK?sum(completedCycle,"totalSec"):0);
+ const run=sum(actual,"runSec"),total=sum(actual,"totalSec");
+ // Provisional coaching review corridors, not validated injury thresholds.
+ // A new runner may establish the first low-dose reference week.
+ const introductory=s.walkMin===null&&E.good(h,d-1,14).filter(r=>r.runSec>0).length<2&&s.level===0;
+ const initial=plan(s.goal,s.days)[0];
+ const recovered=E.good(h,d-1,14).filter(r=>r.runSec>0);
+ const regular=!returning&&recovered.length>=2&&recovered.slice().sort((a,b)=>b.day-a.day).slice(0,2).every(r=>r.check.recovery==="normal");
+ // Reference-supported small early doses need room for both sessions and
+ // warm-up/cooldown, without a separate increase rule fighting the plan.
+ const runBudget=introductory?sum(initial,"runSec"):baselineRun+Math.max(regular?240:120,Math.min(600,baselineRun*.30));
+ const totalBudget=s.walkMin!==null&&!latest.length?s.walkMin*60*s.days:introductory?sum(initial,"totalSec"):Math.max(s.walkMin!==null&&s.level===0&&latest.every(r=>r.runSec===0&&r.completed&&E.check(r.check)==="success")&&gap<=5?Math.min(s.walkMin,latest[0]?.mainSec/60||s.walkMin)*60*s.days:0,baselineTotal+Math.max(regular?900:600,Math.min(1200,baselineTotal*.30)));
+ const count=actual.length;
+ return {runSec:run+p.runSec,totalSec:total+p.totalSec,runBudget,totalBudget,count:count+1,allowed:count<s.days&&run+p.runSec<=runBudget+1&&total+p.totalSec<=totalBudget+1};
+ }
+ function fitBudget(s,h,d,p){
+ const review=loadReview(s,h,d,p);
+ if(review.allowed)return {workout:p,review,changed:false};
+ if(review.count>s.days)return {workout:null,review,changed:true};
+ const baseRun=sum(E.recent(h,d-1,6),"runSec"),baseTotal=sum(E.recent(h,d-1,6),"totalSec");
+ const maxRun=Math.floor(review.runBudget-baseRun),maxMain=Math.floor(review.totalBudget-baseTotal-(p.runSec?480:0));
+ if(maxMain<60||p.runSec&&maxRun<Math.min(30,p.runSec))return {workout:null,review,changed:true};
+ if(!p.runSec){const q={...E.walk("budget-walk-"+Math.min(p.mainSec,maxMain),Math.min(p.mainSec,maxMain)),lane:p.lane};return {workout:q,review:loadReview(s,h,d,q),changed:true};}
+ // Truncate familiar intervals in order; do not make them faster or longer.
+ const runs=[],rests=[];let remaining=Math.min(maxRun,maxMain),left=maxMain;
+ for(let i=0;i<p.runs.length&&remaining>0&&left>0;i++){
+ const n=Math.min(p.runs[i],remaining,left);if(n<=0)break;runs.push(n);remaining-=n;left-=n;
+ if(i<p.runs.length-1&&remaining>0){const w=Math.min(p.rests[i]??0,left);rests.push(w);left-=w;}
+ }
+ if(rests.length===runs.length&&rests.length)rests.pop();
+ if(!runs.length)return {workout:null,review,changed:true};
+ const used=sum(runs.map(x=>({x})),"x")+sum(rests.map(x=>({x})),"x");
+ const q={...E.workout("budget-"+p.id,runs,rests,Math.max(0,Math.min(p.mainSec,maxMain)-used),{pattern:p.pattern,distanceGoal:p.distanceGoal}),lane:p.lane};
+ const checked=loadReview(s,h,d,q);return {workout:checked.allowed?q:null,review:checked,changed:true};
+ }
+ function recoveryDose(p,history,d,factor=.75){
+ const recovered=E.good(history,d,28).sort((a,b)=>b.day-a.day),last=recovered.find(r=>r.lane===p.lane)??recovered[0];
+ if(!last)return {...E.walk("recovery-walk",Math.min(600,p.mainSec)),lane:p.lane};
+ const run=Math.min(p.runSec,Math.floor(last.runSec*factor)),main=Math.min(p.mainSec,Math.floor(last.mainSec*factor));
+ if(run<=0||main<60)return {...E.walk("recovery-walk",Math.max(60,main)),lane:p.lane};
+ const bout=Math.max(1,Math.min(p.longestBout,Math.floor(last.longestBout*factor),run));
+ const rest=p.pattern?.walk??90;
+ let dose=Math.min(run,main);
+ while(dose>1&&dose+Math.max(0,Math.ceil(dose/bout)-1)*rest>main)dose--;
+ return {...make("recovery-"+p.lane+"-"+dose,[dose,Math.min(bout,dose),rest,main]),lane:p.lane,distanceGoal:5000};
+ }
+ function next(s,h,d,context={}){
+ const result=(action,workout,reason,extra={})=>{
+ if(!workout)return {action,workout,state:s,reason,...extra};
+ const fit=fitBudget(s,h,d,workout);
+ if(!fit.workout)return {action:"rest",workout:null,state:s,reason:"Allow more recovery before the next running session.",load:fit.review};
+ return {action:fit.changed?"budget-bridge":action,workout:fit.workout,state:s,reason:fit.changed?"Keep the workout within recent training exposure.":reason,load:fit.review,...extra};
+ };
+ // Current symptoms take priority over scheduling and completion; the caller must persist returned state.
+ if(context.symptoms==="urgent")return {action:"urgent",workout:null,state:{...s,paused:true,pauseReason:"urgent"},reason:"Seek urgent medical assessment."};
+ if(context.symptoms&&context.symptoms!=="none"||context.recovery==="limited")return {action:"pause",workout:null,state:{...s,paused:true,pauseReason:"symptoms"},reason:"Address symptoms before running."};
+ if(s.paused)return result(s.pauseReason==="urgent"?"urgent":"pause",null,"Resolve health or symptom concerns.");
+ if(s.completed)return result("complete",null,"Your selected 5K milestone is complete.");
+ if(s.action!=="start")return result("pause",null,"Resolve health or symptom concerns.");
+ const all=E.recent(h,d,90).sort((a,b)=>b.day-a.day),last=all[0];
+ if(all.some(r=>r.unresolved)||last&&["pause","urgent"].includes(E.check(last.check)))return result("pause",null,"Pause and assess symptoms.");
+ if(last&&d-last.day<2)return result("rest",null,"Rest between workouts.");
+ 
+ if(context.recovery==="unknown")return result("hold",null,"Confirm recovery.");
+ if(context.hardActivityYesterday||context.hardActivityToday||context.recovery==="heavy")return result("rest",null,"Allow recovery from other activity before running.");
+ if(last&&E.check(last.check)==="hold"||last?.check?.recovery==="unknown")return result("hold",null,"Confirm recovery.");
+ let row=currentRow(s,h,d),p=row[s.index%row.length];
+ // Distance ceiling applies to every measured outing, including ordinary practice.
+ if(p.runSec)p={...p,distanceGoal:5000};
+ if(s.walkMin!==null)p={...E.walk("walk-"+s.walkMin,s.walkMin*60),lane:p.lane};
+ const g=E.good(h,d,30),run=g.filter(r=>r.runSec>0),prior=g.filter(r=>r.day>=d-14);
+ if(last&&d-last.day>=28)return result("reassess",null,"Reassess recent activity.");
+ if(last&&(d-last.day>=8||E.check(last.check)==="reduce"||last.completed!==true)){
+ return result("reduce",recoveryDose(p,h,d),"Return to a reduced familiar dose.",{recoveryTrigger:true});
+ }
+ if(s.recoveryRemaining>0)return result("recovery",recoveryDose(p,h.filter(r=>r.day<(s.recoveryStartDay??d)),d,.85),"Rebuild familiar training across the week.");
+ if(last&&(d-last.day>=6||E.check(last.check)==="repeat")){
+ return result("repeat",recoveryDose(p,h,d,.9),"Use a manageable familiar workout.",{recoveryTrigger:true});
+ }
+ // Late specific preparation: 5K only after two consistent recent weeks and
+ // a comparable near-distance effort. No calendar deadline forces an attempt.
+ if(s.walkMin===null&&p.lane==="long"&&E.ready(h,d,s.goal).ready){
+ const near=g.filter(r=>r.lane==="long"&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&(s.goal!=="continuous"||r.strategy==="continuous")).sort((a,b)=>b.day-a.day)[0];
+ if(near){const cap=E.ready(h,d,s.goal).cap;const q=s.goal==="continuous"?E.continuous("finish-5k",cap,{distanceGoal:5000}):E.rhythm("finish-5k",Math.min(180,near.longestBout),90,cap,{distanceGoal:5000});if(q.runSec<=near.runSec+180)return result("attempt",{...q,lane:"long"},"Stop at 5 km or the time limit.");}
+ }
+ // Reference steps are candidates, not automatic prescriptions. Compare the
+ // observed current running dose and longest bout, and interpolate if necessary.
+ if(p.runSec&&run.length){
+ const latest=run.sort((a,b)=>b.day-a.day)[0],maxRun=max(prior,"runSec"),maxBout=max(prior,"longestBout"),maxMain=max(prior,"mainSec");
+ const increment=Math.max(60,Math.min(240,Math.ceil(maxRun*.25/30)*30));
+ const boutInc=Math.max(30,Math.min(300,Math.ceil(maxBout*.50/15)*15));
+ const limitRun=maxRun+increment,limitBout=maxBout+boutInc,limitMain=maxMain+300;
+ const distanceRef=max(run,"runningDistanceM"),proj=latest.runningDistanceM&&latest.runSec?latest.runningDistanceM*p.runSec/latest.runSec:null;
+ const flag=proj&&distanceRef&&proj>distanceRef*1.10?"review":"within-or-unknown";
+ // Keep a visible caution flag; small absolute progressions can be considered
+ // after repeated recovery, but large observed-distance jumps need a bridge.
+ const distCap=proj&&distanceRef&&proj>distanceRef*1.30&&proj-distanceRef>200?Math.floor(distanceRef*1.30*latest.runSec/latest.runningDistanceM):Infinity;
+ let dose=Math.min(p.runSec,limitRun,distCap),bout=Math.min(p.longestBout,limitBout,dose),main=Math.min(p.mainSec,limitMain);
+ if(dose<p.runSec||bout<p.longestBout||main<p.mainSec){
+ const rest=p.pattern?.walk??90;const runs=[],rests=[];let left=dose;
+ while(left>0){let n=Math.min(left,bout);runs.push(n);left-=n;if(left)rests.push(rest);}
+ const base=dose+sum(rests.map(x=>({x})),"x");
+ if(base>limitMain)return result("repeat",recoveryDose(p,h,d,.95),"Use an intermediate recovered dose.",{flag});
+ const q=E.strategy(p)==="continuous"&&dose===bout?E.continuous("bridge-"+p.id+"-"+dose,dose,{distanceGoal:5000}):E.workout("bridge-"+p.id+"-"+dose+"-"+bout,runs,rests,Math.max(0,Math.max(base,main)-base),{pattern:rest?{run:bout,walk:rest}:null,distanceGoal:5000});
+ return result("bridge",{...q,lane:p.lane},"Use a smaller step toward the reference workout.",{flag,target:p});
+ }
+ return result("train",p,"Follow the current reference workout.",{flag});
+ }
+ return result("train",p,"Follow the current reference workout.");
+ }
+ function log(s,record,decision){
+ if(!E.validRecord(record))throw Error("Invalid record");
+ if(s.history.some(r=>r.day===record.day)||s.lastDay!==null&&record.day<=s.lastDay)throw Error("Duplicate or out-of-order workout");
+ if(record.strategy==="continuous"&&(record.runSec!==record.mainSec||record.longestBout!==record.runSec)||record.strategy==="walk"&&record.runSec!==0)throw Error("Inconsistent running strategy");
+ if(!decision.workout||record.prescriptionId!==decision.workout.id||record.lane!==decision.workout.lane)throw Error("Record does not match prescribed session");
+ const c=E.check(record.check);let next={...s,lastDay:record.day,history:[...s.history,record]};
+ if(c==="urgent"||c==="pause")return {...next,paused:true,pauseReason:c==="urgent"?"urgent":"symptoms"};
+ if(c!=="success"||!record.completed)return {...next,recoveryRemaining:c==="reduce"||!record.completed?s.days:next.recoveryRemaining??0};
+ const recovering=!!decision.recoveryTrigger||s.recoveryRemaining>0;
+ if(decision.recoveryTrigger){next.recoveryRemaining=Math.max(0,s.days-1);next.recoveryStartDay=record.day;}
+ else if(s.recoveryRemaining>0)next.recoveryRemaining=s.recoveryRemaining-1;
+
+ if(E.achievement(record)[s.goal])return {...next,completed:true,completion:record};
+ if(s.walkMin!==null){const records=[...s.cycleRecords,record],n=records.length;if(n>=s.days){const ready=records.every(r=>r.mainSec>=s.walkMin*60-1)&&!recovering;return {...next,walkMin:ready?(s.walkMin>=30?null:Math.min(30,s.walkMin+5)):s.walkMin,cycleRecords:[],index:0,week:s.week+1};}return {...next,cycleRecords:records,index:s.index+1};}
+ // A successfully recovered session advances the schedule independently of
+ // workload or developmental level. Assess the full cycle against its reference.
+ const records=[...s.cycleRecords,{...record,recovering,adjusted:recovering||["reduce","repeat","bridge","budget-bridge","recovery"].includes(decision.action)}];let idx=s.index+1;
+ if(idx>=s.days){
+ const target=currentRow(s,next.history,record.day);
+ const referenceReady=target.every(p=>records.some(r=>r.lane===p.lane&&r.runSec>=p.runSec*.95&&r.longestBout>=p.longestBout*.95&&r.mainSec>=p.mainSec*.90&&!r.recovering));
+ let days=s.days,level=referenceReady?Math.min(14,s.level+1):s.level,transitionRow=s.transitionRow??null,extensionSec=s.extensionSec??0;
+ const recent=E.good(next.history,record.day,14).filter(r=>r.runSec>0&&r.check.recovery==="normal");
+ if(referenceReady&&s.days===2&&s.requestedDays===3&&s.level>=1&&[recent.filter(r=>r.day>record.day-7),recent.filter(r=>r.day<=record.day-7)].every(w=>new Set(w.map(r=>r.day)).size>=2)){
+ const split=transition(s,records);
+ if(split){days=3;level=s.level;transitionRow=split;}
+ }
+ if(s.transitionRow){level=s.level;if(referenceReady){transitionRow=null;const nextRow=plan(s.goal,s.days)[Math.min(14,s.level+1)];const recentRun=sum(records,"runSec"),recentTotal=sum(records,"totalSec");if(sum(nextRow,"runSec")<=recentRun+240&&sum(nextRow,"totalSec")<=recentTotal+900&&max(nextRow,"longestBout")<=max(records,"longestBout")+30)level=Math.min(14,s.level+1);}}
+ if(referenceReady&&s.level===14&&!s.transitionRow){
+ const base=plan(s.goal,s.days)[14].at(-1).mainSec+extensionSec;
+ const recovered=E.good(next.history,record.day,28).filter(r=>r.lane==="long"&&r.mainSec>=base-1&&r.check.recovery==="normal"&&(s.goal!=="continuous"||r.strategy==="continuous"));
+ if(new Set(recovered.map(r=>r.day)).size>=2)extensionSec+=Math.min(180,Math.max(60,Math.floor(base*.08/30)*30));
+ }
+ return {...next,days,level,transitionRow,extensionSec,index:0,cycleRecords:[],week:s.week+1};
+ }
+ return {...next,index:idx,cycleRecords:records};
+ }
+ return {plan,start,next,log,changeGoal,reassessGoal,progressReview,transition,currentRow,loadReview,fitBudget,recoveryDose,ack:s=>({...s,ack:s.goalRevision})};
+};
+module.exports=reference(require("./engine.cjs"));
+
+};
+modules["./training-features.cjs"]=function(module,exports,require){
+"use strict";
+const features=function features(R,E,C){
+ const good=(h,d,n=28)=>E.good(h,d,n).filter(r=>r.check.recovery==="normal");
+ const max=(h,k)=>Math.max(0,...h.map(r=>r[k]??0));
+ const positive=x=>Number.isFinite(x)&&x>0;
+ function paceReview(s,h,d){
+ const g=good(h,d-1,28),ref=g.filter(r=>r.representative===true&&r.comparable===true&&r.strategy==="continuous"&&r.mainDistanceM>=3000&&r.runSec===r.mainSec&&r.longestBout===r.runSec&&positive(r.mainSec)&&r.measurement?.scope==="running-only"&&r.measurement?.timeBasis==="elapsed"&&r.measurement?.derived?.distance===false).sort((a,b)=>b.day-a.day)[0];
+ const consistent=[0,1,2,3].every(i=>new Set(g.filter(r=>r.runSec>0&&r.day>d-1-7*(i+1)&&r.day<=d-1-7*i).map(r=>r.day)).size>=2);
+ const goalPace=positive(s.goalTimeSec)?s.goalTimeSec/5:null,demonstrated=ref?ref.mainSec*1000/ref.mainDistanceM:null;
+ const eligible=s.goal==="continuous"&&!!goalPace&&consistent&&!!ref&&goalPace>=demonstrated&&!s.paused&&!s.recoveryRemaining&&!s.transitionRow&&!s.completed;
+ return {eligible,goalPaceSecKm:goalPace,demonstratedSecKm:demonstrated,referenceDay:ref?.day??null,notice:!!goalPace&&!eligible&&s.ack!==s.goalRevision,reason:eligible?"Your recent running supports controlled practice at this pace.":"Keep building current fitness; your target stays saved."};
+ }
+ function assessmentReview(s,h,d,p=null){
+ const g=good(h,d-1,14).filter(r=>r.runSec>0&&!r.fasterSec),bout=Math.min(max(g,"longestBout"),p?p.runs[0]??0:Infinity);
+ return {durationSec:s.paused||s.recoveryRemaining?null:[1200,600,300,120].find(n=>n<=bout)??null,optional:true};
+ }
+ function next(s,h,d,context={}){
+ const base=R.next(s,h,d,context),review=paceReview(base.state,h,d);
+ const out={...base,paceReview:review,assessmentReview:assessmentReview(base.state,h,d,base.workout)};
+ if(base.action!=="train"||!base.workout||base.workout.lane!=="practice"||s.transitionRow||context.recovery!=="normal"||context.symptoms!=="none")return out;
+ const p=base.workout,g=good(h,d-1,14).filter(r=>r.runSec>0),recent=E.recent(h,d-1,7);
+ if(g.length<2)return out;
+ if(context.assessmentRequested===true){
+ const duration=out.assessmentReview.durationSec;
+ if(!duration||recent.some(r=>r.assessment&&d-r.day<7))return out;
+ return {...out,feature:"assessment",assessment:{durationSec:duration,boutIndex:0,startOffsetSec:0,effort:"comfortable",replacesPartOfWorkout:true}};
+ }
+ if(context.paceRequested===true&&review.eligible&&!recent.some(r=>r.fasterSec>0&&d-r.day<7)){
+ // One controlled 3-minute segment initially, within the existing first bout.
+ // A conservative pace guard and familiar workload are mandatory.
+ if(p.runs[0]<180||p.runSec>max(g,"runSec")||p.longestBout>max(g,"longestBout")||p.mainSec>max(g,"mainSec"))return out;
+ return {...out,feature:"goal-pace",pacePractice:{segments:[{boutIndex:0,offsetSec:0,durationSec:180}],seconds:180,paceSecKm:review.goalPaceSecKm,effort:"controlled",stopIfUncomfortable:true}};
+ }
+ return out;
+ }
+ function log(s,record,decision,details={}){
+ let r={...record};
+ if(details.measurement){
+ const n=C.normalize(details.measurement);r.measurement=n;
+ const mainScope=n.scope==="running-only"&&r.strategy==="continuous"||n.scope==="runwalk"&&r.strategy==="runwalk";
+ if(mainScope&&n.timeBasis==="elapsed"&&n.entered.distanceM!==null&&n.timeSec!==null&&Math.abs(n.timeSec-r.mainSec)<=Math.max(2,r.mainSec*.03)){
+ r.mainDistanceM=n.entered.distanceM;
+ if(r.strategy==="continuous"){r.runningDistanceM=n.entered.distanceM;r.continuousDistanceM=n.entered.distanceM;}else{r.runningDistanceM=null;r.continuousDistanceM=null;}
+ r.comparable=n.comparable;
+ }else{r.mainDistanceM=null;r.runningDistanceM=null;r.continuousDistanceM=null;r.comparable=false;}
+ r.representative=details.representative===true&&r.comparable&&r.measurement.derived.distance===false&&r.strategy==="continuous"&&r.completed&&E.check(r.check)==="success"&&r.check.recovery==="normal";
+ }
+ if(decision.feature==="assessment"&&details.assessment){
+ const n=C.normalize(details.assessment),duration=decision.assessment.durationSec;
+ if(n.scope!=="running-only"||n.timeBasis!=="elapsed"||n.timeSec===null||Math.abs(n.timeSec-duration)>2||r.longestBout<duration-2)throw Error("Assessment must match the prescribed running segment");
+ r.assessment={measurement:n,durationSec:duration,accepted:r.completed&&E.check(r.check)==="success"&&r.check.recovery==="normal"};
+ }
+ if(decision.feature==="goal-pace"){
+ const sec=details.pacePracticeSec??0;
+ if(!Number.isFinite(sec)||sec<0||sec>decision.pacePractice.seconds||sec>r.runSec)throw Error("Invalid pace practice duration");
+ r.fasterSec=sec;r.goalPacePractice={targetSecKm:decision.pacePractice.paceSecKm,actualSeconds:sec};
+ }else if(details.pacePracticeSec>0)throw Error("Pace practice was not prescribed");
+ return R.log(s,r,decision);
+ }
+ return {...R,next,log,paceReview,assessmentReview};
+};
+module.exports=features(require("./refined-engine.cjs"),require("./engine.cjs"),require("../../shared/running-calculator.js"));
+
+};
+function load(id){if(id==="../../shared/running-calculator.js")return globalThis.BFitRunningCalculator;if(!modules[id])throw Error("Unknown module");if(!cache[id]){const m={exports:{}};modules[id](m,m.exports,load);cache[id]=m;}return cache[id].exports;}globalThis.BFit5K=load("./training-features.cjs");globalThis.BFit5KCore=load("./engine.cjs");})();
+
+</script>
+<script>
+"use strict";
+(function(){
+const E=globalThis.BFit5K,F=globalThis.BFit5KCore,C=globalThis.BFitRunningCalculator,$=id=>document.getElementById(id);
+const key="bfit-first-5k-dev-v1",day=()=>Math.floor(Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())/86400000);
+let data={version:1,state:null,active:null,pending:null},running=false,lastTick=0,handle=null;
+const msg=t=>{$("status").textContent=t;},show=(id,v)=>{$(id).hidden=!v;},val=id=>$(id).value,num=id=>val(id)===""?null:Number(val(id)),fmt=n=>C.format(Math.max(0,n));
+function save(){try{localStorage.setItem(key,JSON.stringify(data));return true;}catch(e){msg("Progress could not be saved on this device. Export your progress before leaving.");return false;}}
+function validateSnapshot(x,today){
+ const fail=()=>{throw Error("This progress file is incomplete, inconsistent or from an unsupported version.");};
+ const int=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b;
+ const finite=(v,a,b)=>typeof v==="number"&&Number.isFinite(v)&&v>=a&&v<=b;
+ const goal=v=>["runwalk","continuous"].includes(v);
+ const record=r=>F.validRecord(r)&&int(r.day,today-3650,today)&&finite(r.totalSec,0,86400)&&typeof r.completed==="boolean"&&["practice","easy","long"].includes(r.lane)&&typeof r.prescriptionId==="string"&&["easy","comfortable","hardEarly","hardLate","incomplete"].includes(r.check?.effort)&&["normal","mild","heavy","limited","unknown"].includes(r.check?.recovery)&&["none","localized","sharp","unsure","urgent"].includes(r.check?.symptoms)&&!(r.strategy==="continuous"&&(Math.abs(r.runSec-r.mainSec)>.001||Math.abs(r.longestBout-r.runSec)>.001))&&!(r.strategy==="walk"&&r.runSec!==0);
+ const workout=p=>p&&typeof p.id==="string"&&["practice","easy","long"].includes(p.lane)&&Array.isArray(p.runs)&&Array.isArray(p.rests)&&p.runs.length<=500&&p.rests.length<=500&&p.runs.every(v=>finite(v,.001,86400))&&p.rests.every(v=>finite(v,0,86400))&&[p.runs.length,Math.max(0,p.runs.length-1)].includes(p.rests.length)&&finite(p.tail,0,86400)&&finite(p.runSec,0,86400)&&finite(p.mainSec,.001,86400)&&finite(p.totalSec,.001,86400)&&Math.abs(p.runSec-p.runs.reduce((a,b)=>a+b,0))<.001&&Math.abs(p.mainSec-p.runSec-p.rests.reduce((a,b)=>a+b,0)-p.tail)<.001&&Math.abs(p.totalSec-p.mainSec-(p.runSec?480:0))<.001&&p.longestBout===Math.max(0,...p.runs);
+ const decision=d=>d&&workout(d.workout)&&["train","bridge","budget-bridge","repeat","reduce","recovery","attempt"].includes(d.action)&&(!d.feature||d.feature==="assessment"&&finite(d.assessment?.durationSec,1,d.workout.runs[0])||d.feature==="goal-pace"&&finite(d.pacePractice?.seconds,1,d.workout.runs[0])&&finite(d.pacePractice?.paceSecKm,1,36000));
+ if(!x||x.version!==1||!x.state||x.active&&x.pending)fail();
+ const s=x.state;
+ if(s.action!=="start"||!goal(s.goal)||![2,3].includes(s.days)||![2,3].includes(s.requestedDays)||!int(s.level,0,14)||!int(s.index,0,s.days-1)||!int(s.week,1,10000)||!(s.walkMin===null||int(s.walkMin,5,30))||!int(s.goalRevision,0,100000)||!(s.ack===null||s.ack===s.goalRevision)||!(s.goalTimeSec===null||finite(s.goalTimeSec,600,10800))||typeof s.paused!=="boolean"||!Array.isArray(s.history)||s.history.length>4000||!s.history.every(record)||!s.history.every((r,i)=>!i||r.day>s.history[i-1].day)||s.lastDay!==(s.history.at(-1)?.day??null)||!Array.isArray(s.cycleRecords)||s.cycleRecords.length!==s.index||!s.cycleRecords.every(r=>record(r)&&s.history.some(h=>h.day===r.day&&h.prescriptionId===r.prescriptionId&&h.runSec===r.runSec))||!int(s.recoveryRemaining??0,0,3)||!finite(s.extensionSec??0,0,86400))fail();
+ if(s.returnEpoch!==undefined&&(!int(s.returnEpoch,today-3650,today)||!(s.clearanceSelfReported===true&&s.clearanceDay===s.returnEpoch||s.reentrySelfReported===true&&s.reentryDay===s.returnEpoch)))fail();
+ if(s.transitionRow&&(!Array.isArray(s.transitionRow)||s.transitionRow.length!==s.days||!s.transitionRow.every(workout)))fail();
+ if(s.completed&&(!record(s.completion)||!F.achievement(s.completion)[s.goal]||!s.history.some(r=>r.day===s.completion.day&&F.achievement(r)[s.goal])))fail();
+ if(x.active){const a=x.active;if(!decision(a.decision)||!int(a.day,today-3650,today)||a.day<=(s.lastDay??-Infinity)||!Array.isArray(a.phases)||JSON.stringify(a.phases)!==JSON.stringify(phases(a.decision))||!int(a.index,0,a.phases.length)||!Array.isArray(a.actual)||a.actual.length>a.phases.length||!a.actual.every((v,i)=>finite(v,0,a.phases[i].sec))||a.phases.some((p,i)=>i<a.index&&Math.abs((a.actual[i]??0)-p.sec)>.001||i>a.index&&(a.actual[i]??0)>0)||typeof a.finished!=="boolean")fail();}
+ if(x.pending){const p=x.pending;if(!decision(p.decision)||!record(p.record)||p.record.day<=(s.lastDay??-Infinity)||p.record.prescriptionId!==p.decision.workout.id||p.record.lane!==p.decision.workout.lane||!p.details||p.record.runSec>p.decision.workout.runSec+.001||p.record.mainSec>p.decision.workout.mainSec+.001||p.record.totalSec>p.decision.workout.totalSec+.001)fail();if(p.details.measurement)C.normalize(p.details.measurement);if(p.details.assessment)C.normalize(p.details.assessment);}
+ return x;
+}
+function trainingHistory(s){return s.returnEpoch===undefined?s.history:s.history.filter(r=>r.day>=s.returnEpoch);}
+function segmentDetails(a){const i=a.phases.findIndex(p=>["Comfortable assessment","Target pace practice"].includes(p.kind));if(i<0)return {};const sec=a.actual[i]??0,dist=num("segmentDistance"),pm=num("segmentPaceMin"),ps=num("segmentPaceSec");if([dist,pm,ps].every(v=>v===null))return {};if(!$("segmentConfirm").checked||sec<=0)throw Error("Confirm that the measurements describe the running segment you completed.");const raw={timeSec:sec,distance:dist===null?null:{value:dist,unit:val("segmentUnit")},pace:pm===null&&ps===null?null:{seconds:(pm??0)*60+(ps??0),per:val("segmentPaceUnit")},scope:"running-only",timeBasis:"elapsed",surface:val("surface")};const normalized=C.normalize(raw);if(a.decision.feature==="assessment"){if(Math.abs(sec-a.decision.assessment.durationSec)>2)return {partialAssessment:normalized};return {assessment:raw};}return {paceMeasurement:normalized};}
+function historyEntry(){
+ const records=[];
+ for(let i=0;i<6;i++){const d=num("histDay"+i),r=num("histRun"+i),m=num("histMain"+i),b=num("histBout"+i),recovery=val("histRecovery"+i);if([d,r,m,b].every(v=>v===null)&&!recovery)continue;
+ if(!Number.isInteger(d)||d<1||d>14||![r,m,b].every(v=>Number.isFinite(v)&&v>0)||r>180||m>240||b>r||r>m||!["normal","mild","heavy","limited","unknown"].includes(recovery)||r===m&&b!==r)throw Error("Check recent run "+(i+1)+": enter the date, running time, main session time, longest run and recovery.");
+ records.push({day:day()-d,lane:"practice",prescriptionId:"intake-history-"+d,runSec:r*60,mainSec:m*60,totalSec:m*60,longestBout:b*60,fasterSec:0,mainDistanceM:null,runningDistanceM:null,continuousDistanceM:null,strategy:r===m?"continuous":"runwalk",completed:true,check:{effort:"comfortable",recovery,symptoms:recovery==="limited"?"unsure":"none"},comparable:false,source:"self-reported-intake"});
+ }
+ records.sort((a,b)=>a.day-b.day);if(new Set(records.map(r=>r.day)).size!==records.length)throw Error("Enter only one recent session per day.");return records;
+}
+try{const raw=localStorage.getItem(key);if(raw)data=validateSnapshot(JSON.parse(raw),day());}catch(e){msg("Saved progress could not be loaded. Keep your backup file and contact BFit before replacing it.");}
+function phases(d){
+ const p=d.workout,list=[],add=(kind,sec,bout=null)=>{if(sec>0)list.push({kind,sec,bout});};
+ if(p.runSec)add("Warm-up walk",300);
+ p.runs.forEach((r,i)=>{let feature=i===0?(d.feature==="assessment"?d.assessment.durationSec:d.feature==="goal-pace"?d.pacePractice.seconds:0):0;feature=Math.min(r,feature);add(d.feature==="assessment"?"Comfortable assessment":"Target pace practice",feature,i);add("Comfortable run",r-feature,i);add("Walk",p.rests[i]??0);});
+ add("Walk",p.tail);if(p.runSec)add("Cool-down walk",180);
+ return list;
+}
+function totals(a){
+ let runSec=0,mainSec=0,totalSec=0,longestBout=0,bouts={};
+ a.phases.forEach((p,i)=>{const n=a.actual[i]??0;totalSec+=n;if(!["Warm-up walk","Cool-down walk"].includes(p.kind))mainSec+=n;if(p.bout!==null){runSec+=n;bouts[p.bout]=(bouts[p.bout]??0)+n;longestBout=Math.max(longestBout,bouts[p.bout]);}});
+ return {runSec,mainSec,totalSec,longestBout,strategy:runSec===0?"walk":Math.abs(runSec-mainSec)<.001?"continuous":"runwalk"};
+}
+function paintTimer(){const a=data.active;if(!a)return;const p=a.phases[a.index];$("phase").textContent=p?p.kind:"Workout timer finished";$("clock").textContent=fmt(p?Math.ceil(p.sec-(a.actual[a.index]??0)):0);$("start").disabled=running||!p;$("pause").disabled=!running;$("discard").hidden=running||totals(a).totalSec>0;}
+function stop(){running=false;clearInterval(handle);handle=null;paintTimer();}
+function tick(){if(!running||!data.active)return;const a=data.active,now=performance.now();let delta=Math.max(0,(now-lastTick)/1000);lastTick=now;
+// Do not assume workout occurred when browser was suspended. Pause for gaps over 5 seconds.
+if(delta>5){stop();save();msg("Timer paused while the page was inactive. Resume when ready.");return;}
+while(delta>0&&a.index<a.phases.length){const p=a.phases[a.index],used=a.actual[a.index]??0,n=Math.min(delta,p.sec-used);a.actual[a.index]=used+n;delta-=n;if(a.actual[a.index]>=p.sec-.00001){a.actual[a.index]=p.sec;a.index++;}}
+if(a.index>=a.phases.length){stop();a.finished=true;render();}paintTimer();save();}
+function render(){const s=data.state,a=data.active,p=data.pending;show("setup",!s);show("dashboard",!!s);if(!s)return;
+$("summary").textContent=(s.walkMin!==null?"Walking foundation":"Training phase "+(s.level+1))+" · "+s.days+" days per week · "+(s.goal==="continuous"?"Run continuously":"Run and walk")+(s.paused?" · Training paused":"")+(s.completed?" · 5K completed":"");
+show("goalSettings",!a&&!p&&!s.paused);show("checkin",!a&&!p&&!s.completed&&!s.paused&&!s.reentryNeeded);show("workout",!!a&&!a.finished&&!p);show("logging",!!a&&a.finished&&!p);show("pending",!!p);show("reentryPanel",!!s.reentryNeeded&&!s.paused&&!a&&!p&&!s.completed);show("discard",!!a&&!a.finished&&totals(a).totalSec===0);show("returnPanel",s.paused&&!a&&!p);show("celebration",!!s.completed&&!!s.completion);show("segmentEntry",!!a?.finished&&!!a.decision.feature);if(a?.finished&&a.decision.feature){const i=a.phases.findIndex(p=>["Comfortable assessment","Target pace practice"].includes(p.kind));$("segmentInfo").textContent="Recorded segment: "+fmt(a.actual[i]??0)+". Leave blank if you did not measure it.";}if(s.completed&&s.completion){const r=s.completion,pace=r.mainSec*1000/r.mainDistanceM;$("resultSummary").textContent=fmt(r.mainSec)+" · "+(r.strategy==="continuous"?"Continuous run":"Run and walk")+" · "+(r.mainDistanceM/1000).toFixed(2)+" km";$("resultPace").textContent=fmt(pace)+"/km · "+fmt(pace*1.609344)+"/mile. At that same average pace, 400 m takes "+fmt(pace*.4)+" and 800 m takes "+fmt(pace*.8)+".";}
+const review=E.paceReview(s,trainingHistory(s),day());show("notice",review.notice&&!a&&!p&&!s.paused);
+if(a&&!a.finished){$("workoutTitle").textContent=a.decision.workout.lane==="long"?"Longer outing":a.decision.workout.lane==="easy"?"Easy workout":"Practice workout";$("workoutInfo").textContent=fmt(a.decision.workout.totalSec)+" total · "+fmt(a.decision.workout.runSec)+" running"+(a.decision.pacePractice?" · Target pace "+fmt(a.decision.pacePractice.paceSecKm)+"/km ("+fmt(a.decision.pacePractice.paceSecKm*1.609344)+"/mile)":"");$("steps").replaceChildren(...a.phases.map(x=>{const li=document.createElement("li");li.textContent=x.kind+" · "+fmt(x.sec);return li;}));paintTimer();}
+if(a?.finished){const t=totals(a);$("actual").textContent=fmt(t.runSec)+" running · "+fmt(t.mainSec)+" main workout · "+fmt(t.totalSec)+" total";}
+const q=E.progressReview(s,s.history,day());$("progress").textContent=q.completed+" workouts in the last four weeks · "+fmt(q.runSec)+" running · longest recovered running bout "+fmt(q.longestBoutSec);
+$("numbers").textContent=q.weeks.map((w,i)=>"Week "+(i+1)+": "+fmt(w.runSec)+" running, "+w.completed+" completed workouts").join("\n");
+if(s.paused)msg(s.pauseReason==="urgent"?"Stop exercise. Seek emergency medical help for chest pain, fainting or severe breathing difficulty.":"Training is paused. Seek appropriate medical guidance for concerning or persistent symptoms. Use the return-to-training check only after receiving appropriate medical advice.");
+}
+function measurement(){const distance=num("distance"),timeSec=num("recordTime"),pm=num("paceMin"),ps=num("paceSec"),speed=num("speed");if([distance,timeSec,pm,ps,speed].every(x=>x===null))return null;return {distance:distance===null?null:{value:distance,unit:val("unit")},timeSec,pace:pm===null&&ps===null?null:{seconds:(pm??0)*60+(ps??0),per:val("paceUnit")},speed:speed===null?null:{value:speed,unit:val("speedUnit")},scope:val("scope"),timeBasis:val("basis"),surface:val("surface")};}
+function commitRecord(s,r,d,details){const eligible=trainingHistory(s),n=E.log({...s,history:eligible},r,d,details);const last=n.history.at(-1);if(s.returnEpoch!==undefined)n.history=[...s.history.filter(x=>x.day<s.returnEpoch),...n.history];if(details.paceMeasurement)last.paceMeasurement=details.paceMeasurement;if(details.partialAssessment)last.partialAssessment=details.partialAssessment;return n;}
+function bind(id,fn){$(id).addEventListener("submit",ev=>{ev.preventDefault();try{fn();}catch(e){msg(e.message);}});}
+bind("intake",()=>{const s=E.start({goal:val("goal"),walkMin:Number(val("walk")),days:Number(val("days")),goalTimeSec:num("target")===null?null:num("target")*60,healthHold:!$("ready").checked},historyEntry(),day());if(s.action!=="start"){msg(s.reason);return;}data.state=s;save();render();});
+bind("goalForm",()=>{if(data.active||data.pending)return;data.state=E.changeGoal(data.state,val("newGoal"),num("newTarget")===null?null:num("newTarget")*60,trainingHistory(data.state),day());save();render();});
+$("ack").onclick=()=>{data.state=E.ack(data.state);save();render();};
+bind("pre",()=>{if(data.active||data.pending)return;const s=data.state;if(s.lastDay!==null&&day()-s.lastDay<2&&val("symptoms")==="none"&&val("recovery")!=="limited"){msg("Allow a rest day between running sessions.");return;}const d=E.next(s,trainingHistory(s),day(),{recovery:val("recovery"),symptoms:val("symptoms"),hardActivityToday:$("other").checked,assessmentRequested:$("assess").checked,paceRequested:$("pace").checked});data.state=d.action==="reassess"?{...d.state,reentryNeeded:true}:d.state;msg(d.reason);if(d.workout){for(const id of ["distance","recordTime","paceMin","paceSec","speed","segmentDistance","segmentPaceMin","segmentPaceSec","effort","postSymptoms","nextRecovery","nextSymptoms"])$(id).value="";for(const id of ["done","representative","segmentConfirm"])$(id).checked=false;for(const id of ["scope","basis","surface"])$(id).value="unknown";$("conversion").textContent="";const {state,...decision}=d;data.active={decision,day:day(),phases:phases(d),index:0,actual:[],finished:false};}save();render();});
+$("start").onclick=()=>{if(!data.active||running||data.active.finished)return;if(data.active.day!==day()){msg("This workout is from an earlier day. Finish and log it before starting another.");return;}running=true;lastTick=performance.now();handle=setInterval(tick,200);paintTimer();};
+$("pause").onclick=()=>{tick();stop();save();};
+$("discard").onclick=()=>{if(!data.active||totals(data.active).totalSec>0)return;stop();data.active=null;save();render();msg("Workout cancelled. Choose a workout when ready.");};
+$("finish").onclick=()=>{tick();stop();if(!data.active)return;if(totals(data.active).totalSec===0){data.active=null;save();render();msg("No exercise recorded. You can choose another workout.");return;}data.active.finished=true;save();render();};
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&running){tick();stop();save();}});
+$("convert").onclick=()=>{try{const m=measurement();if(!m)throw Error("Enter a measurement first.");const n=C.normalize(m);$("conversion").textContent=[n.distanceM===null?null:Math.round(n.distanceM)+" m",n.timeSec===null?null:fmt(n.timeSec),n.paceSecKm===null?null:fmt(n.paceSecKm)+"/km",n.paceSecMile===null?null:fmt(n.paceSecMile)+"/mile"].filter(Boolean).join(" · ");}catch(e){$("conversion").textContent=e.message;}};
+bind("logForm",()=>{const a=data.active,t=totals(a),m=measurement();if(m)C.normalize(m);if(t.totalSec<=0)throw Error("Start the timer before logging a workout.");const reached=m?.distance&&C.normalize(m).distanceM>=5000&&m.timeBasis==="elapsed"&&["running-only","runwalk"].includes(m.scope);const completed=$("done").checked&&(t.mainSec>=a.decision.workout.mainSec-1||reached);const record={...t,day:a.day,lane:a.decision.workout.lane,prescriptionId:a.decision.workout.id,fasterSec:0,mainDistanceM:null,runningDistanceM:null,continuousDistanceM:null,completed,check:{effort:val("effort"),recovery:"unknown",symptoms:val("postSymptoms")},comparable:false};const details={...segmentDetails(a),measurement:m,representative:$("representative").checked,pacePracticeSec:a.decision.feature==="goal-pace"?a.actual[a.phases.findIndex(p=>p.kind==="Target pace practice")]??0:0};
+if(record.check.symptoms!=="none"){data.state=commitRecord(data.state,record,a.decision,details);data.active=null;}else{data.pending={record,decision:a.decision,details};data.active=null;}save();render();});
+bind("recoverForm",()=>{const p=data.pending;if(!p)return;if(day()<=p.record.day&&val("nextSymptoms")==="none"&&val("nextRecovery")!=="limited"){msg("Confirm recovery tomorrow, after seeing how your body responds.");return;}p.record.check.recovery=val("nextRecovery");p.record.check.symptoms=val("nextSymptoms");data.state=commitRecord(data.state,p.record,p.decision,p.details);data.pending=null;save();render();});
+bind("reentryForm",()=>{const s=data.state;if(!s?.reentryNeeded||s.paused||data.active||data.pending||!$("reentryReady").checked)throw Error("Confirm that you are ready to resume.");const fresh=E.start({goal:s.goal,days:s.requestedDays,walkMin:Number(val("reentryWalk")),goalTimeSec:s.goalTimeSec},[],day());if(fresh.action!=="start"){msg(fresh.reason);return;}data.state={...fresh,history:s.history,lastDay:s.lastDay,returnEpoch:day(),goalRevision:s.goalRevision+1,ack:null,reentrySelfReported:true,reentryDay:day()};save();render();msg("Your starting plan is ready. Your previous training remains saved.");});
+bind("returnForm",()=>{const s=data.state;if(!s?.paused||data.active||data.pending||!$("cleared").checked||!$("symptomFree").checked)throw Error("Confirm medical advice and that concerning symptoms have resolved.");const fresh=E.start({goal:s.goal,days:s.requestedDays,walkMin:Number(val("returnWalk")),goalTimeSec:s.goalTimeSec},[],day());if(fresh.action!=="start"){msg(fresh.reason);return;}data.state={...fresh,history:s.history,lastDay:s.lastDay,returnEpoch:day(),goalRevision:s.goalRevision+1,ack:null,clearanceSelfReported:true,clearanceDay:day(),recoveryRemaining:0};save();render();msg("Your plan has been reassessed from a conservative starting point. Follow your healthcare professional's advice.");});
+$("certificate").onclick=()=>{const r=data.state?.completion;if(!data.state?.completed||!r)return;const w=window.open("","_blank");if(!w){msg("Allow popups to print your certificate.");return;}const title=w.document.createElement("h1"),name=w.document.createElement("h2"),body=w.document.createElement("p");title.textContent="BFit · Your First 5K";name.textContent=$("certificateName").value.trim()||"Congratulations!";body.textContent=(r.strategy==="continuous"?"Continuous 5K":"Run–walk 5K")+" · "+fmt(r.mainSec)+" · "+new Date(r.day*86400000).toISOString().slice(0,10);w.document.body.append(title,name,body);w.document.title="BFit completion certificate";w.print();};
+$("export").onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"})),a=document.createElement("a");a.href=url;a.download="bfit-first-5k-progress.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$("import").onclick=async()=>{try{if(running||data.active||data.pending)throw Error("Finish and log the current workout before importing.");if(data.state?.paused)throw Error("Import cannot replace a current health hold.");const file=$("importFile").files?.[0];if(!file||file.size>2000000)throw Error("Choose a BFit JSON file under 2 MB.");if(data.state&&!$("replaceConfirm").checked)throw Error("Confirm that you want to replace saved progress.");const incoming=validateSnapshot(JSON.parse(await file.text()),day());if((trainingHistory(incoming.state).some(r=>["pause","urgent"].includes(F.check(r.check)))||incoming.state.reentrySelfReported&&incoming.state.history.some(r=>["pause","urgent"].includes(F.check(r.check))&&r.day>=(incoming.state.clearanceDay??-Infinity)))&&!incoming.state.paused)throw Error("This file contains unresolved symptom history.");if(running||data.active||data.pending||data.state?.paused)throw Error("Current training state changed; import cancelled.");localStorage.setItem(key,JSON.stringify(incoming));data=incoming;$("replaceConfirm").checked=false;render();msg("Progress imported. Review your saved workout before continuing.");}catch(e){msg(e.message);}};
+render();
+})();
+</script>
+</body></html>
