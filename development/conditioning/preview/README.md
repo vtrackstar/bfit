@@ -1,17 +1,34 @@
-# Conditioning development preview
-Not deployed. The repository/branch may be publicly readable; noindex is not privacy or access control. Use fictional records only until release gates close.
-From repository root, check out conditioning-guide and run:
+# Conditioning development preview — current checkpoint (November 26, 2026)
+
+This is a tested development candidate, not a deployed guide. The repository may be publicly readable; noindex is not access control. Use fictional records only. Do not perform unfamiliar exercise or enter personal medical information to test the website.
+
+## Open the preview for a hands-on review
+From a local clone of the repository:
 ```sh
+git switch conditioning-guide
+git pull --ff-only origin conditioning-guide
 python3 -m http.server 8000
 ```
-Open http://localhost:8000/development/conditioning/preview/ in a local browser. Do not open as file://, because JS module imports need HTTP.
-Run actual Node ESM suites from repository root:
+Open http://localhost:8000/development/conditioning/preview/ on that computer. For a phone on the same trusted local network, use the computer's local IP address in place of localhost; allow local network access only if appropriate. HTTP on a non-localhost address may lack secure-context APIs used by the preview (including crypto.randomUUID). If so, use a trusted HTTPS test host or a local desktop browser. Do not use file://, or expose the local server to the internet. The preview is not yet accessible at a live BFit route.
+
+## Implemented
+Ten optional lessons, five-step setup, context-specific movement instructions, six next-action states plus restriction and review routing, 4-week calendar with same-week moves, adaptive dose selection, timer and manual actual records including early cooldown, optional main-work metrics, next-day recovery and conservative correction, outside activity, historical reports, backup/restore, educational figures and isolated interval comparison, 37 annotated scientific references. Warning and pain history is retained; clinician-directed outside activity may be logged separately without unlocking a paused plan.
+
+## Latest observed verification
+At head f3ef7e27f6e19524395c557b763fb861ffaffffe:
+- [Conditioning CI](https://github.com/vtrackstar/bfit/actions/runs/45904348211): success. Actual Node 22 ESM, 273 checks (54 engine, 36 workflow, 32 calendar, 43 timer, 43 app, 23 integrated, 21 advanced, 4 education, 7 recording, 10 safety/data), and six browser test groups including 320/390/1366 px navigation/overflow, timer interruption, manual recording and backup, safety persistence, educational isolation.
+- [BFit smoke tests](https://github.com/vtrackstar/bfit/actions/runs/45904348212): success.
+- 69 unique static IDs; all static internal anchors resolve; nine related guide routes match current main.
+- No real phone, independent reader, video playback, clinical or aquatic review performed.
+- Draft [PR #21](https://github.com/vtrackstar/bfit/pull/21) unmerged; mergeable at check, two commits behind main, no production integration.
+
+## Run tests locally
 ```sh
 for test in development/conditioning/*.test.mjs; do node "$test" || exit 1; done
+npm install --no-save playwright
+npx playwright install chromium
+node development/conditioning/preview/browser-flow.mjs
 ```
-## First preview
-All ten revised chapters, optional-depth disclosures, FAQ, responsive BFit styling, table of contents and direct plan/workout/progress links. Setup, scheduled-day workout, explicit phase timer, manual actual-record inputs, next-day recovery, skip, outside activity, rollover, current block report, backup download/restore and storage adapter connected to engine. Pre-start warning/pain creates zero-work safety hold (not attendance). No automatic clinical restart; warning hold retained. Restore disallowed over existing activity history/active session in preview.
-## Verified
-Re-fetched saved sources; 252 combined-JS assertions passed; static named imports/export uniqueness, preview JS body syntax, 30 unique static HTML IDs and 56 local anchor links checked. Not actual Node ESM, DOM, browser, physical-device or CI tests. No screenshot/layout verification. 
-## Remaining before release
-Browser/device testing and usability audit; actual Node and CI; clinical restart pathway, safety copy and clinician review; explicit current limitations of unknown medical suitability, missing/stale readiness and late recovery; stronger profile/backup/actual time validation and safe corrections; profile and active record reload edge cases, atomic cross-tab locking, error recovery; manual early cooldown after partial phase unsupported, circuit movement demos, swim stroke and time cap, reschedule control, previous-cycle selection/comparable-output display, recovery feedback update/correction UI, user-friendly plan editing; illustrative science diagrams and comparison interaction, links and citations checked against actual page; no real-time countdown accuracy claim. The prototype does not have a hub card, production path, or live deployment. Preserve current production paths and data.
+
+## Remaining work
+Use the [release review packet](../../../CONDITIONING_RELEASE_REVIEW_2026-11-26.md) for hands-on tasks, safety/scope decisions and production integration. Older audit files describe historical snapshots; this file and the latest handoff supersede their status. Do not publish until owner approval and appropriate review of unresolved safety and device limitations.
