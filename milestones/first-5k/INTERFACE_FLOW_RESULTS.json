@@ -108,8 +108,36 @@
     {
       "name": "Import cannot clear existing health hold",
       "pass": true
+    },
+    {
+      "name": "Return without medical advice stays paused",
+      "pass": true
+    },
+    {
+      "name": "Cleared return restarts conservatively",
+      "pass": true
+    },
+    {
+      "name": "Return checkpoint survives restore",
+      "pass": true
+    },
+    {
+      "name": "Return workout uses introductory running dose",
+      "pass": true
+    },
+    {
+      "name": "Completion panel displays recorded time and distance",
+      "pass": true
+    },
+    {
+      "name": "Completion analysis converts average pace",
+      "pass": true
+    },
+    {
+      "name": "Completion stops regular workout recommendations",
+      "pass": true
     }
   ],
-  "passed": 27,
-  "total": 27
+  "passed": 34,
+  "total": 34
 }
