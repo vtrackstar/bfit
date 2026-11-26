@@ -1,5 +1,5 @@
 import { steady } from './engine.mjs';
-import { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad } from './app-state.mjs';
+import { APP_KEY, appNew, appCurrent, appValidate, appStart, appTimer, appSave, appRecovery, appCorrect, appOutside, appCalendarEdit, appNextCycle, appAcknowledge, appReport, appBackup, appRestore, appPersist, appLoad } from './app-state.mjs';
 
 function appTests(){
  const out=[];const check=(n,b)=>{if(!b)throw Error(n);out.push(n)};const fails=f=>{try{f();return false}catch{return true}};
@@ -53,6 +53,14 @@ function appTests(){
  swimApp=appSave(swimApp,{confirmed:true,status:"full",actual:{lengths:4,swimSeconds:null,restSeconds:null},effort:3,quality:true,warning:false,pain:false,recoveryExtended:false},100);
  const sr=appReport(swimApp,100,100).byMode.swim;
  check("unknown swim time distinct",sr.unknownTotalVisits===1&&sr.unknownWorkVisits===1&&sr.unknownRecoveryTimeVisits===1&&Object.values(sr.lengthsByPool)[0]===4);
+ check("reject unknown top-level backup fields",fails(()=>appRestore(JSON.stringify({...base,unknown:true}),100)));
+ check("reject unknown log fields",fails(()=>appRestore(JSON.stringify({...a,history:{...a.history,logs:a.history.logs.map(l=>({...l,secret:true}))}}),128)));
+ check("refuse unguarded overwrite",appPersist(storage,base,100).reason==="storage-conflict");
+ const corrected=appCorrect(a,"one",{effort:1,warning:true},128);
+ check("correction preserves actual dose and time",appEq(corrected.history.logs[0].dose,a.history.logs[0].dose)&&appEq(corrected.history.logs[0].actual,a.history.logs[0].actual));
+ check("correction invalidates success",corrected.history.logs[0].timingInterrupted&&corrected.history.logs[0].recovery==="unknown"&&!corrected.history.logs[0].quality);
+ check("cannot erase warning",fails(()=>appCorrect(corrected,"one",{warning:false},128)));
+ check("cannot change dose through correction",fails(()=>appCorrect(a,"one",{dose:steady("bike",45,4)},128)));
  return out;
 }
 
