@@ -35,6 +35,12 @@ try{
  const ctx=await browser.newContext({viewport:{width:390,height:844},timezoneId:'UTC',acceptDownloads:true});
  const page=await ctx.newPage();page.on('pageerror',e=>errors.push(e.message));await setup(page);
  assert.equal(await page.locator('section[id^=chapter-]').count(),10);
+ const before=JSON.stringify(await read(page));
+ for(const [v,expected] of [['90','8 min main block · 25%'],['60','6 min main block · 33%'],['30','4 min main block · 50%']]){
+ await page.locator('#compare-rest').selectOption(v);assert((await page.locator('#density-result').textContent()).includes(expected));assert.equal(await page.locator('#density-b span').count(),8);}
+ assert.equal(JSON.stringify(await read(page)),before,'education must not modify plan');
+ for(const id of ['oxygen-figure','pacing-figure','lag-figure','repeatability-figure'])assert.equal(await page.locator('#'+id+' svg[role=img]').count(),1);
+ console.log('PASS educational comparison arithmetic, accessible figure markup and saved-plan isolation');
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'mobile horizontal overflow');
  await begin(page,'manual');const state=await read(page);assert.equal(state.app.active.ticket.dose.minutes,5);
  for(let i=0;i<3;i++)await page.locator('[name=phase'+i+']').fill('300');
