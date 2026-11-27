@@ -136,7 +136,7 @@ export const identity=item=>item.key+':'+item.side;
 export const estimateSeconds=item=>(movements.find(m=>m.key===item.key)?.strength?90:45)+item.reps*(item.level===3?8:item.level===2?7:4);
 export function buildPlan({mode='general',area='hips',difficulty='active',minutes=10,side='both',flexible=false,existing=[],previous=[],strength=false,movement='all',now=new Date().toISOString()}={}){
  if(!modes.includes(mode))throw Error('Unknown mode');
- let list=mode==='general'?['foot','ankle','knee-lift','turn','reach','hinge'].map(k=>movements.find(m=>m.key===k)):movements.filter(m=>m.area===area&&(!m.strength||strength));
+ let list=mode==='general'?['foot','hinge','reach','turn','ankle','knee-lift'].map(k=>movements.find(m=>m.key===k)):movements.filter(m=>m.area===area&&(!m.strength||strength));
  if(mode!=='general'&&movement!=='all')list=list.filter(m=>m.key===movement);
  if(mode!=='general'&&strength&&movement==='all')list=[...list.filter(m=>m.strength),...list.filter(m=>!m.strength)];
  if(mode==='complement')list=list.filter(m=>!existing.includes(m.key));
@@ -148,10 +148,10 @@ export function buildPlan({mode='general',area='hips',difficulty='active',minute
  const group=sides.map(s=>{
  const prior=previous.find(i=>i.key===m.key&&i.side===s);
  const controlOnly=flexible||mode==='control';
- if(!prior)return {key:m.key,side:s,level:m.strength?0:level,reps:4,streak:0,paused:false,maintain:difficulty==='maintain',controlOnly,history:[]};
+ if(!prior)return {key:m.key,side:s,level:m.strength?0:level,reps:4,streak:0,paused:false,maintain:difficulty==='maintain',goalDifficulty:difficulty,goalLevel:level,controlOnly,history:[]};
  const last=prior.history.at(-1);
  const gap=last?(Date.parse(now)-Date.parse(last.date))/86400000:0;
- return {...prior,maintain:difficulty==='maintain',controlOnly,streak:gap>=7||prior.maintain!==(difficulty==='maintain')||prior.controlOnly!==controlOnly?0:prior.streak,recheck:prior.recheck||gap>=14};
+ const changedGoal=prior.goalDifficulty!=null&&prior.goalDifficulty!==difficulty; const maintain=difficulty==='maintain'||(!changedGoal&&!!prior.maintain); return {...prior,maintain,goalDifficulty:difficulty,goalLevel:level,controlOnly,streak:gap>=7||prior.maintain!==maintain||prior.controlOnly!==controlOnly||changedGoal?0:prior.streak,recheck:prior.recheck||gap>=14};
  });
  const cost=group.reduce((a,i)=>a+(i.paused?0:estimateSeconds(i)),0);
  if(spent+cost>budget)continue;
@@ -163,19 +163,18 @@ export function feedback(item,result,recovered=true,goalMet=false,date=new Date(
  if(item.paused)return item;
  if(!['pain','comfortable','challenging','help','uncontrolled'].includes(result))throw Error('Unknown feedback');
  if(item.history.some(h=>h.date.slice(0,10)===date.slice(0,10))&&result!=='pain')return item;
- const next={...item,history:[...item.history,{date,result,recovered,level:item.level,reps:item.reps}]};
+ const next={...item,recheck:false,history:[...item.history,{date,result,recovered,level:item.level,reps:item.reps}]};
  if(result==='pain'){next.paused=true;next.streak=0;return next;}
  if(goalMet&&result==='comfortable'&&recovered){next.maintain=true;next.streak=0;return next;}
  if(result==='help'||result==='uncontrolled'){next.level=Math.max(0,item.level-1);if(item.level===0)next.reps=Math.max(2,item.reps-1);next.streak=0;return next;}
  if(result!=='comfortable'||!recovered||item.maintain){next.streak=0;return next;}
  const last=item.history.at(-1);
  const gap=last?(Date.parse(date)-Date.parse(last.date))/86400000:0;
- if(gap>=14){next.streak=0;next.recheck=true;return next;}
- if(item.recheck){next.recheck=false;next.streak=0;return next;}
+ if(gap>=14||item.recheck){next.streak=0;return next;}
  if(gap>=7){next.streak=0;return next;}
  next.streak=item.streak+1;
  if(next.streak>=2){
- if(item.level===0||item.level===1){next.level=item.level+1;}
+ if(item.level===0||item.level===1||(item.level===2&&item.goalLevel===3)){next.level=item.level+1;}
  else if(item.reps<8){next.reps=item.reps+1;}
  next.streak=0;
  }
