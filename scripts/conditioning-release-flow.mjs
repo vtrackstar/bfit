@@ -126,9 +126,9 @@ try{
  // Fresh education-only context, no dependency on companion or stored plan.
  const isolated=await browser.newContext({viewport:{width:320,height:700},timezoneId:'UTC'});const reader=await isolated.newPage();reader.on('pageerror',e=>errors.push(e.message));
  await reader.goto(educationUrl);assert.equal(await read(reader),null);assert.equal(await reader.locator('section[id^=chapter-]').count(),10);await reader.locator('#compare-rest').selectOption('60');assert.equal(await read(reader),null);assert(await reader.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
- // Rewrite only same-site absolute links in the local test harness; production links retain canonical URLs.
- await isolated.route('https://vtrackstar.github.io/bfit/**',route=>{const u=new URL(route.request().url());return route.fulfill({status:302,headers:{location:new URL(u.pathname.slice(5)+u.search+u.hash,educationUrl).href}});});
- await reader.locator('a[href="https://vtrackstar.github.io/bfit/guides/build-your-conditioning/"]').first().click();await reader.waitForURL('**/guides/build-your-conditioning/');assert.equal(await read(reader),null);assert.equal(await reader.locator('#setup').count(),1);
+ // Follow real relative cross-page links in the same origin; do not intercept navigation.
+ await reader.locator('a[href="../build-your-conditioning/"]').first().click();await reader.waitForURL('**/guides/build-your-conditioning/');await reader.locator('#setup').waitFor();assert.equal(await read(reader),null);
+ await reader.locator('header a[href="../conditioning/"]').click();await reader.waitForURL('**/guides/conditioning/');assert.equal(await reader.locator('section[id^=chapter-]').count(),10);assert.equal(await read(reader),null);
  await isolated.close();console.log('PASS education-only and optional transition to companion');
  assert.deepEqual(errors,[]);await ctx.close();
 }finally{await browser.close();await new Promise(r=>server.close(r));}
