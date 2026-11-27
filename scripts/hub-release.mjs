@@ -121,6 +121,12 @@ try {
           assert.match(await link.getAttribute('rel') || '', /\bnoopener\b/, name+' should use noopener');
         }
         assert.equal(await page.locator('#coaching a[href="https://vtrackstar.github.io/bfit/coaching/"]').count(), 1);
+        assert.equal(await page.locator('#why-coaching').isVisible(),true);
+        assert.match(await page.locator('#why-coaching').innerText(),/Why pay for coaching if the guides are free/);
+        const coachingCopy=await page.locator('#coaching').innerText();
+        assert.match(coachingCopy,/keep using them/);
+        assert.match(coachingCopy,/review your progress each week/);
+        assert.match(coachingCopy,/exercise videos for feedback/);
         await page.screenshot({path:path.join(folder,'hub-release-'+screen.label+'.png'),fullPage:true,animations:'disabled'});
         assert.deepEqual(errors, [], 'Browser JavaScript errors');
       } finally { await page.close(); }
