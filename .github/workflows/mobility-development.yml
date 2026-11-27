@@ -7,6 +7,8 @@ on:
       - 'guides/mobility/**'
       - 'guides/build-your-mobility/**'
       - 'scripts/mobility-engine-test.mjs'
+      - 'scripts/mobility-browser-test.mjs'
+      - 'guides/gamer-fit/**'
       - '.github/workflows/mobility-development.yml'
 permissions:
   contents: read
@@ -19,3 +21,16 @@ jobs:
         with:
           node-version: '22'
       - run: node scripts/mobility-engine-test.mjs
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8080 > /tmp/bfit-http.log 2>&1 &
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8080/ >/dev/null && break; sleep 1; done
+          node scripts/mobility-browser-test.mjs
