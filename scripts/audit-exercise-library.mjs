@@ -31,3 +31,7 @@ for(const [key,ref] of Object.entries(refs))assert.ok(snapshot.entries.some(e=>e
 assert.ok(!snapshot.entries.some(e=>['BFIT-00194','BFIT-00202'].includes(e.id)),'Unapproved legacy record');
 assert.ok(fs.readFileSync(base+'feed-config.js','utf8').includes('new URL("catalog.json", document.baseURI)'),'Public refresh must use reviewed repository JSON');
 console.log('PASS all 18 Mobility Workout reference mappings and repository feed configuration');
+
+for(const id of ['equipment-filter','area-filter'])assert.ok(html.includes('id="'+id+'"'),'Missing beginner discovery filter '+id);
+const libraryApp=fs.readFileSync(base+'app.js','utf8');for(const label of ['What it helps with','What you need','How to do it','What to look for','Make it easier'])assert.ok(libraryApp.includes(label),'Missing essential exercise-card label '+label);
+console.log('PASS beginner exercise discovery controls and core card labels');
