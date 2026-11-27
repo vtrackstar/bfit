@@ -1,6 +1,6 @@
 # Mobility exercise reconciliation — 2026-11-27
 
-The central Exercise & Movement Library is hosted at https://bfit-exercise-movement-library.balouissaint.chatgpt.site/. It is not a directory in this repository. This document is an integration checklist, not a separate public exercise dictionary. No central library edit has been verified.
+The canonical library is now https://vtrackstar.github.io/bfit/exercise-library/, with source under exercise-library/. This document records reconciliation and release controls, not a separate dictionary. The old host is historical.
 
 ## Existing exercise records confirmed in Gamer Fit
 
@@ -26,24 +26,30 @@ The central Exercise & Movement Library is hosted at https://bfit-exercise-movem
 | BFIT-00128 | Wall Slide | Related overhead movement, not identical to a free overhead reach. |
 | BFIT-00129 | Wrist Circles and Flexion/Extension Flow | Wrist movement distinct from forearm rotation. |
 
-## New workout local keys
-Do not assign a canonical ID based solely on similar anatomy. Existing IDs above are confirmed only from Gamer Fit embedded records, not an exhaustive central inventory.
+## Complete workout mapping (release candidate)
 
-- hinge: related BFIT-00028; wall-touch variation.
-- ankle: BFIT-00126 movement family.
-- hand: related BFIT-00062; fingertip opposition adds a distinct task.
-- neck: BFIT-00080 direction.
-- reach: related BFIT-00128 but free reach is not wall slide.
-- turn: related BFIT-00121 but seated chest turn is not side-lying open book.
-- side-shift: related BFIT-00073 but a small supported shift is not a full lunge.
-- hip-in, hip-out, knee-lift, foot, chair: inspect central inventory before mapping.
-- For each candidate inspect exact setup, movement, assistance, equipment and goal before reusing an identifier.
-- Keep workout dosage and progression in program code, canonical exercise setup/cues in the library; provide essential instructions in the workout even when offline.
-- Verify library deep links, exercise demos, aliases and reverse program destinations before public launch.
+| Workout key | BFIT ID | Relationship |
+|---|---|---|
+| ankle | BFIT-00126 | Same basic movement |
+| wall-slide | BFIT-00128 | Same basic movement |
+| hinge | BFIT-00028 | Wall-touch variation |
+| hand | BFIT-00062 | Related finger movement |
+| lateral-strength | BFIT-00073 | Stationary supported variation |
+| hip-in | BFIT-00141 | Outward foot movement |
+| hip-out | BFIT-00141 | Inward foot movement |
+| chair | BFIT-00150 | Sit-to-stand |
+| calf-raise | BFIT-00003 | Supported two-leg variation |
+| neck | BFIT-00080 | Assigned side |
+| hinge-strength | BFIT-00099 | Related loaded hinge |
+| knee-strength | BFIT-00174 | Related nonalternating march |
+| side-shift | BFIT-00073 | Stationary weight shift, not a full lunge |
+| reach | BFIT-00229 | Active Overhead Reach, draft |
+| turn | BFIT-00230 | Seated Chest Rotation, draft |
+| knee-lift | BFIT-00231 | Seated Knee Lift, draft |
+| foot | BFIT-00232 | Foot Pressure Awareness, draft |
+| wrist-load | BFIT-00233 | Supported Wall Hand Pressure, draft |
 
-## Release gate
-Central library inventory and write access are still needed. Existing IDs and Gamer Fit anchors must remain stable. The guide and workout must remain independently usable. No new canonical IDs have been issued in this branch.
-
+Keep dosage and progression in the workout, with complete standalone instructions. Related variations are labeled as such rather than treated as equivalent demonstrations.
 
 ## 2026-11-27 — Library migration and editorial master cutover
 - Canonical public URL: https://vtrackstar.github.io/bfit/exercise-library/.
@@ -51,4 +57,7 @@ Central library inventory and write access are still needed. Existing IDs and Ga
 - Former master retained unchanged: ID 1aLjYoLen3zGhRJ72dXAoFbD7ymDbD8bvtTJ3Ywig2Gs. Do not edit both masters independently. When original-account access returns, reconcile by stable ID and changed fields before any synchronization.
 - Existing public feed remains unchanged. 226 approved records in GitHub snapshot; 228 original master records including two with blank publication status (BFIT-00194 and BFIT-00202).
 - Five new records BFIT-00229–00233 were written to the new master and verified as Draft, with no vetted demos. Total master records: 233; approved: 226. Do not expose drafts in public feed.
-- Before release: reconcile approved feed against master and embedded snapshot, verify feed write access, integrate main library migration into development branch while retaining guide edits, test deep links and catalog behavior.
+- Completed: reconciled 226 approved IDs and 3,616 fields; corrected nine stale snapshot fields; integrated main into feature with Gamer Fit edits preserved; staged 231-record candidate; all 18 mappings and offline library browser checks passed in run 46037482947.
+- Remaining: confirm latest site-wide checks (46037838921) and mobility checks (46037838867); require explicit publication authorization; approve five written records without approving videos; verify live feed write access; update public feed and snapshots consistently; remove noindex/draft notices at release; verify Pages deployment and live links. Do not overwrite or renumber the two older unpublished records.
+- Current candidate commit a0d20e8. Public feed remains 226 records. Candidate fallback has 231 entries and a newer publication timestamp, so old live feed is rejected rather than removing new anchors. Set the final publication timestamp consistently with the approved feed at release.
+- Actual footage, physical-device checks, and independent beginner testing remain open; do not claim those were completed.
