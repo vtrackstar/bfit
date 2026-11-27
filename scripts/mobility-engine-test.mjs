@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {buildPlan,feedback,estimateSeconds} from '../guides/build-your-mobility/engine.mjs';
+import {buildPlan,feedback,estimateSeconds,needsRecheck} from '../guides/build-your-mobility/engine.mjs';
 const p=buildPlan({mode:'targeted',area:'hips',minutes:10});
 const left=p.find(i=>i.key==='hip-in'&&i.side==='left'),right=p.find(i=>i.key==='hip-in'&&i.side==='right');
 assert.ok(left&&right);
@@ -14,7 +14,7 @@ assert.equal(buildPlan({mode:'complement',area:'hips',existing:['hip-in','hip-ou
 assert.ok(buildPlan({minutes:5}).reduce((sum,i)=>sum+estimateSeconds(i),0)<=300);
 const maint=feedback(left,'comfortable',true,true,'2026-11-01T12:00:00Z');assert.ok(maint.maintain);
 assert.equal(feedback(maint,'comfortable',true,false,'2026-11-03T12:00:00Z').level,maint.level);
-assert.ok(feedback(a,'comfortable',true,false,'2026-11-20T12:00:00Z').recheck);
+assert.ok(needsRecheck(a,'2026-11-20T12:00:00Z')); const returned=feedback(a,'comfortable',true,false,'2026-11-20T12:00:00Z'); assert.equal(returned.recheck,false); assert.equal(returned.streak,0); assert.equal(feedback(returned,'comfortable',true,false,'2026-11-22T12:00:00Z').streak,1);
 assert.equal(feedback(a,'comfortable',false,false,'2026-11-03T12:00:00Z').streak,0);
 console.log('Mobility engine checks passed');
 
@@ -28,3 +28,20 @@ assert.equal(buildPlan({mode:'targeted',area:'hips',movement:'hip-out',side:'lef
 assert.equal(buildPlan({mode:'targeted',area:'hips',movement:'hip-out',side:'left'})[0].key,'hip-out');
 assert.equal(feedback(left,'uncontrolled',true,true,'2026-11-05T12:00:00Z').maintain,false);
 console.log('Mobility strength and targeted selection checks passed');
+
+// Routine rebuilds must not silently discard achieved goals.
+const rebuilt=buildPlan({mode:'targeted',area:'hips',minutes:5,previous:[maint],now:'2026-11-03T12:00:00Z'}).find(i=>i.key==='hip-in'&&i.side==='left');
+assert.ok(rebuilt.maintain);
+const changed=buildPlan({mode:'targeted',area:'hips',movement:'hip-in',side:'left',difficulty:'return',previous:[rebuilt]})[0];
+assert.equal(changed.maintain,false);
+const short=buildPlan({minutes:5});
+assert.ok(short.some(i=>i.key==='reach')&&short.some(i=>i.key==='hinge')&&short.some(i=>i.key==='foot'));
+let slow=buildPlan({mode:'targeted',area:'ankles',movement:'calf-raise',strength:true,difficulty:'return'})[0];
+assert.equal(slow.level,0);
+for(const day of [1,3,5,7,9,11])slow=feedback(slow,'comfortable',true,false,'2026-11-'+String(day).padStart(2,'0')+'T12:00:00Z');
+assert.equal(slow.level,3);
+assert.equal(slow.reps,4);
+let hold=buildPlan({mode:'targeted',area:'ankles',movement:'calf-raise',strength:true,difficulty:'hold'})[0];
+for(const day of [1,3,5,7,9,11])hold=feedback(hold,'comfortable',true,false,'2026-11-'+String(day).padStart(2,'0')+'T12:00:00Z');
+assert.equal(hold.level,2);
+console.log('Maintenance, balanced short routine, return and eccentric progression checks passed');
