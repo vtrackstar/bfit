@@ -25,3 +25,6 @@ Estimated implementation progress: 15%; two feature batches published, regressio
 
 ## Batch 4 — targeted catalog corrections
 Parent 29ea59ff04d0f69b677a1b535bdd9e083bb534bd: smoke 46040807224 and Pages 46040806989 passed. Nine records updated in canonical master, approved copy, JSON and embedded snapshot. All IDs, approval states and unapproved records preserved; no demonstration approvals. Publication timestamp 2026-11-27T17:25:00.000Z. Readback and release checks required; remaining full catalog review outstanding. If rollback needed, restore the nine changed fields from parent and matching spreadsheet rows, including approved-copy publication timestamp.
+
+## Batch 5 — coordinated mobility language and independent use
+Parent 2779f9ad4a60f3778a63c19e8c186ca5fa7a53c3. Library Pages 46041322375 passed; smoke 46041322632 pending at start. Mobility: practical entry, plain movement terminology and workload guidance. Build Your Mobility: default route labels and explanation, clearer saving and alternative-to-Gamer-Fit guidance; engine and stored settings untouched. Gamer Fit: five-minute starting example, foam roller row repair, plain labels and glossary alignment, alternative workout guidance. No exercise IDs, workout dosage rules, or data formats changed. Verify all three standalone, cross-links and full regression. Catalog full review remains open.
