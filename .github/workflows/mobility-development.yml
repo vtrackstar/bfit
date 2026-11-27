@@ -1,0 +1,21 @@
+name: Mobility development checks
+on:
+  push:
+    branches: ['feature/mobility-guide-workout']
+  pull_request:
+    paths:
+      - 'guides/mobility/**'
+      - 'guides/build-your-mobility/**'
+      - 'scripts/mobility-engine-test.mjs'
+      - '.github/workflows/mobility-development.yml'
+permissions:
+  contents: read
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/mobility-engine-test.mjs
