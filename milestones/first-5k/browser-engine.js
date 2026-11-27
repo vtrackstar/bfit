@@ -261,7 +261,7 @@ const createEngine = function createEngine(){
   function ready(h,d,goal){
     const g=good(h,d,30),consistent=[0,1].every(i=>distinctDays(g.filter(r=>r.runSec>0&&r.day>d-7*(i+1)&&r.day<=d-7*i))>=2);
     if(!consistent)return {ready:false,reason:"Build recent consistency."};
-    const near=g.filter(r=>r.lane==="long"&&r.day>d-14&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
+    const near=g.filter(r=>r.lane==="long"&&r.day>d-15&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
     if(!near)return {ready:false,reason:"Need a recent comfortable measured outing near 5 km using the chosen strategy."};
     const expected=Math.ceil(near.mainSec*5000/near.mainDistanceM),cap=near.mainSec+durationIncrement(near.mainSec);
     if(expected>cap)return {ready:false,expected,cap,reason:"Build duration further before attempting the distance."};
@@ -573,9 +573,9 @@ const reference=function reference(E){
  }
  // Late specific preparation: 5K only after two consistent recent weeks and
  // a comparable near-distance effort. No calendar deadline forces an attempt.
- if(!context.deferAttempt&&s.walkMin===null&&p.lane==="long"&&E.ready(h,d,s.goal).ready){
+ if(!context.deferAttempt&&s.walkMin===null&&p.lane==="long"&&E.ready(h,d-1,s.goal).ready){
  const near=g.filter(r=>r.lane==="long"&&r.day>d-14&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(s.goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
- if(near){const cap=E.ready(h,d,s.goal).cap;const q=s.goal==="continuous"?E.continuous("finish-5k",cap,{distanceGoal:5000}):E.rhythm("finish-5k",Math.min(180,near.longestBout),90,cap,{distanceGoal:5000});if(q.runSec<=near.runSec+180)return result("attempt",{...q,lane:"long"},"Your recent training supports an optional 5K attempt. Stop at 5 km or the time limit.");}
+ if(near){const cap=E.ready(h,d-1,s.goal).cap;const q=s.goal==="continuous"?E.continuous("finish-5k",cap,{distanceGoal:5000}):E.rhythm("finish-5k",Math.min(180,near.longestBout),90,cap,{distanceGoal:5000});if(q.runSec<=near.runSec+180)return result("attempt",{...q,lane:"long"},"Your recent training supports an optional 5K attempt. Stop at 5 km or the time limit.");}
  }
  // Reference steps are candidates, not automatic prescriptions. Compare the
  // observed current running dose and longest bout, and interpolate if necessary.
