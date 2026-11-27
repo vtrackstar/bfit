@@ -43,5 +43,27 @@ await page.goto(workout);
 assert.match(await page.locator('#archive').textContent(),/paused due to symptoms/);
 assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'mobile horizontal overflow');
 assert.deepEqual(errors,[]);
-console.log('Mobility browser journey passed');
+// Verify actual layout and first-time onboarding at three widths.
+for(const width of [320,390,1366]){
+ const fresh=await browser.newPage({viewport:{width,height:844}});
+ const faults=[];fresh.on('pageerror',e=>faults.push(e.message));
+ await fresh.route('**/*',route=>route.request().url().startsWith(base)||route.request().url().startsWith('data:')?route.continue():route.abort());
+ for(const slug of ['mobility','build-your-mobility']){
+  const response=await fresh.goto(base+'/guides/'+slug+'/');
+  assert.equal(response.status(),200);
+  assert.ok(await fresh.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),slug+' overflow at '+width);
+  assert.equal(await fresh.locator('h1').count(),1);
+  if(slug==='build-your-mobility'){
+   assert.equal(await fresh.locator('#target-options').isVisible(),false);
+   assert.equal(await fresh.locator('#existing-options').isVisible(),false);
+   await fresh.locator('#setup select[name=minutes]').selectOption('5');
+   await fresh.locator('#setup button[type=submit]').click();
+   assert.ok(await fresh.locator('#cards article').count()>0);
+   assert.ok(await fresh.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'workout cards overflow at '+width);
+  }
+ }
+ assert.deepEqual(faults,[]);
+ await fresh.close();
+}
+console.log('Mobility browser journey and responsive layout passed');
 } finally {await browser.close();}
