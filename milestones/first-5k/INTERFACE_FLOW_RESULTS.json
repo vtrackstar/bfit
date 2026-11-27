@@ -244,8 +244,56 @@
     {
       "name": "Explicit paused state",
       "pass": true
+    },
+    {
+      "name": "Only one history entry shown by default",
+      "pass": true
+    },
+    {
+      "name": "Additional history entry progressively revealed",
+      "pass": true
+    },
+    {
+      "name": "Occasional runner without records starts conservatively",
+      "pass": true
+    },
+    {
+      "name": "Pause inside running interval flags uncertain continuity",
+      "pass": true
+    },
+    {
+      "name": "Interrupted running does not earn unsupported progression or measurement",
+      "pass": true
+    },
+    {
+      "name": "Skip measurements clears data and saves a normal completed workout",
+      "pass": true
+    },
+    {
+      "name": "Two-day runner can receive a budget-compatible optional attempt",
+      "pass": true
+    },
+    {
+      "name": "Declining a 5K attempt preserves normal programming",
+      "pass": true
+    },
+    {
+      "name": "Concerning symptoms override optional attempt",
+      "pass": true
+    },
+    {
+      "name": "Milestone preparation appears only when an attempt is offered",
+      "pass": true
+    },
+    {
+      "name": "Postpone returns to a fresh check-in without logging",
+      "pass": true
+    },
+    {
+      "name": "Postponed attempt selects a regular workout",
+      "pass": true
     }
   ],
-  "passed": 61,
-  "total": 61
+  "passed": 73,
+  "total": 73
 }
