@@ -28,3 +28,10 @@ for(const term of ['37/47-second surge targets','2 × 6-minute threshold example
  assert.ok(running.includes(term),'Run Strong lost specific teaching example: '+term);
 }
 console.log('PASS: coaching pause language, Gamer Fit chapter structure, and key coaching examples');
+
+const coachingPage=fs.readFileSync('coaching/index.html','utf8');
+const coachingOrder=['id="coaching-dashboard"','id="nutrition-section-title"','id="nutrition-coaching"','id="nutrition-example"','id="nutrition-qualifications"','What happens when we start?','id="coaching-options"','id="coach-qualifications"'];
+for(let i=0;i<coachingOrder.length;i++){assert.ok(coachingPage.includes(coachingOrder[i]),'Missing coaching section '+coachingOrder[i]);if(i)assert.ok(coachingPage.indexOf(coachingOrder[i-1])<coachingPage.indexOf(coachingOrder[i]),'Coaching section order changed');}
+for(const id of ['demoRows','demoOutput','demoCharts','demoTargets','nutrition-example','nutrition-coaching','nutrition-qualifications'])assert.equal(coachingPage.split('id="'+id+'"').length-1,1,'Duplicate or missing coaching anchor '+id);
+assert.ok(coachingPage.includes('$199/month')&&coachingPage.includes('$499/month'));
+console.log('PASS coaching nutrition sequence, example anchors and prices');
