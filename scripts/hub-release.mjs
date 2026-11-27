@@ -121,6 +121,9 @@ try {
           assert.match(await link.getAttribute('rel') || '', /\bnoopener\b/, name+' should use noopener');
         }
         assert.equal(await page.locator('#coaching a[href="https://vtrackstar.github.io/bfit/coaching/"]').count(), 1);
+        assert.equal(await page.locator('#why-free').isVisible(),true);
+        assert.equal(await page.locator('#coaching #why-free').count(),0);
+        assert.ok(await page.evaluate(()=>Boolean(document.getElementById('why-free').compareDocumentPosition(document.getElementById('guides')) & Node.DOCUMENT_POSITION_FOLLOWING)));
         assert.equal(await page.locator('#why-coaching').isVisible(),true);
         assert.match(await page.locator('#why-coaching').innerText(),/Why pay for coaching if the guides are free/);
         const coachingCopy=await page.locator('#coaching').innerText();

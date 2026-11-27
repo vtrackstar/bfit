@@ -33,3 +33,5 @@ No physical-device or human verification was performed in this follow-up.
 
 ## Coaching and free-content philosophy
 - Keep free training information genuinely useful and independently usable. The hub explains why the guides are free and separately explains the value of personal coaching (individual assessment, feedback and ongoing adjustments). Keep this language warm, first-person and low-pressure; do not add recurring sales prompts to every guide or imply that paid coaching is required. Keep pricing on the coaching page and preserve the current intake status.
+
+- Placement: explain why BFit education is free near the top of the homepage, after the introduction and collection shortcuts, before the guide cards. Keep the separate explanation of paid coaching value under Meet your coach; do not duplicate the sales message in the opening.
