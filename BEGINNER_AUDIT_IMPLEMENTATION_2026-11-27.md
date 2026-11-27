@@ -52,3 +52,6 @@ Parent f86823838a400385959a6a67d83697e34d2d16a1. Reviewed published movement ste
 
 ## Final reviewed content checkpoint — 2026-11-27
 Content SHA `50565b9047f0041ece27b1d9f014d6ca3bb1fa94`: 24 corrected records read back in both spreadsheets (92 changed cells each, approved feed timestamp refreshed for 231 records); main updated after verification. Full site smoke 46043165098 and Pages 46043163782 succeeded. All previously failing 50+ links fixed. All planned targeted content changes complete. See BEGINNER_REAUDIT_2026-11-27.md for approximate revised editorial scores and residual manual gaps. Dedicated mobility regression was not run on latest main; this follow-up enables main path triggers and manual dispatch, so that gate remains pending. Do not equate main smoke with that separate gate. Earlier backlog entries above are historical, not current tasks.
+
+## Final verification follow-up
+Dedicated mobility workflow 46043691141: engine and catalog audit passed; browser timed out at line 88 waiting for obsolete status text 'Catalog checked'. Current app emits 'Exercise list checked' on successful fetch. Updated exact success assertion to current wording, retaining all offline fallback, search, filter, deep-link and workout reference checks. No production content changes. Re-run required.

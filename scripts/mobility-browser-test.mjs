@@ -85,7 +85,7 @@ for(const width of [320,390,1366]){
  await integrated.waitForURL('**/guides/build-your-mobility/');
 }
 await integrated.goto(base+'/exercise-library/#BFIT-00229');
-await integrated.waitForFunction(()=>document.querySelector('#feed-status').textContent.startsWith('Catalog checked'));
+await integrated.waitForFunction(()=>document.querySelector('#feed-status').textContent.startsWith('Exercise list checked'));
 assert.equal(await integrated.locator('#cards article').count(),231);
 // Multiword search and equipment-free filter must not mistake a floor or bench for absence of required weights.
 await integrated.locator('#search').fill('goblet chest');
