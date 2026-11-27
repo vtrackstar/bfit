@@ -28,3 +28,6 @@ Parent 29ea59ff04d0f69b677a1b535bdd9e083bb534bd: smoke 46040807224 and Pages 460
 
 ## Batch 5 — coordinated mobility language and independent use
 Parent 2779f9ad4a60f3778a63c19e8c186ca5fa7a53c3. Library Pages 46041322375 passed; smoke 46041322632 pending at start. Mobility: practical entry, plain movement terminology and workload guidance. Build Your Mobility: default route labels and explanation, clearer saving and alternative-to-Gamer-Fit guidance; engine and stored settings untouched. Gamer Fit: five-minute starting example, foam roller row repair, plain labels and glossary alignment, alternative workout guidance. No exercise IDs, workout dosage rules, or data formats changed. Verify all three standalone, cross-links and full regression. Catalog full review remains open.
+
+## Batch 6 — conditioning language and entry clarity
+Parent 42cfab6dfc51610435c1fcb9e30cf85b446bae14. Educational guide: practical entry, ordinary-language labels before physiology, gradual warm-up explanation and direct companion links. Workout builder: clearer goal options, optional advanced preferences, preview and backup explanations, no misleading swimming instructions. Existing hidden swim fields, validation, goal values, safety and workout logic unchanged. Verify regression tests; earlier catalog and mobility tests may still be running. No independent human testing completed.
