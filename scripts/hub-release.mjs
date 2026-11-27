@@ -145,6 +145,31 @@ try {
       }finally{await page.close()}
     });
   }
+  await check('Foundation stays first and spans both columns only for an odd guide count',async()=>{
+    const page=await browser.newPage({viewport:{width:1366,height:900}});
+    try{
+      await page.goto(host+'/');
+      const result=await page.locator('#guides > .cards').evaluate(grid=>{
+        const cards=()=>[...grid.children];
+        const first=grid.firstElementChild;
+        const measure=()=>({count:cards().length,first:first.getAttribute('href'),width:first.getBoundingClientRect().width,other:cards()[1].getBoundingClientRect().width,span:getComputedStyle(first).gridColumn});
+        const original=measure();
+        const extra=cards().at(-1).cloneNode(true);
+        grid.append(extra);
+        const changed=measure();
+        extra.remove();
+        return [original,changed];
+      });
+      for(const m of result){
+        assert.equal(m.first,'guides/foundation/');
+        if(m.count%2)assert.ok(m.width>m.other*1.8,'Odd count should span both columns');
+        else assert.ok(Math.abs(m.width-m.other)<=2,'Even count should have equal card widths');
+      }
+      await page.setViewportSize({width:390,height:844});
+      const mobile=await page.locator('#guides > .cards').evaluate(grid=>[...grid.children].map(el=>el.getBoundingClientRect().width));
+      assert.ok(mobile.every(w=>Math.abs(w-mobile[0])<=2),'Mobile cards should be equally wide');
+    }finally{await page.close()}
+  });
   await check('Hub keyboard navigation and guide-card activation', async () => {
     const page=await browser.newPage({viewport:{width:1366,height:900}});
     try {

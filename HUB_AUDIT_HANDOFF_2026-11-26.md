@@ -27,3 +27,6 @@ This handoff supersedes older recommendations where the current source differs. 
 - Verify CI and deployment against the actual revision; do not confuse earlier passing runs with new tests. Do not claim clinical validation or independent user feedback.
 
 No physical-device or human verification was performed in this follow-up.
+
+## Persistent homepage layout rule
+- Foundation Training always appears first in the main training-guide collection. On the two-column layout it spans both columns only when the number of cards in that collection is odd; when even, it uses the same width as other cards. Keep its featured styling in both cases. Mobile remains single-column. This rule is automatic in CSS and covered by the hub release test; do not manually add a wide-card class when publishing new guides.
