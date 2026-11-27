@@ -30,3 +30,6 @@ No physical-device or human verification was performed in this follow-up.
 
 ## Persistent homepage layout rule
 - Foundation Training always appears first in the main training-guide collection. On the two-column layout it spans both columns only when the number of cards in that collection is odd; when even, it uses the same width as other cards. Keep its featured styling in both cases. Mobile remains single-column. This rule is automatic in CSS and covered by the hub release test; do not manually add a wide-card class when publishing new guides.
+
+## Coaching and free-content philosophy
+- Keep free training information genuinely useful and independently usable. The hub explains why the guides are free and separately explains the value of personal coaching (individual assessment, feedback and ongoing adjustments). Keep this language warm, first-person and low-pressure; do not add recurring sales prompts to every guide or imply that paid coaching is required. Keep pricing on the coaching page and preserve the current intake status.
