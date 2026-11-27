@@ -17,3 +17,14 @@ assert.equal(feedback(maint,'comfortable',true,false,'2026-11-03T12:00:00Z').lev
 assert.ok(feedback(a,'comfortable',true,false,'2026-11-20T12:00:00Z').recheck);
 assert.equal(feedback(a,'comfortable',false,false,'2026-11-03T12:00:00Z').streak,0);
 console.log('Mobility engine checks passed');
+
+// Optional strength work must never silently replace general movement practice.
+assert.equal(buildPlan({mode:'targeted',area:'lateral',minutes:15}).some(i=>i.key==='lateral-strength'),false);
+const strength=buildPlan({mode:'targeted',area:'lateral',movement:'lateral-strength',strength:true,minutes:10,difficulty:'hold'});
+assert.equal(strength.length,2);
+assert.ok(strength.every(i=>i.key==='lateral-strength'&&i.level===0));
+assert.equal(buildPlan({mode:'complement',area:'lateral',movement:'lateral-strength',strength:true,existing:['lateral-strength']}).length,0);
+assert.equal(buildPlan({mode:'targeted',area:'hips',movement:'hip-out',side:'left'}).length,1);
+assert.equal(buildPlan({mode:'targeted',area:'hips',movement:'hip-out',side:'left'})[0].key,'hip-out');
+assert.equal(feedback(left,'uncontrolled',true,true,'2026-11-05T12:00:00Z').maintain,false);
+console.log('Mobility strength and targeted selection checks passed');
