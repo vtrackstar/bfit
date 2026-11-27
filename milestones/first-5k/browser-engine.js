@@ -261,7 +261,7 @@ const createEngine = function createEngine(){
   function ready(h,d,goal){
     const g=good(h,d,30),consistent=[0,1].every(i=>distinctDays(g.filter(r=>r.runSec>0&&r.day>d-7*(i+1)&&r.day<=d-7*i))>=2);
     if(!consistent)return {ready:false,reason:"Build recent consistency."};
-    const near=g.filter(r=>r.lane==="long"&&r.day>d-14&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
+    const near=g.filter(r=>r.lane==="long"&&r.day>d-15&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
     if(!near)return {ready:false,reason:"Need a recent comfortable measured outing near 5 km using the chosen strategy."};
     const expected=Math.ceil(near.mainSec*5000/near.mainDistanceM),cap=near.mainSec+durationIncrement(near.mainSec);
     if(expected>cap)return {ready:false,expected,cap,reason:"Build duration further before attempting the distance."};
@@ -543,7 +543,7 @@ const reference=function reference(E){
  if(!workout)return {action,workout,state:s,reason,...extra};
  const fit=fitBudget(s,h,d,workout);
  if(!fit.workout)return {action:"rest",workout:null,state:s,reason:"Allow more recovery before the next running session.",load:fit.review};
- return {action:fit.changed?"budget-bridge":action,workout:fit.workout,state:s,reason:fit.changed?"Keep the workout within recent training exposure.":reason,load:fit.review,...extra};
+ return {action:fit.changed?"budget-bridge":action,workout:fit.workout,state:s,reason:fit.changed?"Today’s workout stays within the amount of running you have recently handled.":reason,load:fit.review,...extra};
  };
  // Current symptoms take priority over scheduling and completion; the caller must persist returned state.
  if(context.symptoms==="urgent")return {action:"urgent",workout:null,state:{...s,paused:true,pauseReason:"urgent"},reason:"Seek urgent medical assessment."};
@@ -565,17 +565,17 @@ const reference=function reference(E){
  const g=E.good(h,d,30),run=g.filter(r=>r.runSec>0),prior=g.filter(r=>r.day>=d-14);
  if(last&&d-last.day>=28)return result("reassess",null,"Reassess recent activity.");
  if(last&&(d-last.day>=8||E.check(last.check)==="reduce"||last.completed!==true)){
- return result("reduce",recoveryDose(p,h,d),"Return to a reduced familiar dose.",{recoveryTrigger:true});
+ return result("reduce",recoveryDose(p,h,d),"Your recent workout or time away calls for a shorter, familiar session today.",{recoveryTrigger:true});
  }
- if(s.recoveryRemaining>0)return result("recovery",recoveryDose(p,h.filter(r=>r.day<(s.recoveryStartDay??d)),d,.85),"Rebuild familiar training across the week.");
+ if(s.recoveryRemaining>0)return result("recovery",recoveryDose(p,h.filter(r=>r.day<(s.recoveryStartDay??d)),d,.85),"Keep today’s workout manageable while you rebuild your routine.");
  if(last&&(d-last.day>=6||E.check(last.check)==="repeat")){
- return result("repeat",recoveryDose(p,h,d,.9),"Use a manageable familiar workout.",{recoveryTrigger:true});
+ return result("repeat",recoveryDose(p,h,d,.9),"Repeat a manageable workout before adding more.",{recoveryTrigger:true});
  }
  // Late specific preparation: 5K only after two consistent recent weeks and
  // a comparable near-distance effort. No calendar deadline forces an attempt.
- if(s.walkMin===null&&p.lane==="long"&&E.ready(h,d,s.goal).ready){
- const near=g.filter(r=>r.lane==="long"&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&(s.goal!=="continuous"||r.strategy==="continuous")).sort((a,b)=>b.day-a.day)[0];
- if(near){const cap=E.ready(h,d,s.goal).cap;const q=s.goal==="continuous"?E.continuous("finish-5k",cap,{distanceGoal:5000}):E.rhythm("finish-5k",Math.min(180,near.longestBout),90,cap,{distanceGoal:5000});if(q.runSec<=near.runSec+180)return result("attempt",{...q,lane:"long"},"Stop at 5 km or the time limit.");}
+ if(!context.deferAttempt&&s.walkMin===null&&p.lane==="long"&&E.ready(h,d-1,s.goal).ready){
+ const near=g.filter(r=>r.lane==="long"&&r.day>d-14&&r.comparable!==false&&r.mainDistanceM>=4500&&r.mainDistanceM<5000&&r.runSec>0&&(s.goal!=="continuous"||r.strategy==="continuous"&&r.continuousDistanceM>=4500&&r.longestBout===r.mainSec)).sort((a,b)=>b.day-a.day)[0];
+ if(near){const cap=E.ready(h,d-1,s.goal).cap;const q=s.goal==="continuous"?E.continuous("finish-5k",cap,{distanceGoal:5000}):E.rhythm("finish-5k",Math.min(180,near.longestBout),90,cap,{distanceGoal:5000});if(q.runSec<=near.runSec+180)return result("attempt",{...q,lane:"long"},"Your recent training supports an optional 5K attempt. Stop at 5 km or the time limit.");}
  }
  // Reference steps are candidates, not automatic prescriptions. Compare the
  // observed current running dose and longest bout, and interpolate if necessary.
@@ -594,13 +594,13 @@ const reference=function reference(E){
  const rest=p.pattern?.walk??90;const runs=[],rests=[];let left=dose;
  while(left>0){let n=Math.min(left,bout);runs.push(n);left-=n;if(left)rests.push(rest);}
  const base=dose+sum(rests.map(x=>({x})),"x");
- if(base>limitMain)return result("repeat",recoveryDose(p,h,d,.95),"Use an intermediate recovered dose.",{flag});
+ if(base>limitMain)return result("repeat",recoveryDose(p,h,d,.95),"Repeat a familiar session so the next increase is smaller.",{flag});
  const q=E.strategy(p)==="continuous"&&dose===bout?E.continuous("bridge-"+p.id+"-"+dose,dose,{distanceGoal:5000}):E.workout("bridge-"+p.id+"-"+dose+"-"+bout,runs,rests,Math.max(0,Math.max(base,main)-base),{pattern:rest?{run:bout,walk:rest}:null,distanceGoal:5000});
- return result("bridge",{...q,lane:p.lane},"Use a smaller step toward the reference workout.",{flag,target:p});
+ return result("bridge",{...q,lane:p.lane},"Take a smaller step toward the next workout, based on your recent running.",{flag,target:p});
  }
- return result("train",p,"Follow the current reference workout.",{flag});
+ return result("train",p,"Today’s workout follows your current training stage and recent recovery.",{flag});
  }
- return result("train",p,"Follow the current reference workout.");
+ return result("train",p,"Today’s workout follows your current training stage and recent recovery.");
  }
  function log(s,record,decision){
  if(!E.validRecord(record))throw Error("Invalid record");
