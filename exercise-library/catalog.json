@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "published_at": "2026-11-27T17:25:00.000Z",
+  "published_at": "2026-11-27T17:34:00.000Z",
   "entries": [
     {
       "id": "BFIT-00001",
@@ -322,17 +322,17 @@
       ],
       "domain": "Mobility & flexibility",
       "family": "Ankle Mobility",
-      "equipment": "Bodyweight",
+      "equipment": "Stable chair and wall or sturdy counter for support",
       "readiness": "Beginner",
       "purpose": "Improve usable ankle motion for squatting, landing, and walking.",
-      "steps": "Circle each ankle slowly in both directions, then rock your weight forward and back over the ankle.",
-      "cues": "Keep the movement slow enough to feel every part of the range.",
+      "steps": "Sit on a stable chair and lift one foot slightly. Make small ankle circles in both directions, then switch feet. For ankle rocks, stand beside a stable support with both feet on the floor and gently bend one knee forward while keeping its heel down. Return and repeat on the other side.",
+      "cues": "Use a small comfortable circle or rock. Keep your balance with support.",
       "mistakes": "Rushing through without controlling the smaller ranges.",
       "easier": "Reduce the size of the circle or rock.",
       "harder": "Increase the range gradually.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00017",
@@ -587,15 +587,15 @@
       "family": "Squat",
       "equipment": "Bodyweight",
       "readiness": "Beginner",
-      "purpose": "Strengthen the legs through a squat pattern.",
-      "steps": "Feet shoulder-width, toes slightly out. Sit hips back and down like reaching for a chair.",
-      "cues": "Keep your chest up and knees tracking over your toes, not caving in.",
+      "purpose": "Strengthen your legs and practice bending down and standing up.",
+      "steps": "Stand with feet comfortably apart and toes turned slightly outward if comfortable. Bend your hips and knees as if sitting toward a chair. Lower only as far as you can control, then push through your feet to stand tall.",
+      "cues": "Keep your whole foot supported and let your knees follow the direction of your toes.",
       "mistakes": "Lifting heels, collapsing inward, or forcing depth by rounding the trunk.",
       "easier": "Hold a stable support or sit down onto a sturdy chair and stand; shorten the depth as needed.",
       "harder": "Gradually squat a little deeper or add repetitions before considering a goblet squat.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00030",
@@ -687,15 +687,15 @@
       "family": "Arm Isolation",
       "equipment": "Adjustable cable machine and suitable handle",
       "readiness": "Beginner",
-      "purpose": "Add focused training volume for the arms.",
-      "steps": "Elbows pinned at your sides, push the bar or rope down until arms are straight.",
-      "cues": "Keep your elbows locked in place. Only your forearms should move.",
+      "purpose": "Strengthen the muscles at the backs of your upper arms (triceps).",
+      "steps": "Set a cable handle or rope high on the machine. Hold it with elbows bent and close to your sides. Straighten your elbows to push the handle down, then slowly bend them to return.",
+      "cues": "Keep your upper arms reasonably still. Let your elbows straighten and bend without swinging your body.",
       "mistakes": "Swinging the shoulders or using body weight to force the handle downward.",
       "easier": "Lower the stack weight and keep elbows comfortably near your sides.",
       "harder": "Increase the load slightly after controlling both the pressdown and return.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00035",
@@ -741,17 +741,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Horizontal Push",
-      "equipment": "Named exercise machine adjusted according to its instructions",
+      "equipment": "Seated chest press machine with forward-facing handles and adjustable seat",
       "readiness": "Beginner",
       "purpose": "Strengthen the chest, shoulders, and triceps through a forward pressing pattern.",
-      "steps": "Adjust the seat so handles line up with mid-chest height, then press forward to extension.",
-      "cues": "Keep your back flat against the pad. Don't arch to move more weight.",
+      "steps": "Adjust the seat so the handles start near chest height. With feet supported and your back against the pad, push the handles forward, then slowly bend your elbows to return to a comfortable starting position.",
+      "cues": "Keep your body steady and let your elbows straighten comfortably without snapping them straight.",
       "mistakes": "Locking the elbows aggressively at the top.",
       "easier": "Reduce the resistance.",
       "harder": "Increase resistance once all reps feel controlled.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00038",
@@ -781,15 +781,15 @@
       "family": "Vertical Pull",
       "equipment": "Pull-Up Bar",
       "readiness": "Advanced",
-      "purpose": "Use an underhand grip to train the lats and upper back while placing greater emphasis on the biceps than a pronated pull-up.",
-      "steps": "Hang from the bar with your palms facing you and hands around shoulder-width apart. Begin from a controlled hang, pull your elbows down, and raise your upper chest toward the bar until your chin clears it.",
+      "purpose": "Strengthen your back and arms by pulling yourself up with palms facing you (underhand grip).",
+      "steps": "Hang from a secure bar with palms facing you and hands around shoulder-width apart. Pull until your chin clears the bar without stretching your neck, then lower slowly to comfortably straight arms.",
       "cues": "Keep the ribs controlled, squeeze the bar, and think about pulling your elbows toward your sides rather than curling only with your arms.",
       "mistakes": "Swinging, shortening the bottom position, or letting the shoulders roll forward while trying to force the chin over the bar.",
       "easier": "Use an assisted pull-up machine, a resistance band, or controlled eccentric chin-ups.",
       "harder": "Add a pause at the top or add external weight after you can complete every repetition through a controlled full range.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00040",
@@ -815,17 +815,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Core Stability",
-      "equipment": "Bodyweight",
+      "equipment": "Stable padded bench or raised support; mat for forearm",
       "readiness": "Advanced",
-      "purpose": "Train the trunk to resist unwanted movement and transfer force.",
-      "steps": "Side plank position with the top leg resting on a bench, bottom leg lifted to meet it.",
+      "purpose": "Strengthen the muscles of your inner thigh and the side of your body while holding a steady position.",
+      "steps": "Lie on your side with your lower forearm on the floor and your top leg supported on a stable bench. Lift your hips into a straight comfortable line and bring the lower leg toward the upper one. Hold for the prescribed time, then lower and switch sides.",
       "cues": "Keep your hips lifted and stacked. Don't let them sag toward the floor.",
       "mistakes": "Letting the hips drop as fatigue builds.",
-      "easier": "Rest the bottom knee on the floor for support.",
+      "easier": "Use the short-lever Copenhagen hold (BFIT-00193), supporting the top knee instead of the ankle and keeping the lower leg supported as needed.",
       "harder": "Extend the hold time.",
-      "units": "repetitions, sets; per side where applicable",
-      "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "units": "hold time in seconds; sets per side",
+      "safety": "Use a bench that cannot tip or slide. Start with the easier version if new to inner-thigh loading. Stop for sharp or increasing groin, hip or shoulder pain.",
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00042",
@@ -855,17 +855,17 @@
       ],
       "domain": "Strength & resistance",
       "family": "Hip Extension",
-      "equipment": "Dumbbell(s); stable bench or support when specified in the setup",
+      "equipment": "One manageable padded dumbbell and a firmly secured bench",
       "readiness": "Beginner",
       "purpose": "Strengthen the glutes and improve force production through the hips.",
-      "steps": "Upper back on a bench, feet flat, a dumbbell resting on your hips, drive up to full hip extension.",
-      "cues": "Tuck your chin slightly and drive through your heels, not your toes.",
+      "steps": "Support your upper back on a stable bench and plant both feet. Hold a padded dumbbell securely across your hip crease. Lower your hips a comfortable distance, then push through your feet to lift until your hips and upper body line up. Lower slowly.",
+      "cues": "Keep your whole feet supported and avoid arching your lower back to lift higher.",
       "mistakes": "Overextending the lower back at the top.",
       "easier": "Remove the weight and use bodyweight only.",
       "harder": "Add weight, or a pause at the top.",
       "units": "repetitions, sets; per side where applicable",
-      "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "safety": "Use a bench that cannot slide or tip. Hold the weight securely and ask for help with setup if needed.",
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00044",
@@ -1016,15 +1016,15 @@
       "family": "Hand, Wrist, and Forearm",
       "equipment": "Bodyweight",
       "readiness": "Beginner",
-      "purpose": "Build tolerance and control in the hands, wrists, and forearms.",
-      "steps": "Rotate your forearm slowly from palm-up to palm-down while keeping your elbow tucked at your side.",
-      "cues": "Keep the elbow still. The rotation should come from the forearm, not the shoulder.",
+      "purpose": "Practice controlled elbow bending and straightening, and turning your forearm.",
+      "steps": "Sit or stand with your upper arm comfortably beside your body. Slowly bend and straighten your elbow. Then keep your elbow bent and turn your palm upward and downward. Repeat on the other side.",
+      "cues": "Keep your upper arm reasonably still. Do not force either movement.",
       "mistakes": "Letting the elbow drift away from the body to fake more range.",
       "easier": "Reduce the range of rotation.",
       "harder": "Slow the tempo further.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00052",
@@ -1263,17 +1263,17 @@
       ],
       "domain": "Strength & resistance",
       "family": "Hip abduction",
-      "equipment": "Named exercise machine adjusted according to its instructions",
+      "equipment": "Seated hip abduction machine with pads against the outside of your thighs",
       "readiness": "Beginner",
-      "purpose": "Strengthen the muscles that move the hips outward and inward using a controlled machine range.",
-      "steps": "Adjust the seat and pads according to the machine. Press the thighs outward against resistance, then return slowly.",
+      "purpose": "Strengthen muscles that move your thighs away from each other, including muscles on the outer hip.",
+      "steps": "Adjust the seat and pads using the machine instructions. Sit steadily, push your knees apart against the pads, then bring them back together slowly.",
       "cues": "Use a comfortable range without rocking the trunk or bouncing the stack.",
       "mistakes": "Rocking the trunk or forcing the legs outward with momentum.",
       "easier": "Lower the machine resistance and use a smaller pain-free motion.",
       "harder": "Add a small amount of resistance while keeping the pelvis stable.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00065",
@@ -1283,17 +1283,17 @@
       ],
       "domain": "Strength & resistance",
       "family": "Hip adduction",
-      "equipment": "Named exercise machine adjusted according to its instructions",
+      "equipment": "Seated hip adduction machine with pads against the inside of your thighs",
       "readiness": "Beginner",
-      "purpose": "Strengthen the muscles that move the hips outward and inward using a controlled machine range.",
-      "steps": "Adjust the seat and inner-thigh pads according to the machine. Bring the thighs inward against resistance, then return slowly.",
+      "purpose": "Strengthen the muscles of the inner thigh that bring your thighs toward each other.",
+      "steps": "Adjust the seat and pads to a comfortable starting width. Bring your thighs together against the pads, then slowly let them move apart again.",
       "cues": "Choose a modest starting width and controllable load; do not force a stretch.",
       "mistakes": "Forcing the legs inward through groin pain or using momentum to move the stack.",
       "easier": "Lower the resistance and stay in a comfortable range; skip if groin symptoms occur.",
       "harder": "Increase the comfortable range or load gradually without groin discomfort.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00066",
@@ -1400,7 +1400,7 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Vertical Pull",
-      "equipment": "Machine",
+      "equipment": "Lat pulldown cable machine with overhead bar, seat and thigh pad",
       "readiness": "Beginner",
       "purpose": "Strengthen the back and arms through an overhead pulling pattern.",
       "steps": "Adjust the seat and thigh pad securely. Take a comfortable grip on the pulldown bar, begin with arms extended overhead, draw elbows down to bring the bar toward the upper chest, then return slowly without letting the weight stack slam.",
@@ -1410,7 +1410,7 @@
       "harder": "Increase resistance, or slow the release phase.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00072",
@@ -1500,17 +1500,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Knee Extension",
-      "equipment": "Machine",
+      "equipment": "Seated leg extension machine with a pad in front of the lower shins",
       "readiness": "Beginner",
-      "purpose": "Strengthen the quadriceps through controlled knee extension.",
-      "steps": "Shins behind the pad, extend your legs until nearly straight, then lower with control.",
+      "purpose": "Strengthen the muscles at the front of your thighs (quadriceps).",
+      "steps": "Adjust the seat and shin pad according to the machine instructions so your knees line up with the machine pivot. With your back supported, straighten your knees through a comfortable range, then lower slowly.",
       "cues": "Control the lowering phase just as much as the lift.",
       "mistakes": "Letting the weight drop quickly on the way down.",
       "easier": "Reduce resistance or range.",
       "harder": "Increase resistance, or add a pause at the top.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00077",
@@ -1518,17 +1518,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Squat",
-      "equipment": "Machine",
+      "equipment": "Leg press machine with a seat or backrest, foot platform and safety stops",
       "readiness": "Beginner",
       "purpose": "Strengthen the legs through a squat pattern.",
-      "steps": "Feet shoulder-width on the platform, lower until knees reach about 90 degrees, then press back out.",
+      "steps": "Adjust the seat and safety stops using the machine instructions. Place both feet flat on the platform. Bend your knees only as far as you can keep your hips and back supported, then push the platform away through both feet.",
       "cues": "Don't let your lower back round off the pad at the bottom.",
       "mistakes": "Locking the knees out hard at the top of every rep.",
       "easier": "Reduce the range or the weight.",
       "harder": "Increase weight once form is consistent.",
       "units": "repetitions, sets; per side where applicable",
-      "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "safety": "Ask gym staff to demonstrate the machine and its safety stops if unfamiliar. Do not force a deep position or snap your knees straight.",
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00078",
@@ -1658,14 +1658,14 @@
       "equipment": "Dumbbell(s); stable bench or support when specified in the setup",
       "readiness": "Advanced",
       "purpose": "Strengthen the legs through a squat pattern.",
-      "steps": "Press one light dumbbell straight overhead, arm locked out, then squat while keeping it there.",
+      "steps": "With one very light dumbbell overhead, keep your arm comfortably straight and squat through a range you can control. Stand back up before lowering the weight. Repeat on the other side.",
       "cues": "Keep your eyes forward and the weight stacked directly over your shoulder, not drifting ahead.",
       "mistakes": "Letting the arm drift forward as the squat gets harder.",
       "easier": "Lower the weight to shoulder height instead of overhead.",
       "harder": "Slow the descent to 3 seconds.",
       "units": "repetitions, sets; per side where applicable",
-      "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "safety": "Learn an unloaded squat and a comfortable overhead reach separately before combining them. Stop if you lose balance or experience pain.",
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00085",
@@ -1849,15 +1849,15 @@
       "family": "Vertical Pull",
       "equipment": "Pull-Up Bar",
       "readiness": "Advanced",
-      "purpose": "Use a pronated grip to train the lats and upper back while the biceps assist the movement.",
-      "steps": "Hang from the bar with your palms facing away and hands around shoulder-width apart. Begin from a controlled hang, pull your elbows down and slightly back, and raise your upper chest toward the bar until your chin clears it.",
-      "cues": "Keep the ribs controlled and imagine driving your elbows toward your hips so your back, not momentum, is the main driver.",
+      "purpose": "Strengthen your back and arms by pulling yourself up with palms facing away from you (overhand grip).",
+      "steps": "Hang still from a secure bar with arms straight and feet off the floor. With palms facing away and hands around shoulder-width apart, pull until your chin clears the bar, then lower slowly to comfortably straight arms.",
+      "cues": "Keep your legs relaxed and still. Pull your body upward without kicking or reaching with your neck.",
       "mistakes": "Kicking or kipping, shrugging toward the ears, or cutting the repetition short at the bottom.",
       "easier": "Use an assisted pull-up machine, a resistance band, or a lat pulldown while building the required strength.",
       "harder": "Add a pause near the top or add external weight after you can complete controlled full-range repetitions.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00095",
@@ -2018,17 +2018,17 @@
       ],
       "domain": "Strength & resistance",
       "family": "Knee Flexion",
-      "equipment": "Machine",
+      "equipment": "Seated leg curl machine with thigh restraint and lower-leg pad",
       "readiness": "Beginner",
-      "purpose": "Strengthen the hamstrings through controlled knee flexion.",
-      "steps": "Pad behind your ankles, curl your heels toward your seat, then release with control.",
+      "purpose": "Strengthen the muscles at the back of your thighs (hamstrings).",
+      "steps": "Adjust the machine so your knees line up with its pivot and the lower-leg pad sits as directed. Secure the thigh pad, bend your knees to pull your heels down and back toward the seat, then straighten slowly.",
       "cues": "Keep your hips pressed into the seat throughout the movement.",
       "mistakes": "Swinging the weight or lifting the hips off the seat to force the last repetitions.",
       "easier": "Use a lighter stack setting and a smaller comfortable knee-bending arc.",
       "harder": "Add a few repetitions or a modest load increase while returning slowly.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00104",
@@ -2036,17 +2036,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Horizontal Pull",
-      "equipment": "Named exercise machine adjusted according to its instructions",
+      "equipment": "Seated row machine with pulling handles and seat; chest pad if provided",
       "readiness": "Beginner",
       "purpose": "Strengthen the upper back and pulling muscles.",
-      "steps": "Sit tall, chest against the pad if available, pull the handles to your torso.",
-      "cues": "Lead the pull with your elbows and squeeze your shoulder blades at the end.",
+      "steps": "Adjust the seat and chest pad if provided. Hold the handles with arms extended comfortably. Pull toward your lower ribs, then let your arms straighten slowly again.",
+      "cues": "Keep your body steady and let your shoulder blades move naturally as you pull and return.",
       "mistakes": "Leaning back excessively to move more weight.",
       "easier": "Reduce resistance.",
       "harder": "Increase resistance, or add a brief pause at full contraction.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00105",
@@ -2074,17 +2074,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Vertical Push",
-      "equipment": "Named exercise machine adjusted according to its instructions",
+      "equipment": "Seated shoulder press machine with handles near shoulder height",
       "readiness": "Beginner",
       "purpose": "Strengthen the shoulders and triceps through an overhead pressing pattern.",
-      "steps": "Adjust seat height so handles start at shoulder level, press up to full extension.",
-      "cues": "Keep your back flat against the pad through the whole set.",
+      "steps": "Adjust the seat so handles start around shoulder height. With feet supported, press upward through a comfortable range, then lower slowly.",
+      "cues": "Keep your back supported without forcing it flat. Allow your shoulder blades to move naturally.",
       "mistakes": "Shrugging the shoulders up toward the ears.",
       "easier": "Reduce resistance.",
       "harder": "Increase resistance once form is consistent.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00107",
@@ -2266,17 +2266,17 @@
       "aliases": [],
       "domain": "Strength & resistance",
       "family": "Single-Leg Lower Body",
-      "equipment": "Bodyweight",
+      "equipment": "Stable low step or platform and sturdy hand support if needed",
       "readiness": "Intermediate",
       "purpose": "Build single-leg strength, balance, and hip control.",
-      "steps": "Place one foot fully on a step or bench, drive through that heel to stand up on it.",
-      "cues": "Push through the working leg. Avoid pushing off the bottom foot to help.",
+      "steps": "Put your whole foot on a stable step. Push through that foot to stand on the step, then lower yourself back to the floor under control. Repeat on the assigned side or alternate as instructed.",
+      "cues": "Use the stepping leg to lift and lower yourself. Hold a sturdy support if needed.",
       "mistakes": "Pushing off the bottom foot instead of driving through the top leg.",
       "easier": "Use a lower step.",
       "harder": "Use a higher step, or add a knee drive at the top (Step-Up to High Knee).",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00117",
@@ -2287,14 +2287,14 @@
       "equipment": "Dumbbells",
       "readiness": "Beginner",
       "purpose": "Strengthen the legs through a squat pattern.",
-      "steps": "Feet wide, toes turned out, one dumbbell held with both hands between your legs.",
-      "cues": "Keep your chest tall and drive your knees out in line with your toes.",
+      "steps": "Stand with feet comfortably wide and toes turned outward as comfortable. Hold one dumbbell with both hands between your legs. Bend your hips and knees to lower, then push through both feet to stand.",
+      "cues": "Keep both feet fully supported and let knees follow your toes.",
       "mistakes": "Rounding forward instead of sitting straight down.",
       "easier": "Narrow the stance slightly or use a lighter weight.",
       "harder": "Add a pause at the bottom.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00118",
@@ -2761,17 +2761,17 @@
       ],
       "domain": "Mobility & flexibility",
       "family": "Mobility & flexibility",
-      "equipment": "See setup instructions",
-      "readiness": "Match support, range and effort to current ability",
-      "purpose": "Practice comfortable movement and control.",
-      "steps": "Sit on a firm seat with thighs supported and knees bent. Unweight one foot enough to move it slightly outward and inward while keeping the thigh relatively still. One outward-and-inward cycle is one repetition.",
-      "cues": "Use a small controlled range. Do not force the knee or chase symmetry.",
+      "equipment": "Stable chair with space to move your feet",
+      "readiness": "Beginner; comfortable seated movement",
+      "purpose": "Practice turning your thigh inward and outward at the hip.",
+      "steps": "Sit on a stable chair with knees bent and thighs supported. Lift one foot just enough to move it freely. Move the foot outward to turn the thigh inward, then move it inward to turn the thigh outward. Keep the knee roughly in the same place. One outward-and-inward cycle is one repetition.",
+      "cues": "Let the thigh turn in the hip. Use small comfortable movement and do not twist a planted foot or force the knee.",
       "mistakes": "",
       "easier": "Easier: smaller movement; support the thigh with a hand.",
       "harder": "Progress only when the current version is controlled; follow your plan rather than adding work automatically.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00142",
@@ -4019,15 +4019,15 @@
       "family": "Maximum-velocity linear sprint",
       "equipment": "Suitable level straight lane; approach, timed zone, long safe exit",
       "readiness": "Advanced beginner-to-intermediate with prior sprint progression",
-      "purpose": "Train upright high-speed running after a progressive approach",
-      "steps": "Use an appropriate progressive approach/run-in to reach fast upright running, maintain a relaxed fast rhythm through a marked flying zone, then continue forward and decelerate gradually over a clear exit. Recover substantially between reps.",
+      "purpose": "Practice fast upright running after building speed gradually.",
+      "steps": "Mark three sections on a clear straight lane: a gradual build-up, a short fast section (the flying zone), and a long clear area to slow down. Build speed smoothly, run at the planned fast effort through the flying zone, then slow down gradually. Rest fully as prescribed before repeating.",
       "cues": "Mark approach, flying zone and exit separately; build speed smoothly; measure only the prescribed fly zone.",
       "mistakes": "Abrupt deceleration at the fly-zone end; sprinting all-out from the first step; inadequate run-out.",
       "easier": "Submaximal progressive build-up (BFIT-00207) or well-spaced strides (BFIT-00186).",
       "harder": "Longer flying zone or faster running only with readiness and adequate rest.",
       "units": "meters (approach, fly zone, exit), reps, recovery seconds",
       "safety": "High-speed hamstring demand. Sprint on clear stable surface and stop if technique degrades.",
-      "last_reviewed": "2026-10-27"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00206",
@@ -4422,14 +4422,14 @@
       "equipment": "Clear flat lane with footfall markers if useful",
       "readiness": "Beginner-intermediate; controlled walk/jog and balance",
       "purpose": "Rehearse comfortable final approach steps preparing ONE-foot takeoff, without forcing a jump",
-      "steps": "Start from a short 3–5-step approach at walking/jogging speed. Rehearse the penultimate-to-final transition that sets up a ONE-foot takeoff, finish balanced without jumping, and return to reset. Alternate intended takeoff legs.",
+      "steps": "Take 3–5 short approach steps at a walk or easy jog. Practice the second-to-last step (penultimate step) and the final step onto your intended takeoff foot. Finish balanced without jumping, then walk back. Alternate takeoff legs as prescribed.",
       "cues": "Let approach speed and body position guide step length; do not artificially reach far ahead or lean backward.",
       "mistakes": "Exaggerated long penultimate, hard braking, confusing a two-foot gather with unilateral takeoff.",
       "easier": "Slow walking rehearsal with fewer steps or marked foot placements.",
       "harder": "Progress rhythm at a modest jog; add a separate one-foot short-approach jump BFIT-00226 only when ready.",
       "units": "rehearsals per takeoff leg",
       "safety": "Technical rehearsal only; no explosive landing counted unless a jump is added.",
-      "last_reviewed": "2026-10-27"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00225",
@@ -4443,14 +4443,14 @@
       "equipment": "Clear stable lane",
       "readiness": "Beginner-intermediate; comfortable foot placement and balance",
       "purpose": "Rehearse final steps leading to a coordinated two-foot plant, without requiring a jump",
-      "steps": "Use a short 2–4-step approach at a controlled walk or jog. Rehearse a comfortable penultimate-to-final step and two-foot plant with feet at a manageable width, finishing balanced and upright enough to jump without doing so.",
+      "steps": "Take 2–4 controlled walking or jogging steps. Practice the second-to-last step (penultimate step) and final placement of both feet in a comfortable takeoff position. Finish balanced without jumping, then reset.",
       "cues": "Find a repeatable gather rhythm; avoid a fixed universally prescribed long penultimate.",
       "mistakes": "Heel jamming, crossing feet, overlong step, uncontrolled hip/trunk rotation.",
       "easier": "Walking two-foot gather with deliberate pauses.",
       "harder": "Progress to a short approach with a controlled two-foot jump BFIT-00227.",
       "units": "rehearsals, sets",
       "safety": "Controlled approach rehearsal, not a maximum vertical jump or universal jump style.",
-      "last_reviewed": "2026-10-27"
+      "last_reviewed": "2026-11-27"
     },
     {
       "id": "BFIT-00226",
