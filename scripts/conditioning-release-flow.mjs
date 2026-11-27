@@ -118,7 +118,7 @@ try{
  await p.getByRole('button',{name:'Continue',exact:true}).click();assert.equal(await read(p),null);await p.getByRole('button',{name:'Continue',exact:true}).click();await p.getByRole('button',{name:'Save my plan'}).click();
  await begin(p,'manual');
  const state=await read(p);
- if(scenario.block){assert.equal(state.app.active,null);await check(p,scenario.block);}
+ if(scenario.block){assert.equal(state.app.active,null);await p.locator('#workout-message').filter({hasText:scenario.block}).waitFor({state:'visible',timeout:5000});}
  else {assert.equal(state.app.active.ticket.dose.kind,scenario.expected);if(scenario.easy)assert(state.app.active.ticket.dose.effort[1]<=3);if(scenario.expected==='swim'){assert.equal(state.app.active.method,'manual');assert.equal(await p.locator('#feedback [name=lengths]').count(),1);} }
  assert(await p.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'profile overflow: '+scenario.mode);
  await profileCtx.close();console.log('PASS browser profile '+scenario.mode+' '+(scenario.block?'blocked as expected':'starts '+scenario.expected));
