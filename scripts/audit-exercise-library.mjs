@@ -29,4 +29,5 @@ const refs=JSON.parse(workout.match(/const exerciseReferences=(.*);\nfunction re
 assert.equal(Object.keys(refs).length,18);
 for(const [key,ref] of Object.entries(refs))assert.ok(snapshot.entries.some(e=>e.id===ref[0]),'Missing catalog reference '+key);
 assert.ok(!snapshot.entries.some(e=>['BFIT-00194','BFIT-00202'].includes(e.id)),'Unapproved legacy record');
-console.log('PASS all 18 Mobility Workout reference mappings');
+assert.ok(fs.readFileSync(base+'feed-config.js','utf8').includes('new URL("catalog.json", document.baseURI)'),'Public refresh must use reviewed repository JSON');
+console.log('PASS all 18 Mobility Workout reference mappings and repository feed configuration');

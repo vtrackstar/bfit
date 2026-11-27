@@ -65,3 +65,7 @@ Keep dosage and progression in the workout, with complete standalone instruction
 ## Publication authorization
 
 Owner authorized coordinated release of Mobility Guide, Build Your Mobility, Gamer Fit refinements and library on 2026-11-27, conditional on release checks. Latest functional development checks 46037928368 and full-site smoke 46037928360 passed. Release metadata prepared; confirm the feed and main/Pages revision before claiming a live launch.
+
+## Approved-only feed cutover
+
+Original feed write returned HTTP 403; unchanged. Five written records approved in Living Master. New private writable approved-only spreadsheet copy: ID 1UdFfEzwBXUuMrW-JWanW4FpHTawBRy66ECeDCqcyviE. All 231 rows read back and matched both repository snapshots. It is not publicly shared. The website refreshes from its same-origin catalog.json, keeping the same public library URL and stable anchors. Maintain the approved-only copy and repository snapshots together on future releases. No manual video approvals. This replaces the earlier Google Sheets live-refresh requirement until access can be restored.

@@ -38,9 +38,11 @@ function parse(text){
  }return validate({schema_version:version,published_at:published,entries});
 }
 async function fetchCatalog(url,fetcher=fetch){
- const target=new URL(url);if(target.origin!=='https://docs.google.com'||!/^\/spreadsheets\/d\/[A-Za-z0-9_-]+\/gviz\/tq$/.test(target.pathname))throw Error('Feed not configured');
+ const target=new URL(url);
+ const localJson=typeof location!=='undefined'&&target.origin===location.origin&&target.pathname===new URL('catalog.json',location.href).pathname;
+ if(!localJson&&(target.origin!=='https://docs.google.com'||!/^\/spreadsheets\/d\/[A-Za-z0-9_-]+\/gviz\/tq$/.test(target.pathname)))throw Error('Feed not configured');
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
- try{const response=await fetcher(target.href,{credentials:'omit',cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Feed unavailable');return parse(await response.text());}finally{clearTimeout(timer);}
+ try{const response=await fetcher(target.href,{credentials:'omit',cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Feed unavailable');return localJson?validate(await response.json()):parse(await response.text());}finally{clearTimeout(timer);}
 }
 const api={fields,validate,parse,csvRows,fetchCatalog};
 if(typeof module!=='undefined')module.exports=api;else root.BFitCatalog=api;
