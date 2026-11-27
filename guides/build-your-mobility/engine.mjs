@@ -24,7 +24,7 @@ export const movements=[
 export const modes=['general','targeted','control','complement'];
 export const identity=item=>item.key+':'+item.side;
 export const estimateSeconds=item=>(movements.find(m=>m.key===item.key)?.strength?90:45)+item.reps*(item.level===3?8:item.level===2?7:4);
-export function buildPlan({mode='general',area='hips',difficulty='active',minutes=10,side='both',flexible=false,existing=[],previous=[],strength=false,movement='all'}={}){
+export function buildPlan({mode='general',area='hips',difficulty='active',minutes=10,side='both',flexible=false,existing=[],previous=[],strength=false,movement='all',now=new Date().toISOString()}={}){
  if(!modes.includes(mode))throw Error('Unknown mode');
  let list=mode==='general'?['foot','ankle','knee-lift','turn','reach','hinge'].map(k=>movements.find(m=>m.key===k)):movements.filter(m=>m.area===area&&(!m.strength||strength));
  if(mode!=='general'&&movement!=='all')list=list.filter(m=>m.key===movement);
@@ -35,7 +35,14 @@ export function buildPlan({mode='general',area='hips',difficulty='active',minute
  let spent=0,plan=[];
  for(const m of list){
  const sides=m.side?(side==='both'?['left','right']:[side==='left'?'left':'right']):['both'];
- const group=sides.map(s=>previous.find(i=>i.key===m.key&&i.side===s)||{key:m.key,side:s,level:m.strength?0:level,reps:4,streak:0,paused:false,maintain:difficulty==='maintain',controlOnly:flexible||mode==='control',history:[]});
+ const group=sides.map(s=>{
+ const prior=previous.find(i=>i.key===m.key&&i.side===s);
+ const controlOnly=flexible||mode==='control';
+ if(!prior)return {key:m.key,side:s,level:m.strength?0:level,reps:4,streak:0,paused:false,maintain:difficulty==='maintain',controlOnly,history:[]};
+ const last=prior.history.at(-1);
+ const gap=last?(Date.parse(now)-Date.parse(last.date))/86400000:0;
+ return {...prior,maintain:difficulty==='maintain',controlOnly,streak:gap>=7||prior.maintain!==(difficulty==='maintain')||prior.controlOnly!==controlOnly?0:prior.streak,recheck:prior.recheck||gap>=14};
+ });
  const cost=group.reduce((a,i)=>a+(i.paused?0:estimateSeconds(i)),0);
  if(spent+cost>budget)continue;
  plan.push(...group);spent+=cost;
@@ -49,7 +56,7 @@ export function feedback(item,result,recovered=true,goalMet=false,date=new Date(
  const next={...item,history:[...item.history,{date,result,recovered,level:item.level,reps:item.reps}]};
  if(result==='pain'){next.paused=true;next.streak=0;return next;}
  if(goalMet&&result==='comfortable'&&recovered){next.maintain=true;next.streak=0;return next;}
- if(result==='help'||result==='uncontrolled'){next.level=Math.max(0,item.level-1);next.streak=0;return next;}
+ if(result==='help'||result==='uncontrolled'){next.level=Math.max(0,item.level-1);if(item.level===0)next.reps=Math.max(2,item.reps-1);next.streak=0;return next;}
  if(result!=='comfortable'||!recovered||item.maintain){next.streak=0;return next;}
  const last=item.history.at(-1);
  const gap=last?(Date.parse(date)-Date.parse(last.date))/86400000:0;
@@ -64,4 +71,6 @@ export function feedback(item,result,recovered=true,goalMet=false,date=new Date(
  }
  return next;
 }
-export function instruction(item){return movements.find(m=>m.key===item.key)?.steps[item.level]||'';}
+export function instruction(item){const m=movements.find(m=>m.key===item.key);if(!m)return '';const setup=m.steps[0];const base=item.level>=2?m.steps[1]+' '+m.steps[item.level]:m.steps[item.level];return (item.level>0?'Starting setup: '+setup+' Current practice: ':'')+base+(item.controlOnly?' Stay within your familiar comfortable range; do not aim for extra depth.':'');}
+export function needsRecheck(item,now=new Date().toISOString()){const last=item.history.at(-1);return !!item.recheck||!!last&&(Date.parse(now)-Date.parse(last.date))/86400000>=14;}
+
