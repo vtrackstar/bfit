@@ -87,6 +87,17 @@ for(const width of [320,390,1366]){
 await integrated.goto(base+'/exercise-library/#BFIT-00229');
 await integrated.waitForFunction(()=>document.querySelector('#feed-status').textContent.startsWith('Catalog checked'));
 assert.equal(await integrated.locator('#cards article').count(),231);
+// Multiword search and equipment-free filter must not mistake a floor or bench for absence of required weights.
+await integrated.locator('#search').fill('goblet chest');
+assert.ok(await integrated.locator('#BFIT-00001').isVisible());
+await integrated.locator('#reset').click();
+await integrated.locator('#equipment-filter').selectOption('home');
+assert.equal(await integrated.locator('#BFIT-00001').count(),0);
+assert.equal(await integrated.locator('#BFIT-00008').count(),0);
+assert.ok(await integrated.locator('#BFIT-00002').isVisible());
+await integrated.locator('#reset').click();
+assert.equal(await integrated.locator('#cards article').count(),231);
+
 await integrated.route('**/exercise-library/catalog.json',route=>route.abort());
 await integrated.reload();
 await integrated.locator('#BFIT-00229').waitFor();
