@@ -4,9 +4,10 @@ import { readFile } from 'node:fs/promises';
 import { resolve, extname } from 'node:path';
 import { chromium, webkit } from 'playwright';
 const root=resolve('.');
-const server=createServer(async(req,res)=>{try{const path=resolve(root,'.'+new URL(req.url,'http://localhost').pathname);if(!path.startsWith(root+'/'))throw Error('path');const data=await readFile(path.endsWith('/')?path+'index.html':path);res.setHeader('Content-Type',({'.mjs':'text/javascript','.css':'text/css','.html':'text/html'})[extname(path)]??'application/octet-stream');res.end(data);}catch{res.statusCode=404;res.end('not found');}});
+const server=createServer(async(req,res)=>{try{const pathname=new URL(req.url,'http://localhost').pathname;const path=resolve(root,'.'+pathname+(pathname.endsWith('/')?'index.html':''));if(!path.startsWith(root+'/'))throw Error('path');const data=await readFile(path);res.setHeader('Content-Type',({'.mjs':'text/javascript','.css':'text/css','.html':'text/html'})[extname(path)]??'application/octet-stream');res.end(data);}catch{res.statusCode=404;res.end('not found');}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
-const url='http://127.0.0.1:'+server.address().port+'/guides/conditioning/index.html';
+const url='http://127.0.0.1:'+server.address().port+'/guides/build-your-conditioning/index.html';
+const educationUrl=url.replace('build-your-conditioning','conditioning');
 const engine=process.env.BFIT_BROWSER??'chromium';
 assert(['chromium','webkit'].includes(engine),'Unknown browser engine');
 const browser=await (engine==='webkit'?webkit:chromium).launch({headless:true});
@@ -21,14 +22,18 @@ async function setup(page){
  await page.locator('[name=mode]').selectOption('bike');await page.locator('[name=goal]').selectOption('B');
  await page.getByRole('button',{name:'Continue',exact:true}).click();
  assert.equal(await page.locator('#swim-fields').isVisible(),false);
- await page.getByRole('button',{name:'Continue',exact:true}).click();assert.equal(await page.locator('#setup-count').textContent(),'Step 2 of 5');
+ assert.equal(await page.locator('#setup-count').textContent(),'Step 2 of 5');
  await page.locator('[name=setup]').fill('Fictional bike');await page.locator('[name=comfortableMinutes]').fill('5');
- await page.getByRole('button',{name:'Continue',exact:true}).click();
  await page.locator('[name=existingHard]').selectOption('false');
  await page.getByRole('button',{name:'Continue',exact:true}).click();
  await page.locator('[name=restricted]').selectOption('false');await page.locator('[name=vigorousSuitable]').selectOption('true');
  await page.getByRole('button',{name:'Continue',exact:true}).click();
  assert.equal(await page.locator('#advanced-fields').isVisible(),false);
+ assert.equal(await page.locator('#setup-count').textContent(),'Step 4 of 5');
+ await check(page,'Possible first workout');
+ assert.equal(await read(page),null,'preview must not save');
+ assert.equal(await page.locator('#schedule-fields').isVisible(),false);
+ await page.getByRole('button',{name:'Continue',exact:true}).click();
  assert.equal(await page.locator('#setup-count').textContent(),'Step 5 of 5');
  await page.getByRole('button',{name:'Save my plan'}).click();await check(page,'Plan saved.');assert.equal(await page.locator('#hero-next').textContent(),'Open today’s workout');assert.equal(await page.locator('#next-link').getAttribute('href'),'#workout');
 }
@@ -37,7 +42,7 @@ const errors=[];
 try{
  const ctx=await browser.newContext({viewport:{width:390,height:844},timezoneId:'UTC',acceptDownloads:true});
  const page=await ctx.newPage();page.on('pageerror',e=>errors.push(e.message));await setup(page);
- assert.equal(await page.locator('section[id^=chapter-]').count(),10);
+ assert.equal(await page.locator('section[id^=chapter-]').count(),0);
  assert.equal(await page.locator('[name=mode] option[value=swim]').count(),0);
  assert.equal(await page.locator('[name=specialization] option[value=repeat-hard]').count(),0);
  assert.equal(await page.locator('[name=hardOptIn]').isVisible(),false);
@@ -50,14 +55,18 @@ try{
  await wrongContext.close();console.log('PASS production scope and preview/unsupported backup rejection');
 
  const before=JSON.stringify(await read(page));
+ const edu=await ctx.newPage();edu.on('pageerror',e=>errors.push(e.message));await edu.goto(educationUrl);
+ assert.equal(await edu.locator('section[id^=chapter-]').count(),10);
+ assert.equal(await edu.locator('#setup,#feedback,#start-workout').count(),0);
  for(const [v,expected] of [['90','8 min main block · 25%'],['60','6 min main block · 33%'],['30','4 min main block · 50%']]){
- await page.locator('#compare-rest').selectOption(v);assert((await page.locator('#density-result').textContent()).includes(expected));assert.equal(await page.locator('#density-b span').count(),8);}
- assert.equal(JSON.stringify(await read(page)),before,'education must not modify plan');
- for(const id of ['oxygen-figure','pacing-figure','lag-figure','repeatability-figure'])assert.equal(await page.locator('#'+id+' svg[role=img]').count(),1);
+ await edu.locator('#compare-rest').selectOption(v);assert((await edu.locator('#density-result').textContent()).includes(expected));assert.equal(await edu.locator('#density-b span').count(),8);}
+ assert.equal(JSON.stringify(await read(edu)),before,'education must not modify plan');
+ for(const id of ['oxygen-figure','pacing-figure','lag-figure','repeatability-figure'])assert.equal(await edu.locator('#'+id+' svg[role=img]').count(),1);
+ await edu.close();
  console.log('PASS educational comparison arithmetic, accessible figure markup and saved-plan isolation');
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'mobile horizontal overflow');
  await page.locator('#next-link').click();assert.equal(await page.evaluate(()=>document.activeElement.id),'workout');await begin(page,'manual');assert.equal(await page.locator('#hero-next').textContent(),'Resume workout');const state=await read(page);assert.equal(state.app.active.ticket.dose.minutes,5);
- for(let i=0;i<3;i++)await page.locator('[name=phase'+i+']').fill('300');
+ await page.locator('[name=completion]').selectOption('full');assert.equal(await page.locator('#manual-detail').isVisible(),false);await check(page,'Why this workout?');
  await page.locator('#feedback details summary').click();await page.locator('#feedback [name=unit]').selectOption('rpm');await page.locator('#feedback [name=output]').fill('80');await page.locator('#feedback [name=effort]').fill('3');await page.locator('#feedback [name=quality]').selectOption('true');await page.locator('#feedback [name=confirmed]').check();
  await page.getByRole('button',{name:'Save workout'}).click();await check(page,'Workout saved.');
  assert.equal((await read(page)).app.history.logs[0].status,'full');assert.equal((await read(page)).app.history.logs[0].output,80);assert.equal((await read(page)).app.history.logs[0].unit,'rpm');
@@ -77,9 +86,9 @@ try{
  assert(await nav.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'page overflow at '+width);
  assert.equal(await nav.locator('#next-action').isVisible(),false);
  assert.equal(await nav.locator('#hero-next').getAttribute('href'),'#plan');
- if(width<=760){await nav.locator('#contents summary').click();await nav.locator('#contents a[href="#chapter-5"]').click();assert.equal(await nav.locator('#contents').evaluate(el=>el.open),false);}
- else await nav.locator('#contents a[href="#chapter-5"]').click();
- assert.equal(new URL(nav.url()).hash,'#chapter-5');await nav.locator('header a[href="#top"]').click();assert.equal(new URL(nav.url()).hash,'#top');
+ if(width<=760){await nav.locator('#contents summary').click();await nav.locator('#contents a[href="#progress"]').click();assert.equal(await nav.locator('#contents').evaluate(el=>el.open),false);}
+ else await nav.locator('#contents a[href="#progress"]').click();
+ assert.equal(new URL(nav.url()).hash,'#progress');await nav.locator('header a[href="#top"]').click();assert.equal(new URL(nav.url()).hash,'#top');
  await nav.locator('#hero-next').click();assert.equal(await nav.evaluate(()=>document.activeElement.id),'plan');
  await navContext.close();
  }
@@ -103,17 +112,23 @@ try{
  await p.locator('[name=comfortableMinutes]').fill(scenario.minutes);
  if(scenario.water)await p.locator('[name=waterCompetent]').check();
  if(scenario.familiar)await p.locator('[name=movementsFamiliar]').check();
- await p.getByRole('button',{name:'Continue',exact:true}).click();
  await p.locator('[name=minutes]').fill(scenario.budget);await p.locator('[name=existingHard]').selectOption('false');
  await p.getByRole('button',{name:'Continue',exact:true}).click();
  await p.locator('[name=restricted]').selectOption(scenario.restricted?'true':'false');await p.locator('[name=vigorousSuitable]').selectOption(scenario.restricted?'false':'true');
- await p.getByRole('button',{name:'Continue',exact:true}).click();await p.getByRole('button',{name:'Save my plan'}).click();
+ await p.getByRole('button',{name:'Continue',exact:true}).click();assert.equal(await read(p),null);await p.getByRole('button',{name:'Continue',exact:true}).click();await p.getByRole('button',{name:'Save my plan'}).click();
  await begin(p,'manual');
  const state=await read(p);
- if(scenario.block){assert.equal(state.app.active,null);await check(p,scenario.block);}
+ if(scenario.block){assert.equal(state.app.active,null);await p.locator('#workout-message').filter({hasText:scenario.block}).waitFor({state:'visible',timeout:5000});}
  else {assert.equal(state.app.active.ticket.dose.kind,scenario.expected);if(scenario.easy)assert(state.app.active.ticket.dose.effort[1]<=3);if(scenario.expected==='swim'){assert.equal(state.app.active.method,'manual');assert.equal(await p.locator('#feedback [name=lengths]').count(),1);} }
  assert(await p.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'profile overflow: '+scenario.mode);
  await profileCtx.close();console.log('PASS browser profile '+scenario.mode+' '+(scenario.block?'blocked as expected':'starts '+scenario.expected));
  }
+ // Fresh education-only context, no dependency on companion or stored plan.
+ const isolated=await browser.newContext({viewport:{width:320,height:700},timezoneId:'UTC'});const reader=await isolated.newPage();reader.on('pageerror',e=>errors.push(e.message));
+ await reader.goto(educationUrl);assert.equal(await read(reader),null);assert.equal(await reader.locator('section[id^=chapter-]').count(),10);await reader.locator('#compare-rest').selectOption('60');assert.equal(await read(reader),null);assert(await reader.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ // Follow real relative cross-page links in the same origin; do not intercept navigation.
+ await reader.locator('a[href="../build-your-conditioning/"]').first().click();await reader.waitForURL('**/guides/build-your-conditioning/');await reader.locator('#setup').waitFor();assert.equal(await read(reader),null);
+ await reader.locator('header a[href="../conditioning/"]').click();await reader.waitForURL('**/guides/conditioning/');assert.equal(await reader.locator('section[id^=chapter-]').count(),10);assert.equal(await read(reader),null);
+ await isolated.close();console.log('PASS education-only and optional transition to companion');
  assert.deepEqual(errors,[]);await ctx.close();
 }finally{await browser.close();await new Promise(r=>server.close(r));}

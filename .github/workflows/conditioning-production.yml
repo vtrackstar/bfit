@@ -4,12 +4,14 @@ on:
     branches: [main]
     paths:
       - 'guides/conditioning/**'
+      - 'guides/build-your-conditioning/**'
       - 'scripts/conditioning-release-flow.mjs'
       - '.github/workflows/conditioning-production.yml'
   push:
     branches: [main]
     paths:
       - 'guides/conditioning/**'
+      - 'guides/build-your-conditioning/**'
       - 'scripts/conditioning-release-flow.mjs'
       - '.github/workflows/conditioning-production.yml'
   workflow_dispatch:
