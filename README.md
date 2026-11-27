@@ -19,7 +19,7 @@ I built these guides so you can choose a workout that fits your week, try it, an
 | Your First… | [Your First Pull-Up](milestones/first-pull-up/) | Practice with assistance and work toward one pull-up from a dead hang. |
 | Your First… | [Your First 5K](milestones/first-5k/) | Build toward a run-walk or continuous 5K with adaptive workouts, recovery checks, and saved progress. |
 
-Pistol Squat is planned. The [exercise library](https://bfit-exercise-movement-library.balouissaint.chatgpt.site/) is a separately hosted reference.
+Pistol Squat is planned. The [Exercise & Movement Library](exercise-library/) is hosted in this repository alongside the guides, with stable BFIT exercise links.
 
 ## Current decisions for future edits
 
