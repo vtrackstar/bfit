@@ -167,7 +167,7 @@ try {
     } finally { await page.close(); }
   });
   await check('Published guide cards open correct pages and each has a hub return link', async () => {
-    for (const guide of [...expected, ...['weekend-warrior','build-your-glutes'].map(slug=>({slug, section:'#more-training-plans'})), ...['first-push-up','first-pull-up','first-5k'].map(slug=>({slug,section:'#your-first'}))]) {
+    for (const guide of [...expected, ...['weekend-warrior','build-your-glutes','build-your-conditioning'].map(slug=>({slug, section:'#more-training-plans'})), ...['first-push-up','first-pull-up','first-5k'].map(slug=>({slug,section:'#your-first'}))]) {
       const page=await browser.newPage({viewport:{width:390,height:844}});
       try {
         await page.goto(host+'/');
