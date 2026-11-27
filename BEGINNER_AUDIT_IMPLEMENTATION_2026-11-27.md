@@ -31,3 +31,6 @@ Parent 2779f9ad4a60f3778a63c19e8c186ca5fa7a53c3. Library Pages 46041322375 passe
 
 ## Batch 6 — conditioning language and entry clarity
 Parent 42cfab6dfc51610435c1fcb9e30cf85b446bae14. Educational guide: practical entry, ordinary-language labels before physiology, gradual warm-up explanation and direct companion links. Workout builder: clearer goal options, optional advanced preferences, preview and backup explanations, no misleading swimming instructions. Existing hidden swim fields, validation, goal values, safety and workout logic unchanged. Verify regression tests; earlier catalog and mobility tests may still be running. No independent human testing completed.
+
+## Batch 7 — Foundation, Athleticism and Run Strong
+Parent 2fcc872a20454a8af0a5f143014a8a8684af01fb. guides/foundation/index.html: 8 targeted edits; unmatched replacements: []. guides/athleticism/index.html: 9 targeted edits; unmatched replacements: []. guides/run-strong/index.html: 7 targeted edits; unmatched replacements: []. Plain-language starting schedule and equipment, workout notation, jump contacts, agility and pace. Training data, navigation IDs and engine settings unchanged. Prior catalog smoke 46041322632 and mobility smoke 46041687570 passed; conditioning verification pending at prior check. Await full tests for this batch.
