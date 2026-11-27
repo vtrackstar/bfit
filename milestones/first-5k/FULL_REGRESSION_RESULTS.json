@@ -24,8 +24,8 @@
     }
   ],
   "interface": {
-    "passed": 61,
-    "total": 61
+    "passed": 73,
+    "total": 73
   },
   "journeys": [
     {
@@ -58,14 +58,14 @@
     },
     {
       "name": "Slow continuous beyond 45 min",
-      "week": 13
+      "week": 12
     },
     {
       "name": "Slow run-walk beyond 61 min",
-      "week": 18
+      "week": 17
     }
   ],
-  "environment": "Simulated DOM and injected clock; previous runtime passed real Chromium CI. Final communication revision browser run pending.",
+  "environment": "JavaScript dependency-injection regression: 88 programming checks and 73 simulated interface checks, 9 journeys; latest real browser CI pending.",
   "browserEvidence": {
     "runId": 45874694381,
     "siteAudit": "success",
