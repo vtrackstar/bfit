@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "published_at": "2026-11-01T06:36:34.569Z",
+  "published_at": "2026-11-27T00:00:00.000Z",
   "entries": [
     {
       "id": "BFIT-00001",
@@ -4509,6 +4509,110 @@
       "units": "landings per leg, sets",
       "safety": "Low-amplitude landing drill rather than depth jump. Stop for sharp discomfort or poor landing control.",
       "last_reviewed": "2026-10-27"
+    },
+    {
+      "id": "BFIT-00229",
+      "name": "Active Overhead Reach",
+      "aliases": [
+        "Standing or seated single-arm overhead reach"
+      ],
+      "domain": "Mobility & flexibility",
+      "family": "Shoulder flexion",
+      "equipment": "Stable chair optional",
+      "readiness": "Beginner",
+      "purpose": "Practice reaching upward and controlling the return.",
+      "steps": "Sit or stand tall. Raise one arm forward and upward as far as comfortable, then lower to the start. Repeat on the assigned side.",
+      "cues": "Let the shoulder blade move naturally; keep breathing; avoid leaning back to gain height.",
+      "mistakes": "Forcing overhead range or arching the back.",
+      "easier": "Raise partway or lightly assist the working arm with the other hand. A supported table reach is a separate preparation option.",
+      "harder": "Pause at a comfortable height or lower more slowly.",
+      "units": "reps per side, sets",
+      "safety": "Stop for shoulder pinching, sharp pain or tingling.",
+      "last_reviewed": "2026-11-27"
+    },
+    {
+      "id": "BFIT-00230",
+      "name": "Seated Chest Rotation",
+      "aliases": [
+        "Seated upper-body turn",
+        "seated thoracic rotation"
+      ],
+      "domain": "Mobility & flexibility",
+      "family": "Trunk rotation",
+      "equipment": "Stable chair, feet supported",
+      "readiness": "Beginner",
+      "purpose": "Practice comfortable turning of the upper body.",
+      "steps": "Sit with feet planted and hands on thighs or arms crossed. Turn the chest gently toward one side, keeping hips facing forward, then return to center.",
+      "cues": "Use a small range; breathe normally; let your head follow comfortably.",
+      "mistakes": "Forcing a twist, leaning or pulling on the chair.",
+      "easier": "Hands on thighs; shorter turn.",
+      "harder": "Brief comfortable pause or slower return.",
+      "units": "reps per side, sets",
+      "safety": "Do not force the spine; stop for sharp back or rib pain or dizziness.",
+      "last_reviewed": "2026-11-27"
+    },
+    {
+      "id": "BFIT-00231",
+      "name": "Seated Knee Lift",
+      "aliases": [
+        "Seated hip flexion",
+        "seated march"
+      ],
+      "domain": "Mobility & flexibility",
+      "family": "Hip flexion",
+      "equipment": "Stable chair with feet supported",
+      "readiness": "Beginner",
+      "purpose": "Practice lifting, holding and lowering the thigh.",
+      "steps": "Sit upright on a stable chair. Lift one knee a small distance, using hands under the thigh for assistance if needed. Lower the foot to the floor under control.",
+      "cues": "Avoid leaning backward; lift only as high as comfortable.",
+      "mistakes": "Pulling hard on the knee; using momentum.",
+      "easier": "Support the thigh with hands and shorten the lift.",
+      "harder": "Lift without assistance, pause briefly or lower slowly.",
+      "units": "reps per side, sets",
+      "safety": "Stop for sharp groin pain or pinching.",
+      "last_reviewed": "2026-11-27"
+    },
+    {
+      "id": "BFIT-00232",
+      "name": "Foot Pressure Awareness",
+      "aliases": [
+        "Seated foot pressure check",
+        "supported forward-back weight shift"
+      ],
+      "domain": "Mobility & flexibility",
+      "family": "Foot sensory awareness",
+      "equipment": "Stable chair or fixed counter; level non-slip floor",
+      "readiness": "Beginner",
+      "purpose": "Notice pressure distribution under the feet during small weight shifts.",
+      "steps": "Sit with both feet planted and notice pressure under the heels and forefeet. Gently shift pressure forward and back while both feet remain on the floor. For a standing version, hold a fixed support and gently shift weight forward and back without lifting the feet. One forward-and-back cycle is one repetition.",
+      "cues": "Keep the shift small and comfortable; avoid treating pressure as a diagnostic test.",
+      "mistakes": "Leaning beyond balance; forcing the toes to grip.",
+      "easier": "Remain seated with both feet planted.",
+      "harder": "Use small supported standing shifts or a brief pause.",
+      "units": "reps or brief practice intervals",
+      "safety": "Stop for dizziness, new numbness, pain or loss of balance.",
+      "last_reviewed": "2026-11-27"
+    },
+    {
+      "id": "BFIT-00233",
+      "name": "Supported Wall Hand Pressure",
+      "aliases": [
+        "Wall-supported palm loading",
+        "gentle wrist loading"
+      ],
+      "domain": "Mobility & flexibility",
+      "family": "Hand and wrist loading",
+      "equipment": "Stable wall; non-slip floor",
+      "readiness": "Beginner",
+      "purpose": "Practice accepting light pressure through the hands.",
+      "steps": "Stand close to a wall and place palms at a comfortable height. Gently shift a small amount of weight toward the hands, then return to the starting position.",
+      "cues": "Keep feet grounded; choose a comfortable wrist angle; breathe normally.",
+      "mistakes": "Leaning too far, forcing wrist extension or turning the movement into a push-up.",
+      "easier": "Stand closer and use less pressure.",
+      "harder": "Briefly hold manageable pressure or release slowly.",
+      "units": "reps, sets or brief holds",
+      "safety": "Stop for wrist pain, numbness or tingling. Not a rehabilitation prescription.",
+      "last_reviewed": "2026-11-27"
     }
   ]
 }
