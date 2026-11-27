@@ -1,9 +1,19 @@
 name: Mobility development checks
 on:
   push:
-    branches: ['feature/mobility-guide-workout']
+    branches: ['main', 'feature/mobility-guide-workout']
+    paths:
+      - 'guides/mobility/**'
+      - 'guides/build-your-mobility/**'
+      - 'guides/gamer-fit/**'
+      - 'exercise-library/**'
+      - 'scripts/mobility-engine-test.mjs'
+      - 'scripts/mobility-browser-test.mjs'
+      - '.github/workflows/mobility-development.yml'
+  workflow_dispatch:
   pull_request:
     paths:
+      - 'exercise-library/**'
       - 'guides/mobility/**'
       - 'guides/build-your-mobility/**'
       - 'scripts/mobility-engine-test.mjs'

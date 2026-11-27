@@ -41,3 +41,5 @@ Keep physical iPhone Safari downloads and restores, full demo playback and cue r
 The [change log](CHANGELOG.md) records decisions by date. Dated launch and editorial reports describe the revision reviewed at the time. For current behavior, start here and check the relevant page on `main`.
 
 See the [current beginner audit implementation ledger](BEGINNER_AUDIT_IMPLEMENTATION_2026-11-27.md) for recovery checkpoints, test results and remaining work. Follow the [BFit editorial and release standard](BFIT_EDITORIAL_STANDARD.md) for future guides. The [November 26 audit handoff](HUB_AUDIT_HANDOFF_2026-11-26.md) is historical context.
+
+Current content review: [November 27 beginner-first re-audit](BEGINNER_REAUDIT_2026-11-27.md). See the implementation ledger for current verification status and manual gaps.
