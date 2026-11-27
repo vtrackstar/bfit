@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "published_at": "2026-10-28T01:16:35.315Z",
+  "published_at": "2026-11-01T06:36:34.569Z",
   "entries": [
     {
       "id": "BFIT-00001",
@@ -298,21 +298,21 @@
       "id": "BFIT-00015",
       "name": "High Knees",
       "aliases": [
-        "A-Skip / High Knee Drill"
+        "High Knee Run"
       ],
-      "domain": "Strength & resistance",
-      "family": "Acceleration",
+      "domain": "Conditioning",
+      "family": "Running in place",
       "equipment": "Bodyweight",
       "readiness": "Beginner",
-      "purpose": "Build short-distance speed and the ability to produce force quickly.",
-      "steps": "A skipping drill driving one knee up high while the opposite arm drives forward, alternating quickly.",
-      "cues": "Focus on a quick, punchy knee drive rather than height alone.",
+      "purpose": "Raise your heart rate with alternating knee lifts while running in place.",
+      "steps": "Stand tall and run in place, alternating knee lifts and swinging the opposite arm forward. Land lightly under your body and use a knee height you can control. Keep a running rhythm rather than adding the hop-step of an A-skip.",
+      "cues": "Stay tall, land quietly, and keep the rhythm controlled. Lower the knee lift or slow down if you start leaning back.",
       "mistakes": "Leaning back, stomping, or confusing speed with uncontrolled knee height.",
       "easier": "March in place with alternating knee lifts and relaxed arm swings.",
       "harder": "Increase cadence for a short, controlled burst without sacrificing posture.",
-      "units": "repetitions, sets; per side where applicable",
+      "units": "seconds or repetitions, as specified in your workout",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
-      "last_reviewed": "2026-10-24"
+      "last_reviewed": "2026-11-01"
     },
     {
       "id": "BFIT-00016",
@@ -750,7 +750,7 @@
     },
     {
       "id": "BFIT-00038",
-      "name": "Child\u2019s Pose with Reach-Through",
+      "name": "Child’s Pose with Reach-Through",
       "aliases": [
         "Child's Pose with Reach-Through"
       ],
@@ -1138,7 +1138,7 @@
       "id": "BFIT-00058",
       "name": "Glute Bridge",
       "aliases": [
-        "Glute bridge \u2014 bodyweight or loaded"
+        "Glute bridge — bodyweight or loaded"
       ],
       "domain": "Strength & resistance",
       "family": "Hip Extension",
@@ -2552,7 +2552,7 @@
       "id": "BFIT-00131",
       "name": "Dumbbell Glute Bridge",
       "aliases": [
-        "Glute bridge \u2014 bodyweight or loaded"
+        "Glute bridge — bodyweight or loaded"
       ],
       "domain": "Strength & resistance",
       "family": "Strength & resistance",
@@ -2563,7 +2563,7 @@
       "cues": "Keep the load stable and finish at hip extension without forcing the low back into an arch.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -2583,7 +2583,7 @@
       "cues": "Keep the hips supported and use a manageable range and load.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -2683,7 +2683,7 @@
       "cues": "Keep the chest supported; avoid shrugging or swinging the weights.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -2723,7 +2723,7 @@
       "cues": "Check the band and anchor first; avoid twisting over fixed feet.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -2903,7 +2903,7 @@
       "cues": "Keep the trunk steady and the surrounding floor clear; this is distinct from walking with the weights.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -2943,7 +2943,7 @@
       "cues": "Choose a higher seat or hand support if needed. Add a load only after the unweighted movement is controlled.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -3022,7 +3022,7 @@
       "steps": "Use a suitable secure overhead anchor. Sit or kneel below and slightly back from it; pull the handles toward the upper chest with elbows moving down, then return overhead under control.",
       "cues": "Use the anchor only in the position and pull direction approved by its manufacturer; inspect the band and attachment before use.",
       "mistakes": "",
-      "easier": "Easier: lighter band. Alternative: lat-pulldown machine. Without an overhead anchor, use the chapter\u2019s dumbbell-row route if weights are available; bodyweight readers use their separate starter.",
+      "easier": "Easier: lighter band. Alternative: lat-pulldown machine. Without an overhead anchor, use the chapter’s dumbbell-row route if weights are available; bodyweight readers use their separate starter.",
       "harder": "Progress only when the current version is controlled; follow your plan rather than adding work automatically.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
@@ -3203,7 +3203,7 @@
       "cues": "Inspect the band and anchor; keep your face out of its recoil path.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "repetitions, sets; per side where applicable",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -3250,10 +3250,10 @@
     },
     {
       "id": "BFIT-00166",
-      "name": "Run\u2013Walk Intervals",
+      "name": "Run–Walk Intervals",
       "aliases": [
         "Introductory walk/jog intervals",
-        "Easy runs & run\u2013walk"
+        "Easy runs & run–walk"
       ],
       "domain": "Conditioning & endurance",
       "family": "Conditioning & endurance",
@@ -3264,7 +3264,7 @@
       "cues": "Walking breaks regulate the dose. Repeat a manageable session before increasing total running.",
       "mistakes": "Using a different setup than the named variation; rushing or losing control.",
       "easier": "Use less resistance, assistance, or a shorter comfortable range as appropriate to this movement.",
-      "harder": "Progress one variable only after the current version is controlled; follow the guide\u2019s prescription.",
+      "harder": "Progress one variable only after the current version is controlled; follow the guide’s prescription.",
       "units": "minutes, distance, work/rest intervals",
       "safety": "Use the setup and dosage specified in your guide. Stop if pain or loss of control changes the movement.",
       "last_reviewed": "2026-10-24"
@@ -3453,7 +3453,7 @@
       "id": "BFIT-00176",
       "name": "Easy Run",
       "aliases": [
-        "Easy runs & run\u2013walk"
+        "Easy runs & run–walk"
       ],
       "domain": "Conditioning & endurance",
       "family": "Running session",
@@ -3481,7 +3481,7 @@
       "readiness": "Match the session to recent running and faster-work experience",
       "purpose": "Practice recovery run within an appropriate training week.",
       "steps": "Use a short, easy run on a light day only if you already run regularly and running feels comfortable. Keep the effort and duration modest.",
-      "cues": "This label describes the session\u2019s intent; it does not guarantee faster recovery. Rest or walking can be the better choice.",
+      "cues": "This label describes the session’s intent; it does not guarantee faster recovery. Rest or walking can be the better choice.",
       "mistakes": "Treating an example as a universal prescription; adding speed or volume beyond current preparation.",
       "easier": "Reduce the work or choose easy running/walking when the session is not appropriate.",
       "harder": "Adjust one planned variable based on consistent completion and recovery; retain the intended session purpose.",
@@ -4214,7 +4214,7 @@
       "harder": "Build entry speed while maintaining control; 90-degree cut is distinct.",
       "units": "reps per side, approach/exit meters, recovery",
       "safety": "Predetermined COD, not reactive agility; grade the speed and angle appropriately.",
-      "last_reviewed": "2026-10-27"
+      "last_reviewed": "2026-10-29"
     },
     {
       "id": "BFIT-00215",
@@ -4246,7 +4246,7 @@
       ],
       "domain": "Agility & coordination",
       "family": "Reactive agility; live person",
-      "equipment": "Partner; safe 3\u20135m lane; level surface",
+      "equipment": "Partner; safe 3–5m lane; level surface",
       "readiness": "Intermediate",
       "purpose": "Read a leader's real movement and couple decision-making to response",
       "steps": "Leader moves unpredictably within a small lane; follower watches leader's hips and trunk and mirrors changes in speed or direction for a brief bout. Switch roles if desired.",
@@ -4267,7 +4267,7 @@
       ],
       "domain": "Agility & coordination",
       "family": "Reactive agility; live opponent decision",
-      "equipment": "Partner; two gates 3\u20134m apart; clear noncontact paths",
+      "equipment": "Partner; two gates 3–4m apart; clear noncontact paths",
       "readiness": "Intermediate/advanced",
       "purpose": "Respond to opponent's late actual movement choice",
       "steps": "A leader starts ahead and makes a late choice of one of two gates. Follower reads leader movement then accelerates or redirects toward the gate without contact. Reset and recover fully between trials.",
@@ -4314,7 +4314,7 @@
       "readiness": "Beginner; comfortable marching and small hops",
       "purpose": "Develop easy alternating-leg rhythm and coordination before sprinting, cutting or jumping.",
       "steps": "Travel forward with small, relaxed alternating skipping hops. Coordinate opposite arm and leg naturally and land softly with short steps; keep knee lift modest and pace easy.",
-      "cues": "Stay tall and relaxed; rhythm first. Use small, quiet contacts\u2014not a maximal knee drive or forceful projection.",
+      "cues": "Stay tall and relaxed; rhythm first. Use small, quiet contacts—not a maximal knee drive or forceful projection.",
       "mistakes": "Turning it into powerful skipping for height/distance; oversized hops; hard footfalls; rushing while off balance.",
       "easier": "March with coordinated opposite arms (BFIT-00203).",
       "harder": "Use an A-Skip (BFIT-00014) for more deliberate sprint mechanics, or separately prescribed power skips for height/distance when prepared.",
@@ -4417,7 +4417,7 @@
       "equipment": "Clear flat lane with footfall markers if useful",
       "readiness": "Beginner-intermediate; controlled walk/jog and balance",
       "purpose": "Rehearse comfortable final approach steps preparing ONE-foot takeoff, without forcing a jump",
-      "steps": "Start from a short 3\u20135-step approach at walking/jogging speed. Rehearse the penultimate-to-final transition that sets up a ONE-foot takeoff, finish balanced without jumping, and return to reset. Alternate intended takeoff legs.",
+      "steps": "Start from a short 3–5-step approach at walking/jogging speed. Rehearse the penultimate-to-final transition that sets up a ONE-foot takeoff, finish balanced without jumping, and return to reset. Alternate intended takeoff legs.",
       "cues": "Let approach speed and body position guide step length; do not artificially reach far ahead or lean backward.",
       "mistakes": "Exaggerated long penultimate, hard braking, confusing a two-foot gather with unilateral takeoff.",
       "easier": "Slow walking rehearsal with fewer steps or marked foot placements.",
@@ -4438,7 +4438,7 @@
       "equipment": "Clear stable lane",
       "readiness": "Beginner-intermediate; comfortable foot placement and balance",
       "purpose": "Rehearse final steps leading to a coordinated two-foot plant, without requiring a jump",
-      "steps": "Use a short 2\u20134-step approach at a controlled walk or jog. Rehearse a comfortable penultimate-to-final step and two-foot plant with feet at a manageable width, finishing balanced and upright enough to jump without doing so.",
+      "steps": "Use a short 2–4-step approach at a controlled walk or jog. Rehearse a comfortable penultimate-to-final step and two-foot plant with feet at a manageable width, finishing balanced and upright enough to jump without doing so.",
       "cues": "Find a repeatable gather rhythm; avoid a fixed universally prescribed long penultimate.",
       "mistakes": "Heel jamming, crossing feet, overlong step, uncontrolled hip/trunk rotation.",
       "easier": "Walking two-foot gather with deliberate pauses.",
@@ -4451,7 +4451,7 @@
       "id": "BFIT-00226",
       "name": "One-Foot Short-Approach Jump",
       "aliases": [
-        "3\u20135-Step One-Foot Jump",
+        "3–5-Step One-Foot Jump",
         "Running One-Leg Jump"
       ],
       "domain": "Power & jumping",
@@ -4459,7 +4459,7 @@
       "equipment": "Clear safe run-up and soft/stable landing zone; optional reachable target",
       "readiness": "Intermediate; comfortable single-leg landing and walk-through approaches",
       "purpose": "Convert controlled horizontal approach into a one-foot jumping takeoff",
-      "steps": "Take 3\u20135 comfortable approach steps, organize the last two steps for a ONE-foot takeoff, jump upward or slightly forward as prescribed, and land safely with enough clear space. Practice both takeoff legs when appropriate.",
+      "steps": "Take 3–5 comfortable approach steps, organize the last two steps for a ONE-foot takeoff, jump upward or slightly forward as prescribed, and land safely with enough clear space. Practice both takeoff legs when appropriate.",
       "cues": "Build rhythm rather than maximum approach speed; use measured start mark; count one contact per deliberate jumping takeoff.",
       "mistakes": "Overlong penultimate, reaching, landing in obstructed space, maximizing speed before technique.",
       "easier": "One-Foot Penultimate Walk-through BFIT-00224; small single-leg hop-and-stick BFIT-00228.",
@@ -4480,7 +4480,7 @@
       "equipment": "Clear short approach lane and safe landing area",
       "readiness": "Intermediate; controlled two-foot plants and landings",
       "purpose": "Convert a short approach into a coordinated two-foot takeoff",
-      "steps": "Take 2\u20134 comfortable approach steps, gather into a stable two-foot plant, jump vertically or as specified, then land under control with ample clearance. Reset between attempts.",
+      "steps": "Take 2–4 comfortable approach steps, gather into a stable two-foot plant, jump vertically or as specified, then land under control with ample clearance. Reset between attempts.",
       "cues": "Maintain repeatable approach and plant rhythm, with gradual projection into the takeoff; count one jump event per attempt.",
       "mistakes": "Exaggerated penultimate reach; uncontrolled feet crossing; repeated landings with poor alignment.",
       "easier": "Two-Foot Penultimate Walk-through BFIT-00225; CMJ BFIT-00201.",
