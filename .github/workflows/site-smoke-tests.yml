@@ -2,7 +2,7 @@ name: BFit site smoke tests
 
 on:
   push:
-    branches: [main, first-5k-programming-review]
+    branches: [main, first-5k-programming-review, feature/mobility-guide-workout]
   pull_request:
     branches: [main]
   workflow_dispatch:

@@ -20,6 +20,8 @@ const guidePages = [
   { name: 'Run Strong', url: '/guides/run-strong/', selector: '#start', min: 1 },
   { name: 'Conditioning', url: '/guides/conditioning/', selector: 'section[id^=chapter-]', min: 10 },
   { name: 'Build Your Conditioning', url: '/guides/build-your-conditioning/', selector: '#setup', min: 1 },
+  { name: 'Mobility', url: '/guides/mobility/', selector: '#learn', min: 1 },
+  { name: 'Build Your Mobility', url: '/guides/build-your-mobility/', selector: '#setup', min: 1 },
   { name: 'Keep Moving 50+ intro', url: '/guides/50-plus/', selector: '#why', min: 1 },
   { name: 'Keep Moving 50+ activities', url: '/guides/50-plus/activities/', selector: '#start', min: 1 },
   { name: 'Keep Moving 50+ plan', url: '/guides/50-plus/plan/', selector: '#weekPlan .day', min: 2 },

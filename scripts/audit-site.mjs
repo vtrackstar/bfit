@@ -2,6 +2,7 @@
 // Dependency-free static checks. These do not replace a real browser test.
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { spawnSync } from 'node:child_process';
 
 const base = 'https://vtrackstar.github.io/bfit/';
 const paths = ['index.html', ...['guides','milestones','coaching','resources','exercise-library'].flatMap(dir =>
@@ -54,7 +55,13 @@ for (const [path, html] of pages) {
       try { JSON.parse(m[2]); jsonChecked++; }
       catch(e) { add(path, 'invalid JSON script ' + i + ': ' + e.message); }
     } else if (['text/javascript','module','application/javascript'].includes(type)) {
-      try { new vm.Script(m[2], {filename: path + '#script-' + i}); scriptsChecked++; }
+      try {
+        if(type==='module'){
+          const check=spawnSync(process.execPath,['--input-type=module','--check'],{input:m[2],encoding:'utf8'});
+          if(check.error||check.status!==0)throw Error(check.error?.message||check.stderr);
+        }else new vm.Script(m[2], {filename: path + '#script-' + i});
+        scriptsChecked++;
+      }
       catch(e) { add(path, 'invalid JavaScript script ' + i + ': ' + e.message); }
     }
   });

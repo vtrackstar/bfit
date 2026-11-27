@@ -17,15 +17,16 @@ async function check(name,fn,width=390){
  finally{await page.close()}
 }
 const paths=['foundation','athleticism','gamer-fit','run-strong','50-plus'];
+const mobilityPaths=['mobility','build-your-mobility'];
 try{
  await ready();browser=await chromium.launch({headless:true});
- await check('Hub shows five distinct guide choices and a separate exercise library',async p=>{
+ await check('Hub shows established guide choices, mobility resources and a separate exercise library',async p=>{
   await p.goto(host+'/',{waitUntil:'domcontentloaded'});
-  for(const guide of paths)assert.equal(await p.locator('a.card[href="guides/'+guide+'/"]').count(),1);
+  for(const guide of [...paths,...mobilityPaths])assert.equal(await p.locator('a.card[href="guides/'+guide+'/"]').count(),1);
   assert.match(await p.locator('.library-cta').innerText(),/Exercise Library/i);
  });
  await check('Every guide exposes one clearly labeled Hub return',async p=>{
-  for(const guide of paths){
+  for(const guide of [...paths,...mobilityPaths]){
    await p.goto(host+'/guides/'+guide+'/',{waitUntil:'domcontentloaded'});
    const link=p.locator('header .bfit-hub-link, .topbar .bfit-hub-link').first();
    assert.equal(await link.count(),1,guide+': missing header Hub link');

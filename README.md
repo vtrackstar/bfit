@@ -2,7 +2,7 @@
 
 I built these guides so you can choose a workout that fits your week, try it, and learn why you’re doing it. [Open the BFit hub](https://vtrackstar.github.io/bfit/)
 
-## Published catalog
+## Catalog (Mobility release candidate: not yet deployed)
 
 | Collection | Page | What the reader can do |
 | --- | --- | --- |
@@ -12,6 +12,8 @@ I built these guides so you can choose a workout that fits your week, try it, an
 | Training guides | [Run Strong](guides/run-strong/) | Choose a first run–walk session or start from the running you already do. |
 | Training guides | [Conditioning Training](guides/conditioning/) | Learn how energy systems, fatigue, recovery and conditioning methods work; use independently or alongside the companion. |
 | Training guides | [Keep Moving 50+](guides/50-plus/) | Choose everyday priorities and activities, build a week, and save check-ins across four pages. |
+| Training guides | [Mobility](guides/mobility/) | Learn how flexibility, strength and control support the movements you need. |
+| More training plans | [Build Your Mobility](guides/build-your-mobility/) | Build a short general or targeted practice routine, save feedback, and adjust the next session. |
 | More training plans | [Build Your Conditioning](guides/build-your-conditioning/) | Start a standalone adaptive land-based plan, record workouts and recovery, and retain existing conditioning history. |
 | More training plans | [Weekend Warrior](guides/weekend-warrior/) | Fit two short home visits and a gym visit around work and log four weeks. |
 | More training plans | [Build Your Glutes](guides/build-your-glutes/) | Follow two leg days a week for eight weeks, swap equipment, and log each set. |

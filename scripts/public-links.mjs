@@ -11,6 +11,8 @@ const urls = [
   ['Run Strong', 'https://vtrackstar.github.io/bfit/guides/run-strong/'],
   ['Conditioning', 'https://vtrackstar.github.io/bfit/guides/conditioning/'],
   ['Build Your Conditioning', 'https://vtrackstar.github.io/bfit/guides/build-your-conditioning/'],
+  ['Mobility', 'https://vtrackstar.github.io/bfit/guides/mobility/'],
+  ['Build Your Mobility', 'https://vtrackstar.github.io/bfit/guides/build-your-mobility/'],
   ['Keep Moving', 'https://vtrackstar.github.io/bfit/guides/50-plus/'],
   ['Weekend Warrior', 'https://vtrackstar.github.io/bfit/guides/weekend-warrior/'],
   ['Build Your Glutes', 'https://vtrackstar.github.io/bfit/guides/build-your-glutes/'],
