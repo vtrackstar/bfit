@@ -8,6 +8,7 @@ import path from 'node:path';
 const host = 'http://127.0.0.1:8765';
 const guidePages = [
   { name: 'Hub', url: '/', selector: '#guides .card', min: 5 },
+  { name: 'Exercise Library', url: '/exercise-library/', selector: '#cards .movement', min: 226 },
   { name: 'Weekend Warrior', url: '/guides/weekend-warrior/', selector: 'main h1', min: 1 },
   { name: 'Build Your Glutes', url: '/guides/build-your-glutes/', selector: 'main h1', min: 1 },
   { name: 'Your First Push-Up', url: '/milestones/first-push-up/', selector: 'main h1', min: 1 },

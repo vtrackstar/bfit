@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const base = 'https://vtrackstar.github.io/bfit/';
-const paths = ['index.html', ...['guides','milestones','coaching','resources'].flatMap(dir =>
+const paths = ['index.html', ...['guides','milestones','coaching','resources','exercise-library'].flatMap(dir =>
   fs.readdirSync(dir,{recursive:true}).filter(file=>file.endsWith('.html')).map(file=>dir+'/'+file)
 )];
 const pages = new Map(paths.map(path => [path, fs.readFileSync(path, 'utf8')]));
@@ -46,7 +46,7 @@ for (const [path, html] of pages) {
     add(path, 'missing current Premium/Elite plan names');
 
   if (/https:\/\/(?:foundation-training-skill-tree|bfit-run-strong|bfit-gamer-fit)\.stormy-lamp-8931\.chatgpt\.site/gi.test(html)) add(path, 'outdated guide host');
-  if (html.includes('bfit-exercise-movement-library.stormy-lamp-8931.chatgpt.site')) add(path, 'old exercise-library host (use bfit-exercise-movement-library.balouissaint.chatgpt.site)');
+  if (/bfit-exercise-movement-library\.[\w-]+\.chatgpt\.site/.test(html)) add(path, 'old exercise-library host (use the /bfit/exercise-library/ path)');
   const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)];
   scripts.forEach((m,i) => {
     const type = attr(m[1],'type') || 'text/javascript';

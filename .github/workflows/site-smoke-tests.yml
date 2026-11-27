@@ -21,7 +21,9 @@ jobs:
         with:
           node-version: "22"
       - name: Check pages, inline scripts, JSON and internal links
-        run: node scripts/audit-site.mjs
+        run: |
+          node scripts/audit-site.mjs
+          node scripts/audit-exercise-library.mjs
       - name: Check editorial copy, guide summaries and coaching intake message
         run: node scripts/editorial-smoke.mjs
       - name: Check Your First milestone contracts and release gates
