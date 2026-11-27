@@ -11,21 +11,31 @@ export const movements=[
 {key:'hinge',area:'hamstrings',name:'Move hips backward',side:false,steps:['Stand near a wall behind you; soften knees and move hips back a little.','Touch hips gently to wall and stand again.','Pause briefly before standing, keeping balance.','Move hips backward slowly over 4 seconds.']},
 {key:'hand',area:'hands',name:'Open and close your hand',side:true,steps:['Rest forearm on a table and gently open fingers.','Open and close your hand and touch thumb to each fingertip.','Pause with fingers comfortably spread for 3 seconds.','Close fingers slowly without squeezing hard.']},
 {key:'neck',area:'neck',name:'Turn your head',side:true,steps:['Sit supported and turn head a small comfortable amount.','Turn head comfortably and return without forcing.','Pause briefly at a comfortable turn.','Return slowly without forcing.']},
-{key:'chair',area:'knees',name:'Stand from a chair',side:false,steps:['Use a sturdy chair and hands as needed to stand and sit.','Stand and sit with the assistance you need.','Pause just before sitting if comfortable and safe.','Sit slowly over 4 seconds using support as needed.']}
+{key:'chair',area:'knees',name:'Stand from a chair',side:false,steps:['Use a sturdy chair and hands as needed to stand and sit.','Stand and sit with the assistance you need.','Pause just before sitting if comfortable and safe.','Sit slowly over 4 seconds using support as needed.']},
+
+{key:'calf-raise',area:'ankles',name:'Supported calf raise',side:false,strength:true,steps:['Hold a sturdy counter with both hands. Rise a small distance onto the balls of both feet, then lower.','Rise onto both forefeet to a comfortable height and lower with control; keep support.','Pause at the top for 3 seconds and lower slowly.','Lower over 4 seconds while keeping your balance.']},
+{key:'lateral-strength',area:'lateral',name:'Supported lateral lunge',side:true,strength:true,steps:['Hold a fixed counter. Take a comfortable wide stance and shift a small distance toward the working leg.','Bend the working knee as hips move back, then push through that foot to return. Use support throughout.','Pause for 3 seconds in a comfortable shallow lunge, then return.','Lower over 4 seconds and return smoothly. Do not chase depth.']},
+{key:'hinge-strength',area:'hamstrings',name:'Romanian deadlift practice',side:false,strength:true,steps:['Practice an unloaded hip hinge: soften knees, move hips back, then stand.','Hinge with empty hands or two light dumbbells if already familiar with lifting. Keep weights close to thighs.','Pause briefly where you can maintain control, then stand.','Lower over 4 seconds with manageable resistance. Stop before losing control.']},
+{key:'knee-strength',area:'hips',name:'Standing supported knee lift',side:true,strength:true,steps:['Hold a sturdy counter, shift weight onto the other leg and lift the working knee slightly.','Lift the working knee to a comfortable height without leaning back; lower slowly.','Hold the knee up for 3 seconds while breathing normally.','Lower over 4 seconds. Maintain hand support as needed.']},
+{key:'wall-slide',area:'shoulders',name:'Wall slide',side:false,strength:true,steps:['Face a wall with forearms resting against it at a comfortable height. Slide upward a small distance and return.','Slide forearms upward and down through comfortable range, letting shoulder blades move.','Pause for 3 seconds at a comfortable height, then return.','Slide down slowly over 4 seconds without forcing the shoulders.']},
+{key:'wrist-load',area:'hands',name:'Supported wall hand pressure',side:false,strength:true,steps:['Place palms on a wall at a comfortable height and stand close. Gently shift a little weight toward your hands.','Shift toward the wall and return with manageable pressure. Keep feet grounded.','Hold light pressure for 3 seconds, then release.','Gradually release pressure over 4 seconds. Avoid painful wrist positions.']}
+
 ];
 export const modes=['general','targeted','control','complement'];
 export const identity=item=>item.key+':'+item.side;
-export const estimateSeconds=item=>45+item.reps*(item.level===3?8:item.level===2?7:4);
-export function buildPlan({mode='general',area='hips',difficulty='active',minutes=10,side='both',flexible=false,existing=[],previous=[]}={}){
+export const estimateSeconds=item=>(movements.find(m=>m.key===item.key)?.strength?90:45)+item.reps*(item.level===3?8:item.level===2?7:4);
+export function buildPlan({mode='general',area='hips',difficulty='active',minutes=10,side='both',flexible=false,existing=[],previous=[],strength=false,movement='all'}={}){
  if(!modes.includes(mode))throw Error('Unknown mode');
- let list=mode==='general'?['foot','ankle','knee-lift','turn','reach','hinge'].map(k=>movements.find(m=>m.key===k)):movements.filter(m=>m.area===area);
+ let list=mode==='general'?['foot','ankle','knee-lift','turn','reach','hinge'].map(k=>movements.find(m=>m.key===k)):movements.filter(m=>m.area===area&&(!m.strength||strength));
+ if(mode!=='general'&&movement!=='all')list=list.filter(m=>m.key===movement);
+ if(mode!=='general'&&strength&&movement==='all')list=[...list.filter(m=>m.strength),...list.filter(m=>!m.strength)];
  if(mode==='complement')list=list.filter(m=>!existing.includes(m.key));
  const level=({assisted:0,active:1,hold:2,return:3,awareness:0,maintain:1}[difficulty]??1);
  const budget=Math.max(5,Math.min(25,Number(minutes)||10))*60;
  let spent=0,plan=[];
  for(const m of list){
  const sides=m.side?(side==='both'?['left','right']:[side==='left'?'left':'right']):['both'];
- const group=sides.map(s=>previous.find(i=>i.key===m.key&&i.side===s)||{key:m.key,side:s,level:level===1&&(flexible||mode==='control')?1:level,reps:4,streak:0,paused:false,maintain:difficulty==='maintain',controlOnly:flexible||mode==='control',history:[]});
+ const group=sides.map(s=>previous.find(i=>i.key===m.key&&i.side===s)||{key:m.key,side:s,level:m.strength?0:level,reps:4,streak:0,paused:false,maintain:difficulty==='maintain',controlOnly:flexible||mode==='control',history:[]});
  const cost=group.reduce((a,i)=>a+(i.paused?0:estimateSeconds(i)),0);
  if(spent+cost>budget)continue;
  plan.push(...group);spent+=cost;
@@ -38,7 +48,7 @@ export function feedback(item,result,recovered=true,goalMet=false,date=new Date(
  if(item.history.some(h=>h.date.slice(0,10)===date.slice(0,10))&&result!=='pain')return item;
  const next={...item,history:[...item.history,{date,result,recovered,level:item.level,reps:item.reps}]};
  if(result==='pain'){next.paused=true;next.streak=0;return next;}
- if(goalMet){next.maintain=true;next.streak=0;return next;}
+ if(goalMet&&result==='comfortable'&&recovered){next.maintain=true;next.streak=0;return next;}
  if(result==='help'||result==='uncontrolled'){next.level=Math.max(0,item.level-1);next.streak=0;return next;}
  if(result!=='comfortable'||!recovered||item.maintain){next.streak=0;return next;}
  const last=item.history.at(-1);
