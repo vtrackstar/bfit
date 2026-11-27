@@ -120,3 +120,7 @@ Simplified intake and optional measurement hierarchy; minutes/seconds entry, pha
 ## Final prepublication communication changes
 
 Added three-step introduction, current versus requested weekly schedule, workout-specific reason and preview, printable text instructions, timer status and prominent safety instructions. 61/61 simulated interface checks pass; engine unchanged (88 previous programming checks). Real phone testing remains outstanding. Owner explicitly authorized release.
+
+## Post-launch beginner refinement
+
+Progressive history fields; occasional runners may start without records at the conservative entry. Short expectations, safety examples, stage explanation, optional measurements skip, clearer decision messages and optional milestone preparation with regular-training fallback. Corrected attempt eligibility window to end on previous day, avoiding the two-day schedule budget conflict, and aligned the near-distance record filter with readiness. Interrupted or uncertain running is conservatively saved without progression or measured milestone credit. Medical clearance metadata retained after longer-break reentry. Existing numeric progression thresholds retained. Verified NHS and CDC public guidance, None to Run program page, and Frandsen et al. 2025 cohort (observational, 5,205 adults; not a safe-increase rule). 73/73 simulated interface checks; 88/88 programming checks; nine scripted journeys complete. Independent clinical review, physical-device and beginner/assistive-technology testing remain outstanding.
