@@ -43,3 +43,12 @@ Do not assign a canonical ID based solely on similar anatomy. Existing IDs above
 
 ## Release gate
 Central library inventory and write access are still needed. Existing IDs and Gamer Fit anchors must remain stable. The guide and workout must remain independently usable. No new canonical IDs have been issued in this branch.
+
+
+## 2026-11-27 — Library migration and editorial master cutover
+- Canonical public URL: https://vtrackstar.github.io/bfit/exercise-library/.
+- Active editorial master: https://docs.google.com/spreadsheets/d/1xtxh9ey80FL0rFEi7dCHTfapFa2f7BHZhK-BsDiMuqM/edit (verified writable copy).
+- Former master retained unchanged: ID 1aLjYoLen3zGhRJ72dXAoFbD7ymDbD8bvtTJ3Ywig2Gs. Do not edit both masters independently. When original-account access returns, reconcile by stable ID and changed fields before any synchronization.
+- Existing public feed remains unchanged. 226 approved records in GitHub snapshot; 228 original master records including two with blank publication status (BFIT-00194 and BFIT-00202).
+- Five new records BFIT-00229–00233 were written to the new master and verified as Draft, with no vetted demos. Total master records: 233; approved: 226. Do not expose drafts in public feed.
+- Before release: reconcile approved feed against master and embedded snapshot, verify feed write access, integrate main library migration into development branch while retaining guide edits, test deep links and catalog behavior.
