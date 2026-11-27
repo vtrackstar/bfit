@@ -37,3 +37,6 @@ Parent 2fcc872a20454a8af0a5f143014a8a8684af01fb. guides/foundation/index.html: 8
 
 ## Batch 8 — milestone language
 Parent 0e22a8770a252c8addec72a77dc9df6600a431c8. Conditioning production 46041775288 and full smoke 46041775390 passed. milestones/first-push-up/index.html: 6 edits, unmatched []; milestones/first-pull-up/index.html: 5 edits, unmatched []; milestones/first-5k/index.html: 4 edits, unmatched []. Effort labels, grip, assistance, reps, reset and timer limitations. No engine, certificate, timing or persistence changes. External timing remains unsupported for automatic logging; no manual-recording feature added. Await regression and deployment.
+
+## Batch 9 — specialty program usability
+Parent 85a40463a7784bfda337f93dc1bbf9fd7059a091. guides/50-plus/index.html: 4 edits; unmatched []; guides/50-plus/activities/index.html: 6 edits; unmatched []; guides/50-plus/plan/index.html: 3 edits; unmatched []; guides/50-plus/progress/index.html: 3 edits; unmatched []; guides/weekend-warrior/index.html: 6 edits; unmatched []; guides/build-your-glutes/index.html: 6 edits; unmatched []. Everyday terminology, equipment identification, starter workout clarity and reduced repeated coaching promotion. No exercise programming, navigation, timers, storage or safety rules intentionally changed. Review unmatched items and run regression before declaring verified.
