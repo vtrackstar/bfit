@@ -61,3 +61,7 @@ Keep dosage and progression in the workout, with complete standalone instruction
 - Remaining: confirm latest site-wide checks (46037838921) and mobility checks (46037838867); require explicit publication authorization; approve five written records without approving videos; verify live feed write access; update public feed and snapshots consistently; remove noindex/draft notices at release; verify Pages deployment and live links. Do not overwrite or renumber the two older unpublished records.
 - Current candidate commit a0d20e8. Public feed remains 226 records. Candidate fallback has 231 entries and a newer publication timestamp, so old live feed is rejected rather than removing new anchors. Set the final publication timestamp consistently with the approved feed at release.
 - Actual footage, physical-device checks, and independent beginner testing remain open; do not claim those were completed.
+
+## Publication authorization
+
+Owner authorized coordinated release of Mobility Guide, Build Your Mobility, Gamer Fit refinements and library on 2026-11-27, conditional on release checks. Latest functional development checks 46037928368 and full-site smoke 46037928360 passed. Release metadata prepared; confirm the feed and main/Pages revision before claiming a live launch.

@@ -2,7 +2,7 @@
 
 I built these guides so you can choose a workout that fits your week, try it, and learn why you’re doing it. [Open the BFit hub](https://vtrackstar.github.io/bfit/)
 
-## Catalog (Mobility release candidate: not yet deployed)
+## Published catalog
 
 | Collection | Page | What the reader can do |
 | --- | --- | --- |

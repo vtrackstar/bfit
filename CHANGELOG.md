@@ -143,3 +143,10 @@
 ## Release verification boundary
 
 GitHub Actions deployment success confirms a successful deployment of repository files; it does **not** guarantee a full interactive browser test. Check in particular: mobile menus, generated workouts, exported downloads, saved state after reload, first-workout completion, exercise-library links, and external questionnaire links.
+
+## 2026-11-27 — Mobility coordinated release
+
+- Add standalone Mobility education and Build Your Mobility adaptive practice, with eccentric-strength teaching and clear complementary use with Gamer Fit.
+- Add hub cards, guide navigation, metadata and sitemap entries. Preserve saved workout storage and existing exercise anchors.
+- Expand the central library from 226 to 231 written-reviewed definitions; all 18 mobility workout movements map to stable IDs. Two older unpublished records excluded; no newly verified demos.
+- Development functional and full-site smoke checks passed (runs 46037928368 and 46037928360). Physical-device, independent reader and actual footage review remain open. Verify the deployed Pages revision and public catalog after release.
