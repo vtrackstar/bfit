@@ -17,7 +17,7 @@ const urls = [
   ['Your First Push-Up', 'https://vtrackstar.github.io/bfit/milestones/first-push-up/'],
   ['Your First Pull-Up', 'https://vtrackstar.github.io/bfit/milestones/first-pull-up/'],
   ['Your First 5K', 'https://vtrackstar.github.io/bfit/milestones/first-5k/'],
-  ['Exercise library', 'https://bfit-exercise-movement-library.balouissaint.chatgpt.site/'],
+  ['Exercise library', 'https://vtrackstar.github.io/bfit/exercise-library/'],
   ['Coaching availability', 'https://vtrackstar.github.io/bfit/coaching/'],
   ['Coaching form, currently paused (owner-side check)', 'https://forms.gle/f11PGA7PCUKaxrgq9'],
   ['Instagram', 'https://www.instagram.com/_trainwithbfit/'],
@@ -38,7 +38,7 @@ console.log('Public-link results are observational; browser or provider restrict
 
 // Read-only browser check of representative direct links. A matching name in the page
 // is useful evidence, but does not independently validate an exercise video.
-const libraryBase='https://bfit-exercise-movement-library.balouissaint.chatgpt.site/';
+const libraryBase='https://vtrackstar.github.io/bfit/exercise-library/';
 const samples=[
   ['BFIT-00001','Goblet Squat'],
   ['BFIT-00014','A-Skip'],

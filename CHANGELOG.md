@@ -1,5 +1,9 @@
 # BFit Training Hub — Change Log
 
+## 2026-11-27
+
+- Migrated the 226-entry Exercise & Movement Library from its reviewed v6 source archive into `exercise-library/` on the BFit GitHub Pages site. Preserved BFIT deep-link IDs, the full written catalog, searching, filters, and the live-approved-feed fallback. Updated hub and guide references, added sitemap coverage and static/browser checks. Keep the previous external site available during the cutover; its original host cannot be redirected from this repository.
+
 ## 2026-11-26
 
 - Prepared Conditioning Training as the sixth main training guide: ten lessons, adaptive land-based workouts, timers and actual records, recovery review and local backups. Initial public scope excludes automated swimming and the hardest intervals pending specialist review. Physical-device and independent reader testing remain open; publication requires passing release checks.

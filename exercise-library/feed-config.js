@@ -1,0 +1,1 @@
+window.BFIT_FEED_URL = "https://docs.google.com/spreadsheets/d/1Jg_ZpQDZJlpBc-7vhZbMUS13gF6KxQ2_yxBFHnThNuM/gviz/tq?tqx=out:csv&sheet=Catalog&headers=1";
