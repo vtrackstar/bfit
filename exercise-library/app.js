@@ -10,7 +10,7 @@ function matchesEquipment(e,filter){
  if(filter!=='home')return equipmentPatterns[filter].test(e.equipment);
  // A floor or bench mentioned alongside required equipment does not make an exercise equipment-free.
  const required=e.equipment.split(/;\s*optional\b/i)[0];
- if(/dumbbell|kettlebell|barbell|trap bar|plates|machine|cable|band|pull.up bar|roller|rope|medicine ball|landmine|restraint|anchor|two manageable weights|appropriate load/i.test(required))return false;
+ if(/dumbbell|kettlebell|barbell|trap bar|plates|machine|cable|band|pull.up bar|roller|rope|medicine ball|landmine|restraint|\banchor\b|two manageable weights|appropriate load/i.test(required))return false;
  if(/see setup instructions|table or towel|bench or stable surface|partner|cones|gates|track|turf|court|outdoor|running route|sprint|run.out|approach lane/i.test(required))return false;
  if(/slider|towel/i.test(required))return false;
  return equipmentPatterns.home.test(required)||/stable chair|nonslip surface|level ground|level stable|stable seat|hands and feet/i.test(required);

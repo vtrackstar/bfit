@@ -55,3 +55,6 @@ Content SHA `50565b9047f0041ece27b1d9f014d6ca3bb1fa94`: 24 corrected records rea
 
 ## Final verification follow-up
 Dedicated mobility workflow 46043691141: engine and catalog audit passed; browser timed out at line 88 waiting for obsolete status text 'Catalog checked'. Current app emits 'Exercise list checked' on successful fetch. Updated exact success assertion to current wording, retaining all offline fallback, search, filter, deep-link and workout reference checks. No production content changes. Re-run required.
+
+## Filter regression correction
+Run 46044042912 reached new home filter assertions; incline push-up omitted because 'anchor' matched 'anchored bench'. Match standalone anchor, not anchored. Required equipment exclusions retained. Full regression and deployment pending.
